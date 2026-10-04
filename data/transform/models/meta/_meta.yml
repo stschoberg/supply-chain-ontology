@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: meta_source_files
+    description: One row per raw file the release was built from, with its sha256, retrieval time, and request.
+    columns:
+      - name: sha256
+        data_tests: [not_null]
+      - name: rows
+        description: Rows the source reported for the file (for USAspending, prime awards + subawards).
+  - name: meta_build
+    description: The release tag, git commit, and dbt version that produced this release.
