@@ -8,7 +8,7 @@ license, update cadence, access method, the columns we use, and its quirks.
 
 | Source | What it gives us | Angle | Status |
 |--------|------------------|-------|--------|
-| [USAspending.gov](https://www.usaspending.gov/) | Federal contract awards: vendor, product/service code, competition, origin | DoD + civilian | Candidate |
+| [USAspending.gov](sources/usaspending/README.md) | Federal contract awards: vendor, product/service code, competition, origin | DoD + civilian | Fetching |
 | [SAM.gov](https://sam.gov/) entity data | Vendor registrations, CAGE codes, ownership | DoD | Candidate |
 | [USGS Mineral Commodity Summaries](https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries) | Critical minerals: production by country, US import reliance | DoD (industrial base) | Candidate |
 | [UN Comtrade](https://comtradeplus.un.org/) | Bilateral trade flows by HS code | Civilian / global | Candidate |
@@ -16,6 +16,10 @@ license, update cadence, access method, the columns we use, and its quirks.
 | [IMF PortWatch](https://portwatch.imf.org/) | Port activity and chokepoint disruptions | Disruption scenarios | Candidate |
 
 ## Layout
+
+```bash
+make fetch-usaspending    # download a snapshot
+```
 
 ```
 data/
@@ -34,3 +38,4 @@ data/
 - **Verify what came back:** that the server applied our filters, that row counts match, and that the
   columns we depend on exist. Fail loudly otherwise.
 - **Keep API keys in environment variables** (or a gitignored `.env`), never in the repo.
+- **Shared plumbing** (retries, User-Agent, OS certificate store, manifests) lives in `src/sco/fetching.py`.
