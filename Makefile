@@ -1,7 +1,7 @@
 # Supply Chain Ontology build.
 #
 # Python targets (test, validate, lint) only need `uv`.
-# ROBOT targets (reason, report, release) run in Docker unless a working local Java is found
+# ROBOT targets (components, reason, report, release) run in Docker unless a working local Java is found
 # (as in CI). Force either with ROBOT_ENV=docker or ROBOT_ENV=local. The jar is downloaded on first use.
 
 SHELL := /bin/bash
@@ -24,8 +24,12 @@ CATALOG    := $(ONT)/catalog-v001.xml
 RELEASE    := $(ONT)/release
 VERSION    := $(shell date +%Y-%m-%d)
 BASE_IRI   := https://w3id.org/sco
+PREFIXES   := --prefix "sco: $(BASE_IRI)/" --prefix "skos: http://www.w3.org/2004/02/skos/core\#"
 
-.PHONY: help all test validate lint fmt reason report release refresh-imports clean
+TEMPLATES  := $(wildcard $(ONT)/src/templates/*.tsv)
+COMPONENTS := $(patsubst $(ONT)/src/templates/%.tsv,$(ONT)/components/%.owl,$(TEMPLATES))
+
+.PHONY: help all test validate lint fmt components reason report release refresh-imports clean
 
 help: ## Show this help
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -54,20 +58,27 @@ $(ROBOT_JAR):
 	mkdir -p tools
 	curl -fsSL -o $@ https://github.com/ontodev/robot/releases/download/v$(ROBOT_VERSION)/robot.jar
 
-reason: | $(ROBOT_JAR) ## Check consistency and unsatisfiable classes with HermiT (OWL 2 DL)
+components: $(COMPONENTS) ## Regenerate OWL components from ROBOT templates
+
+$(ONT)/components/%.owl: $(ONT)/src/templates/%.tsv | $(ROBOT_JAR)
+	$(ROBOT) template --template $< $(PREFIXES) \
+		--ontology-iri "$(BASE_IRI)/components/$*.owl" \
+		--output $@
+
+reason: $(COMPONENTS) | $(ROBOT_JAR) ## Check consistency and unsatisfiable classes with HermiT (OWL 2 DL)
 	mkdir -p $(RELEASE)
 	$(ROBOT) merge --catalog $(CATALOG) --input $(EDIT) \
 		reason --reasoner HermiT --equivalent-classes-allowed asserted-only --output $(RELEASE)/reasoned.owl
 
 # report-profile.txt omits missing_definition: ROBOT expects IAO:0000115, but we follow BFO 2020
 # and CCO in using skos:definition. tests/test_ontology.py checks definitions instead.
-report: | $(ROBOT_JAR) ## Ontology quality report (labels, definitions, ...)
+report: $(COMPONENTS) | $(ROBOT_JAR) ## Ontology quality report (labels, definitions, ...)
 	mkdir -p $(RELEASE)
 	$(ROBOT) merge --catalog $(CATALOG) --input $(EDIT) \
 		remove --base-iri "$(BASE_IRI)/" --axioms external --preserve-structure false \
 		report --profile $(ONT)/report-profile.txt --fail-on ERROR --output $(RELEASE)/report.tsv
 
-release: | $(ROBOT_JAR) ## Build release artifacts in ontology/release/
+release: $(COMPONENTS) | $(ROBOT_JAR) ## Build release artifacts in ontology/release/
 	mkdir -p $(RELEASE)
 	$(ROBOT) merge --catalog $(CATALOG) --input $(EDIT) \
 		reason --reasoner HermiT --equivalent-classes-allowed asserted-only \

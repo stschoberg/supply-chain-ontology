@@ -17,7 +17,7 @@ infer it. The same pattern applies to customer, carrier, manufacturer, and so on
 ## Product types vs. product instances
 
 OWL individuals are **particulars**: this lot of magnets, this truck, this shipment. Product *types* such as "NdFeB
-magnet" or an NSN/SKU are **classes**, or information content entities that
+magnet" or an NSN/SKU are **classes** (see `templates/product-types.tsv`), or information content entities that
 describe them. Don't model an SKU as an individual of `sco:Product`.
 
 ## Open world vs. closed world

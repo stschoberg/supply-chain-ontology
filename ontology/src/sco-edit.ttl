@@ -8,7 +8,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Supply Chain Ontology (SCO) — editors' file.
-# Edit this file in Protégé or by hand.
+# Edit this file (Protégé or by hand). Build artifacts land in ontology/release/ via `make release`.
 #
 # NOTE: The seed classes below sit directly under BFO as placeholders. Once ADR-0001
 # (mid-level ontology: CCO vs IOF) is decided, re-parent them under the chosen
@@ -18,7 +18,8 @@
     rdfs:label "Supply Chain Ontology"@en ;
     dcterms:description "A BFO-aligned ontology of supply chains for defense and civilian logistics."@en ;
     owl:versionInfo "0.1.0" ;
-    owl:imports <http://purl.obolibrary.org/obo/bfo/2020/bfo-core.owl> .
+    owl:imports <http://purl.obolibrary.org/obo/bfo/2020/bfo-core.owl> ,
+                <https://w3id.org/sco/components/product-types.owl> .
 
 # ---------------------------------------------------------------- Classes
 

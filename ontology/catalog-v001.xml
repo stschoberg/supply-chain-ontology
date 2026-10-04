@@ -2,4 +2,5 @@
 <!-- Lets Protégé and ROBOT resolve owl:imports to local files instead of the network. -->
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri name="http://purl.obolibrary.org/obo/bfo/2020/bfo-core.owl" uri="imports/bfo-core.owl"/>
+    <uri name="https://w3id.org/sco/components/product-types.owl" uri="components/product-types.owl"/>
 </catalog>
