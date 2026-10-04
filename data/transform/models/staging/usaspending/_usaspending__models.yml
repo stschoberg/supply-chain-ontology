@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_usaspending__awards
+    description: One row per DoD contract award for bearings (PSC group 31), deduplicated across fiscal-year files.
+    columns:
+      - name: award_key
+        description: USAspending's contract_award_unique_key.
+        data_tests: [unique, not_null]
+      - name: recipient_name
+        data_tests: [not_null]
+      - name: recipient_uei
+        description: SAM.gov Unique Entity ID of the supplier.
+        data_tests:
+          - not_null:
+              config: {severity: warn}
+      - name: psc
+        data_tests:
+          - accepted_values:
+              arguments: {values: ['3110', '3120', '3130']}
+      - name: nsn
+        description: National Stock Number, when the description contains one; 13 digits, no dashes.
+      - name: dla_reference_number
+        description: Leading number in DLA descriptions. Unique per award; not an item identifier.
+        data_tests:
+          - unique
+      - name: offers_received
+        description: Number of offers received. 1 suggests a sole source; null when not reported.

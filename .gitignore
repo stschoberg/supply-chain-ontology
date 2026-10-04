@@ -21,3 +21,11 @@ data/sources/*/raw/
 # Protégé backups
 *.owl~
 *.ttl~
+
+# dbt + DuckDB warehouse (rebuilt by `make transform`)
+data/*.duckdb
+data/*.duckdb.wal
+data/transform/target/
+data/transform/logs/
+data/transform/dbt_packages/
+data/transform/.user.yml

@@ -38,7 +38,7 @@ make help                        # all targets
 | `competency-questions/` | `CQ-NNN.md` (the question and its rationale) + `CQ-NNN.rq` (the SPARQL that answers it). |
 | `scenarios/<name>/` | Instance data (ABox) for one scenario: `data.ttl`, a narrative `README.md`, and `expected/CQ-NNN.csv`. |
 | `shapes/` | SHACL shapes: closed-world data-quality checks. |
-| `data/` | Data engineering: per-source fetchers and raw snapshots, and mappings into scenario ABoxes. See [data/README.md](data/README.md). |
+| `data/` | Data engineering: per-source fetchers and raw snapshots, a dbt + DuckDB transform, and mappings into scenario ABoxes. See [data/README.md](data/README.md). |
 | `src/sco/` | Shared Python: graph loading, reasoning, CLI. |
 | `tests/` | pytest suite. |
 | `docs/adr/` | Architecture/modeling decision records. |

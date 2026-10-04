@@ -1,0 +1,8 @@
+# Committed on purpose: there are no secrets. Paths are relative to the repo root, where `make` runs dbt.
+sco:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('SCO_WAREHOUSE', 'data/warehouse.duckdb') }}"
+      threads: 4

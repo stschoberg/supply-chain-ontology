@@ -11,6 +11,7 @@ whether it was competed, and where it came from.
 | Updated | Daily. DoD procurement data is published with a 90-day delay, so recent months are incomplete. |
 | Fetch | `make fetch-usaspending` ([`fetch.py`](fetch.py)) |
 | Raw files | `raw/<snapshot-date>/dod-psc31-fy<FY>.zip` + `.manifest.json`, CSVs extracted to `dod-psc31-fy<FY>/` (gitignored) |
+| Staging model | [`stg_usaspending__awards`](../../transform/models/staging/usaspending/stg_usaspending__awards.sql) |
 
 ## What we pull
 
