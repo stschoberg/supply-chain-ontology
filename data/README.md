@@ -104,8 +104,9 @@ kinds will get plain names (`suppliers`, `products`) when they exist.
 ## Versions and citing
 
 - **`data-latest`** always serves the newest release. Use it for exploring.
-- **`data-YYYY-MM-DD`** releases never change. Cite one in written work and pin it in anything that
-  should be reproducible, e.g. "CQ-002 over `data-2026-10-04`". Swap the tag into the URLs above.
+- **`data-YYYY-MM-DD`** releases never change (a second one the same day is `data-YYYY-MM-DD.2`).
+  Cite one in written work and pin it in anything that should be reproducible, e.g. "CQ-002 over
+  `data-2026-10-04`". Swap the tag into the URLs above.
 - Each release's notes list its row counts, data dictionary, source snapshots, and git commit, and it
   includes the raw source files for exact reproduction.
 - Removing or retyping a column is announced in the release notes.
