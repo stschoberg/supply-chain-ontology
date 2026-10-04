@@ -1,0 +1,59 @@
+@prefix :     <https://w3id.org/sco/> .
+@prefix sco:  <https://w3id.org/sco/> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Supply Chain Ontology (SCO) — editors' file.
+# Edit this file in Protégé or by hand.
+#
+# NOTE: The seed classes below sit directly under BFO as placeholders. Once ADR-0001
+# (mid-level ontology: CCO vs IOF) is decided, re-parent them under the chosen
+# mid-level classes (e.g. cco:Organization) or replace them outright.
+
+<https://w3id.org/sco/sco.owl> a owl:Ontology ;
+    rdfs:label "Supply Chain Ontology"@en ;
+    dcterms:description "A BFO-aligned ontology of supply chains for defense and civilian logistics."@en ;
+    owl:versionInfo "0.1.0" ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo/2020/bfo-core.owl> .
+
+# ---------------------------------------------------------------- Classes
+
+sco:Organization a owl:Class ;
+    rdfs:subClassOf obo:BFO_0000027 ;  # object aggregate
+    rdfs:label "organization"@en ;
+    skos:definition "An object aggregate of persons that is organized to pursue shared objectives."@en ;
+    skos:editorialNote "Placeholder; replace with mid-level class per ADR-0001."@en .
+
+sco:Product a owl:Class ;
+    rdfs:subClassOf obo:BFO_0000040 ;  # material entity
+    rdfs:label "product"@en ;
+    skos:definition "A material entity that is produced in order to be supplied to some other party."@en ;
+    skos:editorialNote "Instances are particular items or lots, not product types/SKUs. See docs/modeling-patterns.md."@en .
+
+sco:SupplierRole a owl:Class ;
+    rdfs:subClassOf obo:BFO_0000023 ;  # role
+    rdfs:label "supplier role"@en ;
+    skos:definition "A role borne by an organization that is realized in supply processes in which it provides products to another party."@en .
+
+sco:SupplyProcess a owl:Class ;
+    rdfs:subClassOf obo:BFO_0000015 ;  # process
+    rdfs:label "supply process"@en ;
+    skos:definition "A process in which some product is transferred from a supplier to a recipient."@en .
+
+sco:Supplier a owl:Class ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            sco:Organization
+            [ a owl:Restriction ;
+              owl:onProperty obo:BFO_0000196 ;  # bearer of
+              owl:someValuesFrom sco:SupplierRole ]
+        )
+    ] ;
+    rdfs:label "supplier"@en ;
+    skos:definition "An organization that bears a supplier role."@en ;
+    skos:editorialNote "Defined class: membership is inferred by the reasoner, never asserted."@en .
