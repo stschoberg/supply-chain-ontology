@@ -14,8 +14,17 @@ inferred). It is versioned, so a CQ result can name the exact data it ran on.
 
 ## Connect
 
-Everything is in the repo's [GitHub releases](https://github.com/stschoberg/supply-chain-ontology/releases).
-There's nothing to install beyond a tool that reads Parquet, and nothing to clone.
+Everything is in the repo's [GitHub releases](https://github.com/stschoberg/supply-chain-ontology/releases),
+as Parquet and CSV. Nothing to clone. Pick whichever fits:
+
+**No install: the example notebook.**
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/stschoberg/supply-chain-ontology/blob/main/data/examples/explore.ipynb)
+It runs in Google Colab with example questions: top suppliers, product classes, single-sourcing
+(toward CQ-002), and countries of origin. Source: [examples/explore.ipynb](examples/explore.ipynb).
+
+**Spreadsheets** (Excel, Google Sheets, Numbers): download
+[`stg_usaspending__awards.csv`](https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/stg_usaspending__awards.csv)
+(about 16 MB) and open it.
 
 **DuckDB** ([install](https://duckdb.org/docs/installation/); `duckdb -ui` opens it in the browser):
 
@@ -32,16 +41,25 @@ where database_name = 'sco' and table_name = 'stg_usaspending__awards';
 
 The catalog holds no data. Queries read only what they need from the release's Parquet files.
 
-**Python:**
+**Python** (pandas or polars):
 
 ```python
-import duckdb  # pip install duckdb pandas
+import pandas as pd  # pip install pandas pyarrow (or: import polars as pl; pl.read_parquet)
 
 url = "https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest"
-awards = duckdb.read_parquet(f"{url}/stg_usaspending__awards.parquet").df()  # a pandas DataFrame
+awards = pd.read_parquet(f"{url}/stg_usaspending__awards.parquet")
 ```
 
-**Anything else** (R, Excel via Power Query, Spark): download the `.parquet` files from a release.
+**R:**
+
+```r
+url <- "https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest"
+awards <- read.csv(paste0(url, "/stg_usaspending__awards.csv"))
+
+# or Parquet, which keeps column types: download it, then read it with arrow
+download.file(paste0(url, "/stg_usaspending__awards.parquet"), "awards.parquet", mode = "wb")
+awards <- arrow::read_parquet("awards.parquet")
+```
 
 ## Tables
 
@@ -61,8 +79,8 @@ kinds will get plain names (`suppliers`, `products`) when they exist.
 
 - **Who supplied what kind of product, and for how much:** supplier (`recipient_uei`), corporate
   parent, product class (`psc`), dollars.
-- **Whether a purchase was competed:** `extent_competed`, `offers_received` (29% of awards drew a
-  single offer), and the legal reason when it wasn't.
+- **Whether a purchase was competed:** `extent_competed`, `offers_received` (42% of awards
+  that report it drew a single offer), and the legal reason when it wasn't.
 - **Where it came from:** `origin_country` and the supplier's ownership (`domestic_or_foreign_entity`).
 
 **Can't (yet):**

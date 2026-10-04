@@ -29,6 +29,7 @@ data/
     raw/<snapshot-date>/    # downloaded files, untouched, + .manifest.json (gitignored)
   transform/                # dbt project (see its README)
   dictionary.py             # renders the published tables' descriptions
+  examples/explore.ipynb    # Colab notebook for consumers; tests run it against a fixture release
   release.py                # packages published models as a release (make dist)
   warehouse.duckdb          # dbt output (gitignored)
   dist/                     # release output (gitignored)
@@ -55,6 +56,7 @@ A release is a GitHub Release tagged `data-YYYY-MM-DD`:
 | Asset | What it is |
 |---|---|
 | `<table>.parquet` | One file per published model. **The data.** Readable by any tool. |
+| `<table>.csv` | The same rows as CSV, for spreadsheets. |
 | `catalog.duckdb` | Views over those Parquet files, so DuckDB users can `attach` and see named, commented tables. Holds no data. |
 | `raw-<source>-<snapshot>.tar` | The raw source files the tables were built from, for exact reproduction. |
 | `RELEASE_NOTES.md`, `SHA256SUMS` | How to connect, row counts, the data dictionary, provenance, checksums. |

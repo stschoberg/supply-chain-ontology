@@ -1,5 +1,8 @@
 """Build a data release from the committed fixtures and read it back through its catalog."""
 
+import json
+import re
+
 import duckdb
 import pytest
 
@@ -23,8 +26,11 @@ def test_release_contains_parquet_catalog_raw_and_notes(dist):
     names = {p.name for p in dist.iterdir()}
     assert names == {
         "stg_usaspending__awards.parquet",
+        "stg_usaspending__awards.csv",
         "meta_build.parquet",
+        "meta_build.csv",
         "meta_source_files.parquet",
+        "meta_source_files.csv",
         "catalog.duckdb",
         "RELEASE_NOTES.md",
         "SHA256SUMS",
@@ -61,6 +67,16 @@ def test_release_notes_include_the_dictionary(dist):
     notes = (dist / "RELEASE_NOTES.md").read_text()
     assert "### stg_usaspending__awards" in notes
     assert "| `recipient_uei` | varchar |" in notes
+
+
+def test_csv_matches_parquet(dist):
+    with duckdb.connect() as con:
+
+        def rows(path):
+            return con.sql(f"select count(*) from '{path}'").fetchone()[0]
+
+        for parquet in dist.glob("*.parquet"):
+            assert rows(parquet.with_suffix(".csv")) == rows(parquet)
 
 
 def test_checksums_cover_every_other_file(dist):
@@ -104,3 +120,21 @@ def test_publish_refuses_an_existing_tag(dist, fake_github, monkeypatch):
     with pytest.raises(SystemExit, match="already exists"):
         release.main(["publish", "--out", str(dist), "--allow-dirty"])
     assert fake_github == []
+
+
+def test_example_notebook_runs_against_a_release(dist):
+    """Run the notebook's code cells against the fixture release instead of GitHub."""
+    notebook = json.loads((graph.ROOT / "data" / "examples" / "explore.ipynb").read_text())
+    code = [
+        line
+        for cell in notebook["cells"]
+        if cell["cell_type"] == "code"
+        for line in "".join(cell["source"]).splitlines()
+        if not line.startswith("%")  # notebook magics, e.g. %pip install
+    ]
+    source = "\n".join(code)
+    assert 'BASE = f"https://github.com/' in source
+    source = re.sub(r"^BASE = .*$", f"BASE = {str(dist)!r}", source, flags=re.MULTILINE)
+    namespace = {}
+    exec(compile(source, "explore.ipynb", "exec"), namespace)
+    assert len(namespace["awards"]) == 8

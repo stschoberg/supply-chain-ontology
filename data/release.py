@@ -8,6 +8,7 @@ Usage:
 A release contains:
   <model>.parquet      one file per published dbt model (tag:published); the data product. Table and
                        column descriptions ride along in the Parquet key-value metadata.
+  <model>.csv          the same rows as CSV, for spreadsheets and tools without Parquet support
   catalog.duckdb       views over those Parquet files, so `attach` gives named, commented tables;
                        holds no data
   raw-<source>.tar     the raw snapshot each table was built from, for exact reproduction
@@ -38,6 +39,7 @@ from sco import fetching, graph
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "stschoberg/supply-chain-ontology")
 LATEST_TAG = "data-latest"
+COLAB_URL = f"https://colab.research.google.com/github/{REPO}/blob/main/data/examples/explore.ipynb"
 DIST_DIR = graph.ROOT / "data" / "dist"
 TRANSFORM_DIR = dictionary.TRANSFORM_DIR
 SOURCES = {"usaspending": graph.ROOT / "data" / "sources" / "usaspending" / "raw"}
@@ -78,8 +80,8 @@ def sql_string(value: str) -> str:
     return "'" + value.replace("'", "''") + "'"
 
 
-def export_parquet(warehouse: Path, tables: dictionary.Tables, out: Path) -> dict[str, dict]:
-    """Write one Parquet file per table, with its descriptions as key-value metadata."""
+def export_tables(warehouse: Path, tables: dictionary.Tables, out: Path) -> dict[str, dict]:
+    """Write each table as Parquet, with its descriptions as key-value metadata, and as CSV."""
     stats = {}
     with duckdb.connect(str(warehouse), read_only=True) as con:
         for model, table in tables.items():
@@ -89,11 +91,12 @@ def export_parquet(warehouse: Path, tables: dictionary.Tables, out: Path) -> dic
                 f"{{description: {sql_string(table['description'])}, "
                 f"column_descriptions: {sql_string(json.dumps(columns))}}}"
             )
-            # Sorted so the same data always produces the same file.
+            # Sorted so the same data always produces the same files.
             con.sql(
                 f"copy (select * from {model} order by all) to '{path}' "
                 f"(format parquet, compression zstd, kv_metadata {metadata})"
             )
+            con.sql(f"copy (from '{path}') to '{path.with_suffix('.csv')}' (header)")
             rows = con.sql(f"select count(*) from {model}").fetchone()[0]
             stats[model] = {"rows": rows, "columns": len(con.sql(f"describe {model}").fetchall())}
     return stats
@@ -166,6 +169,9 @@ select * from sco.{first} limit 10;
 select * from read_parquet('{base_url}/{first}.parquet');
 ```
 
+- **Spreadsheets:** download `{first}.csv` from this release.
+- **No install:** the [example notebook]({COLAB_URL}) runs in Google Colab.
+
 ## Tables
 
 | Table | Rows | Columns |
@@ -213,7 +219,7 @@ def build(args: argparse.Namespace) -> None:
         print(f"Building {tag} from {', '.join(f'{s} {p.name}' for s, p in sources.items())}")
         run_dbt(warehouse, target, dbt_vars)
         tables = dictionary.published_tables(target / "manifest.json")
-        stats = export_parquet(warehouse, tables, out)
+        stats = export_tables(warehouse, tables, out)
 
     raw = [archive_raw(name, snap, out) for name, snap in sources.items()]
     notes = release_notes(tag, sha, dirty, tables, stats, raw, sources)
