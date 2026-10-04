@@ -8,6 +8,7 @@ dependencies = [
     "rdflib>=7.1",
     "owlrl>=7.1",
     "pyshacl>=0.30",
+    "truststore>=0.10.4",
 ]
 
 [project.scripts]
@@ -26,6 +27,7 @@ build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]  # so tests can import data/
 
 [tool.ruff]
 line-length = 100
