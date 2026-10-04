@@ -11,6 +11,13 @@ models:
   sco_transform:
     staging:
       +materialized: view
+    # Published models: exported to Parquet in each data release. Their columns are a contract.
+    marts:
+      +materialized: table
+      +tags: [published]
+    meta:
+      +materialized: table
+      +tags: [published]
 
 flags:
   send_anonymous_usage_stats: false

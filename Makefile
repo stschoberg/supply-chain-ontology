@@ -29,7 +29,7 @@ PREFIXES   := --prefix "sco: $(BASE_IRI)/" --prefix "skos: http://www.w3.org/200
 TEMPLATES  := $(wildcard $(ONT)/src/templates/*.tsv)
 COMPONENTS := $(patsubst $(ONT)/src/templates/%.tsv,$(ONT)/components/%.owl,$(TEMPLATES))
 
-.PHONY: help all test validate lint fmt fetch-usaspending transform components reason report release refresh-imports clean
+.PHONY: help all test validate lint fmt fetch-usaspending transform dist components reason report release refresh-imports clean
 
 help: ## Show this help
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -67,6 +67,9 @@ fetch-usaspending: ## Download DoD bearing awards (PSC 31, FY2023-25) to data/so
 transform: ## Build data/warehouse.duckdb from the newest snapshots with dbt, and run its tests
 	@test -n "$(USASPENDING_SNAPSHOT)" || { echo "No USAspending snapshot; run 'make fetch-usaspending'"; exit 1; }
 	$(DBT) build $(DBT_FLAGS)
+
+dist: ## Build a data release in data/dist/: Parquet tables, DuckDB catalog, raw archive, notes
+	uv run python -m data.release build
 
 # ---------------------------------------------------------------- ROBOT
 

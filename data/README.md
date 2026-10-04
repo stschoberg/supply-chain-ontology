@@ -11,7 +11,27 @@ sources/<source>/fetch.py ──► sources/<source>/raw/ ──► transform/ (
 ```bash
 make fetch-usaspending    # E + L: download a snapshot
 make transform            # T: dbt build (models + data tests) into data/warehouse.duckdb
+make dist                 # package a release in data/dist/
 ```
+
+## Data releases
+
+The published data product is a GitHub Release tagged `data-YYYY-MM-DD`. Each release holds:
+
+| Asset | What it is |
+|---|---|
+| `<table>.parquet` | One file per published model (`awards`, `meta_*`). **The data.** Readable by any tool. |
+| `catalog.duckdb` | Views over those Parquet files, so DuckDB users can `attach` and see named tables. Holds no data. |
+| `raw-<source>-<snapshot>.tar` | The raw source files the tables were built from, for exact reproduction. |
+| `RELEASE_NOTES.md`, `SHA256SUMS` | Provenance, row counts, checksums. |
+
+```sql
+attach 'https://github.com/stschoberg/supply-chain-ontology/releases/download/<tag>/catalog.duckdb' as sco;
+select * from sco.awards limit 10;
+```
+
+Dated releases never change; cite one in written work. Publishing from CI is not set up yet; `make dist`
+builds the same files locally.
 
 ## Sources
 
@@ -33,7 +53,9 @@ data/
     fetch.py                # uv run python -m data.sources.<source>.fetch
     raw/<snapshot-date>/    # downloaded files, untouched, + .manifest.json (gitignored)
   transform/                # dbt project: staging → marts (see its README)
+  release.py                # packages published models as a release (make dist)
   warehouse.duckdb          # dbt output (gitignored)
+  dist/                     # release output (gitignored)
   mappings/                 # marts → RDF, written to scenarios/<name>/
 ```
 

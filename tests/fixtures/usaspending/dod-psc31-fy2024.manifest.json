@@ -1,0 +1,96 @@
+{
+  "echoed_request": {
+    "download_types": [
+      "elasticsearch_awards",
+      "elasticsearch_sub_awards"
+    ],
+    "file_format": "csv",
+    "filters": {
+      "agencies": [
+        {
+          "name": "Department of Defense",
+          "tier": "toptier",
+          "type": "awarding"
+        }
+      ],
+      "award_type_codes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "psc_codes": {
+        "require": [
+          [
+            "Product",
+            "31"
+          ]
+        ]
+      },
+      "time_period": [
+        {
+          "end_date": "2024-09-30",
+          "start_date": "2023-10-01"
+        }
+      ]
+    },
+    "limit": 500000,
+    "request_type": "award"
+  },
+  "endpoint": "https://api.usaspending.gov/api/v2/download/awards/",
+  "file": "dod-psc31-fy2024.zip",
+  "file_url": "https://files.usaspending.gov/generated_downloads/PrimeAwardSummariesAndSubawards_2026-10-04_H14M40S02266277.zip",
+  "job_status": {
+    "total_columns": 404,
+    "total_rows": 14185,
+    "total_size": 2134.773
+  },
+  "license": "Public domain (U.S. Government work, 17 U.S.C. 105)",
+  "members": {
+    "Contracts_PrimeAwardSummaries_2026-10-04_H14M40S39_1.csv": {
+      "columns": 286,
+      "rows": 14168,
+      "sha256": "88dbd05a1879288ce2b839d8172b1d2880e5bee044a080a321523693a0416556"
+    },
+    "Contracts_Subawards_2026-10-04_H14M41S42_1.csv": {
+      "columns": 118,
+      "rows": 17,
+      "sha256": "8f17618093554cf8cc73d79a418b91bbc1f84622aff0431ad65051a0282a4b5a"
+    }
+  },
+  "request": {
+    "file_format": "csv",
+    "filters": {
+      "agencies": [
+        {
+          "name": "Department of Defense",
+          "tier": "toptier",
+          "type": "awarding"
+        }
+      ],
+      "award_type_codes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "psc_codes": {
+        "require": [
+          [
+            "Product",
+            "31"
+          ]
+        ]
+      },
+      "time_period": [
+        {
+          "end_date": "2024-09-30",
+          "start_date": "2023-10-01"
+        }
+      ]
+    }
+  },
+  "retrieved_at": "2026-10-04T14:48:07+00:00",
+  "sha256": "2f859018c0b32732a0b0668497d2120ff1b9069df379ed627a44318b48ad5d57",
+  "source": "USAspending.gov"
+}
