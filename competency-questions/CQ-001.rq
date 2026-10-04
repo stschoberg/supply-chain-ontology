@@ -1,0 +1,20 @@
+# CQ-001: Which organizations are suppliers, and which products have they supplied?
+# Requires reasoning: sco:Supplier membership is inferred, never asserted.
+
+PREFIX sco:  <https://w3id.org/sco/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?supplier ?product
+WHERE {
+  ?org a sco:Supplier ;
+       rdfs:label ?supplier ;
+       obo:BFO_0000196 ?role .              # bearer of
+  ?role a sco:SupplierRole ;
+        obo:BFO_0000054 ?process .          # has realization
+  ?process a sco:SupplyProcess ;
+           obo:BFO_0000057 ?item .          # has participant
+  ?item a sco:Product ;
+        rdfs:label ?product .
+}
+ORDER BY ?supplier ?product

@@ -1,0 +1,9 @@
+@prefix sco:  <https://w3id.org/sco/> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
+@prefix ex:   <https://w3id.org/sco/test/> .
+
+# Deliberately invalid: an unlabeled organization, and a supply process with no product.
+ex:org a sco:Organization .
+
+ex:supply a sco:SupplyProcess ;
+    obo:BFO_0000057 ex:org .
