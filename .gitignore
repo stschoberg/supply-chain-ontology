@@ -10,9 +10,8 @@ ontology/release/*
 !ontology/release/.gitkeep
 tools/robot.jar
 
-# Raw data is fetched by scripts, not committed. Small processed samples can go in data/processed/.
-data/raw/*
-!data/raw/.gitkeep
+# Raw data is fetched by scripts, not committed.
+data/sources/*/raw/
 
 # Editors / OS
 .DS_Store
