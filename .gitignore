@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Build outputs (CI uploads these as artifacts)
+ontology/release/*
+!ontology/release/.gitkeep
+tools/robot.jar
+
+# Raw data is fetched by scripts, not committed. Small processed samples can go in data/processed/.
+data/raw/*
+!data/raw/.gitkeep
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+# Protégé backups
+*.owl~
+*.ttl~
