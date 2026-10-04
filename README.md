@@ -43,7 +43,7 @@ make help                        # all targets
 | `src/sco/` | Shared Python: graph loading, reasoning, CLI. |
 | `tests/` | pytest suite. |
 | `docs/adr/` | Architecture/modeling decision records. |
-| `literature/` | Bibliography (Zotero export) and per-paper notes. See [Literature workflow](#literature-workflow). |
+| `docs/literature/` | Bibliography (Zotero export) and per-paper notes, linked to CQs and ADRs. See [its README](docs/literature/README.md). |
 
 ## How the pieces fit
 
@@ -80,13 +80,6 @@ Tests use OWL 2 RL (pure Python, fast). `make reason` runs full OWL 2 DL with He
 
 ## Literature workflow
 
-- **Library:** shared [Zotero group library](https://www.zotero.org/groups/6681419/phi-598-supply-chain-ontology) with the Better BibTeX plugin, auto-exporting to `literature/library.bib` (PDFs stay in Zotero, not git).
-- **Notes:** one markdown file per paper in `literature/notes/`, named by citekey, copied from `literature/_template.md`.
-
-### Zotero setup
-
-1. Install [Zotero](https://www.zotero.org/download/) and join the group linked above.
-2. Install the [Better BibTeX](https://retorque.re/zotero-better-bibtex/installation/) plugin (Tools → Plugins → Install Plugin From File, using the latest `.xpi` from its releases page).
-3. In Settings → Better BibTeX → Export → Fields, add `file, abstract, copyright, langid, urldate` to "Fields to omit from export". This keeps local paths out of the repo.
-4. Right-click the group library, choose Export, format **Better BibTeX**, check **Keep updated**, and save to `literature/library.bib` in this repo. Don't edit that file by hand.
-5. Add papers to the group library, then write a note in `literature/notes/` named with the item's citekey (e.g. `mentzerDefiningSupplyChain2001.md`).
+We keep a shared [Zotero group library](https://www.zotero.org/groups/6681419/phi-598-supply-chain-ontology) that
+auto-exports to `docs/literature/library.bib`, with one note per paper in `docs/literature/notes/`. Setup and
+conventions: [docs/literature/README.md](docs/literature/README.md).
