@@ -26,12 +26,26 @@ The published data product is a GitHub Release tagged `data-YYYY-MM-DD`. Each re
 | `RELEASE_NOTES.md`, `SHA256SUMS` | Provenance, row counts, checksums. |
 
 ```sql
-attach 'https://github.com/stschoberg/supply-chain-ontology/releases/download/<tag>/catalog.duckdb' as sco;
+-- newest data; swap data-latest for a dated tag to pin a version
+attach 'https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/catalog.duckdb' as sco;
 select * from sco.awards limit 10;
 ```
 
-Dated releases never change; cite one in written work. Publishing from CI is not set up yet; `make dist`
-builds the same files locally.
+Dated releases never change; cite one in written work. `data-latest` is recreated on every publish and
+always serves the newest one.
+
+**Publishing:** run the [Data release](../.github/workflows/data-release.yml) workflow from the Actions tab
+(main only). It fetches fresh snapshots, runs `make dist` (any failing dbt data test stops it), then
+`python -m data.release publish`:
+
+1. Creates the dated release with the Parquet files, raw archive, and notes.
+2. Builds the catalog against those now-live URLs and uploads it. DuckDB checks a view's files when it
+   creates the view, so this can't happen earlier.
+3. Attaches the published catalog from a fresh session and checks the row counts.
+4. Recreates `data-latest` with the same files.
+
+It refuses to overwrite an existing tag (so a second run on the same day fails) or to publish a build of
+uncommitted code.
 
 ## Sources
 

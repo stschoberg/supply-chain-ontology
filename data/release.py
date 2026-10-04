@@ -2,6 +2,7 @@
 
 Usage:
   uv run python -m data.release build [--tag data-YYYY-MM-DD]
+  uv run python -m data.release publish        # normally run by .github/workflows/data-release.yml
   uv run python -m data.release catalog --base-url URL
 
 A release contains:
@@ -14,8 +15,8 @@ A release contains:
 dbt builds into a temporary database, so a local `data/warehouse.duckdb` session never conflicts.
 
 DuckDB resolves a view's Parquet files when the view is created, so a catalog can only point at
-files that already exist. `build` points it at the local files in data/dist/; publishing uploads the
-Parquet first, then rebuilds the catalog against the release URLs with `catalog`.
+files that already exist. `build` points it at the local files in data/dist/; `publish` uploads the
+Parquet first, then rebuilds the catalog against the release URLs.
 """
 
 import argparse
@@ -32,7 +33,8 @@ import duckdb
 
 from sco import fetching, graph
 
-REPO = "stschoberg/supply-chain-ontology"
+REPO = os.environ.get("GITHUB_REPOSITORY", "stschoberg/supply-chain-ontology")
+LATEST_TAG = "data-latest"
 DIST_DIR = graph.ROOT / "data" / "dist"
 TRANSFORM_DIR = graph.ROOT / "data" / "transform"
 SOURCES = {"usaspending": graph.ROOT / "data" / "sources" / "usaspending" / "raw"}
@@ -134,7 +136,8 @@ Built {built}.
 ## Connect
 
 ```sql
--- DuckDB: named tables, data read from the Parquet files on demand
+-- DuckDB: named tables, data read from the Parquet files on demand.
+-- Use the {LATEST_TAG} release instead of {tag} for whatever is newest.
 attach '{base_url}/catalog.duckdb' as sco;
 select * from sco.{first} limit 10;
 
@@ -196,6 +199,83 @@ def build(args: argparse.Namespace) -> None:
     print(f"Wrote {out}. Its catalog.duckdb points at these local files.")
 
 
+def gh(*args: str) -> None:
+    subprocess.run(["gh", *args, "--repo", REPO], check=True)
+
+
+def release_exists(tag: str) -> bool:
+    view = subprocess.run(["gh", "release", "view", tag, "--repo", REPO], capture_output=True)
+    return view.returncode == 0
+
+
+def row_counts(source: str) -> dict[str, int]:
+    """Rows per table, read through a catalog (path or URL) or from local Parquet files."""
+    with duckdb.connect() as con:
+        if source.endswith(".duckdb"):
+            con.sql(f"attach '{source}' as sco (read_only)")
+            tables = [
+                r[0]
+                for r in con.sql(
+                    "select view_name from duckdb_views() where database_name = 'sco'"
+                ).fetchall()
+            ]
+            return {
+                t: con.sql(f"select count(*) from sco.{t}").fetchone()[0] for t in sorted(tables)
+            }
+        files = sorted(Path(source).glob("*.parquet"))
+        return {f.stem: con.sql(f"select count(*) from '{f}'").fetchone()[0] for f in files}
+
+
+def verify(tag: str, expected: dict[str, int]) -> None:
+    """Attach the published catalog from a fresh session and compare row counts with the build."""
+    published = row_counts(f"{release_url(tag)}/catalog.duckdb")
+    if published != expected:
+        raise SystemExit(f"error: {tag} serves {published}, expected {expected}")
+    print(f"Verified {tag}: {', '.join(f'{t} {n:,}' for t, n in published.items())}")
+
+
+def publish(args: argparse.Namespace) -> None:
+    out = Path(args.out)
+    with duckdb.connect() as con:
+        tag, sha, dirty = con.sql(
+            f"select release_tag, git_sha, git_dirty from '{out / 'meta_build.parquet'}'"
+        ).fetchone()
+    if dirty and not args.allow_dirty:
+        raise SystemExit("error: data/dist was built from uncommitted changes; commit and rebuild")
+    if release_exists(tag):
+        raise SystemExit(f"error: release {tag} already exists, and releases are immutable")
+
+    expected = row_counts(str(out))
+    data_files = [
+        str(f) for f in sorted(out.iterdir()) if f.name not in ("catalog.duckdb", "SHA256SUMS")
+    ]
+    notes = out / "RELEASE_NOTES.md"
+
+    print(f"Creating release {tag}")
+    gh("release", "create", tag, *data_files, "--title", tag, "--notes-file", str(notes),
+       "--target", sha, "--latest=false")  # fmt: skip
+    # Only now do the Parquet URLs exist, so only now can the catalog be built against them.
+    write_catalog(out, release_url(tag))
+    gh("release", "upload", tag, str(out / "catalog.duckdb"), str(out / "SHA256SUMS"))
+    verify(tag, expected)
+
+    # Recreate (rather than update) the moving release, so no stale assets survive.
+    print(f"Pointing {LATEST_TAG} at {tag}")
+    if release_exists(LATEST_TAG):
+        gh("release", "delete", LATEST_TAG, "--cleanup-tag", "--yes")
+    latest_notes = out / "LATEST_NOTES.md"
+    latest_notes.write_text(
+        f"Moving pointer to the newest data release, currently **{tag}**. Its catalog reads the "
+        f"Parquet files of {tag}. Cite the dated release in written work, not this one.\n\n"
+        + notes.read_text()
+    )
+    files = [str(f) for f in sorted(out.iterdir()) if f.name != latest_notes.name]
+    gh("release", "create", LATEST_TAG, *files, "--title", f"{LATEST_TAG} ({tag})",
+       "--notes-file", str(latest_notes), "--target", sha, "--latest=false")  # fmt: skip
+    latest_notes.unlink()
+    print(f"Published https://github.com/{REPO}/releases/tag/{tag}")
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     commands = parser.add_subparsers(dest="command", required=True)
@@ -206,6 +286,9 @@ def main(argv: list[str] | None = None) -> None:
         "--snapshot", action="append", default=[], metavar="SOURCE=PATH",
         help="use this snapshot instead of the newest one",
     )  # fmt: skip
+    p = commands.add_parser("publish", help="publish data/dist/ as a GitHub release (CI)")
+    p.add_argument("--out", default=str(DIST_DIR), help="release directory built by `build`")
+    p.add_argument("--allow-dirty", action="store_true", help="publish a build of uncommitted code")
     c = commands.add_parser(
         "catalog", help="repoint catalog.duckdb at Parquet files served elsewhere"
     )
@@ -214,6 +297,8 @@ def main(argv: list[str] | None = None) -> None:
     args = parser.parse_args(argv)
     if args.command == "build":
         build(args)
+    elif args.command == "publish":
+        publish(args)
     else:
         write_catalog(Path(args.out), args.base_url.rstrip("/"))
 
