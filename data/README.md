@@ -1,8 +1,17 @@
 # Data
 
-The data engineering half of the project: extract real-world sources, process them, and map the results into
-scenario ABoxes. Each source has a `fetch.py` so anyone can reproduce the data, and a `README.md` covering its
-license, update cadence, access method, the columns we use, and its quirks.
+The data engineering half of the project: extract and load real-world sources, transform them with dbt in
+DuckDB, and map the results into scenario ABoxes.
+
+```
+sources/<source>/fetch.py ──► sources/<source>/raw/ ──► transform/ (dbt) ──► warehouse.duckdb ──► mappings/ ──► scenarios/
+        extract + load              snapshots             staging → marts                          → RDF
+```
+
+```bash
+make fetch-usaspending    # E + L: download a snapshot
+make transform            # T: dbt build (models + data tests) into data/warehouse.duckdb
+```
 
 ## Sources
 
@@ -17,17 +26,15 @@ license, update cadence, access method, the columns we use, and its quirks.
 
 ## Layout
 
-```bash
-make fetch-usaspending    # download a snapshot
-```
-
 ```
 data/
   sources/<source>/
     README.md               # license, cadence, access, columns we use, quirks
     fetch.py                # uv run python -m data.sources.<source>.fetch
     raw/<snapshot-date>/    # downloaded files, untouched, + .manifest.json (gitignored)
-  mappings/                 # processed data → RDF, written to scenarios/<name>/
+  transform/                # dbt project: staging → marts (see its README)
+  warehouse.duckdb          # dbt output (gitignored)
+  mappings/                 # marts → RDF, written to scenarios/<name>/
 ```
 
 ## Fetching well

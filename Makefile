@@ -29,7 +29,7 @@ PREFIXES   := --prefix "sco: $(BASE_IRI)/" --prefix "skos: http://www.w3.org/200
 TEMPLATES  := $(wildcard $(ONT)/src/templates/*.tsv)
 COMPONENTS := $(patsubst $(ONT)/src/templates/%.tsv,$(ONT)/components/%.owl,$(TEMPLATES))
 
-.PHONY: help all test validate lint fmt fetch-usaspending components reason report release refresh-imports clean
+.PHONY: help all test validate lint fmt fetch-usaspending transform components reason report release refresh-imports clean
 
 help: ## Show this help
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -54,8 +54,19 @@ fmt: ## Auto-format Python
 
 # ---------------------------------------------------------------- Data
 
+# Newest snapshot of each source, as an absolute path so warehouse views work from any directory.
+# Override with e.g. `make transform USASPENDING_SNAPSHOT=$PWD/data/sources/usaspending/raw/2026-10-04`.
+USASPENDING_SNAPSHOT ?= $(abspath $(lastword $(sort $(wildcard data/sources/usaspending/raw/20*))))
+DBT := uv run dbt
+DBT_FLAGS := --project-dir data/transform --profiles-dir data/transform \
+	--vars '{usaspending_snapshot: $(USASPENDING_SNAPSHOT)}'
+
 fetch-usaspending: ## Download DoD bearing awards (PSC 31, FY2023-25) to data/sources/usaspending/raw/
 	uv run python -m data.sources.usaspending.fetch
+
+transform: ## Build data/warehouse.duckdb from the newest snapshots with dbt, and run its tests
+	@test -n "$(USASPENDING_SNAPSHOT)" || { echo "No USAspending snapshot; run 'make fetch-usaspending'"; exit 1; }
+	$(DBT) build $(DBT_FLAGS)
 
 # ---------------------------------------------------------------- ROBOT
 

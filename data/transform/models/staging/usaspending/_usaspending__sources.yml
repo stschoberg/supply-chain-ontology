@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: usaspending
+    description: >
+      DoD contract award summaries from USAspending.gov, as extracted by data/sources/usaspending/fetch.py.
+      See data/sources/usaspending/README.md.
+    meta:
+      # One snapshot directory, holding one extracted folder per fiscal year.
+      external_location: >-
+        read_csv('{{ var("usaspending_snapshot") }}/*/{name}_*.csv',
+                 all_varchar = true, union_by_name = true, filename = true)
+    tables:
+      - name: Contracts_PrimeAwardSummaries
+        description: One row per award per fiscal-year file. Awards spanning years appear more than once.

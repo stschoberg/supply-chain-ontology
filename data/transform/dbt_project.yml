@@ -1,0 +1,16 @@
+# Transforms raw source snapshots into tidy, tested tables in a local DuckDB warehouse.
+# Run from the repo root with `make transform`, which passes the snapshot paths as vars.
+name: sco_transform
+version: "0.1.0"
+profile: sco
+config-version: 2
+
+model-paths: [models]
+
+models:
+  sco_transform:
+    staging:
+      +materialized: view
+
+flags:
+  send_anonymous_usage_stats: false
