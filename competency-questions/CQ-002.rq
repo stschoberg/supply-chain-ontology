@@ -1,0 +1,19 @@
+# CQ-002: Which products are single-sourced (supplied by exactly one supplier)?
+# Counting is closed-world, so this is answered by SPARQL over the reasoned graph, not by OWL.
+
+PREFIX sco:  <https://w3id.org/sco/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?product (COUNT(DISTINCT ?org) AS ?supplierCount)
+WHERE {
+  ?org a sco:Supplier ;
+       obo:BFO_0000196/obo:BFO_0000054 ?process .   # bearer of / has realization
+  ?process a sco:SupplyProcess ;
+           obo:BFO_0000057 ?item .
+  ?item a sco:Product ;
+        rdfs:label ?product .
+}
+GROUP BY ?product
+HAVING (COUNT(DISTINCT ?org) = 1)
+ORDER BY ?product

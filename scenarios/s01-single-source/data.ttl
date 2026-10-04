@@ -1,0 +1,52 @@
+@prefix sco:  <https://w3id.org/sco/> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
+@prefix ex:   <https://w3id.org/sco/scenario/s01/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Hand-written seed scenario. Note that no organization is asserted to be a sco:Supplier —
+# that is left for the reasoner to infer from the SupplierRole each one bears.
+
+# --- Acme Magnetics: sole source of NdFeB magnets
+
+ex:acme a sco:Organization ;
+    rdfs:label "Acme Magnetics" ;
+    obo:BFO_0000196 ex:acme-supplier-role .
+
+ex:acme-supplier-role a sco:SupplierRole ;
+    obo:BFO_0000054 ex:supply-001 .  # has realization
+
+ex:magnet-lot-1 a sco:Product ;
+    rdfs:label "NdFeB magnet lot 1" .
+
+ex:supply-001 a sco:SupplyProcess ;
+    obo:BFO_0000057 ex:acme , ex:magnet-lot-1 .  # has participant
+
+# --- Beta Bearings and Gamma Industrial: dual source of bearings
+
+ex:beta a sco:Organization ;
+    rdfs:label "Beta Bearings" ;
+    obo:BFO_0000196 ex:beta-supplier-role .
+
+ex:beta-supplier-role a sco:SupplierRole ;
+    obo:BFO_0000054 ex:supply-002 .
+
+ex:gamma a sco:Organization ;
+    rdfs:label "Gamma Industrial" ;
+    obo:BFO_0000196 ex:gamma-supplier-role .
+
+ex:gamma-supplier-role a sco:SupplierRole ;
+    obo:BFO_0000054 ex:supply-003 .
+
+ex:bearing-lot-1 a sco:Product ;
+    rdfs:label "Bearing lot 1" .
+
+ex:supply-002 a sco:SupplyProcess ;
+    obo:BFO_0000057 ex:beta , ex:bearing-lot-1 .
+
+ex:supply-003 a sco:SupplyProcess ;
+    obo:BFO_0000057 ex:gamma , ex:bearing-lot-1 .
+
+# --- An organization that supplies nothing (should NOT be inferred as a supplier)
+
+ex:delta a sco:Organization ;
+    rdfs:label "Delta Logistics" .

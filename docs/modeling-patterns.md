@@ -25,7 +25,7 @@ describe them. Don't model an SKU as an individual of `sco:Product`.
 | Question | Tool |
 |----------|------|
 | Is this organization a supplier? (classification) | OWL reasoner |
-| Is this record missing a required field? | SHACL |
+| Is this record missing a required field? | SHACL (`shapes/`) |
 | How many suppliers does this product have? Is there no alternative? | SPARQL over the reasoned graph |
 
 OWL will never conclude that something doesn't exist just because it isn't in the data.
