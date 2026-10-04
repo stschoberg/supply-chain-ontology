@@ -2,6 +2,7 @@
 
 import json
 import re
+import subprocess
 
 import duckdb
 import pytest
@@ -145,3 +146,20 @@ def test_next_tag_adds_a_suffix_for_later_releases_the_same_day(monkeypatch):
     monkeypatch.setattr(release, "release_exists", lambda tag: tag in taken)
     assert release.next_tag("2026-10-04") == "data-2026-10-04.3"
     assert release.next_tag("2026-10-05") == "data-2026-10-05"
+
+
+@pytest.mark.parametrize(
+    ("returncode", "stderr", "expected"),
+    [(0, "", True), (1, "release not found\n", False)],
+)
+def test_release_exists_reads_gh(monkeypatch, returncode, stderr, expected):
+    done = subprocess.CompletedProcess([], returncode, stdout="", stderr=stderr)
+    monkeypatch.setattr(release.subprocess, "run", lambda *a, **kw: done)
+    assert release.release_exists("data-2026-10-04") is expected
+
+
+def test_release_exists_fails_when_gh_cannot_answer(monkeypatch):
+    done = subprocess.CompletedProcess([], 4, stdout="", stderr="gh auth login required\n")
+    monkeypatch.setattr(release.subprocess, "run", lambda *a, **kw: done)
+    with pytest.raises(SystemExit, match="can't check"):
+        release.release_exists("data-2026-10-04")

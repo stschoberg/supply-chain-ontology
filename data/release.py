@@ -245,12 +245,16 @@ def gh(*args: str) -> None:
 
 
 def release_exists(tag: str) -> bool:
-    """False when GitHub can't be asked (gh missing or logged out); publish checks again."""
-    try:
-        view = subprocess.run(["gh", "release", "view", tag, "--repo", REPO], capture_output=True)
-    except FileNotFoundError:
+    view = subprocess.run(
+        ["gh", "release", "view", tag, "--repo", REPO], capture_output=True, text=True
+    )
+    if view.returncode == 0:
+        return True
+    if "release not found" in view.stderr:
         return False
-    return view.returncode == 0
+    # Anything else (logged out, no network) must not pass for "free": a wrong answer picks a
+    # tag that's already taken.
+    raise SystemExit(f"error: can't check for release {tag}: {view.stderr.strip()}")
 
 
 def row_counts(source: str) -> dict[str, int]:
