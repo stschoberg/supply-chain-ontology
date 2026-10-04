@@ -1,0 +1,37 @@
+name: Data release
+
+# Fetch fresh source snapshots, build and test the warehouse, and publish it as a GitHub release
+# (data-YYYY-MM-DD, plus the moving data-latest). Run it from the Actions tab.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write # create releases and tags
+
+concurrency:
+  group: data-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Build and publish
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.2.0
+      - run: uv sync
+      - name: Fetch sources
+        run: make fetch-usaspending
+      - name: Build release (dbt data tests gate publishing)
+        run: make dist
+      - name: Publish
+        run: uv run python -m data.release publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: data-release
+          path: data/dist/
