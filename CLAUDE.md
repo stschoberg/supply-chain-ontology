@@ -8,6 +8,7 @@ BFO 2020–aligned supply chain ontology. See README.md for layout and workflow.
 - `make reason`: HermiT consistency check. ROBOT runs in Docker when there's no local Java.
 - `make components`: regenerate after editing `ontology/src/templates/*.tsv`. Commit the output.
 - `uv run sco query CQ-NNN -s <scenario>`: run one CQ.
+- `make data-docs`: regenerate `data/DICTIONARY.md` after editing a published dbt model's YAML. Commit the output.
 
 ## Rules
 

@@ -6,10 +6,12 @@ Usage:
   uv run python -m data.release catalog --base-url URL
 
 A release contains:
-  <model>.parquet      one file per published dbt model (tag:published); the data product
-  catalog.duckdb       views over those Parquet files, so `attach` gives named tables; holds no data
+  <model>.parquet      one file per published dbt model (tag:published); the data product. Table and
+                       column descriptions ride along in the Parquet key-value metadata.
+  catalog.duckdb       views over those Parquet files, so `attach` gives named, commented tables;
+                       holds no data
   raw-<source>.tar     the raw snapshot each table was built from, for exact reproduction
-  RELEASE_NOTES.md     provenance, row counts, and how to connect
+  RELEASE_NOTES.md     how to connect, row counts, the data dictionary, provenance
   SHA256SUMS
 
 dbt builds into a temporary database, so a local `data/warehouse.duckdb` session never conflicts.
@@ -31,12 +33,13 @@ from pathlib import Path
 
 import duckdb
 
+from data import dictionary
 from sco import fetching, graph
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "stschoberg/supply-chain-ontology")
 LATEST_TAG = "data-latest"
 DIST_DIR = graph.ROOT / "data" / "dist"
-TRANSFORM_DIR = graph.ROOT / "data" / "transform"
+TRANSFORM_DIR = dictionary.TRANSFORM_DIR
 SOURCES = {"usaspending": graph.ROOT / "data" / "sources" / "usaspending" / "raw"}
 
 
@@ -71,38 +74,56 @@ def run_dbt(warehouse: Path, target: Path, dbt_vars: dict) -> None:
     )  # fmt: skip
 
 
-def published_models(manifest: Path) -> list[str]:
-    nodes = json.loads(manifest.read_text())["nodes"].values()
-    return sorted(
-        n["alias"] for n in nodes if n["resource_type"] == "model" and "published" in n["tags"]
-    )
+def sql_string(value: str) -> str:
+    return "'" + value.replace("'", "''") + "'"
 
 
-def export_parquet(warehouse: Path, models: list[str], out: Path) -> dict[str, dict]:
-    tables = {}
+def export_parquet(warehouse: Path, tables: dictionary.Tables, out: Path) -> dict[str, dict]:
+    """Write one Parquet file per table, with its descriptions as key-value metadata."""
+    stats = {}
     with duckdb.connect(str(warehouse), read_only=True) as con:
-        for model in models:
+        for model, table in tables.items():
             path = out / f"{model}.parquet"
+            columns = {name: c["description"] for name, c in table["columns"].items()}
+            metadata = (
+                f"{{description: {sql_string(table['description'])}, "
+                f"column_descriptions: {sql_string(json.dumps(columns))}}}"
+            )
             # Sorted so the same data always produces the same file.
             con.sql(
                 f"copy (select * from {model} order by all) to '{path}' "
-                "(format parquet, compression zstd)"
+                f"(format parquet, compression zstd, kv_metadata {metadata})"
             )
             rows = con.sql(f"select count(*) from {model}").fetchone()[0]
-            columns = len(con.sql(f"describe {model}").fetchall())
-            tables[model] = {"rows": rows, "columns": columns}
-    return tables
+            stats[model] = {"rows": rows, "columns": len(con.sql(f"describe {model}").fetchall())}
+    return stats
+
+
+def parquet_descriptions(con: duckdb.DuckDBPyConnection, path: Path) -> tuple[str, dict]:
+    metadata = dict(
+        con.sql(f"select decode(key), decode(value) from parquet_kv_metadata('{path}')").fetchall()
+    )
+    return metadata.get("description", ""), json.loads(metadata.get("column_descriptions", "{}"))
 
 
 def write_catalog(out: Path, base_url: str) -> None:
-    """(Re)write catalog.duckdb with a view per Parquet file in `out`, and refresh SHA256SUMS."""
+    """(Re)write catalog.duckdb with a view per Parquet file in `out`, and refresh SHA256SUMS.
+
+    Each view and column is commented with the descriptions stored in its Parquet file.
+    """
     path = out / "catalog.duckdb"
     path.unlink(missing_ok=True)
     with duckdb.connect(str(path)) as con:
-        for model in sorted(p.stem for p in out.glob("*.parquet")):
+        for parquet in sorted(out.glob("*.parquet")):
+            model = parquet.stem
             con.sql(
                 f"create view {model} as select * from read_parquet('{base_url}/{model}.parquet')"
             )
+            description, columns = parquet_descriptions(con, parquet)
+            if description:
+                con.sql(f"comment on view {model} is {sql_string(description)}")
+            for column, text in columns.items():
+                con.sql(f"comment on column {model}.{column} is {sql_string(text)}")
     sums = [f"{fetching.sha256(f)}  {f.name}" for f in sorted(out.iterdir()) if f.is_file()]
     (out / "SHA256SUMS").write_text(
         "\n".join(f for f in sums if not f.endswith("SHA256SUMS")) + "\n"
@@ -118,13 +139,13 @@ def archive_raw(source: str, snapshot: Path, out: Path) -> str:
     return name
 
 
-def release_notes(tag: str, sha: str, dirty: bool, tables, raw, sources) -> str:
-    table_rows = "\n".join(f"| `{m}` | {t['rows']:,} | {t['columns']} |" for m, t in tables.items())
+def release_notes(tag: str, sha: str, dirty: bool, tables, stats, raw, sources) -> str:
+    table_rows = "\n".join(f"| `{m}` | {t['rows']:,} | {t['columns']} |" for m, t in stats.items())
     source_rows = "\n".join(
         f"| {s} | {snap.name} | `{name}` |"
         for (s, snap), name in zip(sources.items(), raw, strict=True)
     )
-    first = next(iter(tables), "awards")
+    first = next(iter(stats), "awards")
     base_url = release_url(tag)
     built = f"{datetime.now(UTC):%Y-%m-%d %H:%M UTC} from commit `{sha[:12]}`"
     if dirty:
@@ -151,8 +172,12 @@ select * from read_parquet('{base_url}/{first}.parquet');
 |---|---|---|
 {table_rows}
 
-Column definitions: `data/transform/models/` in the repo at this commit.
+The caveats that matter most for using this data are in the repo's
+[data README](https://github.com/{REPO}/blob/{sha}/data/README.md#what-it-can-and-cant-tell-you).
 
+## Data dictionary
+
+{dictionary.render(tables, level=3)}
 ## Sources
 
 | Source | Snapshot | Raw archive |
@@ -187,11 +212,12 @@ def build(args: argparse.Namespace) -> None:
         dbt_vars |= {"release_tag": tag, "git_sha": sha, "git_dirty": dirty}
         print(f"Building {tag} from {', '.join(f'{s} {p.name}' for s, p in sources.items())}")
         run_dbt(warehouse, target, dbt_vars)
-        models = published_models(target / "manifest.json")
-        tables = export_parquet(warehouse, models, out)
+        tables = dictionary.published_tables(target / "manifest.json")
+        stats = export_parquet(warehouse, tables, out)
 
     raw = [archive_raw(name, snap, out) for name, snap in sources.items()]
-    (out / "RELEASE_NOTES.md").write_text(release_notes(tag, sha, dirty, tables, raw, sources))
+    notes = release_notes(tag, sha, dirty, tables, stats, raw, sources)
+    (out / "RELEASE_NOTES.md").write_text(notes)
     write_catalog(out, out.resolve().as_posix())
 
     for f in sorted(out.iterdir()):

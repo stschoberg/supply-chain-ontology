@@ -9,12 +9,10 @@ model-paths: [models]
 
 models:
   sco_transform:
+    # Models tagged `published` are exported to Parquet in each data release; their columns are a
+    # contract. A staging model is published by tagging it in its YAML.
     staging:
       +materialized: view
-    # Published models: exported to Parquet in each data release. Their columns are a contract.
-    marts:
-      +materialized: table
-      +tags: [published]
     meta:
       +materialized: table
       +tags: [published]

@@ -12,13 +12,14 @@ For the browser UI, start it on an in-memory database and attach the warehouse, 
 
 | Layer | Materialized | Naming | Job |
 |---|---|---|---|
-| `models/staging/<source>/` | views | `stg_<source>__<entity>` | One per raw table: dedupe, rename, type, parse. No joins, no business logic. |
-| `models/marts/` | tables | `<entity>` | **Published.** Joined across sources, shaped like the ontology's kinds (organizations, products, awards). Enforced [contracts](https://docs.getdbt.com/docs/collaborate/govern/model-contracts): column names and types are the public interface. Input to `data/mappings/`. |
+| `models/staging/<source>/` | views | `stg_<source>__<entity>` | One per raw table: dedupe, rename, type, parse. No joins, no business logic. A staging model can be **published** as-is, as `stg_usaspending__awards` is. |
+| `models/marts/` (none yet) | tables | `<entity>` | Joined across sources and shaped like the ontology's kinds (organizations, products). |
 | `models/meta/` | tables | `meta_<thing>` | **Published.** Provenance: source files with checksums, and the build (tag, git commit). |
 
-Models tagged `published` (everything in `marts/` and `meta/`) are exported to Parquet by `make dist`.
-Staging is internal and may change freely. Removing or retyping a published column is a breaking change;
-call it out in the release notes.
+Models tagged `published` (every `meta_*` model, and any other model tagged in its YAML) are exported to
+Parquet by `make dist`. They need enforced [contracts](https://docs.getdbt.com/docs/collaborate/govern/model-contracts)
+with a description and type for every column; run `make data-docs` after changing them. Unpublished models
+may change freely. See [the published interface](../ENGINEERING.md#the-published-interface).
 
 - **Sources** read snapshot CSVs in place with DuckDB's `read_csv`. The snapshot directory is a dbt var
   (`usaspending_snapshot`), which `make transform` sets to the newest one.

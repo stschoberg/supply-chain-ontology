@@ -21,22 +21,46 @@ def dist(tmp_path_factory):
 
 def test_release_contains_parquet_catalog_raw_and_notes(dist):
     names = {p.name for p in dist.iterdir()}
-    assert {"awards.parquet", "meta_build.parquet", "meta_source_files.parquet"} <= names
-    assert {
+    assert names == {
+        "stg_usaspending__awards.parquet",
+        "meta_build.parquet",
+        "meta_source_files.parquet",
         "catalog.duckdb",
         "RELEASE_NOTES.md",
         "SHA256SUMS",
         "raw-usaspending-usaspending.tar",
-    } <= names
-    assert "stg_usaspending__awards.parquet" not in names  # staging is internal, not published
+    }  # only models tagged `published`
 
 
 def test_catalog_reads_the_parquet_files(dist, tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)  # the catalog must not depend on the working directory
     with duckdb.connect() as con:
         con.sql(f"attach '{dist / 'catalog.duckdb'}' as sco (read_only)")
-        assert con.sql("select count(*) from sco.awards").fetchone()[0] == 8
+        assert con.sql("select count(*) from sco.stg_usaspending__awards").fetchone()[0] == 8
         assert con.sql("select release_tag from sco.meta_build").fetchone()[0] == "data-test"
+
+
+def test_catalog_describes_tables_and_columns(dist):
+    with duckdb.connect() as con:
+        con.sql(f"attach '{dist / 'catalog.duckdb'}' as sco (read_only)")
+        view = con.sql(
+            "select comment from duckdb_views() where view_name = 'stg_usaspending__awards'"
+        ).fetchone()[0]
+        columns = dict(
+            con.sql(
+                "select column_name, comment from duckdb_columns() "
+                "where database_name = 'sco' and table_name = 'stg_usaspending__awards'"
+            ).fetchall()
+        )
+    assert view.startswith("USAspending.gov contract award summaries")
+    assert "not an item identifier" in columns["dla_reference_number"].lower()
+    assert all(columns.values())  # every column, including those with quotes in their text
+
+
+def test_release_notes_include_the_dictionary(dist):
+    notes = (dist / "RELEASE_NOTES.md").read_text()
+    assert "### stg_usaspending__awards" in notes
+    assert "| `recipient_uei` | varchar |" in notes
 
 
 def test_checksums_cover_every_other_file(dist):
@@ -71,7 +95,8 @@ def test_publish_uploads_parquet_before_building_the_catalog(dist, fake_github):
         ("gh", "release", "create"),  # the new data-latest
     ]
     first_upload = {a.rsplit("/", 1)[-1] for a in fake_github[0] if str(dist) in a}
-    assert "awards.parquet" in first_upload and "catalog.duckdb" not in first_upload
+    assert "stg_usaspending__awards.parquet" in first_upload
+    assert "catalog.duckdb" not in first_upload
 
 
 def test_publish_refuses_an_existing_tag(dist, fake_github, monkeypatch):

@@ -2,11 +2,52 @@ version: 2
 
 models:
   - name: meta_source_files
-    description: One row per raw file the release was built from, with its sha256, retrieval time, and request.
+    description: One row per raw file the release was built from, with its checksum and the request that fetched it.
+    config:
+      contract: {enforced: true}
     columns:
+      - name: source
+        description: Source name, e.g. `usaspending`.
+        data_type: varchar
+      - name: snapshot
+        description: Snapshot date (the raw directory name), e.g. `2026-10-04`.
+        data_type: varchar
+      - name: file
+        description: Raw file name, as stored in the release's raw archive.
+        data_type: varchar
       - name: sha256
+        description: Checksum of the raw file.
+        data_type: varchar
         data_tests: [not_null]
+      - name: retrieved_at
+        description: When the file was downloaded.
+        data_type: timestamp with time zone
       - name: rows
         description: Rows the source reported for the file (for USAspending, prime awards + subawards).
+        data_type: bigint
+      - name: license
+        description: License of the source data.
+        data_type: varchar
+      - name: request
+        description: The exact API request (JSON) that produced the file.
+        data_type: varchar
   - name: meta_build
-    description: The release tag, git commit, and dbt version that produced this release.
+    description: One row describing the build that produced this release.
+    config:
+      contract: {enforced: true}
+    columns:
+      - name: release_tag
+        description: Release tag, e.g. `data-2026-10-04`.
+        data_type: varchar
+      - name: git_sha
+        description: Git commit the release was built from.
+        data_type: varchar
+      - name: git_dirty
+        description: True if the build included uncommitted changes. Published releases are always false.
+        data_type: boolean
+      - name: dbt_version
+        description: dbt version that ran the transform.
+        data_type: varchar
+      - name: built_at
+        description: When the release was built.
+        data_type: timestamp with time zone
