@@ -1,5 +1,6 @@
 # Supply Chain Ontology build.
 #
+# Python targets (test, validate, lint) only need `uv`.
 # ROBOT targets (reason, report, release) run in Docker unless a working local Java is found
 # (as in CI). Force either with ROBOT_ENV=docker or ROBOT_ENV=local. The jar is downloaded on first use.
 
@@ -24,12 +25,28 @@ RELEASE    := $(ONT)/release
 VERSION    := $(shell date +%Y-%m-%d)
 BASE_IRI   := https://w3id.org/sco
 
-.PHONY: help all reason report release refresh-imports clean
+.PHONY: help all test validate lint fmt reason report release refresh-imports clean
 
 help: ## Show this help
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
-all: reason report ## Everything CI runs
+all: test reason report ## Everything CI runs
+
+# ---------------------------------------------------------------- Python
+
+test: ## Run the pytest suite
+	uv run pytest
+
+validate: ## SHACL-validate all scenarios
+	uv run sco validate
+
+lint: ## Lint and format-check Python
+	uv run ruff check .
+	uv run ruff format --check .
+
+fmt: ## Auto-format Python
+	uv run ruff check --fix .
+	uv run ruff format .
 
 # ---------------------------------------------------------------- ROBOT
 
@@ -43,7 +60,7 @@ reason: | $(ROBOT_JAR) ## Check consistency and unsatisfiable classes with Hermi
 		reason --reasoner HermiT --equivalent-classes-allowed asserted-only --output $(RELEASE)/reasoned.owl
 
 # report-profile.txt omits missing_definition: ROBOT expects IAO:0000115, but we follow BFO 2020
-# and CCO in using skos:definition.
+# and CCO in using skos:definition. tests/test_ontology.py checks definitions instead.
 report: | $(ROBOT_JAR) ## Ontology quality report (labels, definitions, ...)
 	mkdir -p $(RELEASE)
 	$(ROBOT) merge --catalog $(CATALOG) --input $(EDIT) \
