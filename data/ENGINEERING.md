@@ -51,7 +51,8 @@ Removing or retyping a published column is a breaking change; call it out in the
 
 ## Data releases
 
-A release is a GitHub Release tagged `data-YYYY-MM-DD`:
+A release is a GitHub Release tagged `data-YYYY-MM-DD`, or `data-YYYY-MM-DD.2`, `.3`, ... for later
+releases the same day:
 
 | Asset | What it is |
 |---|---|
@@ -71,8 +72,7 @@ A release is a GitHub Release tagged `data-YYYY-MM-DD`:
 3. Attaches the published catalog from a fresh session and checks the row counts.
 4. Recreates `data-latest` with the same files.
 
-It refuses to overwrite an existing tag (so a second run on the same day fails) or to publish a build of
-uncommitted code.
+It refuses to overwrite an existing tag or to publish a build of uncommitted code.
 
 ## Adding a source
 

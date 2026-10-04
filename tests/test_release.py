@@ -138,3 +138,10 @@ def test_example_notebook_runs_against_a_release(dist):
     namespace = {}
     exec(compile(source, "explore.ipynb", "exec"), namespace)
     assert len(namespace["awards"]) == 8
+
+
+def test_next_tag_adds_a_suffix_for_later_releases_the_same_day(monkeypatch):
+    taken = {"data-2026-10-04", "data-2026-10-04.2"}
+    monkeypatch.setattr(release, "release_exists", lambda tag: tag in taken)
+    assert release.next_tag("2026-10-04") == "data-2026-10-04.3"
+    assert release.next_tag("2026-10-05") == "data-2026-10-05"

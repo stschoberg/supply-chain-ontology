@@ -1,7 +1,7 @@
 """Build a versioned data release in data/dist/.
 
 Usage:
-  uv run python -m data.release build [--tag data-YYYY-MM-DD]
+  uv run python -m data.release build [--tag data-YYYY-MM-DD]   # default: today's date, .2, .3, ...
   uv run python -m data.release publish        # normally run by .github/workflows/data-release.yml
   uv run python -m data.release catalog --base-url URL
 
@@ -199,8 +199,17 @@ def release_url(tag: str) -> str:
     return f"https://github.com/{REPO}/releases/download/{tag}"
 
 
+def next_tag(date: str) -> str:
+    """data-<date>, or data-<date>.2, .3, ... if earlier releases took it the same day."""
+    tag, n = f"data-{date}", 1
+    while release_exists(tag):
+        n += 1
+        tag = f"data-{date}.{n}"
+    return tag
+
+
 def build(args: argparse.Namespace) -> None:
-    tag = args.tag or f"data-{datetime.now(UTC):%Y-%m-%d}"
+    tag = args.tag or next_tag(f"{datetime.now(UTC):%Y-%m-%d}")
     overrides = dict(o.partition("=")[::2] for o in args.snapshot)
     sources = {
         name: Path(overrides[name]).resolve() if name in overrides else newest_snapshot(raw)
@@ -236,7 +245,11 @@ def gh(*args: str) -> None:
 
 
 def release_exists(tag: str) -> bool:
-    view = subprocess.run(["gh", "release", "view", tag, "--repo", REPO], capture_output=True)
+    """False when GitHub can't be asked (gh missing or logged out); publish checks again."""
+    try:
+        view = subprocess.run(["gh", "release", "view", tag, "--repo", REPO], capture_output=True)
+    except FileNotFoundError:
+        return False
     return view.returncode == 0
 
 
@@ -312,7 +325,7 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     commands = parser.add_subparsers(dest="command", required=True)
     b = commands.add_parser("build", help="build a release into data/dist/")
-    b.add_argument("--tag", help="release tag (default: data-<today>)")
+    b.add_argument("--tag", help="release tag (default: data-<today>, then .2, .3, ...)")
     b.add_argument("--out", default=str(DIST_DIR), help="output directory")
     b.add_argument(
         "--snapshot", action="append", default=[], metavar="SOURCE=PATH",
