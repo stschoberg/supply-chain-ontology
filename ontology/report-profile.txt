@@ -1,0 +1,8 @@
+ERROR	duplicate_definition
+ERROR	duplicate_label
+ERROR	missing_label
+ERROR	multiple_definitions
+ERROR	multiple_labels
+WARN	label_whitespace
+WARN	label_formatting
+INFO	lowercase_definition
