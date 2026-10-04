@@ -17,16 +17,21 @@ ROOT = Path(__file__).resolve().parents[2]
 ONTOLOGY_DIR = ROOT / "ontology"
 EDIT_FILE = ONTOLOGY_DIR / "src" / "sco-edit.ttl"
 IMPORTS_DIR = ONTOLOGY_DIR / "imports"
+COMPONENTS_DIR = ONTOLOGY_DIR / "components"
 CQ_DIR = ROOT / "competency-questions"
 SCENARIOS_DIR = ROOT / "scenarios"
 SHAPES_DIR = ROOT / "shapes"
 
 
 def load_tbox() -> Graph:
-    """The SCO editors' file merged with its local imports (no network access)."""
+    """The SCO editors' file merged with its components and imports (no network access).
+
+    Components are generated from ROBOT templates (`make components`) and committed, so
+    Python tooling works without Java.
+    """
     g = Graph()
     g.parse(EDIT_FILE)
-    for imp in sorted(IMPORTS_DIR.glob("*.owl")):
+    for imp in sorted([*COMPONENTS_DIR.glob("*.owl"), *IMPORTS_DIR.glob("*.owl")]):
         g.parse(imp)
     return g
 

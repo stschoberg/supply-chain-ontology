@@ -29,6 +29,12 @@ jobs:
         with:
           path: tools/robot.jar
           key: robot-${{ hashFiles('Makefile') }}
+      - name: Components are up to date with templates
+        run: |
+          touch ontology/src/templates/*.tsv
+          make components
+          git diff --exit-code ontology/components/ || \
+            (echo "::error::Run 'make components' and commit the result." && exit 1)
       - run: make reason
       - run: make report
       - run: make release

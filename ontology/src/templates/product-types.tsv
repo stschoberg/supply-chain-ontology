@@ -1,0 +1,5 @@
+ID	Label	Parent	Definition
+ID	LABEL	SC %	A skos:definition
+sco:Magnet	magnet	sco:Product	A product that produces a persistent magnetic field.
+sco:Bearing	bearing	sco:Product	A product that constrains relative motion between moving parts and reduces friction.
+sco:RareEarthOxide	rare earth oxide	sco:Product	A product consisting of an oxide of one or more rare earth elements, used as feedstock for magnets and other components.
