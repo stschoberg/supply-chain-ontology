@@ -2,27 +2,91 @@ version: 2
 
 models:
   - name: stg_usaspending__awards
-    description: One row per DoD contract award for bearings (PSC group 31), deduplicated across fiscal-year files.
+    description: >
+      USAspending.gov contract award summaries as published, typed and renamed, one row per award:
+      DoD purchases of bearings (PSC group 31) with any activity from FY2023 onward. An award is a
+      contract or order with its modifications rolled up, deduplicated across fiscal-year files. It
+      records a commitment to buy, not a delivery, and usually names a kind of part rather than a
+      specific one.
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: award_key
-        description: USAspending's contract_award_unique_key.
+        description: USAspending's contract_award_unique_key. Stable across releases.
+        data_type: varchar
         data_tests: [unique, not_null]
-      - name: recipient_name
-        data_tests: [not_null]
+      - name: piid
+        description: Procurement instrument identifier (contract or order number).
+        data_type: varchar
+      - name: parent_piid
+        description: Parent contract (IDV) for orders; null for standalone contracts.
+        data_type: varchar
       - name: recipient_uei
-        description: SAM.gov Unique Entity ID of the supplier.
+        description: Supplier's SAM.gov Unique Entity ID. Use this, not the name, to identify suppliers.
+        data_type: varchar
         data_tests:
           - not_null:
               config: {severity: warn}
+      - name: recipient_name
+        description: Supplier name as reported; spelling varies across awards.
+        data_type: varchar
+        data_tests: [not_null]
+      - name: recipient_parent_uei
+        description: UEI of the supplier's corporate parent.
+        data_type: varchar
+      - name: recipient_parent_name
+        description: Name of the supplier's corporate parent.
+        data_type: varchar
+      - name: cage_code
+        description: Commercial and Government Entity code of the supplier.
+        data_type: varchar
+      - name: domestic_or_foreign_entity
+        description: Ownership category, e.g. "U.S. OWNED BUSINESS", "FOREIGN-OWNED BUSINESS INCORPORATED IN THE U.S.".
+        data_type: varchar
+      - name: origin_country
+        description: Country of origin of the product.
+        data_type: varchar
       - name: psc
+        description: Product and Service Code; 3110, 3120, or 3130.
+        data_type: varchar
         data_tests:
           - accepted_values:
               arguments: {values: ['3110', '3120', '3130']}
+      - name: item_name
+        description: Item name from the description, without DLA's leading reference number. Truncated, inconsistent spelling.
+        data_type: varchar
       - name: nsn
-        description: National Stock Number, when the description contains one; 13 digits, no dashes.
+        description: National Stock Number (13 digits) when the description contains one; under 1% of awards.
+        data_type: varchar
+      - name: description
+        description: Original free-text description.
+        data_type: varchar
       - name: dla_reference_number
-        description: Leading number in DLA descriptions. Unique per award; not an item identifier.
-        data_tests:
-          - unique
+        description: Leading 10-digit number in DLA descriptions. Unique per award; NOT an item identifier.
+        data_type: varchar
+        data_tests: [unique]
+      - name: awarding_sub_agency
+        description: DoD component that made the award; mostly the Defense Logistics Agency.
+        data_type: varchar
+      - name: total_obligated_amount
+        description: Total dollars obligated, USD.
+        data_type: decimal(18,2)
+      - name: base_action_date
+        description: Date of the award's first action.
+        data_type: date
+      - name: extent_competed
+        description: Competition category, e.g. "FULL AND OPEN COMPETITION", "NOT COMPETED".
+        data_type: varchar
       - name: offers_received
         description: Number of offers received. 1 suggests a sole source; null when not reported.
+        data_type: integer
+      - name: other_than_full_and_open_reason
+        description: Legal justification when the award was not fully competed.
+        data_type: varchar
+      - name: last_modified_at
+        description: When USAspending last changed the award; the newest version wins when files overlap.
+        data_type: timestamp
+      - name: source_file
+        description: Raw file the row came from (`<fiscal-year folder>/<csv>`), within the release's raw archive.
+        data_type: varchar

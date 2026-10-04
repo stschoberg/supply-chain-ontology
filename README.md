@@ -25,6 +25,18 @@ make release                     # build ontology/release/
 make help                        # all targets
 ```
 
+## Data
+
+Real-world data to test the ontology against, starting with DoD contract awards for bearings from
+USAspending.gov. Query the newest release from DuckDB, without cloning anything:
+
+```sql
+attach 'https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/catalog.duckdb' as sco;
+select * from sco.stg_usaspending__awards limit 10;
+```
+
+What's in it, what it can't tell you, and how to cite a version: [data/README.md](data/README.md).
+
 ## Layout
 
 | Path | What lives there |
@@ -38,7 +50,7 @@ make help                        # all targets
 | `competency-questions/` | `CQ-NNN.md` (the question and its rationale) + `CQ-NNN.rq` (the SPARQL that answers it). |
 | `scenarios/<name>/` | Instance data (ABox) for one scenario: `data.ttl`, a narrative `README.md`, and `expected/CQ-NNN.csv`. |
 | `shapes/` | SHACL shapes: closed-world data-quality checks. |
-| `data/` | Data engineering: per-source fetchers and raw snapshots, a dbt + DuckDB transform, and mappings into scenario ABoxes. See [data/README.md](data/README.md). |
+| `data/` | Real-world instance data, published as versioned releases ([data/README.md](data/README.md)), and the pipeline that builds it ([data/ENGINEERING.md](data/ENGINEERING.md)). |
 | `src/sco/` | Shared Python: graph loading, reasoning, CLI. |
 | `tests/` | pytest suite. |
 | `docs/adr/` | Architecture/modeling decision records. |
