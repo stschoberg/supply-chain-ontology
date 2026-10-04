@@ -8,7 +8,7 @@ relevance: background       # core | background | tangential
 approach: []                # bfo | non-bfo | supply-chain | methodology | other
 component: academic         # academic | operational | both
 tags: []
-informs: []                 # competency questions, modules, or classes this paper bears on
+informs: []                 # IDs this paper bears on: CQ-NNN, ADR-NNNN
 ---
 
 ## Summary

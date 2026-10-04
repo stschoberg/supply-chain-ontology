@@ -17,5 +17,6 @@ BFO 2020–aligned supply chain ontology. See README.md for layout and workflow.
 - Never assert membership in a defined class (e.g. `sco:Supplier`); the reasoner infers it.
 - Keep TBox (`ontology/`) and ABox (`scenarios/`) separate.
 - Record modeling decisions in `docs/adr/`. Don't silently resolve an open ADR.
-- `literature/library.bib` is a Zotero auto-export; never edit it by hand. Paper notes go in
-  `literature/notes/<citekey>.md`, copied from `literature/_template.md`.
+- `docs/literature/library.bib` is a Zotero auto-export; never edit it by hand. Paper notes go in
+  `docs/literature/notes/<citekey>.md`, copied from `docs/literature/_template.md`. Link them with
+  `informs: [CQ-NNN, ADR-NNNN]`, and cite in CQs/ADRs as `[@citekey]`.
