@@ -19,4 +19,5 @@ stack.
 - **Open in Protégé:** open `SupplyChain.rdf`. The catalog keeps Protégé off the network.
 
 The two BFO files differ. Both use the same IRIs, but `bfo.rdf` labels the relations with their time
-quantifier ("participates in at some time") and adds 24 "at all times" relations that `bfo-core.owl` lacks.
+quantifier ("participates in at some time") and adds 24 "at all times" relations that `bfo-core.owl` lacks. See
+[F-002](../../findings/F-002.md).
