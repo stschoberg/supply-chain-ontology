@@ -29,7 +29,7 @@ PREFIXES   := --prefix "sco: $(BASE_IRI)/" --prefix "skos: http://www.w3.org/200
 TEMPLATES  := $(wildcard $(ONT)/src/templates/*.tsv)
 COMPONENTS := $(patsubst $(ONT)/src/templates/%.tsv,$(ONT)/components/%.owl,$(TEMPLATES))
 
-.PHONY: help all test validate lint fmt components reason report release refresh-imports clean
+.PHONY: help all test validate lint fmt components reason report release refresh-imports refresh-iof clean
 
 help: ## Show this help
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -94,6 +94,20 @@ release: $(COMPONENTS) | $(ROBOT_JAR) ## Build release artifacts in ontology/rel
 
 refresh-imports: ## Re-download BFO 2020 core
 	curl -fsSL -o $(ONT)/imports/bfo-core.owl http://purl.obolibrary.org/obo/bfo/2020/bfo-core.owl
+
+# ---------------------------------------------------------------- Research
+
+# The IOF release that research/ studies. Findings cite it, so bump it on purpose.
+IOF_RELEASE := Release_202603
+IOF_DIR     := research/reference/iof-scro
+IOF_RAW     := https://raw.githubusercontent.com/iofoundry/ontology/$(IOF_RELEASE)
+
+refresh-iof: ## Re-download the pinned IOF Core + SCRO release into research/reference/
+	curl -fsSL -o $(IOF_DIR)/SupplyChain.rdf $(IOF_RAW)/supplychain/SupplyChain.rdf
+	curl -fsSL -o $(IOF_DIR)/Core.rdf $(IOF_RAW)/core/Core.rdf
+	curl -fsSL -o $(IOF_DIR)/AnnotationVocabulary.rdf $(IOF_RAW)/core/meta/AnnotationVocabulary.rdf
+	curl -fsSL -o $(IOF_DIR)/bfo.rdf $(IOF_RAW)/cache/bfo/2020/bfo.rdf
+	curl -fsSL -o $(IOF_DIR)/LICENSE $(IOF_RAW)/LICENSE
 
 clean: ## Remove build outputs
 	rm -rf $(RELEASE)/*

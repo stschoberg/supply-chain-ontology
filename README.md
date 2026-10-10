@@ -119,6 +119,18 @@ We keep a shared [Zotero group library](https://www.zotero.org/groups/6681419/ph
 auto-exports to `docs/literature/library.bib`, with one note per paper in `docs/literature/notes/`. Setup and
 conventions: [docs/literature/README.md](docs/literature/README.md).
 
+## Research workflow
+
+The research workflow uses the other two to answer the project question. It traces BFO's influence down
+through a published BFO-based supply chain stack (IOF Core and its Supply Chain Reference Ontology), and through our
+own ontology, to instance data. Each result is recorded as a finding that says which layer caused it: BFO, IOF, or
+us.
+
+- **Method:** [research/README.md](research/README.md): the argument, how findings are attributed, metrics, and the
+  principles in scope.
+- **Findings:** `research/findings/F-NNN.md`, one per result, copied from `research/findings/_template.md`.
+- **Reference ontologies:** a pinned IOF release in `research/reference/iof-scro/`. `make refresh-iof` updates it.
+
 ## Layout
 
 | Path | What lives there |
@@ -136,4 +148,5 @@ conventions: [docs/literature/README.md](docs/literature/README.md).
 | `src/sco/` | Shared Python: graph loading, reasoning, CLI. |
 | `tests/` | pytest suite. |
 | `docs/adr/` | Architecture/modeling decision records. |
+| `research/` | Method, findings, notebooks, and pinned reference ontologies for the project question. See [its README](research/README.md). |
 | `docs/literature/` | Bibliography (Zotero export) and per-paper notes, linked to CQs and ADRs. See [its README](docs/literature/README.md). |

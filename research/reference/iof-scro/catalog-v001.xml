@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Lets Protégé and ROBOT resolve the IOF import chain to the files in this directory. -->
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri name="https://spec.industrialontologies.org/ontology/202603/core/Core/" uri="Core.rdf"/>
+    <uri name="https://spec.industrialontologies.org/ontology/202603/core/meta/AnnotationVocabulary/" uri="AnnotationVocabulary.rdf"/>
+    <uri name="http://purl.obolibrary.org/obo/bfo/2020/bfo.owl" uri="bfo.rdf"/>
+</catalog>
