@@ -19,6 +19,7 @@ dev = [
     "dbt-core>=1.12.5",
     "dbt-duckdb>=1.11.0",
     "duckdb>=1.5.6",
+    "marimo>=0.25.1",
     "pandas>=3.0.6",
     "pytest>=8",
     "pyyaml>=6.0.3",
@@ -38,3 +39,7 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# marimo notebooks: markdown cells are prose, and a cell's last bare expression is its output.
+"research/notebooks/*.py" = ["E501", "B018"]

@@ -30,3 +30,6 @@ data/transform/logs/
 data/transform/dbt_packages/
 data/transform/.user.yml
 data/dist/
+
+# marimo session caches
+__marimo__/
