@@ -109,7 +109,9 @@ def wait_for(file_name: str, timeout: float = 1800) -> dict:
             raise FetchError(f"download job failed: {status.get('message')}")
         if time.monotonic() > deadline:
             raise FetchError(f"download job still {status['status']!r} after {timeout:.0f}s")
-        print(f"    {status['status']} ({float(status['seconds_elapsed']):.0f}s)", end="\r")
+        # A job that is still queued reports no elapsed time.
+        elapsed = float(status.get("seconds_elapsed") or 0)
+        print(f"    {status['status']} ({elapsed:.0f}s)", end="\r")
         time.sleep(delay)
         delay = min(delay * 1.5, 30)
 
