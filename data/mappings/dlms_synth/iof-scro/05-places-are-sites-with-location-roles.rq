@@ -1,0 +1,30 @@
+# Where a shipment leaves from and arrives at are geospatial sites (SCRO) with a ship-from or
+# ship-to location role. The source names the first only as a city and country, so that node is
+# minted from the text.
+
+PREFIX dlms_synth: <https://w3id.org/sco/source/dlms_synth/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?origin a iof:GeospatialSite ;
+          rdfs:label ?place ;
+          iof:hasRole ?originRole .
+  ?originRole a iof:ShipFromLocationRole .
+  ?destination a iof:GeospatialSite ;
+               iof:hasRole ?destinationRole .
+  ?destinationRole a iof:ShipToLocationRole .
+}
+WHERE {
+  ?notice a dlms_synth:ShipmentNotice ;
+          dlms_synth:shipFromCity ?city ;
+          dlms_synth:shipFromCountry ?country ;
+          dlms_synth:shipToActivity ?depot .
+  BIND (CONCAT(?city, ", ", ?country) AS ?place)
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/place/", ENCODE_FOR_URI(?place))) AS ?origin)
+  BIND (IRI(CONCAT(STR(?origin), "/ship-from-role")) AS ?originRole)
+  BIND (IRI(CONCAT(STR(?depot), "/site")) AS ?destination)
+  BIND (IRI(CONCAT(STR(?depot), "/ship-to-role")) AS ?destinationRole)
+}

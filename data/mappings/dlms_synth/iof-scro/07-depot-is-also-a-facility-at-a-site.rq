@@ -1,0 +1,23 @@
+# The source uses one activity code for three things BFO keeps apart: the organization that runs a
+# depot, the building, and the place it stands. An activity that stores materiel therefore also
+# gets a storage facility (SCRO), located in a site and available to the organization.
+
+PREFIX dlms_synth: <https://w3id.org/sco/source/dlms_synth/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?facility a iof:StorageFacility ;
+            rdfs:label ?name ;
+            obo:BFO_0000171 ?site ;               # located in
+            iof:isAvailableToAtSomeTime ?activity .
+  ?site rdfs:label ?name .
+}
+WHERE {
+  { SELECT DISTINCT ?activity WHERE { ?record dlms_synth:storageActivity ?activity } }
+  ?activity dlms_synth:name ?name .
+  BIND (IRI(CONCAT(STR(?activity), "/facility")) AS ?facility)
+  BIND (IRI(CONCAT(STR(?activity), "/site")) AS ?site)
+}

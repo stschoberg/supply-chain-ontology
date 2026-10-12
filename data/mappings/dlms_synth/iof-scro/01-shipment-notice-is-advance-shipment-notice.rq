@@ -1,0 +1,18 @@
+# A shipment notice is an Advance Shipment Notice (SCRO): information about a shipment, sent before
+# it arrives. The notice and the shipment are two things. The source has one row for both; here the
+# shipment is a node of its own that the notice is about.
+
+PREFIX dlms_synth: <https://w3id.org/sco/source/dlms_synth/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?notice a iof:AdvanceShipmentNotice ;
+          iof:isAbout ?shipment .
+}
+WHERE {
+  ?notice a dlms_synth:ShipmentNotice .
+  BIND (IRI(CONCAT(STR(?notice), "/materiel")) AS ?shipment)
+}

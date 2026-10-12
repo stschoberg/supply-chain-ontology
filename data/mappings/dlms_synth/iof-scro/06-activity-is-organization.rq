@@ -1,0 +1,15 @@
+# A DoD activity is an organization (Core).
+
+PREFIX dlms_synth: <https://w3id.org/sco/source/dlms_synth/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?activity a iof:Organization ;
+            rdfs:label ?name .
+}
+WHERE {
+  ?activity a dlms_synth:Activity ; dlms_synth:name ?name .
+}

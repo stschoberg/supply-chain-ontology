@@ -26,6 +26,15 @@ Everything about one source is in its directory:
 
 ## Layer 1: the source in its own terms
 
+| Source | Graph | Schema |
+|---|---|---|
+| [`usaspending/`](usaspending/) | `usaspending.nt.gz`: awards and entities | `usas:` |
+| [`dlms_synth/`](dlms_synth/) | `dlms_synth.nt.gz`: **synthetic** logistics records, one class per kind of DLMS transaction | `dlms_synth:` |
+
+A synthetic source's nodes live under `https://w3id.org/sco/data/synthetic/`, so no invented statement is ever
+about a real node. Its records link out to the real awards they were generated for, which is how the two graphs
+join when loaded together.
+
 Each source has a directory here:
 
 | File | What it is |
@@ -63,6 +72,7 @@ Rules from a source's layer 1 graph into the terms of one model: an ontology we 
 | Target | Model | Status |
 |---|---|---|
 | [`usaspending/iof-scro/`](usaspending/iof-scro/README.md) | IOF Core + SCRO, the published BFO-based stack | First trial: parties, identifiers, amount |
+| [`dlms_synth/iof-scro/`](dlms_synth/iof-scro/README.md) | The same model graph, from the **synthetic** source | Shipments, transport, receiving, places |
 | `usaspending/sco/` | Our own ontology | Not started |
 
 The rules:
@@ -80,7 +90,8 @@ The rules:
 A model graph is not a version of one source. It holds every source that has rules for that model, in one file,
 because the model is where sources meet. It uses the same node identifiers as the source graphs, so it is a second
 set of statements about the same awards and entities, and the two kinds of graph can be loaded together. It
-contains only the model's terms, and only asserted facts: a reasoner adds what follows.
+contains only the model's terms, and only asserted facts: a reasoner adds what follows. When one of its sources is
+synthetic the graph is part synthetic; the invented statements are the ones about nodes under `…/data/synthetic/`.
 
 Models are listed in `MODELS` in [`lift.py`](../lift.py), each with its ontology file. An experimental model's
 graph is written as `<model>.experimental.nt.gz`, and the release notes say its mapping is incomplete and will

@@ -1,0 +1,24 @@
+# A date belongs to a process, not to a record or a thing. The receiving process occurs on a
+# temporal region (BFO), whose value is a value expression (Core). The source's date has day
+# precision and Core's value is an instant, so the day's first moment stands for it.
+
+PREFIX dlms_synth: <https://w3id.org/sco/source/dlms_synth/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?receiving iof:occursOn ?day .
+  ?day a obo:BFO_0000008 ;                       # temporal region
+       iof:hasValueExpressionAtAllTimes ?expression .
+  ?expression a iof:TemporalInstantValueExpression ;
+              iof:hasDateTimeInstantValue ?instant .
+}
+WHERE {
+  ?receipt a dlms_synth:Receipt ; dlms_synth:receiptDate ?date .
+  BIND (IRI(CONCAT(STR(?receipt), "/receiving")) AS ?receiving)
+  BIND (IRI(CONCAT(STR(?receipt), "/receiving/day")) AS ?day)
+  BIND (IRI(CONCAT(STR(?receipt), "/receiving/day/value")) AS ?expression)
+  BIND (xsd:dateTime(CONCAT(STR(?date), "T00:00:00")) AS ?instant)
+}

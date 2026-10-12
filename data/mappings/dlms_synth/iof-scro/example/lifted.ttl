@@ -1,0 +1,282 @@
+@prefix iof: <https://spec.industrialontologies.org/ontology/construct/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/sco/data/synthetic/activity/Z02366> a iof:Organization ;
+    rdfs:label "Defense Contract Management Agency" .
+
+<https://w3id.org/sco/data/synthetic/activity/Z21B71/facility> a iof:StorageFacility ;
+    rdfs:label "DLA Distribution San Joaquin" ;
+    obo:BFO_0000171 <https://w3id.org/sco/data/synthetic/activity/Z21B71/site> ;
+    iof:isAvailableToAtSomeTime <https://w3id.org/sco/data/synthetic/activity/Z21B71> .
+
+<https://w3id.org/sco/data/synthetic/activity/ZF70A9/facility> a iof:StorageFacility ;
+    rdfs:label "DLA Distribution Susquehanna" ;
+    obo:BFO_0000171 <https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> ;
+    iof:isAvailableToAtSomeTime <https://w3id.org/sco/data/synthetic/activity/ZF70A9> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z22C8B33500001XXX> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/receipt/Z22C8B33500001XXX/receiving> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530001XXX> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530001XXX/receiving> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530002XXX> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530002XXX/receiving> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z67A0E43020001XXX> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/receipt/Z67A0E43020001XXX/receiving> .
+
+<https://w3id.org/sco/data/synthetic/receipt/ZDBAEE52390001XXX> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/receipt/ZDBAEE52390001XXX/receiving> .
+
+<https://w3id.org/sco/data/synthetic/receipt/ZED18271920001XXX> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/receipt/ZED18271920001XXX/receiving> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX> a iof:AdvanceShipmentNotice ;
+    iof:isAbout <https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/materiel> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/tcn> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/materiel> ;
+    iof:hasTextValue "Z22C8B33500001XXX" .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX> a iof:AdvanceShipmentNotice ;
+    iof:isAbout <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/materiel> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/tcn> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/materiel> ;
+    iof:hasTextValue "Z5E92C41530001XXX" .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX> a iof:AdvanceShipmentNotice ;
+    iof:isAbout <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/materiel> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/tcn> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/materiel> ;
+    iof:hasTextValue "Z5E92C41530002XXX" .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX> a iof:AdvanceShipmentNotice ;
+    iof:isAbout <https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/materiel> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/tcn> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/materiel> ;
+    iof:hasTextValue "Z67A0E43020001XXX" .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX> a iof:AdvanceShipmentNotice ;
+    iof:isAbout <https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/materiel> .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/tcn> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/materiel> ;
+    iof:hasTextValue "ZDBAEE52390001XXX" .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX> a iof:AdvanceShipmentNotice ;
+    iof:isAbout <https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/materiel> .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/tcn> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/materiel> ;
+    iof:hasTextValue "ZED18271920001XXX" .
+
+<https://w3id.org/sco/data/synthetic/activity/Z21B71> a iof:Organization ;
+    rdfs:label "DLA Distribution San Joaquin" ;
+    iof:agentIn <https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530001XXX/receiving>,
+        <https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530002XXX/receiving> .
+
+<https://w3id.org/sco/data/synthetic/activity/Z21B71/ship-to-role> a iof:ShipToLocationRole .
+
+<https://w3id.org/sco/data/synthetic/activity/ZF70A9> a iof:Organization ;
+    rdfs:label "DLA Distribution Susquehanna" ;
+    iof:agentIn <https://w3id.org/sco/data/synthetic/receipt/Z22C8B33500001XXX/receiving>,
+        <https://w3id.org/sco/data/synthetic/receipt/Z67A0E43020001XXX/receiving>,
+        <https://w3id.org/sco/data/synthetic/receipt/ZDBAEE52390001XXX/receiving>,
+        <https://w3id.org/sco/data/synthetic/receipt/ZED18271920001XXX/receiving> .
+
+<https://w3id.org/sco/data/synthetic/activity/ZF70A9/ship-to-role> a iof:ShipToLocationRole .
+
+<https://w3id.org/sco/data/synthetic/place/KEENE%2C%20UNITED%20STATES> a iof:GeospatialSite ;
+    rdfs:label "KEENE, UNITED STATES" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/place/KEENE%2C%20UNITED%20STATES/ship-from-role> .
+
+<https://w3id.org/sco/data/synthetic/place/KEENE%2C%20UNITED%20STATES/ship-from-role> a iof:ShipFromLocationRole .
+
+<https://w3id.org/sco/data/synthetic/place/LEBANON%2C%20UNITED%20STATES> a iof:GeospatialSite ;
+    rdfs:label "LEBANON, UNITED STATES" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/place/LEBANON%2C%20UNITED%20STATES/ship-from-role> .
+
+<https://w3id.org/sco/data/synthetic/place/LEBANON%2C%20UNITED%20STATES/ship-from-role> a iof:ShipFromLocationRole .
+
+<https://w3id.org/sco/data/synthetic/place/OTTAWA%2C%20CANADA> a iof:GeospatialSite ;
+    rdfs:label "OTTAWA, CANADA" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/place/OTTAWA%2C%20CANADA/ship-from-role> .
+
+<https://w3id.org/sco/data/synthetic/place/OTTAWA%2C%20CANADA/ship-from-role> a iof:ShipFromLocationRole .
+
+<https://w3id.org/sco/data/synthetic/place/PRESTON%2C%20UNITED%20STATES/ship-from-role> a iof:ShipFromLocationRole .
+
+<https://w3id.org/sco/data/synthetic/place/SOUTHWICK%2C%20UNITED%20STATES> a iof:GeospatialSite ;
+    rdfs:label "SOUTHWICK, UNITED STATES" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/place/SOUTHWICK%2C%20UNITED%20STATES/ship-from-role> .
+
+<https://w3id.org/sco/data/synthetic/place/SOUTHWICK%2C%20UNITED%20STATES/ship-from-role> a iof:ShipFromLocationRole .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z22C8B33500001XXX/receiving/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/receipt/Z22C8B33500001XXX/receiving/day/value> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z22C8B33500001XXX/receiving/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2013-12-20T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530001XXX/receiving/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530001XXX/receiving/day/value> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530001XXX/receiving/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2024-06-10T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530002XXX/receiving/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530002XXX/receiving/day/value> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530002XXX/receiving/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2024-06-05T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z67A0E43020001XXX/receiving/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/receipt/Z67A0E43020001XXX/receiving/day/value> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z67A0E43020001XXX/receiving/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2024-11-06T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/receipt/ZDBAEE52390001XXX/receiving/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/receipt/ZDBAEE52390001XXX/receiving/day/value> .
+
+<https://w3id.org/sco/data/synthetic/receipt/ZDBAEE52390001XXX/receiving/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2025-09-02T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/receipt/ZED18271920001XXX/receiving/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/receipt/ZED18271920001XXX/receiving/day/value> .
+
+<https://w3id.org/sco/data/synthetic/receipt/ZED18271920001XXX/receiving/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2017-07-14T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/shipment-role> a iof:ShipmentRole ;
+    obo:BFO_0000054 <https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/transport> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/transport> a iof:TransportProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/materiel> ;
+    iof:endsAt <https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> ;
+    iof:startsAt <https://w3id.org/sco/data/synthetic/place/LEBANON%2C%20UNITED%20STATES> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/shipment-role> a iof:ShipmentRole ;
+    obo:BFO_0000054 <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/transport> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/transport> a iof:TransportProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/materiel> ;
+    iof:endsAt <https://w3id.org/sco/data/synthetic/activity/Z21B71/site> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> ;
+    iof:startsAt <https://w3id.org/sco/data/synthetic/place/PRESTON%2C%20UNITED%20STATES> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/shipment-role> a iof:ShipmentRole ;
+    obo:BFO_0000054 <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/transport> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/transport> a iof:TransportProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/materiel> ;
+    iof:endsAt <https://w3id.org/sco/data/synthetic/activity/Z21B71/site> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> ;
+    iof:startsAt <https://w3id.org/sco/data/synthetic/place/PRESTON%2C%20UNITED%20STATES> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/shipment-role> a iof:ShipmentRole ;
+    obo:BFO_0000054 <https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/transport> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/transport> a iof:TransportProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/materiel> ;
+    iof:endsAt <https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> ;
+    iof:startsAt <https://w3id.org/sco/data/synthetic/place/SOUTHWICK%2C%20UNITED%20STATES> .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/shipment-role> a iof:ShipmentRole ;
+    obo:BFO_0000054 <https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/transport> .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/transport> a iof:TransportProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/materiel> ;
+    iof:endsAt <https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> ;
+    iof:startsAt <https://w3id.org/sco/data/synthetic/place/OTTAWA%2C%20CANADA> .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/shipment-role> a iof:ShipmentRole ;
+    obo:BFO_0000054 <https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/transport> .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/transport> a iof:TransportProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/materiel> ;
+    iof:endsAt <https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> ;
+    iof:startsAt <https://w3id.org/sco/data/synthetic/place/KEENE%2C%20UNITED%20STATES> .
+
+<https://w3id.org/sco/data/synthetic/place/PRESTON%2C%20UNITED%20STATES> a iof:GeospatialSite ;
+    rdfs:label "PRESTON, UNITED STATES" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/place/PRESTON%2C%20UNITED%20STATES/ship-from-role> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z22C8B33500001XXX/receiving> a iof:ReceivingProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/materiel> ;
+    iof:occursAt <https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/receipt/Z22C8B33500001XXX/receiving/day> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530001XXX/receiving> a iof:ReceivingProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/materiel> ;
+    iof:occursAt <https://w3id.org/sco/data/synthetic/activity/Z21B71/site> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530001XXX/receiving/day> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530002XXX/receiving> a iof:ReceivingProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/materiel> ;
+    iof:occursAt <https://w3id.org/sco/data/synthetic/activity/Z21B71/site> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/receipt/Z5E92C41530002XXX/receiving/day> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> .
+
+<https://w3id.org/sco/data/synthetic/receipt/Z67A0E43020001XXX/receiving> a iof:ReceivingProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/materiel> ;
+    iof:occursAt <https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/receipt/Z67A0E43020001XXX/receiving/day> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> .
+
+<https://w3id.org/sco/data/synthetic/receipt/ZDBAEE52390001XXX/receiving> a iof:ReceivingProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/materiel> ;
+    iof:occursAt <https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/receipt/ZDBAEE52390001XXX/receiving/day> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> .
+
+<https://w3id.org/sco/data/synthetic/receipt/ZED18271920001XXX/receiving> a iof:ReceivingProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/materiel> ;
+    iof:occursAt <https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/receipt/ZED18271920001XXX/receiving/day> ;
+    iof:prescribedBy <https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/materiel> a obo:BFO_0000040 ;
+    rdfs:label "shipment Z22C8B33500001XXX" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/shipment/Z22C8B33500001XXX/shipment-role> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/materiel> a obo:BFO_0000040 ;
+    rdfs:label "shipment Z5E92C41530001XXX" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530001XXX/shipment-role> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/materiel> a obo:BFO_0000040 ;
+    rdfs:label "shipment Z5E92C41530002XXX" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/shipment/Z5E92C41530002XXX/shipment-role> .
+
+<https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/materiel> a obo:BFO_0000040 ;
+    rdfs:label "shipment Z67A0E43020001XXX" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/shipment/Z67A0E43020001XXX/shipment-role> .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/materiel> a obo:BFO_0000040 ;
+    rdfs:label "shipment ZDBAEE52390001XXX" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/shipment/ZDBAEE52390001XXX/shipment-role> .
+
+<https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/materiel> a obo:BFO_0000040 ;
+    rdfs:label "shipment ZED18271920001XXX" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/shipment/ZED18271920001XXX/shipment-role> .
+
+<https://w3id.org/sco/data/synthetic/activity/Z21B71/site> a iof:GeospatialSite ;
+    rdfs:label "DLA Distribution San Joaquin" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/activity/Z21B71/ship-to-role> .
+
+<https://w3id.org/sco/data/synthetic/activity/ZF70A9/site> a iof:GeospatialSite ;
+    rdfs:label "DLA Distribution Susquehanna" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/activity/ZF70A9/ship-to-role> .
+

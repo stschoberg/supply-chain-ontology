@@ -1,0 +1,22 @@
+# dlms_synth__activities in the source's own terms (layer 1 of ADR-0005): YARRRML, run by `make lift`.
+#
+# SYNTHETIC: every node this makes is invented, and lives under d:synthetic/. Mechanical, like every
+# layer 1 mapping: a row is a node, every column is one property, a foreign key is a link.
+
+prefixes:
+  dlms_synth: https://w3id.org/sco/source/dlms_synth/
+  d: https://w3id.org/sco/data/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+sources:
+  rows: [dlms_synth__activities.csv~csv]
+
+mappings:
+  activity:
+    sources: rows
+    s: d:synthetic/activity/$(activity_code)
+    po:
+      - [a, dlms_synth:Activity]
+      - [dlms_synth:activityCode, $(activity_code)]
+      - [dlms_synth:name, $(name)]
+      - [dlms_synth:synthetic, $(synthetic), xsd:boolean]

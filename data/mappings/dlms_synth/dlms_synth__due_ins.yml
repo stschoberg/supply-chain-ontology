@@ -1,0 +1,30 @@
+# dlms_synth__due_ins in the source's own terms (layer 1 of ADR-0005): YARRRML, run by `make lift`.
+#
+# SYNTHETIC: every node this makes is invented, and lives under d:synthetic/. Mechanical, like every
+# layer 1 mapping: a row is a node, every column is one property, a foreign key is a link.
+
+prefixes:
+  dlms_synth: https://w3id.org/sco/source/dlms_synth/
+  d: https://w3id.org/sco/data/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+sources:
+  rows: [dlms_synth__due_ins.csv~csv]
+
+mappings:
+  dueIns:
+    sources: rows
+    s: d:synthetic/due-in/$(award_key)
+    po:
+      - [a, dlms_synth:DueIn]
+      - [dlms_synth:award, d:award/$(award_key)~iri]  # the real award's node, in the usaspending graph
+      - [dlms_synth:piid, $(piid)]
+      - [dlms_synth:clin, $(clin)]
+      - [dlms_synth:nsn, $(nsn)]
+      - [dlms_synth:psc, $(psc)]
+      - [dlms_synth:unitOfIssue, $(unit_of_issue)]
+      - [dlms_synth:storageActivity, d:synthetic/activity/$(storage_activity)~iri]  # foreign key to activities
+      - [dlms_synth:supplierCage, $(supplier_cage)]
+      - [dlms_synth:quantityDue, $(quantity_due), xsd:integer]
+      - [dlms_synth:estimatedDeliveryDate, $(estimated_delivery_date), xsd:date]
+      - [dlms_synth:synthetic, $(synthetic), xsd:boolean]
