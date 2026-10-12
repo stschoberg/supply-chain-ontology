@@ -13,7 +13,7 @@ sources/<source>/fetch.py ──► sources/<source>/raw/ ──► transform/ (
 make fetch-usaspending    # E + L: download a snapshot
 make transform            # T: dbt build (models + data tests) into data/warehouse.duckdb
 make dist                 # package a release in data/dist/
-make lift                 # re-lift data/dist/'s tables into RDF in data/graph/, to try a mapping change
+make lift                 # lift data/dist/'s tables into RDF in data/graph/: source terms, then each model's
 make data-docs            # regenerate DICTIONARY.md after editing a published model's YAML
 ```
 
@@ -35,7 +35,7 @@ data/
   warehouse.duckdb          # dbt output (gitignored)
   dist/                     # release output (gitignored)
   lift.py                   # runs the mappings over a release's tables (make lift)
-  mappings/<source>/        # YARRRML mapping + vocabulary: published tables → RDF (see its README)
+  mappings/<source>/        # tables → RDF in the source's terms, then into a model's (see its README)
   graph/                    # lift output (gitignored)
 ```
 
@@ -63,6 +63,7 @@ releases the same day:
 | `<table>.csv` | The same rows as CSV, for spreadsheets. |
 | `catalog.duckdb` | Views over those Parquet files, so DuckDB users can `attach` and see named, commented tables. Holds no data. |
 | `<source>.nt.gz` | The same rows as an RDF graph in the source's own terms, lifted by the [mappings](mappings/README.md). |
+| `<source>.<target>.experimental.nt.gz` | That graph mapped into another ontology's terms, e.g. `iof-scro`. Experimental: the mapping is incomplete and will change. |
 | `raw-<source>-<snapshot>.tar` | The raw source files the tables were built from, for exact reproduction. |
 | `RELEASE_NOTES.md`, `SHA256SUMS` | How to connect, row counts, the data dictionary, provenance, checksums. |
 

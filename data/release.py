@@ -12,6 +12,8 @@ A release contains:
   catalog.duckdb       views over those Parquet files, so `attach` gives named, commented tables;
                        holds no data
   <source>.nt.gz       the same rows as an RDF graph in the source's own terms (data.lift)
+  <source>.<target>.experimental.nt.gz
+                       that graph mapped into a model's terms, e.g. IOF Core + SCRO; unsettled
   raw-<source>.tar     the raw snapshot each table was built from, for exact reproduction
   RELEASE_NOTES.md     how to connect, row counts, the data dictionary, provenance
   SHA256SUMS
@@ -146,7 +148,9 @@ def archive_raw(source: str, snapshot: Path, out: Path) -> str:
 
 def release_notes(tag: str, sha: str, dirty: bool, tables, stats, graphs, raw, sources) -> str:
     table_rows = "\n".join(f"| `{m}` | {t['rows']:,} | {t['columns']} |" for m, t in stats.items())
-    graph_rows = "\n".join(f"| `{name}` | {triples:,} |" for name, triples in graphs.items())
+    graph_rows = "\n".join(
+        f"| `{name}` | {triples:,} | {about} |" for name, (triples, about) in graphs.items()
+    )
     source_rows = "\n".join(
         f"| {s} | {snap.name} | `{name}` |"
         for (s, snap), name in zip(sources.items(), raw, strict=True)
@@ -187,15 +191,17 @@ The caveats that matter most for using this data are in the repo's
 
 ## Graph
 
-The same rows as RDF (gzipped N-Triples), in each source's own terms: one node per row, one property
-per column. It is not yet mapped into the Supply Chain Ontology.
+The same rows as RDF (gzipped N-Triples). The first graph per source is in the source's own terms:
+one node per row, one property per column. Files marked `experimental` map that graph into another
+ontology's terms. Their mappings are incomplete and will change between releases, so don't cite
+results from them without saying so.
 
-| File | Triples |
-|---|---|
+| File | Triples | What it is |
+|---|---|---|
 {graph_rows}
 
-The terms are defined in the repo's
-[source vocabularies](https://github.com/{REPO}/tree/{sha}/data/mappings).
+The terms and mapping rules are in the repo's
+[mappings](https://github.com/{REPO}/tree/{sha}/data/mappings).
 
 ## Data dictionary
 
@@ -248,8 +254,16 @@ def build(args: argparse.Namespace) -> None:
 
     graphs = {}
     for source in sources:
-        with gzip.open(lift.lift(source, out, out)) as graph_file:
-            graphs[f"{source}.nt.gz"] = sum(1 for _ in graph_file)
+        source_graph = lift.lift(source, out, out)
+        abouts = {source_graph: f"`{source}` in its own terms"}
+        for target, path in lift.lift_targets(source, source_graph, out).items():
+            abouts[path] = (
+                f"Experimental: `{source}` mapped into `{target}` terms by "
+                f"[these rules](https://github.com/{REPO}/tree/{sha}/data/mappings/{source}/{target})"
+            )
+        for path, about in abouts.items():
+            with gzip.open(path) as graph_file:
+                graphs[path.name] = (sum(1 for _ in graph_file), about)
     raw = [archive_raw(name, snap, out) for name, snap in sources.items()]
     notes = release_notes(tag, sha, dirty, tables, stats, graphs, raw, sources)
     (out / "RELEASE_NOTES.md").write_text(notes)

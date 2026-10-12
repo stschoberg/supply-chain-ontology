@@ -1,0 +1,129 @@
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Award> .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/awardKey> "CONT_AWD_0001_9700_SPE4A617D6229_9700" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/awardingSubAgency> "Defense Logistics Agency" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/baseActionDate> "2017-02-23"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/cageCode> "40920" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/description> "8504144659!BEARING, BALL, ANNULAR" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/dlaReferenceNumber> "8504144659" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/domesticOrForeignEntity> "U.S. OWNED BUSINESS" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/extentCompeted> "COMPETED UNDER SAP" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/itemName> "BEARING, BALL, ANNULAR" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/lastModifiedAt> "2023-05-30T11:15:18"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/originCountry> "UNITED STATES" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/parentPiid> "SPE4A617D6229" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/piid> "0001" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/psc> "3110" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/recipient> <https://w3id.org/sco/data/uei/ZPHMCUZ9YH75> .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/recipientName> "MPB CORP" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/recipientParent> <https://w3id.org/sco/data/uei/H4FZBFXLJ636> .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/recipientParentName> "THE TIMKEN COMPANY" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/sourceFile> "dod-psc31-fy2023/Contracts_PrimeAwardSummaries_2026-10-12_H18M31S42_1.csv" .
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> <https://w3id.org/sco/source/usaspending/totalObligatedAmount> "3465.60"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Award> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/awardKey> "CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/awardingSubAgency> "Department of the Air Force" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/baseActionDate> "2024-04-10"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/cageCode> "23837" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/description> "FOR THE PURCHASE OF 123 SEAT BEARINGS." .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/domesticOrForeignEntity> "U.S. OWNED BUSINESS" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/extentCompeted> "FULL AND OPEN COMPETITION" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/itemName> "FOR THE PURCHASE OF 123 SEAT BEARINGS." .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/lastModifiedAt> "2024-07-11T14:52:27"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/offersReceived> "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/originCountry> "UNITED STATES" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/piid> "FA812124P0007" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/psc> "3110" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipient> <https://w3id.org/sco/data/uei/JRTUR4MMXSF1> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientName> "WGI INC." .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientParent> <https://w3id.org/sco/data/uei/JRTUR4MMXSF1> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientParentName> "WGI INC." .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/sourceFile> "dod-psc31-fy2024/Contracts_PrimeAwardSummaries_2026-10-12_H18M34S10_1.csv" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/totalObligatedAmount> "132971.61"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Award> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/awardKey> "CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/awardingSubAgency> "Department of the Air Force" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/baseActionDate> "2023-09-20"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/cageCode> "5V122" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/description> "SPARES BUY BEARING, SLEEVE NSN: 3120015096267LE" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/domesticOrForeignEntity> "U.S. OWNED BUSINESS" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/extentCompeted> "NOT COMPETED UNDER SAP" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/itemName> "SPARES BUY BEARING, SLEEVE NSN: 3120015096267LE" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/lastModifiedAt> "2026-08-28T11:33:15"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/nsn> "3120015096267" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/offersReceived> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/originCountry> "UNITED STATES" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/otherThanFullAndOpenReason> "SAP NON-COMPETITION (FAR 13)" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/piid> "FA820323P0025" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/psc> "3120" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipient> <https://w3id.org/sco/data/uei/RE5CZNL1AHS8> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientName> "MECHATRONICS, INC" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientParent> <https://w3id.org/sco/data/uei/S691K3TH3QG3> .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientParentName> "MECHATRONICS, INC." .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/sourceFile> "dod-psc31-fy2023/Contracts_PrimeAwardSummaries_2026-10-12_H18M31S42_1.csv" .
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/totalObligatedAmount> "4080.00"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Award> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/awardKey> "CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/awardingSubAgency> "Department of the Navy" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/baseActionDate> "2011-07-19"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/cageCode> "21335" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/description> "NAVY REQUIREMENT" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/domesticOrForeignEntity> "U.S. OWNED BUSINESS" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/extentCompeted> "NOT COMPETED" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/itemName> "NAVY REQUIREMENT" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/lastModifiedAt> "2025-06-18T09:49:35"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/offersReceived> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/originCountry> "UNITED STATES" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/otherThanFullAndOpenReason> "UNIQUE SOURCE (FAR 6.302-1(B)(1))" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/piid> "N0010411CBA45" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/psc> "3110" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipient> <https://w3id.org/sco/data/uei/MKH7LGXXFTZ1> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientName> "TIMKEN CO" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientParent> <https://w3id.org/sco/data/uei/XBY5FEGMU441> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientParentName> "THE TIMKEN COMPANY" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/sourceFile> "dod-psc31-fy2025/Contracts_PrimeAwardSummaries_2026-10-12_H18M36S19_1.csv" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/totalObligatedAmount> "264152.16"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Award> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/awardKey> "CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/awardingSubAgency> "Department of the Navy" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/baseActionDate> "2022-06-08"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/cageCode> "98247" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/description> "BEARING,ROLLER,CYLI" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/domesticOrForeignEntity> "OTHER FOREIGN ENTITY (E.G. FOREIGN GOVERNMENT)" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/extentCompeted> "NOT COMPETED" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/itemName> "BEARING,ROLLER,CYLI" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/lastModifiedAt> "2025-03-12T11:41:58"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/offersReceived> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/originCountry> "CANADA" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/otherThanFullAndOpenReason> "ONLY ONE SOURCE-OTHER (FAR 6.302-1 OTHER)" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/piid> "N0038322CS011" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/psc> "3110" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipient> <https://w3id.org/sco/data/uei/FA38CTVQM319> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientName> "CANADIAN COMMERCIAL CORPORATION" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientParent> <https://w3id.org/sco/data/uei/FA38CTVQM319> .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/recipientParentName> "CANADIAN COMMERCIAL CORPORATION" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/sourceFile> "dod-psc31-fy2025/Contracts_PrimeAwardSummaries_2026-10-12_H18M36S19_1.csv" .
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> <https://w3id.org/sco/source/usaspending/totalObligatedAmount> "786088.00"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/uei/FA38CTVQM319> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Entity> .
+<https://w3id.org/sco/data/uei/FA38CTVQM319> <https://w3id.org/sco/source/usaspending/name> "CANADIAN COMMERCIAL CORPORATION" .
+<https://w3id.org/sco/data/uei/FA38CTVQM319> <https://w3id.org/sco/source/usaspending/uei> "FA38CTVQM319" .
+<https://w3id.org/sco/data/uei/H4FZBFXLJ636> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Entity> .
+<https://w3id.org/sco/data/uei/H4FZBFXLJ636> <https://w3id.org/sco/source/usaspending/name> "THE TIMKEN COMPANY" .
+<https://w3id.org/sco/data/uei/H4FZBFXLJ636> <https://w3id.org/sco/source/usaspending/uei> "H4FZBFXLJ636" .
+<https://w3id.org/sco/data/uei/JRTUR4MMXSF1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Entity> .
+<https://w3id.org/sco/data/uei/JRTUR4MMXSF1> <https://w3id.org/sco/source/usaspending/name> "WGI INC." .
+<https://w3id.org/sco/data/uei/JRTUR4MMXSF1> <https://w3id.org/sco/source/usaspending/uei> "JRTUR4MMXSF1" .
+<https://w3id.org/sco/data/uei/MKH7LGXXFTZ1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Entity> .
+<https://w3id.org/sco/data/uei/MKH7LGXXFTZ1> <https://w3id.org/sco/source/usaspending/name> "TIMKEN CO" .
+<https://w3id.org/sco/data/uei/MKH7LGXXFTZ1> <https://w3id.org/sco/source/usaspending/uei> "MKH7LGXXFTZ1" .
+<https://w3id.org/sco/data/uei/RE5CZNL1AHS8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Entity> .
+<https://w3id.org/sco/data/uei/RE5CZNL1AHS8> <https://w3id.org/sco/source/usaspending/name> "MECHATRONICS, INC" .
+<https://w3id.org/sco/data/uei/RE5CZNL1AHS8> <https://w3id.org/sco/source/usaspending/uei> "RE5CZNL1AHS8" .
+<https://w3id.org/sco/data/uei/S691K3TH3QG3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Entity> .
+<https://w3id.org/sco/data/uei/S691K3TH3QG3> <https://w3id.org/sco/source/usaspending/name> "MECHATRONICS, INC." .
+<https://w3id.org/sco/data/uei/S691K3TH3QG3> <https://w3id.org/sco/source/usaspending/uei> "S691K3TH3QG3" .
+<https://w3id.org/sco/data/uei/XBY5FEGMU441> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Entity> .
+<https://w3id.org/sco/data/uei/XBY5FEGMU441> <https://w3id.org/sco/source/usaspending/name> "THE TIMKEN COMPANY" .
+<https://w3id.org/sco/data/uei/XBY5FEGMU441> <https://w3id.org/sco/source/usaspending/uei> "XBY5FEGMU441" .
+<https://w3id.org/sco/data/uei/ZPHMCUZ9YH75> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/usaspending/Entity> .
+<https://w3id.org/sco/data/uei/ZPHMCUZ9YH75> <https://w3id.org/sco/source/usaspending/name> "MPB CORP" .
+<https://w3id.org/sco/data/uei/ZPHMCUZ9YH75> <https://w3id.org/sco/source/usaspending/uei> "ZPHMCUZ9YH75" .

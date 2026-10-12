@@ -1,0 +1,196 @@
+@prefix iof: <https://spec.industrialontologies.org/ontology/construct/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700/piid> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> ;
+    iof:hasTextValue "0001" .
+
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-/piid> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> ;
+    iof:hasTextValue "FA812124P0007" .
+
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-/piid> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> ;
+    iof:hasTextValue "FA820323P0025" .
+
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-/piid> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> ;
+    iof:hasTextValue "N0010411CBA45" .
+
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-/piid> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> ;
+    iof:hasTextValue "N0038322CS011" .
+
+<https://w3id.org/sco/data/cage/21335> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/MKH7LGXXFTZ1> ;
+    iof:hasTextValue "21335" .
+
+<https://w3id.org/sco/data/cage/23837> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/JRTUR4MMXSF1> ;
+    iof:hasTextValue "23837" .
+
+<https://w3id.org/sco/data/cage/40920> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/ZPHMCUZ9YH75> ;
+    iof:hasTextValue "40920" .
+
+<https://w3id.org/sco/data/cage/5V122> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/RE5CZNL1AHS8> ;
+    iof:hasTextValue "5V122" .
+
+<https://w3id.org/sco/data/cage/98247> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/FA38CTVQM319> ;
+    iof:hasTextValue "98247" .
+
+<https://w3id.org/sco/data/uei/FA38CTVQM319/uei> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/FA38CTVQM319> ;
+    iof:hasTextValue "FA38CTVQM319" .
+
+<https://w3id.org/sco/data/uei/H4FZBFXLJ636/uei> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/H4FZBFXLJ636> ;
+    iof:hasTextValue "H4FZBFXLJ636" .
+
+<https://w3id.org/sco/data/uei/JRTUR4MMXSF1/uei> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/JRTUR4MMXSF1> ;
+    iof:hasTextValue "JRTUR4MMXSF1" .
+
+<https://w3id.org/sco/data/uei/MKH7LGXXFTZ1/uei> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/MKH7LGXXFTZ1> ;
+    iof:hasTextValue "MKH7LGXXFTZ1" .
+
+<https://w3id.org/sco/data/uei/RE5CZNL1AHS8/uei> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/RE5CZNL1AHS8> ;
+    iof:hasTextValue "RE5CZNL1AHS8" .
+
+<https://w3id.org/sco/data/uei/S691K3TH3QG3/uei> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/S691K3TH3QG3> ;
+    iof:hasTextValue "S691K3TH3QG3" .
+
+<https://w3id.org/sco/data/uei/XBY5FEGMU441/uei> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/XBY5FEGMU441> ;
+    iof:hasTextValue "XBY5FEGMU441" .
+
+<https://w3id.org/sco/data/uei/ZPHMCUZ9YH75/uei> a iof:OrganizationIdentifier ;
+    iof:designates <https://w3id.org/sco/data/uei/ZPHMCUZ9YH75> ;
+    iof:hasTextValue "ZPHMCUZ9YH75" .
+
+<https://w3id.org/sco/data/agency/Defense%20Logistics%20Agency> a iof:Organization ;
+    rdfs:label "Defense Logistics Agency" ;
+    iof:hasRole <https://w3id.org/sco/data/agency/Defense%20Logistics%20Agency/buyer-role> .
+
+<https://w3id.org/sco/data/agency/Defense%20Logistics%20Agency/buyer-role> a iof:BuyerRole .
+
+<https://w3id.org/sco/data/agency/Department%20of%20the%20Air%20Force/buyer-role> a iof:BuyerRole .
+
+<https://w3id.org/sco/data/agency/Department%20of%20the%20Navy/buyer-role> a iof:BuyerRole .
+
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700> a iof:PurchaseOrder ;
+    rdfs:label "0001" ;
+    iof:hasValueExpressionAtSomeTime <https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700/obligated-amount> ;
+    iof:prescribes <https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700/supply-relationship> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700/obligated-amount> a iof:ValueExpression ;
+    iof:hasSimpleExpressionValue 3465.60 .
+
+<https://w3id.org/sco/data/award/CONT_AWD_0001_9700_SPE4A617D6229_9700/supply-relationship> a iof:SupplyRelationship ;
+    iof:dependsOnBuyer <https://w3id.org/sco/data/agency/Defense%20Logistics%20Agency> ;
+    iof:dependsOnSupplier <https://w3id.org/sco/data/uei/ZPHMCUZ9YH75> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-> a iof:PurchaseOrder ;
+    rdfs:label "FA812124P0007" ;
+    iof:hasValueExpressionAtSomeTime <https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-/obligated-amount> ;
+    iof:prescribes <https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-/supply-relationship> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-/obligated-amount> a iof:ValueExpression ;
+    iof:hasSimpleExpressionValue 132971.61 .
+
+<https://w3id.org/sco/data/award/CONT_AWD_FA812124P0007_9700_-NONE-_-NONE-/supply-relationship> a iof:SupplyRelationship ;
+    iof:dependsOnBuyer <https://w3id.org/sco/data/agency/Department%20of%20the%20Air%20Force> ;
+    iof:dependsOnSupplier <https://w3id.org/sco/data/uei/JRTUR4MMXSF1> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-> a iof:PurchaseOrder ;
+    rdfs:label "FA820323P0025" ;
+    iof:hasValueExpressionAtSomeTime <https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-/obligated-amount> ;
+    iof:prescribes <https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-/supply-relationship> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-/obligated-amount> a iof:ValueExpression ;
+    iof:hasSimpleExpressionValue 4080.00 .
+
+<https://w3id.org/sco/data/award/CONT_AWD_FA820323P0025_9700_-NONE-_-NONE-/supply-relationship> a iof:SupplyRelationship ;
+    iof:dependsOnBuyer <https://w3id.org/sco/data/agency/Department%20of%20the%20Air%20Force> ;
+    iof:dependsOnSupplier <https://w3id.org/sco/data/uei/RE5CZNL1AHS8> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-> a iof:PurchaseOrder ;
+    rdfs:label "N0010411CBA45" ;
+    iof:hasValueExpressionAtSomeTime <https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-/obligated-amount> ;
+    iof:prescribes <https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-/supply-relationship> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-/obligated-amount> a iof:ValueExpression ;
+    iof:hasSimpleExpressionValue 264152.16 .
+
+<https://w3id.org/sco/data/award/CONT_AWD_N0010411CBA45_9700_-NONE-_-NONE-/supply-relationship> a iof:SupplyRelationship ;
+    iof:dependsOnBuyer <https://w3id.org/sco/data/agency/Department%20of%20the%20Navy> ;
+    iof:dependsOnSupplier <https://w3id.org/sco/data/uei/MKH7LGXXFTZ1> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-> a iof:PurchaseOrder ;
+    rdfs:label "N0038322CS011" ;
+    iof:hasValueExpressionAtSomeTime <https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-/obligated-amount> ;
+    iof:prescribes <https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-/supply-relationship> .
+
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-/obligated-amount> a iof:ValueExpression ;
+    iof:hasSimpleExpressionValue 786088.00 .
+
+<https://w3id.org/sco/data/award/CONT_AWD_N0038322CS011_9700_-NONE-_-NONE-/supply-relationship> a iof:SupplyRelationship ;
+    iof:dependsOnBuyer <https://w3id.org/sco/data/agency/Department%20of%20the%20Navy> ;
+    iof:dependsOnSupplier <https://w3id.org/sco/data/uei/FA38CTVQM319> .
+
+<https://w3id.org/sco/data/uei/FA38CTVQM319/supplier-role> a iof:SupplierRole .
+
+<https://w3id.org/sco/data/uei/H4FZBFXLJ636> a iof:Organization ;
+    rdfs:label "THE TIMKEN COMPANY" ;
+    iof:owns <https://w3id.org/sco/data/uei/ZPHMCUZ9YH75> .
+
+<https://w3id.org/sco/data/uei/JRTUR4MMXSF1/supplier-role> a iof:SupplierRole .
+
+<https://w3id.org/sco/data/uei/MKH7LGXXFTZ1/supplier-role> a iof:SupplierRole .
+
+<https://w3id.org/sco/data/uei/RE5CZNL1AHS8/supplier-role> a iof:SupplierRole .
+
+<https://w3id.org/sco/data/uei/S691K3TH3QG3> a iof:Organization ;
+    rdfs:label "MECHATRONICS, INC." ;
+    iof:owns <https://w3id.org/sco/data/uei/RE5CZNL1AHS8> .
+
+<https://w3id.org/sco/data/uei/XBY5FEGMU441> a iof:Organization ;
+    rdfs:label "THE TIMKEN COMPANY" ;
+    iof:owns <https://w3id.org/sco/data/uei/MKH7LGXXFTZ1> .
+
+<https://w3id.org/sco/data/uei/ZPHMCUZ9YH75/supplier-role> a iof:SupplierRole .
+
+<https://w3id.org/sco/data/agency/Department%20of%20the%20Air%20Force> a iof:Organization ;
+    rdfs:label "Department of the Air Force" ;
+    iof:hasRole <https://w3id.org/sco/data/agency/Department%20of%20the%20Air%20Force/buyer-role> .
+
+<https://w3id.org/sco/data/agency/Department%20of%20the%20Navy> a iof:Organization ;
+    rdfs:label "Department of the Navy" ;
+    iof:hasRole <https://w3id.org/sco/data/agency/Department%20of%20the%20Navy/buyer-role> .
+
+<https://w3id.org/sco/data/uei/FA38CTVQM319> a iof:Organization ;
+    rdfs:label "CANADIAN COMMERCIAL CORPORATION" ;
+    iof:hasRole <https://w3id.org/sco/data/uei/FA38CTVQM319/supplier-role> .
+
+<https://w3id.org/sco/data/uei/JRTUR4MMXSF1> a iof:Organization ;
+    rdfs:label "WGI INC." ;
+    iof:hasRole <https://w3id.org/sco/data/uei/JRTUR4MMXSF1/supplier-role> .
+
+<https://w3id.org/sco/data/uei/MKH7LGXXFTZ1> a iof:Organization ;
+    rdfs:label "TIMKEN CO" ;
+    iof:hasRole <https://w3id.org/sco/data/uei/MKH7LGXXFTZ1/supplier-role> .
+
+<https://w3id.org/sco/data/uei/RE5CZNL1AHS8> a iof:Organization ;
+    rdfs:label "MECHATRONICS, INC" ;
+    iof:hasRole <https://w3id.org/sco/data/uei/RE5CZNL1AHS8/supplier-role> .
+
+<https://w3id.org/sco/data/uei/ZPHMCUZ9YH75> a iof:Organization ;
+    rdfs:label "MPB CORP" ;
+    iof:hasRole <https://w3id.org/sco/data/uei/ZPHMCUZ9YH75/supplier-role> .
+

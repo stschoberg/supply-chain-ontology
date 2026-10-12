@@ -1,0 +1,17 @@
+# A recipient's corporate parent owns it (SCRO). Awards whose parent is the recipient itself say
+# nothing about ownership.
+
+PREFIX usas: <https://w3id.org/sco/source/usaspending/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?parent a iof:Organization ;
+          rdfs:label ?name ;
+          iof:owns ?entity .
+}
+WHERE {
+  ?award usas:recipient ?entity ; usas:recipientParent ?parent .
+  FILTER (?parent != ?entity)
+  OPTIONAL { ?parent usas:name ?name }
+}

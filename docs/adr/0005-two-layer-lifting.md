@@ -19,7 +19,7 @@ they are hard to review and hard to attribute to BFO, a mid-level ontology, or u
 1. **One step: tables → SCO.** What most projects do once their tables are shaped one per entity. One mapping, but it mixes mechanical translation with modeling decisions, and the
    non-BFO baseline has to be built separately.
 2. **Two layers.** First lift each source into RDF in its own terms, with no interpretation. Then map that graph
-   into SCO with explicit rules.
+   into a model's terms (SCO, or IOF Core + SCRO for comparison) with explicit rules.
 3. **Virtualize** (query the tables through SPARQL-to-SQL rewriting, e.g. Ontop). Suited to large, changing
    databases. Ours are small immutable snapshots, and rewriting limits reasoning to OWL 2 QL, which can't express a
    defined class like `sco:Supplier`.
@@ -41,8 +41,10 @@ Option 2.
 - Derived columns are marked in their definitions. The NSN is parsed from free text by staging.
 - Source vocabularies are not part of the SCO TBox and make no BFO claims.
 
-**Layer 2: the lift into SCO.** Rules from the layer 1 graph into `sco:` terms. Not built yet. Each rule is one
-modeling decision, recorded in its own ADR where it isn't obvious.
+**Layer 2: the lift into a model.** SPARQL CONSTRUCT rules from the layer 1 graph into one model's terms, in
+`data/mappings/<source>/<target>/`. Each rule is one modeling decision. The first target is IOF Core + SCRO
+(`iof-scro/`), for the comparison in [ADR-0004](0004-research-method.md). The target for our own ontology (`sco/`)
+is not built yet; its rules are recorded in ADRs where they aren't obvious.
 
 **Instance IRIs** are built from the identifier, not the source or release: `https://w3id.org/sco/data/uei/<uei>`,
 `.../award/<award_key>`. The same supplier is the same node in every release and
@@ -50,13 +52,14 @@ in any later source that reports its UEI.
 
 ## Consequences
 
-- Every data release includes `<source>.nt.gz`, lifted from its own tables. The output is deterministic, and a
+- Every data release includes `<source>.nt.gz`, lifted from its own tables, and each layer 2 graph. A layer 2
+  target whose rules are unsettled is published as `<source>.<target>.experimental.nt.gz`. The output is deterministic, and a
   check fails the build if any row is lost. `make lift` re-lifts an existing release's tables.
 - The layer 1 graph is the non-BFO baseline that ADR-0004 calls for, and the layer 2 rules are a direct record of
   what aligning to SCO adds.
 - Morph-KGC runs as a pinned tool in its own environment, like ROBOT, because its dependency pins conflict with the
   project's.
-- This doesn't decide [ADR-0001](0001-mid-level-ontology.md) or [ADR-0002](0002-time-and-change.md). Layer 2 needs
-  both: an award has no class to sit under until a mid-level ontology is chosen, and its dates need a pattern.
+- This doesn't decide [ADR-0001](0001-mid-level-ontology.md) or [ADR-0002](0002-time-and-change.md). Mapping into
+  IOF terms is a comparison, not an adoption. Layer 2 for SCO needs both: an award has no class to sit under until a mid-level ontology is chosen, and its dates need a pattern.
 - [ADR-0003](0003-iri-scheme.md) put scenario instances under `https://w3id.org/sco/scenario/<scenario-id>/`. That
   still holds for hand-written scenarios. Instances lifted from real data use `https://w3id.org/sco/data/`.
