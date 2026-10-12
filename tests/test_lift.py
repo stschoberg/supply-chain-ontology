@@ -80,6 +80,8 @@ def test_values_are_typed(g):
     assert g.value(a, USAS.lastModifiedAt).datatype == XSD.dateTime
     assert g.value(a, USAS.lastModifiedAt).value is not None  # a valid xsd:dateTime
     assert g.value(a, USAS.dlaReferenceNumber) == Literal("8509067712")
+    assert g.value(a, USAS.performanceEndDate).datatype == XSD.date
+    assert isinstance(g.value(a, USAS.recipientIsManufacturer).value, bool)
 
 
 def test_lifting_is_deterministic(tables, lifted, tmp_path):

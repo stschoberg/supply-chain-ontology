@@ -32,7 +32,18 @@ renamed as (
         nullif(recipient_parent_name, '')                         as recipient_parent_name,
         nullif(cage_code, '')                                     as cage_code,
         domestic_or_foreign_entity,
+        -- The contracting officer's determination, not the recipient's own claim.
+        try_cast(manufacturer_of_goods as boolean)                as recipient_is_manufacturer,
+        nullif(recipient_city_name, '')                           as recipient_city,
+        nullif(recipient_state_code, '')                          as recipient_state,
+        nullif(recipient_zip_4_code, '')                          as recipient_zip,
+        nullif(recipient_country_name, '')                        as recipient_country,
         nullif(country_of_product_or_service_origin, '')          as origin_country,
+        nullif(place_of_manufacture, '')                          as place_of_manufacture,
+        nullif(primary_place_of_performance_city_name, '')        as place_of_performance_city,
+        nullif(primary_place_of_performance_state_code, '')       as place_of_performance_state,
+        nullif(primary_place_of_performance_zip_4, '')            as place_of_performance_zip,
+        nullif(primary_place_of_performance_country_name, '')     as place_of_performance_country,
 
         product_or_service_code                                   as psc,
         prime_award_base_transaction_description                  as description,
@@ -49,6 +60,9 @@ renamed as (
         awarding_sub_agency_name                                  as awarding_sub_agency,
         try_cast(total_obligated_amount as decimal(18, 2))        as total_obligated_amount,
         try_cast(award_base_action_date as date)                  as base_action_date,
+        try_cast(nullif(solicitation_date, '') as date)           as solicitation_date,
+        try_cast(period_of_performance_start_date as date)        as performance_start_date,
+        try_cast(period_of_performance_current_end_date as date)  as performance_end_date,
 
         nullif(extent_competed, '')                               as extent_competed,
         try_cast(number_of_offers_received as integer)            as offers_received,

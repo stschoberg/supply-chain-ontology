@@ -56,6 +56,19 @@ REQUIRED_COLUMNS = {
     "country_of_product_or_service_origin",
     "domestic_or_foreign_entity",
     "last_modified_date",
+    "solicitation_date",
+    "period_of_performance_start_date",
+    "period_of_performance_current_end_date",
+    "manufacturer_of_goods",
+    "recipient_city_name",
+    "recipient_state_code",
+    "recipient_zip_4_code",
+    "recipient_country_name",
+    "place_of_manufacture",
+    "primary_place_of_performance_city_name",
+    "primary_place_of_performance_state_code",
+    "primary_place_of_performance_zip_4",
+    "primary_place_of_performance_country_name",
 }
 PRIME_FILE_PREFIX = "Contracts_PrimeAwardSummaries"
 

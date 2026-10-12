@@ -30,7 +30,17 @@ USAspending.gov contract award summaries as published, typed and renamed, one ro
 | `recipient_parent_name` | varchar | Name of the supplier's corporate parent. |
 | `cage_code` | varchar | Commercial and Government Entity code of the supplier. |
 | `domestic_or_foreign_entity` | varchar | Ownership category, e.g. "U.S. OWNED BUSINESS", "FOREIGN-OWNED BUSINESS INCORPORATED IN THE U.S.". |
+| `recipient_is_manufacturer` | boolean | Whether the contracting officer determined the supplier manufactures the goods. False for distributors and agents. |
+| `recipient_city` | varchar | City of the supplier's address. |
+| `recipient_state` | varchar | Two-letter state of the supplier's address; null outside the U.S. |
+| `recipient_zip` | varchar | ZIP+4 (9 digits) or foreign postal code of the supplier's address. |
+| `recipient_country` | varchar | Country of the supplier's address. |
 | `origin_country` | varchar | Country of origin of the product. |
+| `place_of_manufacture` | varchar | Whether the product is made in the U.S. and, if not, the exception that allows it, e.g. "MFG IN U.S.", "MFG OUTSIDE U.S. - TRADE AGREEMENTS". |
+| `place_of_performance_city` | varchar | City of the principal place where the work is done. For goods, usually where they are made or shipped from, not where they are delivered. |
+| `place_of_performance_state` | varchar | Two-letter state of the place of performance; null outside the U.S. |
+| `place_of_performance_zip` | varchar | ZIP+4 (9 digits) of the place of performance. |
+| `place_of_performance_country` | varchar | Country of the place of performance. |
 | `psc` | varchar | Product and Service Code; 3110, 3120, or 3130. |
 | `item_name` | varchar | Item name from the description, without DLA's leading reference number. Truncated, inconsistent spelling. |
 | `nsn` | varchar | National Stock Number (13 digits) when the description contains one; under 1% of awards. |
@@ -39,6 +49,9 @@ USAspending.gov contract award summaries as published, typed and renamed, one ro
 | `awarding_sub_agency` | varchar | DoD component that made the award; mostly the Defense Logistics Agency. |
 | `total_obligated_amount` | decimal(18,2) | Total dollars obligated, USD. |
 | `base_action_date` | date | Date of the award's first action. |
+| `solicitation_date` | date | Date the purchase was put out for offers; reported on about half of awards. |
+| `performance_start_date` | date | Start of the period of performance, the window the contract gives for the work or delivery. |
+| `performance_end_date` | date | Current end of the period of performance, after any modifications. A contracted date, not a record that goods arrived. |
 | `extent_competed` | varchar | Competition category, e.g. "FULL AND OPEN COMPETITION", "NOT COMPETED". |
 | `offers_received` | integer | Number of offers received. 1 suggests a sole source; null when not reported. |
 | `other_than_full_and_open_reason` | varchar | Legal justification when the award was not fully competed. |

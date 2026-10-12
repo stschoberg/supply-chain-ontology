@@ -57,6 +57,20 @@ def test_dla_descriptions_split_into_reference_number_and_item_name(warehouse):
     assert split["SPE4A022P0831"] == ("8509067712", "BEARING,SLEEVE", None)
 
 
+def test_places_and_dates_are_typed(warehouse):
+    place = awards(
+        warehouse, "recipient_city", "recipient_state", "recipient_country",
+        "place_of_performance_city", "place_of_manufacture", "recipient_is_manufacturer",
+    )  # fmt: skip
+    assert place["SPE4A121P0654"] == (
+        "HOUSTON", "TX", "UNITED STATES", "HOUSTON", "MFG IN U.S.", True
+    )  # fmt: skip
+    window = awards(warehouse, "performance_start_date", "performance_end_date")["SPE4A121P0654"]
+    assert tuple(map(str, window)) == ("2021-03-19", "2021-09-30")
+    windows = awards(warehouse, "performance_start_date", "performance_end_date")
+    assert all(first <= last for first, last in windows.values())
+
+
 def test_entities_are_one_per_uei_across_recipients_and_parents(warehouse):
     entities = dict(warehouse.sql("select uei, name from entities").fetchall())
     assert len(entities) == 11  # 8 recipients, 3 of them with a different corporate parent
