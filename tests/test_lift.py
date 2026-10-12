@@ -87,11 +87,12 @@ def test_lifting_is_deterministic(tables, lifted, tmp_path):
 
 
 def test_each_target_model_gets_its_own_graph(lifted, tmp_path):
-    (path,) = lift.lift_targets("usaspending", lifted, tmp_path)
-    assert path.name == "usaspending.iof-scro.nt.gz"
-    iof = Graph().parse(data=gzip.decompress(path.read_bytes()), format="nt")
+    path = lift.lift_targets("usaspending", lifted, tmp_path)["iof-scro"]
+    assert path.name == "usaspending.iof-scro.experimental.nt.gz"  # the name says it's unsettled
+    first = path.read_bytes()
+    iof = Graph().parse(data=gzip.decompress(first), format="nt")
     assert len(set(iof.subjects(RDF.type, IOF.PurchaseOrder))) == 8
-    assert lift.lift_targets("usaspending", lifted, tmp_path)[0].read_bytes() == path.read_bytes()
+    assert lift.lift_targets("usaspending", lifted, tmp_path)["iof-scro"].read_bytes() == first
 
 
 def test_mapping_uses_the_shared_namespaces(mapping_file):

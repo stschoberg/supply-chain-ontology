@@ -52,7 +52,8 @@ in any later source that reports its UEI.
 
 ## Consequences
 
-- Every data release includes `<source>.nt.gz`, lifted from its own tables. The output is deterministic, and a
+- Every data release includes `<source>.nt.gz`, lifted from its own tables, and each layer 2 graph. A layer 2
+  target whose rules are unsettled is published as `<source>.<target>.experimental.nt.gz`. The output is deterministic, and a
   check fails the build if any row is lost. `make lift` re-lifts an existing release's tables.
 - The layer 1 graph is the non-BFO baseline that ADR-0004 calls for, and the layer 2 rules are a direct record of
   what aligning to SCO adds.

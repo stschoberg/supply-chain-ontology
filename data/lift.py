@@ -7,10 +7,12 @@ Usage:
 The two layers of ADR-0005, both driven by data/mappings/<source>/:
 
 1. `<source>.nt.gz`: the tables in the source's own terms, written by running the YARRRML mappings
-   (`<table>.yml`) over the release's CSV files with Morph-KGC. A release build (`data.release`)
-   calls `lift` on its own tables.
+   (`<table>.yml`) over the release's CSV files with Morph-KGC.
 2. `<source>.<target>.nt.gz`: that graph in a model's terms, such as IOF Core + SCRO, written by
-   applying the SPARQL CONSTRUCT rules in each `<target>/` directory. Local only; not in a release.
+   applying the SPARQL CONSTRUCT rules in each `<target>/` directory. A target listed in
+   EXPERIMENTAL is written as `<source>.<target>.experimental.nt.gz`.
+
+A release build (`data.release`) runs both layers on its own tables and ships the results.
 
 `--tables` is any directory holding a release's files: data/dist/ after `make dist`, or a downloaded
 release. `--examples` instead rebuilds each target's committed `example/lifted.ttl` from its
@@ -41,6 +43,9 @@ TABLES_DIR = graph.ROOT / "data" / "dist"
 GRAPH_DIR = graph.ROOT / "data" / "graph"
 # Per source: each mapped table and the class its rows are lifted to. There is one mapping file per
 # table, named after it.
+# Layer 2 targets whose rules are incomplete and will change. Their files say so in their names, so
+# nobody mistakes one in a release for settled data.
+EXPERIMENTAL = {"iof-scro"}
 ROW_CLASSES = {"usaspending": {"stg_usaspending__awards": USAS.Award, "entities": USAS.Entity}}
 
 
@@ -94,16 +99,17 @@ def targets(source: str) -> list[Path]:
     return sorted(d for d in (MAPPINGS_DIR / source).iterdir() if any(d.glob("*.rq")))
 
 
-def lift_targets(source: str, source_graph: Path, out: Path) -> list[Path]:
-    """Layer 2: the source graph in each target model's terms."""
+def lift_targets(source: str, source_graph: Path, out: Path) -> dict[str, Path]:
+    """Layer 2: the source graph in each target model's terms. Returns {target: file}."""
     if not targets(source):
-        return []
+        return {}
     g = Graph().parse(data=gzip.decompress(source_graph.read_bytes()), format="nt")
-    paths = []
+    paths = {}
     for target in targets(source):
         lifted = graph.construct(g, target).serialize(format="nt")
         triples = sorted(set(lifted.splitlines()) - {""})
-        paths.append(write_triples(out / f"{source}.{target.name}.nt.gz", triples))
+        status = ".experimental" if target.name in EXPERIMENTAL else ""
+        paths[target.name] = write_triples(out / f"{source}.{target.name}{status}.nt.gz", triples)
     return paths
 
 

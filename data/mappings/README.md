@@ -4,11 +4,11 @@ Turn published tables into instance data (RDF), in two layers ([ADR-0005](../../
 
 ```
 release tables ──► layer 1: the source in its own terms ──► layer 2: a model's terms
-  (data/dist/)       <source>.nt.gz, in every release          <source>.<target>.nt.gz, local only
+  (data/dist/)       <source>.nt.gz                             <source>.<target>.nt.gz
 ```
 
 ```bash
-make dist             # build a release in data/dist/, including its layer 1 graph, <source>.nt.gz
+make dist             # build a release in data/dist/, including the graphs of both layers
 make lift             # lift data/dist/'s tables into data/graph/: layer 1, then every layer 2 target
 make lift-examples    # regenerate each layer 2 target's example/lifted.ttl after editing its rules
 ```
@@ -75,4 +75,6 @@ The rules:
 - **Keep a small example** of real rows and what the rules make of them. Tests check it is current, uses only
   terms the target ontology declares, and gives the expected inferences.
 
-Layer 2 graphs are written to `data/graph/` and are not part of a data release.
+Every release includes its layer 2 graphs. A target listed in `EXPERIMENTAL` in [`lift.py`](../lift.py) is
+written as `<source>.<target>.experimental.nt.gz`, and the release notes say its mapping is incomplete and will
+change. Take a target off that list once its rules are settled enough to cite.

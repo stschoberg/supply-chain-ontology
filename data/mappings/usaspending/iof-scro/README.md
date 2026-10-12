@@ -6,10 +6,12 @@ from USAspending's own terms (`usas:`, layer 1) into the IOF supply chain stack 
 in [the research method](../../../../research/README.md), not our own ontology, and it doesn't decide
 [ADR-0001](../../../../docs/adr/0001-mid-level-ontology.md).
 
-It is a first trial. Product codes, competition data, and dates are not mapped yet (see below).
+It is a first trial. Product codes, competition data, and dates are not mapped yet (see below). Each data release
+includes the resulting graph as `usaspending.iof-scro.experimental.nt.gz`, named that way because the rules will
+change.
 
 ```bash
-make lift             # data/graph/usaspending.iof-scro.nt.gz, from the tables in data/dist/
+make lift             # data/graph/usaspending.iof-scro.experimental.nt.gz, from the tables in data/dist/
 make lift-examples    # example/source.nt → example/lifted.ttl, after editing a rule
 ```
 
@@ -89,6 +91,6 @@ something that uses the product or receives the service.
 - **Reasoning is OWL 2 RL, not full OWL 2 DL.** A HermiT run over the stack plus the example was stopped as too slow.
   RL finds the inferences above but is not a complete consistency check.
 - **Five awards are checked by hand and by tests.** The counts for all awards come from `make lift` over the full
-  release (472,740 triples out), which is not committed or published.
+  release (472,740 triples out).
 - **Our choices, not IOF's.** Each rule is one way to use IOF's terms. `purchase order` for every award, ownership
   for "corporate parent", and a buyer role for the agency are judgments.

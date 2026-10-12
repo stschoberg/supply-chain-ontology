@@ -79,6 +79,11 @@ per column, and its recipient and parent are links to entity nodes. It is not ye
 Supply Chain Ontology. The terms are defined in
 [mappings/usaspending/vocabulary.ttl](mappings/usaspending/vocabulary.ttl).
 
+Releases also carry `usaspending.iof-scro.experimental.nt.gz`: the same awards mapped into the
+[IOF](https://github.com/iofoundry/ontology) supply chain ontologies. It is **experimental**. The
+[mapping](mappings/usaspending/iof-scro/README.md) covers who bought from whom and for how much, but not
+yet what was bought or whether it was competed, and it will change between releases.
+
 ## Tables
 
 | Table | One row per | |
