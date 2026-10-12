@@ -26,6 +26,8 @@ def dist(tmp_path_factory):
 def test_release_contains_parquet_catalog_raw_and_notes(dist):
     names = {p.name for p in dist.iterdir()}
     assert names == {
+        "entities.parquet",
+        "entities.csv",
         "stg_usaspending__awards.parquet",
         "stg_usaspending__awards.csv",
         "meta_build.parquet",

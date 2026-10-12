@@ -28,6 +28,8 @@ models:
         data_tests:
           - not_null:
               config: {severity: warn}
+          - relationships:
+              arguments: {to: ref('entities'), field: uei}
       - name: recipient_name
         description: Supplier name as reported; spelling varies across awards.
         data_type: varchar
@@ -35,6 +37,9 @@ models:
       - name: recipient_parent_uei
         description: UEI of the supplier's corporate parent.
         data_type: varchar
+        data_tests:
+          - relationships:
+              arguments: {to: ref('entities'), field: uei}
       - name: recipient_parent_name
         description: Name of the supplier's corporate parent.
         data_type: varchar
