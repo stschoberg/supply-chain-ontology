@@ -12,6 +12,8 @@ A release contains:
   catalog.duckdb       views over those Parquet files, so `attach` gives named, commented tables;
                        holds no data
   <source>.nt.gz       the same rows as an RDF graph in the source's own terms (data.lift)
+  <source>.vocabulary.ttl
+                       the classes and properties that graph uses, with their definitions
   <source>.<target>.experimental.nt.gz
                        that graph mapped into a model's terms, e.g. IOF Core + SCRO; unsettled
   raw-<source>.tar     the raw snapshot each table was built from, for exact reproduction
@@ -200,7 +202,8 @@ results from them without saying so.
 |---|---|---|
 {graph_rows}
 
-The terms and mapping rules are in the repo's
+Each `<source>.vocabulary.ttl` defines the classes and properties of that source's graph. Load it
+with the graph to query what a term means. The mapping rules are in the repo's
 [mappings](https://github.com/{REPO}/tree/{sha}/data/mappings).
 
 ## Data dictionary
@@ -255,7 +258,9 @@ def build(args: argparse.Namespace) -> None:
     graphs = {}
     for source in sources:
         source_graph = lift.lift(source, out, out)
-        abouts = {source_graph: f"`{source}` in its own terms"}
+        vocabulary = f"{source}.vocabulary.ttl"
+        shutil.copy(lift.MAPPINGS_DIR / source / "vocabulary.ttl", out / vocabulary)
+        abouts = {source_graph: f"`{source}` in its own terms, which `{vocabulary}` defines"}
         for target, path in lift.lift_targets(source, source_graph, out).items():
             abouts[path] = (
                 f"Experimental: `{source}` mapped into `{target}` terms by "

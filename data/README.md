@@ -72,12 +72,13 @@ from rdflib import Graph  # pip install rdflib
 url = "https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest"
 data = gzip.decompress(urllib.request.urlopen(f"{url}/usaspending.nt.gz").read())
 g = Graph().parse(data=data, format="nt")  # about 800,000 triples; takes a few seconds
+g.parse(f"{url}/usaspending.vocabulary.ttl")  # labels and definitions of the graph's terms
 ```
 
 The graph says what the tables say, in USAspending's own terms: an award is a node with one property
 per column, and its recipient and parent are links to entity nodes. It is not yet mapped into the
-Supply Chain Ontology. The terms are defined in
-[mappings/usaspending/vocabulary.ttl](mappings/usaspending/vocabulary.ttl).
+Supply Chain Ontology. Its terms are defined in `usaspending.vocabulary.ttl`, in the same release
+(source: [mappings/usaspending/vocabulary.ttl](mappings/usaspending/vocabulary.ttl)).
 
 Releases also carry `usaspending.iof-scro.experimental.nt.gz`: the same awards mapped into the
 [IOF](https://github.com/iofoundry/ontology) supply chain ontologies. It is **experimental**. The

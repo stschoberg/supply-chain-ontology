@@ -1,14 +1,18 @@
 """Build a data release from the committed fixtures and read it back through its catalog."""
 
+import gzip
 import json
 import re
 import subprocess
 
 import duckdb
 import pytest
+from rdflib import RDF, Graph
+from rdflib.namespace import SKOS
 
 from data import release
 from sco import graph
+from sco.namespaces import USAS
 
 FIXTURE_SNAPSHOT = graph.ROOT / "tests" / "fixtures" / "usaspending"
 
@@ -35,6 +39,7 @@ def test_release_contains_parquet_catalog_raw_and_notes(dist):
         "meta_source_files.parquet",
         "meta_source_files.csv",
         "usaspending.nt.gz",
+        "usaspending.vocabulary.ttl",
         "usaspending.iof-scro.experimental.nt.gz",
         "catalog.duckdb",
         "RELEASE_NOTES.md",
@@ -80,6 +85,19 @@ def test_graphs_are_listed_in_the_notes_and_checksums(dist):
         assert f"| `{name}` |" in notes
         assert f"  {name}\n" in sums
     assert "Experimental: `usaspending` mapped into `iof-scro` terms" in notes
+
+
+def test_vocabulary_ships_with_the_graph_and_defines_its_terms(dist):
+    assert "  usaspending.vocabulary.ttl\n" in (dist / "SHA256SUMS").read_text()
+    g = Graph().parse(dist / "usaspending.vocabulary.ttl")
+    g.parse(data=gzip.decompress((dist / "usaspending.nt.gz").read_bytes()), format="nt")
+    undefined = {
+        term
+        for s, p, o in g
+        for term in (p, o if p == RDF.type else None)
+        if term and str(term).startswith(str(USAS)) and not g.value(term, SKOS.definition)
+    }
+    assert not undefined
 
 
 def test_csv_matches_parquet(dist):
