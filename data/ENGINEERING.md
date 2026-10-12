@@ -28,6 +28,7 @@ data/
     README.md               # license, cadence, access, columns we use, gaps, quirks
     fetch.py                # uv run python -m data.sources.<source>.fetch
     raw/<snapshot-date>/    # downloaded files, untouched, + .manifest.json (gitignored)
+  sources/dlms_synth/       # a generated source: invented DoD logistics records for real awards (generate.py)
   transform/                # dbt project (see its README)
   dictionary.py             # renders the published tables' descriptions
   examples/explore.ipynb    # Colab notebook for consumers; tests run it against a fixture release

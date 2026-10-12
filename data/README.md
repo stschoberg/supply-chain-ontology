@@ -148,6 +148,7 @@ kinds will get plain names (`suppliers`, `products`) when they exist.
 | Source | Status |
 |---|---|
 | [USAspending.gov](sources/usaspending/README.md): federal contract awards | Published |
+| [`dlms_synth`](sources/dlms_synth/README.md): **synthetic** DoD logistics records (shipments, receipts, requisitions) invented for real awards | Draft, not published |
 | [SAM.gov](https://sam.gov/) entity data: registrations, CAGE codes, ownership | Candidate |
 | [USGS Mineral Commodity Summaries](https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries): critical minerals by country | Candidate |
 | [UN Comtrade](https://comtradeplus.un.org/): bilateral trade flows by HS code | Candidate |
