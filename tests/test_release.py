@@ -34,6 +34,7 @@ def test_release_contains_parquet_catalog_raw_and_notes(dist):
         "meta_build.csv",
         "meta_source_files.parquet",
         "meta_source_files.csv",
+        "usaspending.nt.gz",
         "catalog.duckdb",
         "RELEASE_NOTES.md",
         "SHA256SUMS",
@@ -70,6 +71,11 @@ def test_release_notes_include_the_dictionary(dist):
     notes = (dist / "RELEASE_NOTES.md").read_text()
     assert "### stg_usaspending__awards" in notes
     assert "| `recipient_uei` | varchar |" in notes
+
+
+def test_graph_is_listed_in_the_notes_and_checksums(dist):
+    assert "| `usaspending.nt.gz` |" in (dist / "RELEASE_NOTES.md").read_text()
+    assert "  usaspending.nt.gz\n" in (dist / "SHA256SUMS").read_text()
 
 
 def test_csv_matches_parquet(dist):

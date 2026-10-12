@@ -17,10 +17,10 @@ transform: ## Build data/warehouse.duckdb from the newest snapshots with dbt, an
 	@test -n "$(USASPENDING_SNAPSHOT)" || { echo "No USAspending snapshot; run 'make fetch-usaspending'"; exit 1; }
 	$(DBT) build $(DBT_FLAGS)
 
-dist: ## Build a data release in data/dist/: Parquet tables, DuckDB catalog, raw archive, notes
+dist: ## Build a data release in data/dist/: Parquet tables, RDF graph, DuckDB catalog, raw archive, notes
 	uv run python -m data.release build
 
-lift: ## Lift the release tables in data/dist/ into RDF in each source's own terms (data/graph/)
+lift: ## Re-lift the tables in data/dist/ into RDF in data/graph/, to try a mapping change
 	uv run python -m data.lift
 
 data-docs: ## Regenerate data/DICTIONARY.md from the published models' YAML

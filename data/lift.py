@@ -4,7 +4,8 @@ Usage:
   uv run python -m data.lift [--tables data/dist] [--out data/graph]   # make lift
 
 This is layer 1 of ADR-0005: one graph per source, `<source>.nt.gz`, written by running the YARRRML
-mappings in data/mappings/<source>/ over the release's CSV files with Morph-KGC. `--tables` is any
+mappings in data/mappings/<source>/ over the release's CSV files with Morph-KGC. A release build
+(`data.release`) calls `lift` on its own tables. Run from the command line, it re-lifts any
 directory holding a release's files: data/dist/ after `make dist`, or a downloaded release.
 
 Morph-KGC runs as a pinned tool in its own environment (`uv run --no-project`), as ROBOT does:

@@ -50,8 +50,8 @@ in any later source that reports its UEI.
 
 ## Consequences
 
-- `make lift` writes `data/graph/<source>.nt.gz` from a release's tables. The output is deterministic, and a check
-  fails the build if any row is lost.
+- Every data release includes `<source>.nt.gz`, lifted from its own tables. The output is deterministic, and a
+  check fails the build if any row is lost. `make lift` re-lifts an existing release's tables.
 - The layer 1 graph is the non-BFO baseline that ADR-0004 calls for, and the layer 2 rules are a direct record of
   what aligning to SCO adds.
 - Morph-KGC runs as a pinned tool in its own environment, like ROBOT, because its dependency pins conflict with the
@@ -60,4 +60,3 @@ in any later source that reports its UEI.
   both: an award has no class to sit under until a mid-level ontology is chosen, and its dates need a pattern.
 - [ADR-0003](0003-iri-scheme.md) put scenario instances under `https://w3id.org/sco/scenario/<scenario-id>/`. That
   still holds for hand-written scenarios. Instances lifted from real data use `https://w3id.org/sco/data/`.
-- The graph is not yet part of a data release; publishing it is a separate change.

@@ -29,8 +29,8 @@ def tables(tmp_path_factory):
 
 
 @pytest.fixture(scope="module")
-def lifted(tables, tmp_path_factory):
-    return lift.lift("usaspending", tables, tmp_path_factory.mktemp("graph"))
+def lifted(tables):
+    return tables / "usaspending.nt.gz"  # a release build lifts its own tables
 
 
 @pytest.fixture(scope="module")
