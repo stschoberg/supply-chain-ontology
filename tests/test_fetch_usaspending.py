@@ -50,6 +50,19 @@ def make_zip(path, prime_columns, prime_rows=2, sub_rows=1):
     return path
 
 
+def test_wait_for_polls_through_a_queued_job_with_no_elapsed_time(monkeypatch):
+    statuses = iter(
+        [
+            {"status": "ready", "seconds_elapsed": None},
+            {"status": "running", "seconds_elapsed": "4.2"},
+            {"status": "finished", "seconds_elapsed": "9.0"},
+        ]
+    )
+    monkeypatch.setattr(fetch.fetching, "request_json", lambda url: next(statuses))
+    monkeypatch.setattr(fetch.time, "sleep", lambda seconds: None)
+    assert fetch.wait_for("job.zip")["status"] == "finished"
+
+
 def test_inspect_zip_counts_rows_per_file(tmp_path):
     path = make_zip(tmp_path / "ok.zip", fetch.REQUIRED_COLUMNS)
     members = fetch.inspect_zip(path, expected_rows=3)
