@@ -204,18 +204,15 @@ def sources_of(model: str) -> list[str]:
 def lift_models(source_graphs: dict[str, Path], out: Path, version: str = "unreleased") -> dict:
     """Layer 2: one graph per model, holding every source that has rules for it, with the model's
     schema. Returns {model: file}."""
-    parsed, paths = {}, {}
+    paths = {}
     for model, config in MODELS.items():
         sources = [source for source in sources_of(model) if source in source_graphs]
         if not sources:
             continue
         instances = set()
         for source in sources:
-            if source not in parsed:
-                data = gzip.decompress(source_graphs[source].read_bytes())
-                parsed[source] = Graph().parse(data=data, format="nt")
-            lifted = graph.construct(parsed[source], rules(source, model))
-            instances |= set(lifted.serialize(format="nt").splitlines()) - {""}
+            data = gzip.decompress(source_graphs[source].read_bytes())
+            instances.update(graph.construct_triples(data, rules(source, model)))
         out.mkdir(parents=True, exist_ok=True)
         shutil.copy(config["schema"], out / f"{model}.schema.ttl")
         hydrated = hydrate(

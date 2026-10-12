@@ -9,6 +9,7 @@ import csv
 from pathlib import Path
 
 import owlrl
+from pyoxigraph import RdfFormat, Store, serialize
 from pyshacl import validate as shacl_validate
 from rdflib import Graph
 from rdflib.query import Result
@@ -71,15 +72,27 @@ def reasoned_scenario(name: str) -> Graph:
     return reason(load_tbox() + load_scenario(name))
 
 
-def construct(g: Graph, rules_dir: Path) -> Graph:
-    """Apply each SPARQL CONSTRUCT rule in `rules_dir` (*.rq) to `g` and return what they build.
+def construct_triples(ntriples: bytes, rules_dir: Path) -> list[str]:
+    """Apply each SPARQL CONSTRUCT rule in `rules_dir` (*.rq) to a graph given as N-Triples, and
+    return what they build as sorted N-Triples lines.
 
-    Every rule reads only `g`, never another rule's output, so their order doesn't matter.
+    Every rule reads only the given graph, never another rule's output, so their order doesn't
+    matter. The rules run in Oxigraph, which handles the millions of triples of a full release in
+    seconds; rdflib's own engine takes minutes.
     """
-    out = Graph()
+    store = Store()
+    store.bulk_load(ntriples, format=RdfFormat.N_TRIPLES)
+    built = set()
     for rule in sorted(rules_dir.glob("*.rq")):
-        out += g.query(rule.read_text()).graph
-    return out
+        triples = serialize(store.query(rule.read_text()), format=RdfFormat.N_TRIPLES)
+        built.update(triples.decode().splitlines())
+    return sorted(built - {""})
+
+
+def construct(g: Graph, rules_dir: Path) -> Graph:
+    """`construct_triples` for a small graph already in rdflib, such as a mapping's example."""
+    built = construct_triples(g.serialize(format="nt").encode(), rules_dir)
+    return Graph().parse(data="\n".join(built), format="nt")
 
 
 def cq_ids() -> list[str]:

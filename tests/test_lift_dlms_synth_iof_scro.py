@@ -38,6 +38,8 @@ def members(g, cls):
 
 def test_example_is_up_to_date_with_the_rules(source, lifted):
     rebuilt = graph.construct(source, TARGET)
+    # Through Turtle and back, as the committed file was, so numbers are written the same way.
+    rebuilt = Graph().parse(data=rebuilt.serialize(format="turtle"), format="turtle")
     assert to_isomorphic(rebuilt) == to_isomorphic(lifted), "run `make lift-examples` and commit"
 
 
