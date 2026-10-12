@@ -15,6 +15,9 @@ models:
       +materialized: view
     marts:
       +materialized: table
+    # A generated source: synthetic DoD logistics records derived from the awards. Not published yet.
+    dlms_synth:
+      +materialized: table
     meta:
       +materialized: table
       +tags: [published]

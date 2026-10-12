@@ -1,0 +1,96 @@
+version: 2
+
+# dlms_synth is a generated source: synthetic DoD logistics records invented for real awards, one
+# table per DLMS transaction. See data/sources/dlms_synth/README.md. Not published yet, so the tables
+# have tests here but no contracts or column descriptions.
+
+models:
+  - name: dlms_synth__activities
+    description: The DoD activities the records name. Real names, invented codes.
+    columns:
+      - name: activity_code
+        data_tests: [unique, not_null]
+
+  - name: dlms_synth__due_ins
+    description: DLMS 527D. What a depot is told to expect from a purchase, one row per award that bought something.
+    columns:
+      - name: award_key
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_usaspending__awards'), field: award_key}
+      - name: storage_activity
+        data_tests: &is_an_activity
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__activities'), field: activity_code}
+
+  - name: dlms_synth__shipment_notices
+    description: DLMS 856P. One row per shipment a supplier sent, identified by its transportation control number.
+    columns:
+      - name: tcn
+        data_tests: [unique, not_null]
+      - name: award_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__due_ins'), field: award_key}
+      - name: ship_to_activity
+        data_tests: *is_an_activity
+
+  - name: dlms_synth__acceptance_reports
+    description: DLMS 861P. The government's acceptance of each shipment.
+    columns:
+      - name: tcn
+        data_tests: &is_a_shipment
+          - unique
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__shipment_notices'), field: tcn}
+      - name: accepting_activity
+        data_tests: *is_an_activity
+
+  - name: dlms_synth__receipts
+    description: DLMS 527R. The depot's receipt of each shipment into stock.
+    columns:
+      - name: tcn
+        data_tests: *is_a_shipment
+      - name: storage_activity
+        data_tests: *is_an_activity
+
+  - name: dlms_synth__discrepancy_reports
+    description: DLMS 842A/W. A report for each shipment that arrived short.
+    columns:
+      - name: tcn
+        data_tests: *is_a_shipment
+      - name: reporting_activity
+        data_tests: *is_an_activity
+
+  - name: dlms_synth__requisitions
+    description: DLMS 511R. A customer's request for an item from stock, identified by its document number.
+    columns:
+      - name: document_number
+        data_tests: [unique, not_null]
+      - name: requisitioner
+        data_tests: *is_an_activity
+
+  - name: dlms_synth__release_orders
+    description: DLMS 940R. The order telling a depot to release stock against a requisition.
+    columns:
+      - name: document_number
+        data_tests: &is_a_requisition
+          - unique
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__requisitions'), field: document_number}
+      - name: storage_activity
+        data_tests: *is_an_activity
+
+  - name: dlms_synth__issues
+    description: DLMS 867I. The depot's issue of the stock.
+    columns:
+      - name: document_number
+        data_tests: *is_a_requisition
+      - name: storage_activity
+        data_tests: *is_an_activity
