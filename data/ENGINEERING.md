@@ -63,6 +63,7 @@ releases the same day:
 | `<table>.csv` | The same rows as CSV, for spreadsheets. |
 | `catalog.duckdb` | Views over those Parquet files, so DuckDB users can `attach` and see named, commented tables. Holds no data. |
 | `<source>.nt.gz` | The same rows as an RDF graph in the source's own terms, lifted by the [mappings](mappings/README.md). |
+| `<source>.vocabulary.ttl` | The classes and properties that graph uses, each with a label and definition. A copy of the source's `vocabulary.ttl` in [mappings](mappings/README.md). |
 | `<source>.<target>.experimental.nt.gz` | That graph mapped into another ontology's terms, e.g. `iof-scro`. Experimental: the mapping is incomplete and will change. |
 | `raw-<source>-<snapshot>.tar` | The raw source files the tables were built from, for exact reproduction. |
 | `RELEASE_NOTES.md`, `SHA256SUMS` | How to connect, row counts, the data dictionary, provenance, checksums. |
