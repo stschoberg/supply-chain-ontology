@@ -29,7 +29,7 @@ PREFIXES   := --prefix "sco: $(BASE_IRI)/" --prefix "skos: http://www.w3.org/200
 TEMPLATES  := $(wildcard $(ONT)/src/templates/*.tsv)
 COMPONENTS := $(patsubst $(ONT)/src/templates/%.tsv,$(ONT)/components/%.owl,$(TEMPLATES))
 
-.PHONY: help all test validate lint fmt components reason report release refresh-imports refresh-iof research-build clean
+.PHONY: help all test validate lint fmt components reason report release refresh-imports refresh-iof research-build research-lift clean
 
 help: ## Show this help
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -135,6 +135,11 @@ research-build: | $(ROBOT_JAR) ## Derive the research tables from the pinned IOF
 		--metrics extended --format tsv --output $(IOF_BUILD)/measure-core.tsv
 	$(ROBOT) measure --catalog $(IOF_DIR)/catalog-v001.xml --input $(IOF_DIR)/SupplyChain.rdf \
 		--metrics extended --format tsv --output $(IOF_BUILD)/measure-scro.tsv
+
+IOF_LIFT := research/iof-lift
+
+research-lift: ## Map the sample awards into IOF Core + SCRO terms with the rules in research/iof-lift/
+	uv run sco construct --rules $(IOF_LIFT)/rules $(IOF_LIFT)/sample/usaspending.nt --output $(IOF_LIFT)/build/sample.ttl
 
 clean: ## Remove build outputs
 	rm -rf $(RELEASE)/*

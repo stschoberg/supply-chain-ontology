@@ -1,0 +1,15 @@
+# An award is a purchase order (SCRO): an agreement between a buyer and a seller that contains
+# commitments. Awards also include definitive contracts and orders under a parent contract; SCRO
+# has no closer class for those.
+
+PREFIX usas: <https://w3id.org/sco/source/usaspending/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?award a iof:PurchaseOrder ;
+         rdfs:label ?piid .
+}
+WHERE {
+  ?award a usas:Award ; usas:piid ?piid .
+}

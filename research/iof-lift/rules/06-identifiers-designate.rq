@@ -1,0 +1,27 @@
+# In Core an identifier is itself an entity, which designates what it identifies and carries its
+# text as a value. The UEI and CAGE code designate the recipient; the PIID designates the award.
+
+PREFIX usas: <https://w3id.org/sco/source/usaspending/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?identifier a ?class ;
+              iof:designates ?thing ;
+              iof:hasTextValue ?text .
+}
+WHERE {
+  {
+    ?thing a usas:Entity ; usas:uei ?text .
+    BIND (iof:OrganizationIdentifier AS ?class)
+    BIND (IRI(CONCAT(STR(?thing), "/uei")) AS ?identifier)
+  } UNION {
+    ?award usas:recipient ?thing ; usas:cageCode ?text .
+    BIND (iof:OrganizationIdentifier AS ?class)
+    BIND (IRI(CONCAT("https://w3id.org/sco/data/cage/", ENCODE_FOR_URI(?text))) AS ?identifier)
+  } UNION {
+    ?thing a usas:Award ; usas:piid ?text .
+    BIND (iof:Identifier AS ?class)
+    BIND (IRI(CONCAT(STR(?thing), "/piid")) AS ?identifier)
+  }
+}

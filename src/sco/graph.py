@@ -71,6 +71,17 @@ def reasoned_scenario(name: str) -> Graph:
     return reason(load_tbox() + load_scenario(name))
 
 
+def construct(g: Graph, rules_dir: Path) -> Graph:
+    """Apply each SPARQL CONSTRUCT rule in `rules_dir` (*.rq) to `g` and return what they build.
+
+    Every rule reads only `g`, never another rule's output, so their order doesn't matter.
+    """
+    out = Graph()
+    for rule in sorted(rules_dir.glob("*.rq")):
+        out += g.query(rule.read_text()).graph
+    return out
+
+
 def cq_ids() -> list[str]:
     return sorted(p.stem for p in CQ_DIR.glob("CQ-*.rq"))
 

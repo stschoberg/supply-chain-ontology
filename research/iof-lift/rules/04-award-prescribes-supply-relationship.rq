@@ -1,0 +1,18 @@
+# SCRO connects the parties through a supply relationship: a dependent entity that depends on the
+# supplier and the buyer and is prescribed by an agreement. One per award.
+
+PREFIX usas: <https://w3id.org/sco/source/usaspending/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?award iof:prescribes ?relationship .
+  ?relationship a iof:SupplyRelationship ;
+                iof:dependsOnSupplier ?entity ;
+                iof:dependsOnBuyer ?agency .
+}
+WHERE {
+  ?award usas:recipient ?entity ; usas:awardingSubAgency ?name .
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/agency/", ENCODE_FOR_URI(?name))) AS ?agency)
+  BIND (IRI(CONCAT(STR(?award), "/supply-relationship")) AS ?relationship)
+}

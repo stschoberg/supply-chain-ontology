@@ -1,0 +1,18 @@
+# An award's recipient is an organization (Core) that has a supplier role (Core). It is not asserted
+# to be a supplier: Core defines supplier as whatever has a supplier role, so the reasoner infers it.
+
+PREFIX usas: <https://w3id.org/sco/source/usaspending/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?entity a iof:Organization ;
+          rdfs:label ?name ;
+          iof:hasRole ?role .
+  ?role a iof:SupplierRole .
+}
+WHERE {
+  ?award usas:recipient ?entity .
+  OPTIONAL { ?entity usas:name ?name }
+  BIND (IRI(CONCAT(STR(?entity), "/supplier-role")) AS ?role)
+}

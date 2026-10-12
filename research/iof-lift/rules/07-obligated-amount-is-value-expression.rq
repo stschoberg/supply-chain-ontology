@@ -1,0 +1,16 @@
+# A value on a scale is a value expression (Core): its own entity, linked to what it is a value of.
+# Core has no term for the currency, so "USD" is not recorded.
+
+PREFIX usas: <https://w3id.org/sco/source/usaspending/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?award iof:hasValueExpressionAtSomeTime ?expression .
+  ?expression a iof:ValueExpression ;
+              iof:hasSimpleExpressionValue ?amount .
+}
+WHERE {
+  ?award usas:totalObligatedAmount ?amount .
+  BIND (IRI(CONCAT(STR(?award), "/obligated-amount")) AS ?expression)
+}

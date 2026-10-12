@@ -7,6 +7,11 @@ OBO = Namespace("http://purl.obolibrary.org/obo/")
 # Real-world instances, keyed by their identifiers, and USAspending's own terms (ADR-0005).
 DATA = Namespace("https://w3id.org/sco/data/")
 USAS = Namespace("https://w3id.org/sco/source/usaspending/")
+# IOF Core and SCRO share one namespace; the pinned release is in research/reference/iof-scro/.
+IOF = Namespace("https://spec.industrialontologies.org/ontology/construct/")
+
+# Prefixes for graphs we write.
+PREFIXES = {"sco": SCO, "obo": OBO, "d": DATA, "usas": USAS, "iof": IOF}
 
 
 class BFO:

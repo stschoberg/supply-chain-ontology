@@ -1,0 +1,18 @@
+# The awarding sub-agency is an organization that has a buyer role (Core). The source gives only its
+# name, so the node is minted from the name.
+
+PREFIX usas: <https://w3id.org/sco/source/usaspending/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?agency a iof:Organization ;
+          rdfs:label ?name ;
+          iof:hasRole ?role .
+  ?role a iof:BuyerRole .
+}
+WHERE {
+  ?award usas:awardingSubAgency ?name .
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/agency/", ENCODE_FOR_URI(?name))) AS ?agency)
+  BIND (IRI(CONCAT(STR(?agency), "/buyer-role")) AS ?role)
+}
