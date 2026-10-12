@@ -77,6 +77,8 @@ Rules from a source's layer 1 graph into the terms of one model: an ontology we 
 
 The rules:
 
+- **Rules run in [Oxigraph](https://github.com/oxigraph/oxigraph)**, the same engine the query page uses, so a rule
+  behaves the same in a release build and in the browser, and a full release maps in seconds.
 - **One SPARQL CONSTRUCT rule per modeling decision**, in a numbered `.rq` file whose name says what it claims
   (`02-recipient-is-organization-with-supplier-role.rq`). Each reads only the layer 1 graph, never another rule's
   output, so a rule can be argued about, changed, or dropped on its own.
