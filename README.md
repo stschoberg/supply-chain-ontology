@@ -129,7 +129,8 @@ us.
 - **Method:** [research/README.md](research/README.md): the argument, how findings are attributed, metrics, and the
   principles in scope.
 - **Findings:** `research/findings/F-NNN.md`, one per result, copied from `research/findings/_template.md`.
-- **Reference ontologies:** a pinned IOF release in `research/reference/iof-scro/`. `make refresh-iof` updates it.
+- **Reference ontologies:** a pinned IOF release in `research/reference/iof-scro/`. `make research-build` derives the
+  tables the notebooks read from it, with ROBOT.
 
 ## Layout
 
@@ -145,7 +146,7 @@ us.
 | `scenarios/<name>/` | Instance data (ABox) for one scenario: `data.ttl`, a narrative `README.md`, and `expected/CQ-NNN.csv`. |
 | `shapes/` | SHACL shapes: closed-world data-quality checks. |
 | `data/` | The data product ([README](data/README.md)) and the pipeline that builds it ([ENGINEERING](data/ENGINEERING.md)). |
-| `src/sco/` | Shared Python: graph loading, reasoning, CLI. |
+| `src/sco/` | Shared Python: graph loading, reasoning, CLI, and `sco.iof_stack` (the research tables as DataFrames). |
 | `tests/` | pytest suite. |
 | `docs/adr/` | Architecture/modeling decision records. |
 | `research/` | Method, findings, notebooks, and pinned reference ontologies for the project question. See [its README](research/README.md). |
