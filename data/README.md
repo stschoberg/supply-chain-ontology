@@ -106,7 +106,13 @@ kinds will get plain names (`suppliers`, `products`) when they exist.
   parent, product class (`psc`), dollars.
 - **Whether a purchase was competed:** `extent_competed`, `offers_received` (42% of awards
   that report it drew a single offer), and the legal reason when it wasn't.
-- **Where it came from:** `origin_country` and the supplier's ownership (`domestic_or_foreign_entity`).
+- **Where it came from:** `origin_country`, `place_of_manufacture`, and the supplier's ownership
+  (`domestic_or_foreign_entity`).
+- **Where the supplier is and where the work is done:** `recipient_city` through `recipient_country`, and
+  `place_of_performance_city` through `place_of_performance_country`.
+- **When it was meant to happen:** `solicitation_date`, `base_action_date`, and the contracted window,
+  `performance_start_date` to `performance_end_date`.
+- **Whether the supplier makes the goods:** `recipient_is_manufacturer`.
 
 **Can't (yet):**
 
@@ -114,7 +120,8 @@ kinds will get plain names (`suppliers`, `products`) when they exist.
   and spelled inconsistently. The part-level ID, the NSN, appears in only 221 awards. Questions like
   CQ-002 ("which products are single-sourced?") can only be answered at the product-class level.
   [Details and options](sources/usaspending/README.md#known-gaps).
-- **Deliveries.** An award is a commitment to buy, not a record that goods arrived.
+- **Deliveries.** An award is a commitment to buy, not a record that goods arrived. The performance dates are
+  the contracted window, and the place of performance is where the work is done, not where goods were delivered.
 - **Sub-tier suppliers.** Who DoD's suppliers buy from is almost never reported (58 subawards).
 - **The latest three months.** DoD publishes procurement data with a 90-day delay.
 

@@ -79,6 +79,11 @@ expression. The IOF graph has fewer triples only because it drops 17 properties.
 - Other: `parentPiid`, `domesticOrForeignEntity`, `awardKey`, `dlaReferenceNumber`, `sourceFile`, and the names as
   reported on each award.
 
+Since that run the source graph has gained 13 properties that no rule uses yet: the recipient's address, the place
+of performance, the place of manufacture, whether the recipient is the manufacturer, and the solicitation and
+performance dates. They are the closest the source comes to SCRO's own subject, where things are and when they
+are meant to move, so they are the next thing to try mapping. The example predates them.
+
 **Not predicted: every buyer is also a customer.** The rules give agencies a `buyer role`. SCRO's
 `depends on buyer` has range `customer`, so the reasoner also makes each one a `customer`: by SCRO's definition,
 something that uses the product or receives the service.

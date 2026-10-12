@@ -88,6 +88,71 @@ usas:nsn a owl:DatatypeProperty ;
     rdfs:label "nsn"@en ;
     skos:definition "The 13-digit National Stock Number found in the award's description, when it contains one; under 1% of awards. Staging parses it from free text; USAspending has no NSN field."@en .
 
+usas:recipientIsManufacturer a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:boolean ;
+    rdfs:label "recipient is manufacturer"@en ;
+    skos:definition "Whether the contracting officer determined that the recipient manufactures the goods. False for distributors and agents."@en .
+
+usas:recipientCity a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "recipient city"@en ;
+    skos:definition "City of the recipient's address, as reported on this award."@en .
+
+usas:recipientState a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "recipient state"@en ;
+    skos:definition "Two-letter state of the recipient's address; absent outside the U.S."@en .
+
+usas:recipientZip a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "recipient zip"@en ;
+    skos:definition "ZIP+4 (9 digits) or foreign postal code of the recipient's address."@en .
+
+usas:recipientCountry a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "recipient country"@en ;
+    skos:definition "Country of the recipient's address."@en .
+
+usas:placeOfManufacture a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "place of manufacture"@en ;
+    skos:definition "Whether the product is made in the U.S. and, if not, the exception that allows it."@en .
+
+usas:placeOfPerformanceCity a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "place of performance city"@en ;
+    skos:definition "City of the principal place where the work is done. For goods, usually where they are made or shipped from, not where they are delivered."@en .
+
+usas:placeOfPerformanceState a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "place of performance state"@en ;
+    skos:definition "Two-letter state of the place of performance; absent outside the U.S."@en .
+
+usas:placeOfPerformanceZip a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "place of performance zip"@en ;
+    skos:definition "ZIP+4 (9 digits) of the place of performance."@en .
+
+usas:placeOfPerformanceCountry a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "place of performance country"@en ;
+    skos:definition "Country of the place of performance."@en .
+
+usas:solicitationDate a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:date ;
+    rdfs:label "solicitation date"@en ;
+    skos:definition "Date the purchase was put out for offers; reported on about half of awards."@en .
+
+usas:performanceStartDate a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:date ;
+    rdfs:label "performance start date"@en ;
+    skos:definition "Start of the period of performance, the window the contract gives for the work or delivery."@en .
+
+usas:performanceEndDate a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:date ;
+    rdfs:label "performance end date"@en ;
+    skos:definition "Current end of the period of performance, after any modifications. A contracted date, not a record that goods arrived."@en .
+
 usas:itemName a owl:DatatypeProperty ;
     rdfs:domain usas:Award ; rdfs:range xsd:string ;
     rdfs:label "item name"@en ;

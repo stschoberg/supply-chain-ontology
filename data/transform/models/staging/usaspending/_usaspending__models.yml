@@ -49,8 +49,38 @@ models:
       - name: domestic_or_foreign_entity
         description: Ownership category, e.g. "U.S. OWNED BUSINESS", "FOREIGN-OWNED BUSINESS INCORPORATED IN THE U.S.".
         data_type: varchar
+      - name: recipient_is_manufacturer
+        description: Whether the contracting officer determined the supplier manufactures the goods. False for distributors and agents.
+        data_type: boolean
+      - name: recipient_city
+        description: City of the supplier's address.
+        data_type: varchar
+      - name: recipient_state
+        description: Two-letter state of the supplier's address; null outside the U.S.
+        data_type: varchar
+      - name: recipient_zip
+        description: ZIP+4 (9 digits) or foreign postal code of the supplier's address.
+        data_type: varchar
+      - name: recipient_country
+        description: Country of the supplier's address.
+        data_type: varchar
       - name: origin_country
         description: Country of origin of the product.
+        data_type: varchar
+      - name: place_of_manufacture
+        description: Whether the product is made in the U.S. and, if not, the exception that allows it, e.g. "MFG IN U.S.", "MFG OUTSIDE U.S. - TRADE AGREEMENTS".
+        data_type: varchar
+      - name: place_of_performance_city
+        description: City of the principal place where the work is done. For goods, usually where they are made or shipped from, not where they are delivered.
+        data_type: varchar
+      - name: place_of_performance_state
+        description: Two-letter state of the place of performance; null outside the U.S.
+        data_type: varchar
+      - name: place_of_performance_zip
+        description: ZIP+4 (9 digits) of the place of performance.
+        data_type: varchar
+      - name: place_of_performance_country
+        description: Country of the place of performance.
         data_type: varchar
       - name: psc
         description: Product and Service Code; 3110, 3120, or 3130.
@@ -79,6 +109,15 @@ models:
         data_type: decimal(18,2)
       - name: base_action_date
         description: Date of the award's first action.
+        data_type: date
+      - name: solicitation_date
+        description: Date the purchase was put out for offers; reported on about half of awards.
+        data_type: date
+      - name: performance_start_date
+        description: Start of the period of performance, the window the contract gives for the work or delivery.
+        data_type: date
+      - name: performance_end_date
+        description: Current end of the period of performance, after any modifications. A contracted date, not a record that goods arrived.
         data_type: date
       - name: extent_competed
         description: Competition category, e.g. "FULL AND OPEN COMPETITION", "NOT COMPETED".

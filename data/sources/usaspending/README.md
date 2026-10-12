@@ -44,7 +44,11 @@ manifest records:
 | `product_or_service_code` | PSC class (3110 / 3120 / 3130) |
 | `prime_award_base_transaction_description` | Free text: item name, rarely an NSN. See [Known gaps](#known-gaps) |
 | `extent_competed`, `number_of_offers_received`, `other_than_full_and_open_competition` | Sole-source signals |
-| `country_of_product_or_service_origin`, `domestic_or_foreign_entity` | Foreign dependence |
+| `country_of_product_or_service_origin`, `domestic_or_foreign_entity`, `place_of_manufacture` | Foreign dependence |
+| `manufacturer_of_goods` | Whether the recipient makes the goods or is a distributor or agent |
+| `recipient_city_name`, `recipient_state_code`, `recipient_zip_4_code`, `recipient_country_name` | Where the supplier is |
+| `primary_place_of_performance_*` (city, state, ZIP, country) | Where the work is done: for goods, usually where they are made or shipped from |
+| `solicitation_date`, `period_of_performance_start_date`, `period_of_performance_current_end_date` | When the purchase was solicited, and the contracted window for delivery |
 
 `fetch.py` fails if any of these columns disappears (`REQUIRED_COLUMNS`).
 
