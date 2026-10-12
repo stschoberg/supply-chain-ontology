@@ -29,7 +29,7 @@ PREFIXES   := --prefix "sco: $(BASE_IRI)/" --prefix "skos: http://www.w3.org/200
 TEMPLATES  := $(wildcard $(ONT)/src/templates/*.tsv)
 COMPONENTS := $(patsubst $(ONT)/src/templates/%.tsv,$(ONT)/components/%.owl,$(TEMPLATES))
 
-.PHONY: help all test validate lint fmt components reason report release refresh-imports refresh-iof clean
+.PHONY: help all test validate lint fmt components reason report release refresh-imports refresh-iof research-build clean
 
 help: ## Show this help
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -108,6 +108,33 @@ refresh-iof: ## Re-download the pinned IOF Core + SCRO release into research/ref
 	curl -fsSL -o $(IOF_DIR)/AnnotationVocabulary.rdf $(IOF_RAW)/core/meta/AnnotationVocabulary.rdf
 	curl -fsSL -o $(IOF_DIR)/bfo.rdf $(IOF_RAW)/cache/bfo/2020/bfo.rdf
 	curl -fsSL -o $(IOF_DIR)/LICENSE $(IOF_RAW)/LICENSE
+
+# Everything the research notebooks read is derived here from the pinned release by ROBOT, and committed, so
+# the notebooks and tests need neither Java nor Docker. Re-run after `make refresh-iof`.
+IOF_BUILD    := $(IOF_DIR)/build
+IOF_PREFIXES := --prefix "iof: https://spec.industrialontologies.org/ontology/construct/" \
+                --prefix "iof-av: https://spec.industrialontologies.org/ontology/annotation/"
+IOF_ANNOTATIONS := iof-av:naturalLanguageDefinition|iof-av:firstOrderLogicDefinition|iof-av:firstOrderLogicAxiom
+
+research-build: | $(ROBOT_JAR) ## Derive the research tables from the pinned IOF release with ROBOT
+	rm -rf $(IOF_BUILD) && mkdir -p $(IOF_BUILD)
+	@# The stack merged and classified by HermiT: inferred superclasses are written out as axioms.
+	$(ROBOT) merge --catalog $(IOF_DIR)/catalog-v001.xml --input $(IOF_DIR)/SupplyChain.rdf \
+		reason --reasoner HermiT --output $(IOF_BUILD)/iof-reasoned.ttl
+	@# One row per class or property, with axioms in Manchester syntax. rdfs:isDefinedBy is IOF's own layer tag.
+	$(ROBOT) export --input $(IOF_BUILD)/iof-reasoned.ttl $(IOF_PREFIXES) --include "classes" \
+		--header "IRI|LABEL|rdfs:isDefinedBy|SubClass Of [NAMED]|SubClass Of [ANON]|Equivalent Class|Disjoint With|$(IOF_ANNOTATIONS)" \
+		--export $(IOF_BUILD)/classes.tsv
+	$(ROBOT) export --input $(IOF_BUILD)/iof-reasoned.ttl $(IOF_PREFIXES) --include "properties" \
+		--header "IRI|LABEL|Type|rdfs:isDefinedBy|SubProperty Of|Domain|Range|iof-av:naturalLanguageDefinition" \
+		--export $(IOF_BUILD)/properties.tsv
+	@# Axiom counts by type for each layer's own file (metrics ending _incl count its imports too).
+	$(ROBOT) measure --catalog $(IOF_DIR)/catalog-v001.xml --input $(IOF_DIR)/bfo.rdf \
+		--metrics extended --format tsv --output $(IOF_BUILD)/measure-bfo.tsv
+	$(ROBOT) measure --catalog $(IOF_DIR)/catalog-v001.xml --input $(IOF_DIR)/Core.rdf \
+		--metrics extended --format tsv --output $(IOF_BUILD)/measure-core.tsv
+	$(ROBOT) measure --catalog $(IOF_DIR)/catalog-v001.xml --input $(IOF_DIR)/SupplyChain.rdf \
+		--metrics extended --format tsv --output $(IOF_BUILD)/measure-scro.tsv
 
 clean: ## Remove build outputs
 	rm -rf $(RELEASE)/*

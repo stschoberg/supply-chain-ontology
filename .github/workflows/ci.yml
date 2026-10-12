@@ -35,6 +35,11 @@ jobs:
           make components
           git diff --exit-code ontology/components/ || \
             (echo "::error::Run 'make components' and commit the result." && exit 1)
+      - name: Research tables are up to date with the pinned IOF release
+        run: |
+          make research-build
+          git diff --exit-code research/reference/iof-scro/build/ || \
+            (echo "::error::Run 'make research-build' and commit the result." && exit 1)
       - run: make reason
       - run: make report
       - run: make release
