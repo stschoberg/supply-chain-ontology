@@ -1,0 +1,196 @@
+metric	metric_value	metric_type
+abox_axiom_count	0	single_value
+abox_axiom_count_incl	2	single_value
+annotation_property_count	28	single_value
+annotation_property_count_incl	57	single_value
+axiom_count	2122	single_value
+axiom_count_incl	3259	single_value
+axiom_type_count	AnnotationAssertion 1429	map_value
+axiom_type_count	DataPropertyDomain 2	map_value
+axiom_type_count	DataPropertyRange 1	map_value
+axiom_type_count	Declaration 176	map_value
+axiom_type_count	DisjointClasses 4	map_value
+axiom_type_count	EquivalentClasses 42	map_value
+axiom_type_count	FunctionalObjectProperty 1	map_value
+axiom_type_count	InverseFunctionalObjectProperty 1	map_value
+axiom_type_count	InverseObjectProperties 34	map_value
+axiom_type_count	ObjectPropertyDomain 83	map_value
+axiom_type_count	ObjectPropertyRange 83	map_value
+axiom_type_count	SubClassOf 169	map_value
+axiom_type_count	SubDataPropertyOf 2	map_value
+axiom_type_count	SubObjectPropertyOf 78	map_value
+axiom_type_count	SubPropertyChainOf 3	map_value
+axiom_type_count	SymmetricObjectProperty 1	map_value
+axiom_type_count	TransitiveObjectProperty 13	map_value
+axiom_type_count_incl	AnnotationAssertion 2109	map_value
+axiom_type_count_incl	ClassAssertion 2	map_value
+axiom_type_count_incl	DataPropertyDomain 2	map_value
+axiom_type_count_incl	DataPropertyRange 1	map_value
+axiom_type_count_incl	Declaration 326	map_value
+axiom_type_count_incl	DisjointClasses 14	map_value
+axiom_type_count_incl	EquivalentClasses 42	map_value
+axiom_type_count_incl	FunctionalObjectProperty 9	map_value
+axiom_type_count_incl	InverseFunctionalObjectProperty 2	map_value
+axiom_type_count_incl	InverseObjectProperties 54	map_value
+axiom_type_count_incl	ObjectPropertyDomain 146	map_value
+axiom_type_count_incl	ObjectPropertyRange 146	map_value
+axiom_type_count_incl	SubAnnotationPropertyOf 31	map_value
+axiom_type_count_incl	SubClassOf 235	map_value
+axiom_type_count_incl	SubDataPropertyOf 2	map_value
+axiom_type_count_incl	SubObjectPropertyOf 112	map_value
+axiom_type_count_incl	SubPropertyChainOf 3	map_value
+axiom_type_count_incl	SymmetricObjectProperty 1	map_value
+axiom_type_count_incl	TransitiveObjectProperty 22	map_value
+axiom_types	AnnotationAssertion	list_value
+axiom_types	DataPropertyDomain	list_value
+axiom_types	DataPropertyRange	list_value
+axiom_types	Declaration	list_value
+axiom_types	DisjointClasses	list_value
+axiom_types	EquivalentClasses	list_value
+axiom_types	FunctionalObjectProperty	list_value
+axiom_types	InverseFunctionalObjectProperty	list_value
+axiom_types	InverseObjectProperties	list_value
+axiom_types	ObjectPropertyDomain	list_value
+axiom_types	ObjectPropertyRange	list_value
+axiom_types	SubClassOf	list_value
+axiom_types	SubDataPropertyOf	list_value
+axiom_types	SubObjectPropertyOf	list_value
+axiom_types	SubPropertyChainOf	list_value
+axiom_types	SymmetricObjectProperty	list_value
+axiom_types	TransitiveObjectProperty	list_value
+axiom_types_incl	AnnotationAssertion	list_value
+axiom_types_incl	ClassAssertion	list_value
+axiom_types_incl	DataPropertyDomain	list_value
+axiom_types_incl	DataPropertyRange	list_value
+axiom_types_incl	Declaration	list_value
+axiom_types_incl	DisjointClasses	list_value
+axiom_types_incl	EquivalentClasses	list_value
+axiom_types_incl	FunctionalObjectProperty	list_value
+axiom_types_incl	InverseFunctionalObjectProperty	list_value
+axiom_types_incl	InverseObjectProperties	list_value
+axiom_types_incl	ObjectPropertyDomain	list_value
+axiom_types_incl	ObjectPropertyRange	list_value
+axiom_types_incl	SubAnnotationPropertyOf	list_value
+axiom_types_incl	SubClassOf	list_value
+axiom_types_incl	SubDataPropertyOf	list_value
+axiom_types_incl	SubObjectPropertyOf	list_value
+axiom_types_incl	SubPropertyChainOf	list_value
+axiom_types_incl	SymmetricObjectProperty	list_value
+axiom_types_incl	TransitiveObjectProperty	list_value
+class_count	113	single_value
+class_count_incl	128	single_value
+class_expression_count	Class 910	map_value
+class_expression_count	ObjectAllValuesFrom 21	map_value
+class_expression_count	ObjectComplementOf 17	map_value
+class_expression_count	ObjectIntersectionOf 125	map_value
+class_expression_count	ObjectSomeValuesFrom 185	map_value
+class_expression_count	ObjectUnionOf 78	map_value
+class_expression_count_incl	Class 1260	map_value
+class_expression_count_incl	ObjectAllValuesFrom 52	map_value
+class_expression_count_incl	ObjectComplementOf 39	map_value
+class_expression_count_incl	ObjectIntersectionOf 147	map_value
+class_expression_count_incl	ObjectSomeValuesFrom 185	map_value
+class_expression_count_incl	ObjectUnionOf 104	map_value
+constructs	CONCEPT_COMPLEX_NEGATION	list_value
+constructs	CONCEPT_INTERSECTION	list_value
+constructs	CONCEPT_UNION	list_value
+constructs	D	list_value
+constructs	F	list_value
+constructs	FULL_EXISTENTIAL	list_value
+constructs	ROLE_COMPLEX	list_value
+constructs	ROLE_DOMAIN_RANGE	list_value
+constructs	ROLE_INVERSE	list_value
+constructs	UNIVERSAL_RESTRICTION	list_value
+constructs_incl	CONCEPT_COMPLEX_NEGATION	list_value
+constructs_incl	CONCEPT_INTERSECTION	list_value
+constructs_incl	CONCEPT_UNION	list_value
+constructs_incl	D	list_value
+constructs_incl	F	list_value
+constructs_incl	FULL_EXISTENTIAL	list_value
+constructs_incl	ROLE_COMPLEX	list_value
+constructs_incl	ROLE_DOMAIN_RANGE	list_value
+constructs_incl	ROLE_INVERSE	list_value
+constructs_incl	UNIVERSAL_RESTRICTION	list_value
+curie_map	BFO http://purl.obolibrary.org/obo/BFO_	map_value
+curie_map	dc http://purl.org/dc/terms/	map_value
+curie_map	dc11 http://purl.org/dc/elements/1.1/	map_value
+curie_map	owl http://www.w3.org/2002/07/owl#	map_value
+curie_map	rdf http://www.w3.org/1999/02/22-rdf-syntax-ns#	map_value
+curie_map	rdfs http://www.w3.org/2000/01/rdf-schema#	map_value
+curie_map	skos http://www.w3.org/2004/02/skos/core#	map_value
+curie_map	xsd http://www.w3.org/2001/XMLSchema#	map_value
+dataproperty_count	3	single_value
+dataproperty_count_incl	3	single_value
+datatypes_count	4	single_value
+datatypes_count_incl	4	single_value
+dt_builtin_count	4	single_value
+dt_builtin_count_incl	4	single_value
+dt_notbuiltin_count	0	single_value
+dt_notbuiltin_count_incl	0	single_value
+expressivity	RRESTRCUCINTUNIVRESTRERIF(D)	single_value
+expressivity_incl	RRESTRCUCINTUNIVRESTRERIF(D)	single_value
+individual_count	0	single_value
+individual_count_incl	2	single_value
+logical_axiom_count	517	single_value
+logical_axiom_count_incl	793	single_value
+namespace_axiom_count	BFO 395	map_value
+namespace_axiom_count	owl 21	map_value
+namespace_axiom_count	prefix_unknown 2106	map_value
+namespace_axiom_count	rdf 3	map_value
+namespace_axiom_count	rdfs 352	map_value
+namespace_axiom_count	skos 172	map_value
+namespace_axiom_count	xsd 1	map_value
+namespace_axiom_count_incl	BFO 1089	map_value
+namespace_axiom_count_incl	dc 22	map_value
+namespace_axiom_count_incl	dc11 100	map_value
+namespace_axiom_count_incl	owl 22	map_value
+namespace_axiom_count_incl	prefix_unknown 2207	map_value
+namespace_axiom_count_incl	rdf 4	map_value
+namespace_axiom_count_incl	rdfs 562	map_value
+namespace_axiom_count_incl	skos 535	map_value
+namespace_axiom_count_incl	xsd 1	map_value
+namespace_entity_count	BFO 101	map_value
+namespace_entity_count	dc 12	map_value
+namespace_entity_count	dc11 3	map_value
+namespace_entity_count	owl 4	map_value
+namespace_entity_count	prefix_unknown 206	map_value
+namespace_entity_count	rdf 1	map_value
+namespace_entity_count	rdfs 4	map_value
+namespace_entity_count	skos 8	map_value
+namespace_entity_count	xsd 3	map_value
+namespace_entity_count_incl	BFO 101	map_value
+namespace_entity_count_incl	dc 12	map_value
+namespace_entity_count_incl	dc11 3	map_value
+namespace_entity_count_incl	owl 4	map_value
+namespace_entity_count_incl	prefix_unknown 206	map_value
+namespace_entity_count_incl	rdf 1	map_value
+namespace_entity_count_incl	rdfs 4	map_value
+namespace_entity_count_incl	skos 8	map_value
+namespace_entity_count_incl	xsd 3	map_value
+obj_property_count	117	single_value
+obj_property_count_incl	148	single_value
+ontology_anno_count	20	single_value
+ontology_iri	https://spec.industrialontologies.org/ontology/core/Core/	single_value
+ontology_version_iri	https://spec.industrialontologies.org/ontology/202603/core/Core/	single_value
+owl2	true	single_value
+owl2_dl	false	single_value
+owl2_el	false	single_value
+owl2_ql	false	single_value
+owl2_rl	false	single_value
+owl2dl_profile_violation	UseOfUndeclaredAnnotationProperty 406	map_value
+rbox_axiom_count	131	single_value
+rbox_axiom_count_incl	194	single_value
+rdfs	false	single_value
+rule_count	0	single_value
+rule_count_incl	0	single_value
+signature_entity_count	342	single_value
+signature_entity_count_incl	342	single_value
+syntax	RDF/XML Syntax	single_value
+tbox_axiom_count	386	single_value
+tbox_axiom_count_incl	597	single_value
+tboxrbox_axiom_count	517	single_value
+tboxrbox_axiom_count_incl	791	single_value
+valid_imports	http://purl.obolibrary.org/obo/bfo/2020/bfo.owl	list_value
+valid_imports	https://spec.industrialontologies.org/ontology/202603/core/meta/AnnotationVocabulary/	list_value
+valid_imports_incl	http://purl.obolibrary.org/obo/bfo/2020/bfo.owl	list_value
+valid_imports_incl	https://spec.industrialontologies.org/ontology/202603/core/meta/AnnotationVocabulary/	list_value

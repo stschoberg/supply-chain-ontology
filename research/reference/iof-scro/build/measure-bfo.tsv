@@ -1,0 +1,141 @@
+metric	metric_value	metric_type
+abox_axiom_count	0	single_value
+abox_axiom_count_incl	0	single_value
+annotation_property_count	10	single_value
+annotation_property_count_incl	10	single_value
+axiom_count	852	single_value
+axiom_count_incl	852	single_value
+axiom_type_count	AnnotationAssertion 478	map_value
+axiom_type_count	Declaration 100	map_value
+axiom_type_count	DisjointClasses 10	map_value
+axiom_type_count	FunctionalObjectProperty 8	map_value
+axiom_type_count	InverseFunctionalObjectProperty 1	map_value
+axiom_type_count	InverseObjectProperties 20	map_value
+axiom_type_count	ObjectPropertyDomain 63	map_value
+axiom_type_count	ObjectPropertyRange 63	map_value
+axiom_type_count	SubClassOf 66	map_value
+axiom_type_count	SubObjectPropertyOf 34	map_value
+axiom_type_count	TransitiveObjectProperty 9	map_value
+axiom_type_count_incl	AnnotationAssertion 478	map_value
+axiom_type_count_incl	Declaration 100	map_value
+axiom_type_count_incl	DisjointClasses 10	map_value
+axiom_type_count_incl	FunctionalObjectProperty 8	map_value
+axiom_type_count_incl	InverseFunctionalObjectProperty 1	map_value
+axiom_type_count_incl	InverseObjectProperties 20	map_value
+axiom_type_count_incl	ObjectPropertyDomain 63	map_value
+axiom_type_count_incl	ObjectPropertyRange 63	map_value
+axiom_type_count_incl	SubClassOf 66	map_value
+axiom_type_count_incl	SubObjectPropertyOf 34	map_value
+axiom_type_count_incl	TransitiveObjectProperty 9	map_value
+axiom_types	AnnotationAssertion	list_value
+axiom_types	Declaration	list_value
+axiom_types	DisjointClasses	list_value
+axiom_types	FunctionalObjectProperty	list_value
+axiom_types	InverseFunctionalObjectProperty	list_value
+axiom_types	InverseObjectProperties	list_value
+axiom_types	ObjectPropertyDomain	list_value
+axiom_types	ObjectPropertyRange	list_value
+axiom_types	SubClassOf	list_value
+axiom_types	SubObjectPropertyOf	list_value
+axiom_types	TransitiveObjectProperty	list_value
+axiom_types_incl	AnnotationAssertion	list_value
+axiom_types_incl	Declaration	list_value
+axiom_types_incl	DisjointClasses	list_value
+axiom_types_incl	FunctionalObjectProperty	list_value
+axiom_types_incl	InverseFunctionalObjectProperty	list_value
+axiom_types_incl	InverseObjectProperties	list_value
+axiom_types_incl	ObjectPropertyDomain	list_value
+axiom_types_incl	ObjectPropertyRange	list_value
+axiom_types_incl	SubClassOf	list_value
+axiom_types_incl	SubObjectPropertyOf	list_value
+axiom_types_incl	TransitiveObjectProperty	list_value
+class_count	36	single_value
+class_count_incl	36	single_value
+class_expression_count	Class 347	map_value
+class_expression_count	ObjectAllValuesFrom 31	map_value
+class_expression_count	ObjectComplementOf 22	map_value
+class_expression_count	ObjectIntersectionOf 22	map_value
+class_expression_count	ObjectUnionOf 26	map_value
+class_expression_count_incl	Class 347	map_value
+class_expression_count_incl	ObjectAllValuesFrom 31	map_value
+class_expression_count_incl	ObjectComplementOf 22	map_value
+class_expression_count_incl	ObjectIntersectionOf 22	map_value
+class_expression_count_incl	ObjectUnionOf 26	map_value
+constructs	CONCEPT_COMPLEX_NEGATION	list_value
+constructs	CONCEPT_INTERSECTION	list_value
+constructs	CONCEPT_UNION	list_value
+constructs	F	list_value
+constructs	ROLE_DOMAIN_RANGE	list_value
+constructs	ROLE_HIERARCHY	list_value
+constructs	ROLE_INVERSE	list_value
+constructs	ROLE_TRANSITIVE	list_value
+constructs	UNIVERSAL_RESTRICTION	list_value
+constructs_incl	CONCEPT_COMPLEX_NEGATION	list_value
+constructs_incl	CONCEPT_INTERSECTION	list_value
+constructs_incl	CONCEPT_UNION	list_value
+constructs_incl	F	list_value
+constructs_incl	ROLE_DOMAIN_RANGE	list_value
+constructs_incl	ROLE_HIERARCHY	list_value
+constructs_incl	ROLE_INVERSE	list_value
+constructs_incl	ROLE_TRANSITIVE	list_value
+constructs_incl	UNIVERSAL_RESTRICTION	list_value
+curie_map	BFO http://purl.obolibrary.org/obo/BFO_	map_value
+curie_map	dc11 http://purl.org/dc/elements/1.1/	map_value
+curie_map	rdf http://www.w3.org/1999/02/22-rdf-syntax-ns#	map_value
+curie_map	rdfs http://www.w3.org/2000/01/rdf-schema#	map_value
+curie_map	skos http://www.w3.org/2004/02/skos/core#	map_value
+dataproperty_count	0	single_value
+dataproperty_count_incl	0	single_value
+datatypes_count	1	single_value
+datatypes_count_incl	1	single_value
+dt_builtin_count	1	single_value
+dt_builtin_count_incl	1	single_value
+dt_notbuiltin_count	0	single_value
+dt_notbuiltin_count_incl	0	single_value
+expressivity	RRESTRCUCINTUNIVRESTRH+IF	single_value
+expressivity_incl	RRESTRCUCINTUNIVRESTRH+IF	single_value
+individual_count	0	single_value
+individual_count_incl	0	single_value
+logical_axiom_count	274	single_value
+logical_axiom_count_incl	274	single_value
+namespace_axiom_count	BFO 694	map_value
+namespace_axiom_count	dc11 100	map_value
+namespace_axiom_count	rdfs 100	map_value
+namespace_axiom_count	skos 278	map_value
+namespace_axiom_count_incl	BFO 694	map_value
+namespace_axiom_count_incl	dc11 100	map_value
+namespace_axiom_count_incl	rdfs 100	map_value
+namespace_axiom_count_incl	skos 278	map_value
+namespace_entity_count	BFO 100	map_value
+namespace_entity_count	dc11 3	map_value
+namespace_entity_count	rdf 1	map_value
+namespace_entity_count	rdfs 2	map_value
+namespace_entity_count	skos 5	map_value
+namespace_entity_count_incl	BFO 100	map_value
+namespace_entity_count_incl	dc11 3	map_value
+namespace_entity_count_incl	rdf 1	map_value
+namespace_entity_count_incl	rdfs 2	map_value
+namespace_entity_count_incl	skos 5	map_value
+obj_property_count	64	single_value
+obj_property_count_incl	64	single_value
+ontology_anno_count	30	single_value
+ontology_iri	http://purl.obolibrary.org/obo/bfo.owl	single_value
+ontology_version_iri	http://purl.obolibrary.org/obo/bfo/2020/bfo.owl	single_value
+owl2	true	single_value
+owl2_dl	false	single_value
+owl2_el	false	single_value
+owl2_ql	false	single_value
+owl2_rl	false	single_value
+owl2dl_profile_violation	UseOfUndeclaredAnnotationProperty 406	map_value
+rbox_axiom_count	63	single_value
+rbox_axiom_count_incl	63	single_value
+rdfs	false	single_value
+rule_count	0	single_value
+rule_count_incl	0	single_value
+signature_entity_count	111	single_value
+signature_entity_count_incl	111	single_value
+syntax	RDF/XML Syntax	single_value
+tbox_axiom_count	211	single_value
+tbox_axiom_count_incl	211	single_value
+tboxrbox_axiom_count	274	single_value
+tboxrbox_axiom_count_incl	274	single_value
