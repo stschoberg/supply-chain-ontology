@@ -13,6 +13,8 @@ models:
     # contract. A staging model is published by tagging it in its YAML.
     staging:
       +materialized: view
+    marts:
+      +materialized: table
     meta:
       +materialized: table
       +tags: [published]

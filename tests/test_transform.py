@@ -55,3 +55,10 @@ def test_nsn_is_extracted_in_each_format_seen(warehouse):
 def test_dla_descriptions_split_into_reference_number_and_item_name(warehouse):
     split = awards(warehouse, "dla_reference_number", "item_name", "nsn")
     assert split["SPE4A022P0831"] == ("8509067712", "BEARING,SLEEVE", None)
+
+
+def test_entities_are_one_per_uei_across_recipients_and_parents(warehouse):
+    entities = dict(warehouse.sql("select uei, name from entities").fetchall())
+    assert len(entities) == 11  # 8 recipients, 3 of them with a different corporate parent
+    assert entities["ZBR7R1G1MGB3"] == "THE TIMKEN CORPORATION"  # a recipient
+    assert entities["H4FZBFXLJ636"] == "THE TIMKEN COMPANY"  # its parent, never a recipient here

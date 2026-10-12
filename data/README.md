@@ -66,6 +66,7 @@ awards <- arrow::read_parquet("awards.parquet")
 | Table | One row per | |
 |---|---|---|
 | `stg_usaspending__awards` | Contract award (a contract or order, modifications rolled up) | The data |
+| `entities` | Organization identified by a UEI: an award's recipient or its corporate parent | Lookup for `recipient_uei` and `recipient_parent_uei` |
 | `meta_source_files` | Raw file the release was built from, with its checksum and the API request | Provenance |
 | `meta_build` | The release itself: tag, git commit, build time | Provenance |
 

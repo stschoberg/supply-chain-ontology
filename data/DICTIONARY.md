@@ -6,6 +6,15 @@ The tables in every [data release](README.md). Column names and types are a cont
 never removes or retypes a column without saying so in its notes. The same descriptions are
 attached to the tables when you `attach` the catalog in DuckDB (see `duckdb_columns()`).
 
+## entities
+
+Organizations that appear on awards, one row per SAM.gov Unique Entity ID (UEI): every award recipient and every recipient's corporate parent. An award's `recipient_uei` and `recipient_parent_uei` both refer to this table.
+
+| Column | Type | Description |
+|---|---|---|
+| `uei` | varchar | SAM.gov Unique Entity ID. One row per UEI. |
+| `name` | varchar | Name most recently reported with the UEI. Awards keep the name each one reported. |
+
 ## stg_usaspending__awards
 
 USAspending.gov contract award summaries as published, typed and renamed, one row per award: DoD purchases of bearings (PSC group 31) with any activity from FY2023 onward. An award is a contract or order with its modifications rolled up, deduplicated across fiscal-year files. It records a commitment to buy, not a delivery, and usually names a kind of part rather than a specific one.

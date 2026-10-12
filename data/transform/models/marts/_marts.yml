@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: entities
+    description: >
+      Organizations that appear on awards, one row per SAM.gov Unique Entity ID (UEI): every award
+      recipient and every recipient's corporate parent. An award's `recipient_uei` and
+      `recipient_parent_uei` both refer to this table.
+    config:
+      tags: [published]
+      contract: {enforced: true}
+    columns:
+      - name: uei
+        description: SAM.gov Unique Entity ID. One row per UEI.
+        data_type: varchar
+        data_tests: [unique, not_null]
+      - name: name
+        description: Name most recently reported with the UEI. Awards keep the name each one reported.
+        data_type: varchar

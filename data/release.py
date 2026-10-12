@@ -148,7 +148,8 @@ def release_notes(tag: str, sha: str, dirty: bool, tables, stats, raw, sources) 
         f"| {s} | {snap.name} | `{name}` |"
         for (s, snap), name in zip(sources.items(), raw, strict=True)
     )
-    first = next(iter(stats), "awards")
+    # The connect examples use the biggest table, which is the data rather than a lookup.
+    first = max(stats, key=lambda m: stats[m]["rows"], default="awards")
     base_url = release_url(tag)
     built = f"{datetime.now(UTC):%Y-%m-%d %H:%M UTC} from commit `{sha[:12]}`"
     if dirty:
