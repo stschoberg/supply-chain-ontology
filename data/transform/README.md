@@ -13,7 +13,7 @@ For the browser UI, start it on an in-memory database and attach the warehouse, 
 | Layer | Materialized | Naming | Job |
 |---|---|---|---|
 | `models/staging/<source>/` | views | `stg_<source>__<entity>` | One per raw table: dedupe, rename, type, parse. No joins, no business logic. A staging model can be **published** as-is, as `stg_usaspending__awards` is. |
-| `models/marts/` | tables | `<entity>` | One row per entity, with a key that other tables refer to: `entities` (one per UEI). |
+| `models/marts/` | tables | `<entity>` | One row per entity, with a key that other tables refer to: `entities` (one per UEI). These decide what becomes a node when the tables are lifted to RDF ([mappings](../mappings/README.md)). |
 | `models/meta/` | tables | `meta_<thing>` | **Published.** Provenance: source files with checksums, and the build (tag, git commit). |
 
 Models tagged `published` (every `meta_*` model, and any other model tagged in its YAML) are exported to

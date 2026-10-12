@@ -1,0 +1,156 @@
+@prefix usas: <https://w3id.org/sco/source/usaspending/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# The terms the mappings in this directory use: USAspending's records in their own words, one class
+# per table and one property per column.
+# This is a source vocabulary, not part of the SCO TBox. It makes no supply chain or BFO claims, and
+# nothing here is under a BFO class. Definitions follow data/DICTIONARY.md.
+
+<https://w3id.org/sco/source/usaspending> a owl:Ontology ;
+    rdfs:label "USAspending source vocabulary"@en ;
+    dcterms:description "Terms for USAspending.gov contract awards as published in the SCO data releases, before any mapping into the Supply Chain Ontology."@en .
+
+# ---------------------------------------------------------------- Classes
+
+usas:Award a owl:Class ;
+    rdfs:label "award"@en ;
+    skos:definition "A USAspending contract award summary: a contract or order with its modifications rolled up. It records a commitment to buy, not a delivery."@en .
+
+usas:Entity a owl:Class ;
+    rdfs:label "entity"@en ;
+    skos:definition "An organization that a SAM.gov Unique Entity ID (UEI) reported on an award identifies: a recipient or a recipient's corporate parent. One per row of the entities table."@en .
+
+# ---------------------------------------------------------------- Links from an award
+
+usas:recipient a owl:ObjectProperty ;
+    rdfs:domain usas:Award ; rdfs:range usas:Entity ;
+    rdfs:label "recipient"@en ;
+    skos:definition "The entity identified by the award's recipient UEI."@en .
+
+usas:recipientParent a owl:ObjectProperty ;
+    rdfs:domain usas:Award ; rdfs:range usas:Entity ;
+    rdfs:label "recipient parent"@en ;
+    skos:definition "The entity identified by the UEI the award reports for the recipient's corporate parent."@en .
+
+# ---------------------------------------------------------------- Values on an award
+
+usas:awardKey a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "award key"@en ;
+    skos:definition "USAspending's contract_award_unique_key. Stable across releases."@en .
+
+usas:piid a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "piid"@en ;
+    skos:definition "Procurement instrument identifier (contract or order number)."@en .
+
+usas:parentPiid a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "parent piid"@en ;
+    skos:definition "Procurement instrument identifier of the parent contract (IDV) for orders; absent for standalone contracts."@en .
+
+usas:recipientName a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "recipient name"@en ;
+    skos:definition "The recipient's name as reported on this award; spelling varies across awards."@en .
+
+usas:recipientParentName a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "recipient parent name"@en ;
+    skos:definition "The name of the recipient's corporate parent as reported on this award."@en .
+
+usas:cageCode a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "cage code"@en ;
+    skos:definition "Commercial and Government Entity code reported for the recipient."@en .
+
+usas:domesticOrForeignEntity a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "domestic or foreign entity"@en ;
+    skos:definition "Ownership category reported for the recipient, e.g. \"U.S. OWNED BUSINESS\"."@en .
+
+usas:originCountry a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "origin country"@en ;
+    skos:definition "Country of origin of the product, as reported."@en .
+
+usas:psc a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "psc"@en ;
+    skos:definition "The award's Product and Service Code, which classifies what it bought."@en .
+
+usas:nsn a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "nsn"@en ;
+    skos:definition "The 13-digit National Stock Number found in the award's description, when it contains one; under 1% of awards. Staging parses it from free text; USAspending has no NSN field."@en .
+
+usas:itemName a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "item name"@en ;
+    skos:definition "Item name from the description, without DLA's leading reference number. Truncated, with inconsistent spelling."@en .
+
+usas:description a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "description"@en ;
+    skos:definition "The award's original free-text description."@en .
+
+usas:dlaReferenceNumber a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "dla reference number"@en ;
+    skos:definition "Leading 10-digit number in DLA descriptions. Unique per award; not an item identifier."@en .
+
+usas:awardingSubAgency a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "awarding sub agency"@en ;
+    skos:definition "Name of the DoD component that made the award."@en .
+
+usas:totalObligatedAmount a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:decimal ;
+    rdfs:label "total obligated amount"@en ;
+    skos:definition "Total dollars obligated on the award, USD."@en .
+
+usas:baseActionDate a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:date ;
+    rdfs:label "base action date"@en ;
+    skos:definition "Date of the award's first action."@en .
+
+usas:extentCompeted a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "extent competed"@en ;
+    skos:definition "Competition category, e.g. \"FULL AND OPEN COMPETITION\", \"NOT COMPETED\"."@en .
+
+usas:offersReceived a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:integer ;
+    rdfs:label "offers received"@en ;
+    skos:definition "Number of offers received; absent when not reported."@en .
+
+usas:otherThanFullAndOpenReason a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "other than full and open reason"@en ;
+    skos:definition "Legal justification reported when the award was not fully competed."@en .
+
+usas:lastModifiedAt a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:dateTime ;
+    rdfs:label "last modified at"@en ;
+    skos:definition "When USAspending last changed the award."@en .
+
+usas:sourceFile a owl:DatatypeProperty ;
+    rdfs:domain usas:Award ; rdfs:range xsd:string ;
+    rdfs:label "source file"@en ;
+    skos:definition "Raw file the award's row came from, within the release's raw archive."@en .
+
+# ---------------------------------------------------------------- Values on an entity
+
+usas:uei a owl:DatatypeProperty ;
+    rdfs:domain usas:Entity ; rdfs:range xsd:string ;
+    rdfs:label "uei"@en ;
+    skos:definition "The entity's SAM.gov Unique Entity ID."@en .
+
+usas:name a owl:DatatypeProperty ;
+    rdfs:domain usas:Entity ; rdfs:range xsd:string ;
+    rdfs:label "name"@en ;
+    skos:definition "The name most recently reported with the entity's UEI."@en .

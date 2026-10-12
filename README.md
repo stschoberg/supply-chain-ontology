@@ -53,11 +53,12 @@ Actions workflow publishes the result as a dated release (`data-YYYY-MM-DD`).
 make fetch-usaspending           # download a raw snapshot
 make transform                   # dbt build + data tests into data/warehouse.duckdb
 make dist                        # package a release locally in data/dist/
+make lift                        # lift the release's tables into RDF in data/graph/
 ```
 
 Publishing, adding a source, and the published-table contract: [data/ENGINEERING.md](data/ENGINEERING.md).
-Mappings from the published tables into scenario ABoxes go in [data/mappings/](data/mappings/README.md)
-(not started).
+`make lift` turns a release's tables into RDF in each source's own terms, the first of two mapping layers
+([data/mappings/](data/mappings/README.md)). The second, into the ontology's terms, is not started.
 
 ## Ontology workflow
 

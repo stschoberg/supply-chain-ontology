@@ -1,7 +1,7 @@
 # Data targets: fetch sources, transform with dbt, package releases. Included by the root Makefile,
 # so run them from the repo root (`make transform`); paths are relative to it.
 
-.PHONY: fetch-usaspending transform dist data-docs
+.PHONY: fetch-usaspending transform dist lift data-docs
 
 # Newest snapshot of each source, as an absolute path so warehouse views work from any directory.
 # Override with e.g. `make transform USASPENDING_SNAPSHOT=$PWD/data/sources/usaspending/raw/2026-10-04`.
@@ -19,6 +19,9 @@ transform: ## Build data/warehouse.duckdb from the newest snapshots with dbt, an
 
 dist: ## Build a data release in data/dist/: Parquet tables, DuckDB catalog, raw archive, notes
 	uv run python -m data.release build
+
+lift: ## Lift the release tables in data/dist/ into RDF in each source's own terms (data/graph/)
+	uv run python -m data.lift
 
 data-docs: ## Regenerate data/DICTIONARY.md from the published models' YAML
 	uv run python -m data.dictionary
