@@ -28,7 +28,7 @@ they are hard to review and hard to attribute to BFO, a mid-level ontology, or u
 
 Option 2.
 
-**Layer 1: the source in its own terms.** Each source gets a vocabulary under `https://w3id.org/sco/source/<source>/`
+**Layer 1: the source in its own terms.** Each source gets a schema under `https://w3id.org/sco/source/<source>/`
 (`usas:` for USAspending) and a declarative mapping (YARRRML, run by Morph-KGC) in `data/mappings/<source>/`.
 
 - **Entities are decided in dbt, not in the mapping.** Something is an entity when it has its own published table
@@ -39,7 +39,7 @@ Option 2.
 - Identifiers and codes without a table stay literals, however much they look like things: PSC, NSN, CAGE code,
   parent PIID, country. To make one a node, add its table (e.g. PSCs with their descriptions from the PSC manual).
 - Derived columns are marked in their definitions. The NSN is parsed from free text by staging.
-- Source vocabularies are not part of the SCO TBox and make no BFO claims.
+- Source schemas are not part of the SCO TBox and make no BFO claims.
 
 **Layer 2: the lift into a model.** SPARQL CONSTRUCT rules from the layer 1 graph into one model's terms, in
 `data/mappings/<source>/<target>/`. Each rule is one modeling decision. The first target is IOF Core + SCRO
@@ -50,11 +50,22 @@ is not built yet; its rules are recorded in ADRs where they aren't obvious.
 `.../award/<award_key>`. The same supplier is the same node in every release and
 in any later source that reports its UEI.
 
+**Layer 2 reuses layer 1's nodes.** A rule doesn't mint a purchase order next to an award; it says the award node
+is a purchase order. So a model graph is a second description of the same nodes, and it can be loaded with the
+source graphs. This is a modeling claim: that the award USAspending records and the agreement IOF describes are one
+thing. A stricter reading would keep the record apart from the agreement it is about. We take the simpler one until
+a question needs the difference.
+
+**Packaging.** There is one graph per source and one per model, not one per source-and-model pair, because a model
+is where sources meet. Each is published as `<name>.schema.ttl` (classes and properties only) and `<name>.nt.gz`
+(the schema plus the instance data, with a header naming the release and what the graph was derived from). Model
+graphs hold asserted facts only; inferences are left to a reasoner.
+
 ## Consequences
 
-- Every data release includes `<source>.nt.gz`, lifted from its own tables, and each layer 2 graph. A layer 2
-  target whose rules are unsettled is published as `<source>.<target>.experimental.nt.gz`. The output is deterministic, and a
-  check fails the build if any row is lost. `make lift` re-lifts an existing release's tables.
+- Every data release includes each source graph, lifted from its own tables, and each model graph. A model whose
+  rules are unsettled is published as `<model>.experimental.nt.gz`. The output is deterministic, and a check
+  fails the build if any row is lost. `make lift` re-lifts an existing release's tables.
 - The layer 1 graph is the non-BFO baseline that ADR-0004 calls for, and the layer 2 rules are a direct record of
   what aligning to SCO adds.
 - Morph-KGC runs as a pinned tool in its own environment, like ROBOT, because its dependency pins conflict with the

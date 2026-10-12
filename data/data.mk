@@ -1,7 +1,7 @@
 # Data targets: fetch sources, transform with dbt, package releases. Included by the root Makefile,
 # so run them from the repo root (`make transform`); paths are relative to it.
 
-.PHONY: fetch-usaspending transform dist lift lift-examples data-docs
+.PHONY: fetch-usaspending transform dist lift lift-examples lift-schemas data-docs
 
 # Newest snapshot of each source, as an absolute path so warehouse views work from any directory.
 # Override with e.g. `make transform USASPENDING_SNAPSHOT=$PWD/data/sources/usaspending/raw/2026-10-04`.
@@ -20,11 +20,14 @@ transform: ## Build data/warehouse.duckdb from the newest snapshots with dbt, an
 dist: ## Build a data release in data/dist/: Parquet tables, RDF graph, DuckDB catalog, raw archive, notes
 	uv run python -m data.release build
 
-lift: ## Lift the tables in data/dist/ into RDF in data/graph/: source terms, then each target model's
+lift: ## Lift the tables in data/dist/ into RDF graphs in data/graph/: one per source, one per model
 	uv run python -m data.lift
 
 lift-examples: ## Regenerate each mapping target's example/lifted.ttl after editing its rules
 	uv run python -m data.lift --examples
+
+lift-schemas: ## Regenerate data/schemas/ after a model's ontology changes (takes about a minute)
+	uv run python -m data.lift --schemas
 
 data-docs: ## Regenerate data/DICTIONARY.md from the published models' YAML
 	uv run python -m data.dictionary

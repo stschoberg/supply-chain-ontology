@@ -1,4 +1,4 @@
-"""Lift a fixture release into RDF and check it against the tables, mapping, and vocabulary."""
+"""Lift a fixture release into RDF and check it against the tables, mappings, and schema."""
 
 import csv
 import gzip
@@ -15,7 +15,7 @@ from sco.namespaces import DATA, IOF, USAS
 
 FIXTURE_SNAPSHOT = graph.ROOT / "tests" / "fixtures" / "usaspending"
 MAPPINGS = sorted((lift.MAPPINGS_DIR / "usaspending").glob("*.yml"))
-VOCABULARY = lift.MAPPINGS_DIR / "usaspending" / "vocabulary.ttl"
+SCHEMA = lift.MAPPINGS_DIR / "usaspending" / "schema.ttl"
 
 
 @pytest.fixture(scope="module")
@@ -83,16 +83,23 @@ def test_values_are_typed(g):
 
 
 def test_lifting_is_deterministic(tables, lifted, tmp_path):
-    assert lift.lift("usaspending", tables, tmp_path).read_bytes() == lifted.read_bytes()
+    again = lift.lift("usaspending", tables, tmp_path, version="data-test")
+    assert again.read_bytes() == lifted.read_bytes()
 
 
-def test_each_target_model_gets_its_own_graph(lifted, tmp_path):
-    path = lift.lift_targets("usaspending", lifted, tmp_path)["iof-scro"]
-    assert path.name == "usaspending.iof-scro.experimental.nt.gz"  # the name says it's unsettled
+def test_each_model_gets_one_graph_across_sources(lifted, tmp_path):
+    path = lift.lift_models({"usaspending": lifted}, tmp_path)["iof-scro"]
+    assert path.name == "iof-scro.experimental.nt.gz"  # the name says it's unsettled
+    assert (tmp_path / "iof-scro.schema.ttl").exists()
     first = path.read_bytes()
     iof = Graph().parse(data=gzip.decompress(first), format="nt")
     assert len(set(iof.subjects(RDF.type, IOF.PurchaseOrder))) == 8
-    assert lift.lift_targets("usaspending", lifted, tmp_path)["iof-scro"].read_bytes() == first
+    assert lift.lift_models({"usaspending": lifted}, tmp_path)["iof-scro"].read_bytes() == first
+
+
+def test_committed_model_schemas_are_current():
+    for model in lift.MODELS:
+        lift.model_schema(model)  # exits if stale: run `make lift-schemas`
 
 
 def test_mapping_uses_the_shared_namespaces(mapping_file):
@@ -108,8 +115,8 @@ def test_mapping_is_one_block_covering_every_column_of_its_table(mapping_file, t
     assert columns == set(re.findall(r"\$\((\w+)\)", mapping_file.read_text()))
 
 
-def test_vocabulary_defines_exactly_the_mapped_terms():
-    vocabulary = Graph().parse(VOCABULARY)
+def test_schema_defines_exactly_the_mapped_terms():
+    vocabulary = Graph().parse(SCHEMA)
     mapped = {
         USAS[term.removeprefix("usas:")]
         for mapping_file in MAPPINGS

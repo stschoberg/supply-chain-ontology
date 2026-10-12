@@ -36,6 +36,7 @@ data/
   dist/                     # release output (gitignored)
   lift.py                   # runs the mappings over a release's tables (make lift)
   mappings/<source>/        # tables → RDF in the source's terms, then into a model's (see its README)
+  schemas/<model>.nt        # each model's ontology with stable node names, for packaging (make lift-schemas)
   graph/                    # lift output (gitignored)
 ```
 
@@ -62,9 +63,8 @@ releases the same day:
 | `<table>.parquet` | One file per published model. **The data.** Readable by any tool. |
 | `<table>.csv` | The same rows as CSV, for spreadsheets. |
 | `catalog.duckdb` | Views over those Parquet files, so DuckDB users can `attach` and see named, commented tables. Holds no data. |
-| `<source>.nt.gz` | The same rows as an RDF graph in the source's own terms, lifted by the [mappings](mappings/README.md). |
-| `<source>.vocabulary.ttl` | The classes and properties that graph uses, each with a label and definition. A copy of the source's `vocabulary.ttl` in [mappings](mappings/README.md). |
-| `<source>.<target>.experimental.nt.gz` | That graph mapped into another ontology's terms, e.g. `iof-scro`. Experimental: the mapping is incomplete and will change. |
+| `<name>.nt.gz` | An RDF graph: its schema plus all its instance data, under a header naming the release. One per source (`usaspending`), in the source's own terms, and one per model the sources are [mapped](mappings/README.md) into (`iof-scro`). A model whose mapping is unsettled is `<name>.experimental.nt.gz`. |
+| `<name>.schema.ttl` | That graph's schema alone: classes and properties, no rows. A source's is its `schema.ttl` in `mappings/`; a model's is its ontology. |
 | `raw-<source>-<snapshot>.tar` | The raw source files the tables were built from, for exact reproduction. |
 | `RELEASE_NOTES.md`, `SHA256SUMS` | How to connect, row counts, the data dictionary, provenance, checksums. |
 

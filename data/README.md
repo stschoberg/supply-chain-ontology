@@ -61,9 +61,14 @@ download.file(paste0(url, "/stg_usaspending__awards.parquet"), "awards.parquet",
 awards <- arrow::read_parquet("awards.parquet")
 ```
 
-**RDF** (rdflib, Oxigraph, or any triple store): each release also has the same rows as a graph,
-[`usaspending.nt.gz`](https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/usaspending.nt.gz)
-(gzipped N-Triples).
+**RDF** (rdflib, Oxigraph, or any triple store): each release also has the same rows as graphs.
+Every graph is a pair of files: `<name>.nt.gz` (gzipped N-Triples) is the one to load, holding the
+schema and all the data, and `<name>.schema.ttl` is the schema alone, for reading or for Protégé.
+
+| Graph | What it is |
+|---|---|
+| [`usaspending.nt.gz`](https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/usaspending.nt.gz) | What the tables say, in USAspending's own terms: an award is a node with one property per column, and its recipient and parent are links to entity nodes. |
+| [`iof-scro.experimental.nt.gz`](https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/iof-scro.experimental.nt.gz) | The same awards in the terms of the [IOF](https://github.com/iofoundry/ontology) supply chain ontologies, with those ontologies included. **Experimental:** the [mapping](mappings/usaspending/iof-scro/README.md) covers who bought from whom and for how much, but not yet what was bought or whether it was competed, and it will change between releases. |
 
 ```python
 import gzip, urllib.request
@@ -72,18 +77,13 @@ from rdflib import Graph  # pip install rdflib
 url = "https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest"
 data = gzip.decompress(urllib.request.urlopen(f"{url}/usaspending.nt.gz").read())
 g = Graph().parse(data=data, format="nt")  # about 800,000 triples; takes a few seconds
-g.parse(f"{url}/usaspending.vocabulary.ttl")  # labels and definitions of the graph's terms
 ```
 
-The graph says what the tables say, in USAspending's own terms: an award is a node with one property
-per column, and its recipient and parent are links to entity nodes. It is not yet mapped into the
-Supply Chain Ontology. Its terms are defined in `usaspending.vocabulary.ttl`, in the same release
-(source: [mappings/usaspending/vocabulary.ttl](mappings/usaspending/vocabulary.ttl)).
-
-Releases also carry `usaspending.iof-scro.experimental.nt.gz`: the same awards mapped into the
-[IOF](https://github.com/iofoundry/ontology) supply chain ontologies. It is **experimental**. The
-[mapping](mappings/usaspending/iof-scro/README.md) covers who bought from whom and for how much, but not
-yet what was bought or whether it was competed, and it will change between releases.
+- **The graphs describe the same nodes.** An award has the same identifier in both, so loading both
+  gives each award its USAspending properties and its IOF ones.
+- **The IOF graph states facts only.** It says a recipient has a supplier role; that it is therefore
+  a *supplier* is for a reasoner to infer.
+- **Neither is mapped into the Supply Chain Ontology yet.**
 
 ## Tables
 

@@ -3,8 +3,8 @@
 Turn published tables into instance data (RDF), in two layers ([ADR-0005](../../docs/adr/0005-two-layer-lifting.md)).
 
 ```
-release tables ──► layer 1: the source in its own terms ──► layer 2: a model's terms
-  (data/dist/)       <source>.nt.gz                             <source>.<target>.nt.gz
+release tables ──► layer 1: a graph per source, in its terms ──► layer 2: a graph per model
+  (data/dist/)       <source>.nt.gz + <source>.schema.ttl      <model>.nt.gz + <model>.schema.ttl
 ```
 
 ```bash
@@ -17,7 +17,7 @@ Everything about one source is in its directory:
 
 ```
 <source>/
-  vocabulary.ttl     layer 1: the source's terms
+  schema.ttl         layer 1: the source's terms
   <table>.yml        layer 1: one mapping per published table
   <target>/          layer 2: rules into one model's terms, e.g. iof-scro/
     NN-*.rq
@@ -31,7 +31,7 @@ Each source has a directory here:
 | File | What it is |
 |---|---|
 | `<source>/<table>.yml` | A [YARRRML](https://rml.io/yarrrml/) mapping from one published table's CSV to RDF, run by [Morph-KGC](https://morph-kgc.readthedocs.io/). |
-| `<source>/vocabulary.ttl` | The classes and properties the mappings use, each with a label and definition. |
+| `<source>/schema.ttl` | The classes and properties the mappings use, each with a label and definition. |
 
 The rules:
 
@@ -52,7 +52,7 @@ release. Morph-KGC is fetched on first use into its own environment; it isn't a 
 
 ### Adding a source
 
-1. `<source>/vocabulary.ttl` and a `<source>/<table>.yml` per published table, following `usaspending/`.
+1. `<source>/schema.ttl` and a `<source>/<table>.yml` per published table, following `usaspending/`.
 2. Its namespace in `sco.namespaces`, and its tables in `ROW_CLASSES` in [`lift.py`](../lift.py).
 3. Tests like `tests/test_lift.py`.
 
@@ -75,6 +75,26 @@ The rules:
 - **Keep a small example** of real rows and what the rules make of them. Tests check it is current, uses only
   terms the target ontology declares, and gives the expected inferences.
 
-Every release includes its layer 2 graphs. A target listed in `EXPERIMENTAL` in [`lift.py`](../lift.py) is
-written as `<source>.<target>.experimental.nt.gz`, and the release notes say its mapping is incomplete and will
-change. Take a target off that list once its rules are settled enough to cite.
+### One graph per model
+
+A model graph is not a version of one source. It holds every source that has rules for that model, in one file,
+because the model is where sources meet. It uses the same node identifiers as the source graphs, so it is a second
+set of statements about the same awards and entities, and the two kinds of graph can be loaded together. It
+contains only the model's terms, and only asserted facts: a reasoner adds what follows.
+
+Models are listed in `MODELS` in [`lift.py`](../lift.py), each with its ontology file. An experimental model's
+graph is written as `<model>.experimental.nt.gz`, and the release notes say its mapping is incomplete and will
+change. Clear the flag once its rules are settled enough to cite.
+
+## Schema and graph
+
+Every graph, source or model, is written as two files:
+
+| File | Contents |
+|---|---|
+| `<name>.schema.ttl` | Classes and properties only. A source's is its `schema.ttl` here; a model's is its ontology. |
+| `<name>.nt.gz` | The schema plus all instance data, under a header that names the graph and the release and points to what it was derived from. The one file to load. |
+
+A model's ontology has unnamed nodes, which get random names each time a file is read. So that a graph is the same
+bytes on every build, `data/schemas/<model>.nt` holds each ontology with stable names. It is committed, and
+`make lift-schemas` rebuilds it (about a minute) when the ontology changes; a test fails if it is out of date.
