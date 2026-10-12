@@ -61,6 +61,24 @@ download.file(paste0(url, "/stg_usaspending__awards.parquet"), "awards.parquet",
 awards <- arrow::read_parquet("awards.parquet")
 ```
 
+**RDF** (rdflib, Oxigraph, or any triple store): each release also has the same rows as a graph,
+[`usaspending.nt.gz`](https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/usaspending.nt.gz)
+(gzipped N-Triples).
+
+```python
+import gzip, urllib.request
+from rdflib import Graph  # pip install rdflib
+
+url = "https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest"
+data = gzip.decompress(urllib.request.urlopen(f"{url}/usaspending.nt.gz").read())
+g = Graph().parse(data=data, format="nt")  # about 800,000 triples; takes a few seconds
+```
+
+The graph says what the tables say, in USAspending's own terms: an award is a node with one property
+per column, and its recipient and parent are links to entity nodes. It is not yet mapped into the
+Supply Chain Ontology. The terms are defined in
+[mappings/usaspending/vocabulary.ttl](mappings/usaspending/vocabulary.ttl).
+
 ## Tables
 
 | Table | One row per | |

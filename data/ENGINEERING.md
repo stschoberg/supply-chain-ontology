@@ -13,7 +13,7 @@ sources/<source>/fetch.py ──► sources/<source>/raw/ ──► transform/ (
 make fetch-usaspending    # E + L: download a snapshot
 make transform            # T: dbt build (models + data tests) into data/warehouse.duckdb
 make dist                 # package a release in data/dist/
-make lift                 # lift the release's tables into RDF in data/graph/
+make lift                 # re-lift data/dist/'s tables into RDF in data/graph/, to try a mapping change
 make data-docs            # regenerate DICTIONARY.md after editing a published model's YAML
 ```
 
@@ -62,6 +62,7 @@ releases the same day:
 | `<table>.parquet` | One file per published model. **The data.** Readable by any tool. |
 | `<table>.csv` | The same rows as CSV, for spreadsheets. |
 | `catalog.duckdb` | Views over those Parquet files, so DuckDB users can `attach` and see named, commented tables. Holds no data. |
+| `<source>.nt.gz` | The same rows as an RDF graph in the source's own terms, lifted by the [mappings](mappings/README.md). |
 | `raw-<source>-<snapshot>.tar` | The raw source files the tables were built from, for exact reproduction. |
 | `RELEASE_NOTES.md`, `SHA256SUMS` | How to connect, row counts, the data dictionary, provenance, checksums. |
 

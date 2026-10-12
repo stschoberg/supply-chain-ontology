@@ -11,6 +11,7 @@ A release contains:
   <model>.csv          the same rows as CSV, for spreadsheets and tools without Parquet support
   catalog.duckdb       views over those Parquet files, so `attach` gives named, commented tables;
                        holds no data
+  <source>.nt.gz       the same rows as an RDF graph in the source's own terms (data.lift)
   raw-<source>.tar     the raw snapshot each table was built from, for exact reproduction
   RELEASE_NOTES.md     how to connect, row counts, the data dictionary, provenance
   SHA256SUMS
@@ -23,6 +24,7 @@ Parquet first, then rebuilds the catalog against the release URLs.
 """
 
 import argparse
+import gzip
 import json
 import os
 import shutil
@@ -34,7 +36,7 @@ from pathlib import Path
 
 import duckdb
 
-from data import dictionary
+from data import dictionary, lift
 from sco import fetching, graph
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "stschoberg/supply-chain-ontology")
@@ -142,8 +144,9 @@ def archive_raw(source: str, snapshot: Path, out: Path) -> str:
     return name
 
 
-def release_notes(tag: str, sha: str, dirty: bool, tables, stats, raw, sources) -> str:
+def release_notes(tag: str, sha: str, dirty: bool, tables, stats, graphs, raw, sources) -> str:
     table_rows = "\n".join(f"| `{m}` | {t['rows']:,} | {t['columns']} |" for m, t in stats.items())
+    graph_rows = "\n".join(f"| `{name}` | {triples:,} |" for name, triples in graphs.items())
     source_rows = "\n".join(
         f"| {s} | {snap.name} | `{name}` |"
         for (s, snap), name in zip(sources.items(), raw, strict=True)
@@ -181,6 +184,18 @@ select * from read_parquet('{base_url}/{first}.parquet');
 
 The caveats that matter most for using this data are in the repo's
 [data README](https://github.com/{REPO}/blob/{sha}/data/README.md#what-it-can-and-cant-tell-you).
+
+## Graph
+
+The same rows as RDF (gzipped N-Triples), in each source's own terms: one node per row, one property
+per column. It is not yet mapped into the Supply Chain Ontology.
+
+| File | Triples |
+|---|---|
+{graph_rows}
+
+The terms are defined in the repo's
+[source vocabularies](https://github.com/{REPO}/tree/{sha}/data/mappings).
 
 ## Data dictionary
 
@@ -231,8 +246,12 @@ def build(args: argparse.Namespace) -> None:
         tables = dictionary.published_tables(target / "manifest.json")
         stats = export_tables(warehouse, tables, out)
 
+    graphs = {}
+    for source in sources:
+        with gzip.open(lift.lift(source, out, out)) as graph_file:
+            graphs[f"{source}.nt.gz"] = sum(1 for _ in graph_file)
     raw = [archive_raw(name, snap, out) for name, snap in sources.items()]
-    notes = release_notes(tag, sha, dirty, tables, stats, raw, sources)
+    notes = release_notes(tag, sha, dirty, tables, stats, graphs, raw, sources)
     (out / "RELEASE_NOTES.md").write_text(notes)
     write_catalog(out, out.resolve().as_posix())
 

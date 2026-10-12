@@ -4,12 +4,12 @@ Turn published tables into instance data (RDF), in two layers ([ADR-0005](../../
 
 ```
 release tables ──► layer 1: the source in its own terms ──► layer 2: SCO terms (not started)
-  (data/dist/)       data/graph/<source>.nt.gz
+  (data/dist/)       <source>.nt.gz, in every release
 ```
 
 ```bash
-make dist    # build the release tables in data/dist/
-make lift    # layer 1: write data/graph/<source>.nt.gz
+make dist    # build a release in data/dist/, including its layer 1 graph, <source>.nt.gz
+make lift    # re-lift data/dist/'s tables into data/graph/, to try a mapping change without rebuilding
 ```
 
 ## Layer 1: the source in its own terms
