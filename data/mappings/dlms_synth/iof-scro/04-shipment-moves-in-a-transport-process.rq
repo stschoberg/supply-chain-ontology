@@ -1,0 +1,32 @@
+# Between the notice and the receipt something happened that neither record is: the shipment moved.
+# That is a transport process (SCRO) with the shipment as participant, from one site to another,
+# prescribed by the purchase order. It realizes the shipment role, which SCRO says only a transport
+# process can.
+
+PREFIX dlms_synth: <https://w3id.org/sco/source/dlms_synth/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?transport a iof:TransportProcess ;
+             obo:BFO_0000057 ?shipment ;         # has participant
+             iof:startsAt ?origin ;
+             iof:endsAt ?destination ;
+             iof:prescribedBy ?order .
+  ?role obo:BFO_0000054 ?transport .             # has realization
+}
+WHERE {
+  ?notice a dlms_synth:ShipmentNotice ;
+          dlms_synth:award ?order ;
+          dlms_synth:shipFromCity ?city ;
+          dlms_synth:shipFromCountry ?country ;
+          dlms_synth:shipToActivity ?depot .
+  BIND (IRI(CONCAT(STR(?notice), "/materiel")) AS ?shipment)
+  BIND (IRI(CONCAT(STR(?notice), "/shipment-role")) AS ?role)
+  BIND (IRI(CONCAT(STR(?notice), "/transport")) AS ?transport)
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/place/",
+                   ENCODE_FOR_URI(CONCAT(?city, ", ", ?country)))) AS ?origin)
+  BIND (IRI(CONCAT(STR(?depot), "/site")) AS ?destination)
+}

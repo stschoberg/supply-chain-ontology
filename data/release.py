@@ -220,7 +220,9 @@ synthetic source's graph is invented, like its tables; its nodes are under
 `https://w3id.org/sco/data/synthetic/` and point into the real graph at the awards they were
 generated for. A
 model graph says the same things in an ontology's terms, about the same nodes, so the two can be
-loaded together. It asserts facts only; run a reasoner to get what follows from them. An
+loaded together. It asserts facts only; run a reasoner to get what follows from them. A model
+graph holds every source mapped into it, so it mixes real and synthetic statements when one of its
+sources is synthetic; the invented ones are those about nodes under `…/data/synthetic/`. An
 `experimental` model's mapping is incomplete and will change between releases, so don't cite
 results from it without saying so. The mapping rules are in the repo's
 [mappings](https://github.com/{REPO}/tree/{sha}/data/mappings).
@@ -290,10 +292,11 @@ def build(args: argparse.Namespace) -> None:
     }
     for model, path in lift.lift_models(source_graphs, out, version=tag).items():
         status = "Experimental model" if lift.MODELS[model]["experimental"] else "Model"
-        abouts[path] = (
-            f"{model}.schema.ttl",
-            f"{status}: every source mapped into `{model}` terms",
-        )
+        invented = [s for s in lift.sources_of(model) if dictionary.is_synthetic(f"{s}__")]
+        about = f"{status}: every source mapped into `{model}` terms"
+        if invented:
+            about += f". **Part synthetic:** includes `{'`, `'.join(invented)}`"
+        abouts[path] = (f"{model}.schema.ttl", about)
     graphs = {}
     for path, (schema, about) in abouts.items():
         with gzip.open(path) as graph_file:

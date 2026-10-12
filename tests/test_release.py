@@ -100,6 +100,7 @@ def test_each_graph_ships_with_its_schema_and_is_listed(dist):
         assert f"  {graph_file}\n" in sums and f"  {name}.schema.ttl\n" in sums
         assert len(Graph().parse(dist / f"{name}.schema.ttl")) > 0
     assert "Experimental model: every source mapped into `iof-scro` terms" in notes
+    assert "**Part synthetic:** includes `dlms_synth`" in notes
     assert "| **Synthetic** source: `dlms_synth` in its own terms |" in notes
 
 
@@ -124,11 +125,12 @@ def test_source_graph_defines_its_own_terms_and_names_its_release(dist):
 def test_model_graph_includes_its_schema_and_points_at_its_sources(dist):
     g = load(dist / "iof-scro.experimental.nt.gz")
     assert len(set(g.subjects(RDF.type, IOF.PurchaseOrder))) == 8
+    assert len(set(g.subjects(RDF.type, IOF.ReceivingProcess))) >= 8  # from the synthetic source
     assert str(g.value(IOF.PurchaseOrder, RDFS.label)) == "purchase order"
     assert not [p for p in g.predicates() if str(p).startswith(str(USAS))]  # IOF terms only
     (header,) = g.subjects(RDF.type, OWL.Ontology)
     derived_from = set(g.objects(header, PROV.wasDerivedFrom))
-    assert DATA["graph/usaspending"] in derived_from
+    assert {DATA["graph/usaspending"], DATA["graph/dlms_synth"]} <= derived_from
     assert any("industrialontologies.org" in str(origin) for origin in derived_from)
 
 

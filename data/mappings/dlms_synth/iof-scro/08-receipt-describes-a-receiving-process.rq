@@ -1,0 +1,28 @@
+# A receipt is a record: information that describes something that happened. What happened is a
+# receiving process (SCRO), with the shipment as participant and the depot as agent, at the depot's
+# site, prescribed by the purchase order. One row in the source, two entities here.
+
+PREFIX dlms_synth: <https://w3id.org/sco/source/dlms_synth/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?receipt a iof:DescriptiveInformationContentEntity ;
+           iof:describes ?receiving .
+  ?receiving a iof:ReceivingProcess ;
+             obo:BFO_0000057 ?shipment ;         # has participant
+             iof:occursAt ?site ;
+             iof:prescribedBy ?order .
+  ?depot iof:agentIn ?receiving .
+}
+WHERE {
+  ?receipt a dlms_synth:Receipt ;
+           dlms_synth:shipment ?notice ;
+           dlms_synth:award ?order ;
+           dlms_synth:storageActivity ?depot .
+  BIND (IRI(CONCAT(STR(?notice), "/materiel")) AS ?shipment)
+  BIND (IRI(CONCAT(STR(?receipt), "/receiving")) AS ?receiving)
+  BIND (IRI(CONCAT(STR(?depot), "/site")) AS ?site)
+}

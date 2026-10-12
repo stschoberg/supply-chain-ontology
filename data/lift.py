@@ -78,7 +78,7 @@ DERIVED_FROM = {"dlms_synth": ["usaspending"]}
 # mistakes one in a release for settled data.
 MODELS = {
     "iof-scro": {
-        "label": "Awards in the terms of IOF Core and the IOF Supply Chain Reference Ontology",
+        "label": "Every source in the terms of IOF Core and its Supply Chain Reference Ontology",
         "schema": graph.ROOT / "research" / "reference" / "iof-scro" / "build" / "iof-reasoned.ttl",
         "experimental": True,
     },
@@ -196,12 +196,17 @@ def rules(source: str, model: str) -> Path:
     return MAPPINGS_DIR / source / model
 
 
+def sources_of(model: str) -> list[str]:
+    """The sources that have rules into a model, and so appear in its graph."""
+    return [source for source in ROW_CLASSES if any(rules(source, model).glob("*.rq"))]
+
+
 def lift_models(source_graphs: dict[str, Path], out: Path, version: str = "unreleased") -> dict:
     """Layer 2: one graph per model, holding every source that has rules for it, with the model's
     schema. Returns {model: file}."""
     parsed, paths = {}, {}
     for model, config in MODELS.items():
-        sources = [s for s in source_graphs if any(rules(s, model).glob("*.rq"))]
+        sources = [source for source in sources_of(model) if source in source_graphs]
         if not sources:
             continue
         instances = set()

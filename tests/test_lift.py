@@ -90,13 +90,15 @@ def test_lifting_is_deterministic(tables, lifted, tmp_path):
 
 
 def test_each_model_gets_one_graph_across_sources(lifted, tmp_path):
-    path = lift.lift_models({"usaspending": lifted}, tmp_path)["iof-scro"]
+    sources = {"usaspending": lifted, "dlms_synth": lifted.with_name("dlms_synth.nt.gz")}
+    path = lift.lift_models(sources, tmp_path)["iof-scro"]
     assert path.name == "iof-scro.experimental.nt.gz"  # the name says it's unsettled
     assert (tmp_path / "iof-scro.schema.ttl").exists()
     first = path.read_bytes()
     iof = Graph().parse(data=gzip.decompress(first), format="nt")
     assert len(set(iof.subjects(RDF.type, IOF.PurchaseOrder))) == 8
-    assert lift.lift_models({"usaspending": lifted}, tmp_path)["iof-scro"].read_bytes() == first
+    assert len(set(iof.subjects(RDF.type, IOF.AdvanceShipmentNotice))) >= 8
+    assert lift.lift_models(sources, tmp_path)["iof-scro"].read_bytes() == first
 
 
 def test_committed_model_schemas_are_current():

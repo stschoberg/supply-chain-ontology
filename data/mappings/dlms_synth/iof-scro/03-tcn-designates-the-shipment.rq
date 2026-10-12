@@ -1,0 +1,19 @@
+# The transportation control number is an identifier (Core): an entity of its own that designates
+# the shipment and carries its text as a value.
+
+PREFIX dlms_synth: <https://w3id.org/sco/source/dlms_synth/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?identifier a iof:Identifier ;
+              iof:designates ?shipment ;
+              iof:hasTextValue ?tcn .
+}
+WHERE {
+  ?notice a dlms_synth:ShipmentNotice ; dlms_synth:tcn ?tcn .
+  BIND (IRI(CONCAT(STR(?notice), "/materiel")) AS ?shipment)
+  BIND (IRI(CONCAT(STR(?notice), "/tcn")) AS ?identifier)
+}

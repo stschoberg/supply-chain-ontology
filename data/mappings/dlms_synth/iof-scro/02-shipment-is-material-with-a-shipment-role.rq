@@ -1,0 +1,21 @@
+# What is shipped is a material entity (BFO) that has a shipment role (SCRO). It is not asserted to
+# be a shipment: SCRO defines shipment as a material entity with that role, so the reasoner infers it.
+
+PREFIX dlms_synth: <https://w3id.org/sco/source/dlms_synth/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?shipment a obo:BFO_0000040 ;                  # material entity
+            rdfs:label ?label ;
+            iof:hasRole ?role .
+  ?role a iof:ShipmentRole .
+}
+WHERE {
+  ?notice a dlms_synth:ShipmentNotice ; dlms_synth:tcn ?tcn .
+  BIND (IRI(CONCAT(STR(?notice), "/materiel")) AS ?shipment)
+  BIND (IRI(CONCAT(STR(?notice), "/shipment-role")) AS ?role)
+  BIND (CONCAT("shipment ", ?tcn) AS ?label)
+}

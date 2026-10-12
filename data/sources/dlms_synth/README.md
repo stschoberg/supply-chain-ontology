@@ -91,9 +91,8 @@ tables.
 
 ## Not done yet
 
-- Rules that take the source graph on into IOF Core + SCRO and SCO, as for USAspending. The source graph itself
-  exists: [`data/mappings/dlms_synth/`](../../mappings/dlms_synth/) lifts each table mechanically, one class per
-  kind of record.
+- Rules into IOF Core + SCRO for the records that aren't mapped yet (acceptance, discrepancies, requisitions,
+  issues), and any rules into SCO. See [the mapping](../../mappings/dlms_synth/iof-scro/README.md).
 - An items table that both sources refer to. The records name an item by NSN, or by product class when the award
   has no NSN, and nothing yet says those are the same item across tables.
 - Contract line items beyond one per award, and direct delivery to a unit instead of a depot.
