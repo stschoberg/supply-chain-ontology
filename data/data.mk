@@ -1,7 +1,7 @@
 # Data targets: fetch sources, transform with dbt, package releases. Included by the root Makefile,
 # so run them from the repo root (`make transform`); paths are relative to it.
 
-.PHONY: fetch-usaspending transform dist lift lift-examples lift-schemas data-docs
+.PHONY: fetch-usaspending transform dist lift lift-examples lift-schemas generate-dlms-synth data-docs
 
 # Newest snapshot of each source, as an absolute path so warehouse views work from any directory.
 # Override with e.g. `make transform USASPENDING_SNAPSHOT=$PWD/data/sources/usaspending/raw/2026-10-04`.
@@ -28,6 +28,11 @@ lift-examples: ## Regenerate each mapping target's example/lifted.ttl after edit
 
 lift-schemas: ## Regenerate data/schemas/ after a model's ontology changes (takes about a minute)
 	uv run python -m data.lift --schemas
+
+DLMS_SYNTH := data/sources/dlms_synth
+
+generate-dlms-synth: ## Regenerate the synthetic dlms_synth source's example tables from its five real awards
+	uv run python -m data.sources.dlms_synth.generate $(DLMS_SYNTH)/example/awards.csv $(DLMS_SYNTH)/example/tables
 
 data-docs: ## Regenerate data/DICTIONARY.md from the published models' YAML
 	uv run python -m data.dictionary
