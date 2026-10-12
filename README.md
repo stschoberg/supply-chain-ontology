@@ -126,6 +126,9 @@ through a published BFO-based supply chain stack (IOF Core and its Supply Chain 
 own ontology, to instance data. Each result is recorded as a finding that says which layer caused it: BFO, IOF, or
 us.
 
+- **Read the analysis:** [How BFO shapes IOF Core and SCRO](https://stschoberg.github.io/supply-chain-ontology/), the
+  research notebook published as a web page. It is rebuilt from `research/notebooks/stack-structure.py` on every
+  push to `main`.
 - **Method:** [research/README.md](research/README.md): the argument, how findings are attributed, metrics, and the
   principles in scope.
 - **Findings:** `research/findings/F-NNN.md`, one per result, copied from `research/findings/_template.md`.

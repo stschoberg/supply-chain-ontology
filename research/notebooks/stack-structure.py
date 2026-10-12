@@ -9,6 +9,8 @@ def _(mo):
     mo.md(r"""
     # How BFO shapes IOF Core and SCRO
 
+    > **Draft.** A working analysis for PHI 598. The interpretation has not been reviewed and may change.
+
     Traces BFO's influence down the pinned IOF stack (IOF `Release_202603`): BFO 2020 → IOF Core → SCRO. The
     method, and what counts as a finding, is in [research/README.md](../README.md).
 
