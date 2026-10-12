@@ -11,6 +11,7 @@ BFO 2020–aligned supply chain ontology. See README.md for layout and workflow.
 - `make research-build`: regenerate `research/reference/iof-scro/build/` after `make refresh-iof`. Commit the output.
 - `make lift`: lift the tables in `data/dist/` into RDF in `data/graph/` after editing `data/mappings/`.
   `make dist` already includes the graph in a release.
+- `make lift-schemas`: regenerate `data/schemas/` after `make research-build` changes the IOF ontology. Commit the output.
 - `make lift-examples`: regenerate `data/mappings/*/*/example/lifted.ttl` after editing SPARQL rules. Commit the output.
 - `make data-docs`: regenerate `data/DICTIONARY.md` after editing a published dbt model's YAML. Commit the output.
 

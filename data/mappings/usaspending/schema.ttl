@@ -7,7 +7,7 @@
 
 # The terms the mappings in this directory use: USAspending's records in their own words, one class
 # per table and one property per column.
-# This is a source vocabulary, not part of the SCO TBox. It makes no supply chain or BFO claims, and
+# This is a source's schema, not part of the SCO TBox. It makes no supply chain or BFO claims, and
 # nothing here is under a BFO class. Definitions follow data/DICTIONARY.md.
 
 <https://w3id.org/sco/source/usaspending> a owl:Ontology ;

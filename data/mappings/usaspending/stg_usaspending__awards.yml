@@ -5,7 +5,7 @@
 # interpreted here: no suppliers, products, or roles. That is layer 2's job.
 #
 # Sources are read from the working directory, which `make lift` sets to the release's tables.
-# Terms are defined in vocabulary.ttl; a test keeps the two in step.
+# Terms are defined in schema.ttl; a test keeps the two in step.
 
 prefixes:
   usas: https://w3id.org/sco/source/usaspending/

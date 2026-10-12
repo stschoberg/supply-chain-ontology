@@ -7,12 +7,13 @@ import subprocess
 
 import duckdb
 import pytest
-from rdflib import RDF, Graph
+from rdflib import OWL, RDF, RDFS, Graph
 from rdflib.namespace import SKOS
 
 from data import release
+from data.lift import PROV
 from sco import graph
-from sco.namespaces import USAS
+from sco.namespaces import DATA, IOF, USAS
 
 FIXTURE_SNAPSHOT = graph.ROOT / "tests" / "fixtures" / "usaspending"
 
@@ -39,8 +40,9 @@ def test_release_contains_parquet_catalog_raw_and_notes(dist):
         "meta_source_files.parquet",
         "meta_source_files.csv",
         "usaspending.nt.gz",
-        "usaspending.vocabulary.ttl",
-        "usaspending.iof-scro.experimental.nt.gz",
+        "usaspending.schema.ttl",
+        "iof-scro.experimental.nt.gz",
+        "iof-scro.schema.ttl",
         "catalog.duckdb",
         "RELEASE_NOTES.md",
         "SHA256SUMS",
@@ -79,18 +81,22 @@ def test_release_notes_include_the_dictionary(dist):
     assert "| `recipient_uei` | varchar |" in notes
 
 
-def test_graphs_are_listed_in_the_notes_and_checksums(dist):
+def test_each_graph_ships_with_its_schema_and_is_listed(dist):
     notes, sums = (dist / "RELEASE_NOTES.md").read_text(), (dist / "SHA256SUMS").read_text()
-    for name in ("usaspending.nt.gz", "usaspending.iof-scro.experimental.nt.gz"):
-        assert f"| `{name}` |" in notes
-        assert f"  {name}\n" in sums
-    assert "Experimental: `usaspending` mapped into `iof-scro` terms" in notes
+    pairs = {"usaspending.nt.gz": "usaspending", "iof-scro.experimental.nt.gz": "iof-scro"}
+    for graph_file, name in pairs.items():
+        assert f"| `{graph_file}` |" in notes and f"| `{name}.schema.ttl` |" in notes
+        assert f"  {graph_file}\n" in sums and f"  {name}.schema.ttl\n" in sums
+        assert len(Graph().parse(dist / f"{name}.schema.ttl")) > 0
+    assert "Experimental model: every source mapped into `iof-scro` terms" in notes
 
 
-def test_vocabulary_ships_with_the_graph_and_defines_its_terms(dist):
-    assert "  usaspending.vocabulary.ttl\n" in (dist / "SHA256SUMS").read_text()
-    g = Graph().parse(dist / "usaspending.vocabulary.ttl")
-    g.parse(data=gzip.decompress((dist / "usaspending.nt.gz").read_bytes()), format="nt")
+def load(path):
+    return Graph().parse(data=gzip.decompress(path.read_bytes()), format="nt")
+
+
+def test_source_graph_defines_its_own_terms_and_names_its_release(dist):
+    g = load(dist / "usaspending.nt.gz")
     undefined = {
         term
         for s, p, o in g
@@ -98,6 +104,20 @@ def test_vocabulary_ships_with_the_graph_and_defines_its_terms(dist):
         if term and str(term).startswith(str(USAS)) and not g.value(term, SKOS.definition)
     }
     assert not undefined
+    (header,) = g.subjects(RDF.type, OWL.Ontology)  # one ontology per file, for OWL tools
+    assert header == DATA["graph/usaspending"]
+    assert str(g.value(header, OWL.versionInfo)) == "data-test"
+
+
+def test_model_graph_includes_its_schema_and_points_at_its_sources(dist):
+    g = load(dist / "iof-scro.experimental.nt.gz")
+    assert len(set(g.subjects(RDF.type, IOF.PurchaseOrder))) == 8
+    assert str(g.value(IOF.PurchaseOrder, RDFS.label)) == "purchase order"
+    assert not [p for p in g.predicates() if str(p).startswith(str(USAS))]  # IOF terms only
+    (header,) = g.subjects(RDF.type, OWL.Ontology)
+    derived_from = set(g.objects(header, PROV.wasDerivedFrom))
+    assert DATA["graph/usaspending"] in derived_from
+    assert any("industrialontologies.org" in str(origin) for origin in derived_from)
 
 
 def test_csv_matches_parquet(dist):

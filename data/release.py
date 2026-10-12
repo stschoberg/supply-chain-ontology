@@ -11,11 +11,10 @@ A release contains:
   <model>.csv          the same rows as CSV, for spreadsheets and tools without Parquet support
   catalog.duckdb       views over those Parquet files, so `attach` gives named, commented tables;
                        holds no data
-  <source>.nt.gz       the same rows as an RDF graph in the source's own terms (data.lift)
-  <source>.vocabulary.ttl
-                       the classes and properties that graph uses, with their definitions
-  <source>.<target>.experimental.nt.gz
-                       that graph mapped into a model's terms, e.g. IOF Core + SCRO; unsettled
+  <name>.schema.ttl    for each RDF graph (data.lift): its classes and properties, no rows
+  <name>.nt.gz         and the graph itself: that schema plus all the instance data. There is one
+                       graph per source, in the source's own terms, and one per model the sources
+                       are mapped into, e.g. iof-scro (`.experimental` while unsettled)
   raw-<source>.tar     the raw snapshot each table was built from, for exact reproduction
   RELEASE_NOTES.md     how to connect, row counts, the data dictionary, provenance
   SHA256SUMS
@@ -151,7 +150,8 @@ def archive_raw(source: str, snapshot: Path, out: Path) -> str:
 def release_notes(tag: str, sha: str, dirty: bool, tables, stats, graphs, raw, sources) -> str:
     table_rows = "\n".join(f"| `{m}` | {t['rows']:,} | {t['columns']} |" for m, t in stats.items())
     graph_rows = "\n".join(
-        f"| `{name}` | {triples:,} | {about} |" for name, (triples, about) in graphs.items()
+        f"| `{name}` | {triples:,} | `{schema}` | {about} |"
+        for name, (triples, schema, about) in graphs.items()
     )
     source_rows = "\n".join(
         f"| {s} | {snap.name} | `{name}` |"
@@ -191,20 +191,29 @@ select * from read_parquet('{base_url}/{first}.parquet');
 The caveats that matter most for using this data are in the repo's
 [data README](https://github.com/{REPO}/blob/{sha}/data/README.md#what-it-can-and-cant-tell-you).
 
-## Graph
+## Graphs
 
-The same rows as RDF (gzipped N-Triples). The first graph per source is in the source's own terms:
-one node per row, one property per column. Files marked `experimental` map that graph into another
-ontology's terms. Their mappings are incomplete and will change between releases, so don't cite
-results from them without saying so.
+The same rows as RDF. Each graph is a pair of files:
 
-| File | Triples | What it is |
-|---|---|---|
+- `<name>.nt.gz` (gzipped N-Triples) is the one to load and query. It holds the schema and all the
+  instance data, under a header naming this release.
+- `<name>.schema.ttl` is the schema alone: classes and properties with their labels and
+  definitions, for reading or for opening in Protégé.
+
+| Graph | Triples | Schema | What it is |
+|---|---|---|---|
 {graph_rows}
 
-Each `<source>.vocabulary.ttl` defines the classes and properties of that source's graph. Load it
-with the graph to query what a term means. The mapping rules are in the repo's
+A source graph says what one source's tables say: one node per row, one property per column. A
+model graph says the same things in an ontology's terms, about the same nodes, so the two can be
+loaded together. It asserts facts only; run a reasoner to get what follows from them. An
+`experimental` model's mapping is incomplete and will change between releases, so don't cite
+results from it without saying so. The mapping rules are in the repo's
 [mappings](https://github.com/{REPO}/tree/{sha}/data/mappings).
+
+`iof-scro.schema.ttl` is BFO 2020 (CC BY 4.0), IOF Core, and the IOF Supply Chain Reference
+Ontology (MIT, Open Applications Group), merged and classified from
+[IOF's release](https://github.com/{REPO}/tree/{sha}/research/reference/iof-scro).
 
 ## Data dictionary
 
@@ -255,20 +264,21 @@ def build(args: argparse.Namespace) -> None:
         tables = dictionary.published_tables(target / "manifest.json")
         stats = export_tables(warehouse, tables, out)
 
+    source_graphs = {source: lift.lift(source, out, out, version=tag) for source in sources}
+    abouts = {
+        path: (f"{source}.schema.ttl", f"Source: `{source}` in its own terms")
+        for source, path in source_graphs.items()
+    }
+    for model, path in lift.lift_models(source_graphs, out, version=tag).items():
+        status = "Experimental model" if lift.MODELS[model]["experimental"] else "Model"
+        abouts[path] = (
+            f"{model}.schema.ttl",
+            f"{status}: every source mapped into `{model}` terms",
+        )
     graphs = {}
-    for source in sources:
-        source_graph = lift.lift(source, out, out)
-        vocabulary = f"{source}.vocabulary.ttl"
-        shutil.copy(lift.MAPPINGS_DIR / source / "vocabulary.ttl", out / vocabulary)
-        abouts = {source_graph: f"`{source}` in its own terms, which `{vocabulary}` defines"}
-        for target, path in lift.lift_targets(source, source_graph, out).items():
-            abouts[path] = (
-                f"Experimental: `{source}` mapped into `{target}` terms by "
-                f"[these rules](https://github.com/{REPO}/tree/{sha}/data/mappings/{source}/{target})"
-            )
-        for path, about in abouts.items():
-            with gzip.open(path) as graph_file:
-                graphs[path.name] = (sum(1 for _ in graph_file), about)
+    for path, (schema, about) in abouts.items():
+        with gzip.open(path) as graph_file:
+            graphs[path.name] = (sum(1 for _ in graph_file), schema, about)
     raw = [archive_raw(name, snap, out) for name, snap in sources.items()]
     notes = release_notes(tag, sha, dirty, tables, stats, graphs, raw, sources)
     (out / "RELEASE_NOTES.md").write_text(notes)

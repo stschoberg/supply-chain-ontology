@@ -7,11 +7,10 @@ in [the research method](../../../../research/README.md), not our own ontology, 
 [ADR-0001](../../../../docs/adr/0001-mid-level-ontology.md).
 
 It is a first trial. Product codes, competition data, and dates are not mapped yet (see below). Each data release
-includes the resulting graph as `usaspending.iof-scro.experimental.nt.gz`, named that way because the rules will
-change.
+includes the resulting graph as `iof-scro.experimental.nt.gz`, named that way because the rules will change.
 
 ```bash
-make lift             # data/graph/usaspending.iof-scro.experimental.nt.gz, from the tables in data/dist/
+make lift             # data/graph/iof-scro.experimental.nt.gz, from the tables in data/dist/
 make lift-examples    # example/source.nt → example/lifted.ttl, after editing a rule
 ```
 
