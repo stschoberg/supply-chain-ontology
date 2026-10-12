@@ -113,11 +113,49 @@ from the two BFO-based models. That's also when the `models/` layout change happ
 - **Our own scenarios:** we wrote them, so they may favor whatever we already believed. Real data is the check.
 - **Hindsight:** predictions written after looking aren't predictions. Each finding dates its prediction.
 
+## Tools
+
+Nothing here is custom ontology code. A build step derives tables from the pinned release with standard tools, a
+small module loads them, and the notebooks query them. Anything that could change a finding stays visible in a
+notebook, not in the module.
+
+| Tool | What it does here |
+|------|-------------------|
+| [ROBOT](https://robot.obolibrary.org) | The OWL command-line tool the ontology workflow already uses. Every build output comes from one of its commands (below). |
+| HermiT | The reasoner ROBOT runs. It works out what follows from the axioms, e.g. that a shipment is a traceable resource unit. |
+| Docker | Runs ROBOT when there's no local Java. Only needed to rebuild. |
+| [marimo](https://marimo.io) | The notebooks: plain Python files, re-run reactively. |
+| `sco.iof_stack` | Our only code here: loads the build outputs into DataFrames (`iof_stack.load()`). It shapes tables; it does no reasoning and answers no question. |
+| pandas, SPARQL (rdflib) | How the notebooks query those tables. |
+| [Protégé](https://protege.stanford.edu) | Optional. Browse the stack and click "?" on any inferred fact to see why it holds. |
+
+```
+reference/iof-scro/*.rdf   the pinned release
+   │   make research-build     ROBOT, about a minute; outputs are committed
+   ├── robot merge + reason ──► build/iof-reasoned.ttl      the stack with inferred superclasses written out
+   ├── robot export ──────────► build/classes.tsv           one row per class: layer, parents, axioms, definitions
+   │                            build/properties.tsv        one row per property: layer, parent, domain, range
+   └── robot measure ─────────► build/measure-*.tsv         axiom counts by type, per layer
+   ▼
+sco.iof_stack.load()       the build outputs as DataFrames, plus `ancestors` from SPARQL over the reasoned stack
+   ▼
+notebooks/*.py             the analysis: filters, comparisons, interpretation
+```
+
+**Layer** comes from IOF itself. Every IOF term has an `rdfs:isDefinedBy` tag naming Core or SCRO; `robot export`
+puts it in the tables.
+
+CI rebuilds and fails if the committed outputs are stale.
+
+**Not built yet: justifications.** `robot explain` lists the minimal sets of axioms behind an inference and tags
+each axiom with its source ontology, which would make [attribution](#attribution) checkable for whatever OWL
+enforces. The notebooks describe what the ontologies do; they do not yet show which layer forced it.
+
 ## Workflow
 
 1. Pick a principle in scope, and write its prediction in the table above if it isn't there.
-2. Explore in a [marimo](https://marimo.io) notebook under `notebooks/`: `uv run marimo edit research/notebooks/<name>.py`.
-   Notebooks are plain Python files, and `make test` runs each one top to bottom.
+2. Explore in a notebook under `notebooks/`: `uv run marimo edit research/notebooks/<name>.py`. `make test` runs
+   each notebook top to bottom.
 3. Record each result as `findings/F-NNN.md`, copied from `findings/_template.md`. Link the notebook section that
    backs it.
 4. If a finding bears on a CQ or an open ADR, list it in `informs:`. Don't resolve the ADR in the finding; raise it.
