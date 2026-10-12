@@ -15,7 +15,8 @@ models:
       +materialized: view
     marts:
       +materialized: table
-    # A generated source: synthetic DoD logistics records derived from the awards. Not published yet.
+    # A generated source: synthetic DoD logistics records derived from the awards. Its tables are
+    # published (tagged in their YAML); the int_ views behind them are not.
     dlms_synth:
       +materialized: table
     meta:

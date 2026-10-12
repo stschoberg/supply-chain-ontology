@@ -14,7 +14,8 @@ BFO 2020–aligned supply chain ontology. See README.md for layout and workflow.
 - `make lift-schemas`: regenerate `data/schemas/` after `make research-build` changes the IOF ontology. Commit the output.
 - `make lift-examples`: regenerate `data/mappings/*/*/example/lifted.ttl` after editing SPARQL rules. Commit the output.
 - `dlms_synth__*` tables are a generated source: `make transform` derives them from the awards, in
-  `data/transform/models/dlms_synth/`. Everything in them is invented; keep them out of the real tables and graphs.
+  `data/transform/models/dlms_synth/`. Everything in them is invented. They are published, so every table's
+  description must start with "Synthetic" and every row must have `synthetic = true`.
 - `make data-docs`: regenerate `data/DICTIONARY.md` after editing a published dbt model's YAML. Commit the output.
 
 ## Rules

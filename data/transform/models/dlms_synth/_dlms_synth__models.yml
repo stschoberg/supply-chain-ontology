@@ -1,96 +1,397 @@
 version: 2
 
 # dlms_synth is a generated source: synthetic DoD logistics records invented for real awards, one
-# table per DLMS transaction. See data/sources/dlms_synth/README.md. Not published yet, so the tables
-# have tests here but no contracts or column descriptions.
+# table per DLMS transaction. See data/sources/dlms_synth/README.md. Every description starts with
+# "Synthetic", because descriptions travel with the tables into the dictionary, the Parquet files,
+# and the DuckDB catalog.
 
 models:
   - name: dlms_synth__activities
-    description: The DoD activities the records name. Real names, invented codes.
+    description: "Synthetic: invented, not a record of anything that happened. The DoD activities the other `dlms_synth__` tables name, one row per activity. The names are real organizations; the codes are invented."
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: activity_code
-        data_tests: [unique, not_null]
+        description: "Code shaped like a DoD Activity Address Code: six characters. Invented, and starts with `Z` so it can't be taken for a real one."
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+      - name: name
+        description: "The activity's real name: a DLA distribution center, an awarding agency, or the Defense Contract Management Agency."
+        data_type: varchar
+      - name: synthetic
+        description: "Always true. Every value in this table that is not copied from the award is invented."
+        data_type: boolean
 
   - name: dlms_synth__due_ins
-    description: DLMS 527D. What a depot is told to expect from a purchase, one row per award that bought something.
+    description: "Synthetic: invented, not a record of anything that happened. What a depot is told to expect from a purchase, one row per real award with a positive obligated amount. Shaped on DLMS 527D, Pre-positioned Materiel Receipt (PMR) and Due-in Actions."
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: award_key
+        description: "The real award the record follows from (`stg_usaspending__awards.award_key`)."
+        data_type: varchar
         data_tests:
           - unique
           - not_null
           - relationships:
               arguments: {to: ref('stg_usaspending__awards'), field: award_key}
+      - name: piid
+        description: "The real award's contract or order number."
+        data_type: varchar
+      - name: clin
+        description: "Contract line item number. Always `0001`: every award is treated as one line."
+        data_type: varchar
+      - name: nsn
+        description: "The item's National Stock Number, when the real award has one; otherwise null."
+        data_type: varchar
+      - name: psc
+        description: "The real award's Product and Service Code, the only item identity most records have."
+        data_type: varchar
+      - name: unit_of_issue
+        description: "Unit the quantity is counted in. Always `EA` (each)."
+        data_type: varchar
       - name: storage_activity
-        data_tests: &is_an_activity
+        description: "Code of the DoD activity expecting the materiel: a DLA distribution center (see `dlms_synth__activities`). Invented; not a real DoDAAC."
+        data_type: varchar
+        data_tests:
           - not_null
           - relationships:
               arguments: {to: ref('dlms_synth__activities'), field: activity_code}
+      - name: supplier_cage
+        description: "The real supplier's Commercial and Government Entity code."
+        data_type: varchar
+      - name: quantity_due
+        description: "Units the purchase is taken to have bought: the real obligated amount divided by an invented unit price."
+        data_type: integer
+      - name: estimated_delivery_date
+        description: "When the materiel is due: the real award's `performance_end_date`."
+        data_type: date
+      - name: synthetic
+        description: "Always true. Every value in this table that is not copied from the award is invented."
+        data_type: boolean
 
   - name: dlms_synth__shipment_notices
-    description: DLMS 856P. One row per shipment a supplier sent, identified by its transportation control number.
+    description: "Synthetic: invented, not a record of anything that happened. A supplier's notice that a shipment has left, one row per invented shipment; each purchase ships in one or two. Shaped on DLMS 856P, Procurement Advance Shipment Notice (ASN)."
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: tcn
-        data_tests: [unique, not_null]
+        description: "Transportation control number of the shipment: 17 characters, invented."
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
       - name: award_key
+        description: "The real award the record follows from (`stg_usaspending__awards.award_key`)."
+        data_type: varchar
         data_tests:
           - not_null
           - relationships:
               arguments: {to: ref('dlms_synth__due_ins'), field: award_key}
+      - name: piid
+        description: "The real award's contract or order number."
+        data_type: varchar
+      - name: clin
+        description: "Contract line item number. Always `0001`: every award is treated as one line."
+        data_type: varchar
+      - name: shipment_number
+        description: "1 or 2: which of the purchase's shipments this is."
+        data_type: integer
+      - name: supplier_cage
+        description: "The real supplier's Commercial and Government Entity code."
+        data_type: varchar
+      - name: ship_from_city
+        description: "City the shipment leaves from: the real award's place of performance, or the supplier's address."
+        data_type: varchar
+      - name: ship_from_country
+        description: "Country the shipment leaves from, from the same real fields."
+        data_type: varchar
       - name: ship_to_activity
-        data_tests: *is_an_activity
+        description: "Code of the DoD activity the shipment is sent to: a DLA distribution center (see `dlms_synth__activities`). Invented; not a real DoDAAC."
+        data_type: varchar
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__activities'), field: activity_code}
+      - name: quantity_shipped
+        description: "Units in the shipment."
+        data_type: integer
+      - name: ship_date
+        description: "Day the shipment left: between halfway through the real period of performance and a little after its end."
+        data_type: date
+      - name: acceptance_point
+        description: "`ORIGIN` if the government accepts the goods before they ship, `DESTINATION` if at the depot."
+        data_type: varchar
+      - name: synthetic
+        description: "Always true. Every value in this table that is not copied from the award is invented."
+        data_type: boolean
 
   - name: dlms_synth__acceptance_reports
-    description: DLMS 861P. The government's acceptance of each shipment.
+    description: "Synthetic: invented, not a record of anything that happened. The government's acceptance of a shipment's goods, one row per shipment. Shaped on DLMS 861P, Procurement Acceptance Report."
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: tcn
-        data_tests: &is_a_shipment
+        description: "Transportation control number of the shipment: 17 characters, invented."
+        data_type: varchar
+        data_tests:
           - unique
           - not_null
           - relationships:
               arguments: {to: ref('dlms_synth__shipment_notices'), field: tcn}
+      - name: award_key
+        description: "The real award the record follows from (`stg_usaspending__awards.award_key`)."
+        data_type: varchar
+      - name: piid
+        description: "The real award's contract or order number."
+        data_type: varchar
+      - name: clin
+        description: "Contract line item number. Always `0001`: every award is treated as one line."
+        data_type: varchar
       - name: accepting_activity
-        data_tests: *is_an_activity
+        description: "Code of the DoD activity that accepted the goods: the Defense Contract Management Agency at origin, or the depot at destination (see `dlms_synth__activities`). Invented; not a real DoDAAC."
+        data_type: varchar
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__activities'), field: activity_code}
+      - name: quantity_accepted
+        description: "Units accepted: what was shipped when accepted at origin, what was received when accepted at the depot."
+        data_type: integer
+      - name: acceptance_date
+        description: "Day of acceptance: the day before shipping at origin, or one to five days after receipt at the depot."
+        data_type: date
+      - name: synthetic
+        description: "Always true. Every value in this table that is not copied from the award is invented."
+        data_type: boolean
 
   - name: dlms_synth__receipts
-    description: DLMS 527R. The depot's receipt of each shipment into stock.
+    description: "Synthetic: invented, not a record of anything that happened. A depot's receipt of a shipment into stock, one row per shipment. Shaped on DLMS 527R, Physical Receipt and Materiel Receipt Acknowledgement (MRA)."
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: tcn
-        data_tests: *is_a_shipment
+        description: "Transportation control number of the shipment: 17 characters, invented."
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__shipment_notices'), field: tcn}
+      - name: award_key
+        description: "The real award the record follows from (`stg_usaspending__awards.award_key`)."
+        data_type: varchar
+      - name: piid
+        description: "The real award's contract or order number."
+        data_type: varchar
+      - name: clin
+        description: "Contract line item number. Always `0001`: every award is treated as one line."
+        data_type: varchar
+      - name: nsn
+        description: "The item's National Stock Number, when the real award has one; otherwise null."
+        data_type: varchar
+      - name: psc
+        description: "The real award's Product and Service Code, the only item identity most records have."
+        data_type: varchar
+      - name: unit_of_issue
+        description: "Unit the quantity is counted in. Always `EA` (each)."
+        data_type: varchar
       - name: storage_activity
-        data_tests: *is_an_activity
+        description: "Code of the DoD activity that received the shipment (see `dlms_synth__activities`). Invented; not a real DoDAAC."
+        data_type: varchar
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__activities'), field: activity_code}
+      - name: quantity_received
+        description: "Units received. Less than `quantity_shipped` for about one shipment in ten."
+        data_type: integer
+      - name: receipt_date
+        description: "Day the shipment arrived: two to nine days after it left."
+        data_type: date
+      - name: supply_condition_code
+        description: "Condition of the materiel. Always `A`: serviceable, issuable without qualification."
+        data_type: varchar
+      - name: synthetic
+        description: "Always true. Every value in this table that is not copied from the award is invented."
+        data_type: boolean
 
   - name: dlms_synth__discrepancy_reports
-    description: DLMS 842A/W. A report for each shipment that arrived short.
+    description: "Synthetic: invented, not a record of anything that happened. A depot's report that a shipment arrived short, one row per short shipment. Shaped on DLMS 842A/W, Standard Supply Discrepancy Report (SDR) Notifications."
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: tcn
-        data_tests: *is_a_shipment
+        description: "Transportation control number of the shipment: 17 characters, invented."
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__shipment_notices'), field: tcn}
+      - name: award_key
+        description: "The real award the record follows from (`stg_usaspending__awards.award_key`)."
+        data_type: varchar
+      - name: piid
+        description: "The real award's contract or order number."
+        data_type: varchar
+      - name: clin
+        description: "Contract line item number. Always `0001`: every award is treated as one line."
+        data_type: varchar
       - name: reporting_activity
-        data_tests: *is_an_activity
+        description: "Code of the DoD activity reporting the discrepancy: the receiving depot (see `dlms_synth__activities`). Invented; not a real DoDAAC."
+        data_type: varchar
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__activities'), field: activity_code}
+      - name: report_date
+        description: "Day of the report: the day after receipt."
+        data_type: date
+      - name: discrepancy
+        description: "Kind of discrepancy. Always `SHORTAGE`."
+        data_type: varchar
+      - name: quantity_shipped
+        description: "Units the supplier's notice said were shipped."
+        data_type: integer
+      - name: quantity_received
+        description: "Units the depot received."
+        data_type: integer
+      - name: synthetic
+        description: "Always true. Every value in this table that is not copied from the award is invented."
+        data_type: boolean
 
   - name: dlms_synth__requisitions
-    description: DLMS 511R. A customer's request for an item from stock, identified by its document number.
+    description: "Synthetic: invented, not a record of anything that happened. A customer's request for an item from stock, one row per requisition. It names an item, not the purchase that stocked it. Shaped on DLMS 511R, Requisition."
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: document_number
-        data_tests: [unique, not_null]
+        description: "Document number of the requisition: 14 characters (activity code, year digit and day of year, serial), invented."
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+      - name: nsn
+        description: "The item's National Stock Number, when the real award has one; otherwise null."
+        data_type: varchar
+      - name: psc
+        description: "The real award's Product and Service Code, the only item identity most records have."
+        data_type: varchar
+      - name: unit_of_issue
+        description: "Unit the quantity is counted in. Always `EA` (each)."
+        data_type: varchar
       - name: requisitioner
-        data_tests: *is_an_activity
+        description: "Code of the DoD activity asking for the item: the agency that made the original award (see `dlms_synth__activities`). Invented; not a real DoDAAC."
+        data_type: varchar
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__activities'), field: activity_code}
+      - name: quantity_requisitioned
+        description: "Units asked for: between a fifth and four fifths of what one purchase put in stock."
+        data_type: integer
+      - name: requisition_date
+        description: "Day of the request: 10 to 90 days after the stock arrived."
+        data_type: date
+      - name: priority
+        description: "Priority designator, `01` (most urgent) to `15`."
+        data_type: varchar
+      - name: synthetic
+        description: "Always true. Every value in this table that is not copied from the award is invented."
+        data_type: boolean
 
   - name: dlms_synth__release_orders
-    description: DLMS 940R. The order telling a depot to release stock against a requisition.
+    description: "Synthetic: invented, not a record of anything that happened. The order telling a depot to release stock against a requisition, one row per requisition. Shaped on DLMS 940R, Materiel Release Order (MRO)."
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: document_number
-        data_tests: &is_a_requisition
+        description: "Document number of the requisition: 14 characters (activity code, year digit and day of year, serial), invented."
+        data_type: varchar
+        data_tests:
           - unique
           - not_null
           - relationships:
               arguments: {to: ref('dlms_synth__requisitions'), field: document_number}
+      - name: nsn
+        description: "The item's National Stock Number, when the real award has one; otherwise null."
+        data_type: varchar
+      - name: psc
+        description: "The real award's Product and Service Code, the only item identity most records have."
+        data_type: varchar
+      - name: unit_of_issue
+        description: "Unit the quantity is counted in. Always `EA` (each)."
+        data_type: varchar
       - name: storage_activity
-        data_tests: *is_an_activity
+        description: "Code of the DoD activity told to release the stock (see `dlms_synth__activities`). Invented; not a real DoDAAC."
+        data_type: varchar
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__activities'), field: activity_code}
+      - name: ship_to_activity
+        description: "Code of the DoD activity the stock is to go to: the requisitioner (see `dlms_synth__activities`). Invented; not a real DoDAAC."
+        data_type: varchar
+      - name: quantity_to_release
+        description: "Units to release: the quantity requisitioned."
+        data_type: integer
+      - name: release_date
+        description: "Day of the order: one to four days after the requisition."
+        data_type: date
+      - name: synthetic
+        description: "Always true. Every value in this table that is not copied from the award is invented."
+        data_type: boolean
 
   - name: dlms_synth__issues
-    description: DLMS 867I. The depot's issue of the stock.
+    description: "Synthetic: invented, not a record of anything that happened. A depot's issue of stock against a requisition, one row per requisition. Shaped on DLMS 867I, Issue."
+    config:
+      tags: [published]
+      contract: {enforced: true}
     columns:
       - name: document_number
-        data_tests: *is_a_requisition
+        description: "Document number of the requisition: 14 characters (activity code, year digit and day of year, serial), invented."
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__requisitions'), field: document_number}
+      - name: nsn
+        description: "The item's National Stock Number, when the real award has one; otherwise null."
+        data_type: varchar
+      - name: psc
+        description: "The real award's Product and Service Code, the only item identity most records have."
+        data_type: varchar
+      - name: unit_of_issue
+        description: "Unit the quantity is counted in. Always `EA` (each)."
+        data_type: varchar
       - name: storage_activity
-        data_tests: *is_an_activity
+        description: "Code of the DoD activity that issued the stock (see `dlms_synth__activities`). Invented; not a real DoDAAC."
+        data_type: varchar
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('dlms_synth__activities'), field: activity_code}
+      - name: quantity_issued
+        description: "Units issued: the quantity requisitioned."
+        data_type: integer
+      - name: issue_date
+        description: "Day of the issue: up to two days after the release order."
+        data_type: date
+      - name: supply_condition_code
+        description: "Condition of the materiel. Always `A`: serviceable, issuable without qualification."
+        data_type: varchar
+      - name: synthetic
+        description: "Always true. Every value in this table that is not copied from the award is invented."
+        data_type: boolean

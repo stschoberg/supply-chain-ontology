@@ -13,6 +13,9 @@ ontology must be able to answer, and test it against two kinds of instance data:
 
 - **Hand-written scenarios:** small, controlled cases where we know the right answer.
 - **Real-world data:** U.S. federal procurement records, to see whether the model holds up outside the cases we designed it for.
+  Procurement records stop at the contract, so a **synthetic** source invents the logistics that would follow
+  each real award, in the shape of the DoD's own transaction standards. It gives the ontology something
+  supply-chain-shaped to describe; it is not evidence that real data fits.
 
 Where real data maps cleanly, the ontology earns its keep. Where it doesn't, that's a finding about what
 BFO's commitments cost or buy.
@@ -31,7 +34,8 @@ workflow** supplies the model and the questions.
 ### Using the data
 
 The data is published as a **data product**: a few documented, versioned tables. Ingesting and cleaning
-stay hidden behind it. Today it holds DoD contract awards for bearings from USAspending.gov (FY2023–25).
+stay hidden behind it. Today it holds DoD contract awards for bearings from USAspending.gov (FY2023–25), and
+synthetic logistics records generated for them (`dlms_synth`).
 
 - **No install:** [open the example notebook in Colab](https://colab.research.google.com/github/stschoberg/supply-chain-ontology/blob/main/data/examples/explore.ipynb).
 - **DuckDB:**
@@ -46,8 +50,8 @@ stay hidden behind it. Today it holds DoD contract awards for bearings from USAs
 
 ### Building the data
 
-Each source has a fetcher that saves immutable raw snapshots. dbt transforms them in DuckDB, and a GitHub
-Actions workflow publishes the result as a dated release (`data-YYYY-MM-DD`).
+A fetcher saves immutable raw snapshots of USAspending. dbt transforms them in DuckDB and derives the synthetic
+source from the result, and a GitHub Actions workflow publishes it all as a dated release (`data-YYYY-MM-DD`).
 
 ```bash
 make fetch-usaspending           # download a raw snapshot

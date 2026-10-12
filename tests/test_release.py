@@ -15,6 +15,10 @@ from data.lift import PROV
 from sco import graph
 from sco.namespaces import DATA, IOF, USAS
 
+DLMS_SYNTH = [
+    "activities", "due_ins", "shipment_notices", "acceptance_reports", "receipts",
+    "discrepancy_reports", "requisitions", "release_orders", "issues",
+]  # fmt: skip
 FIXTURE_SNAPSHOT = graph.ROOT / "tests" / "fixtures" / "usaspending"
 
 
@@ -35,6 +39,7 @@ def test_release_contains_parquet_catalog_raw_and_notes(dist):
         "entities.csv",
         "stg_usaspending__awards.parquet",
         "stg_usaspending__awards.csv",
+        *[f"dlms_synth__{table}.{ext}" for table in DLMS_SYNTH for ext in ("parquet", "csv")],
         "meta_build.parquet",
         "meta_build.csv",
         "meta_source_files.parquet",
@@ -118,6 +123,24 @@ def test_model_graph_includes_its_schema_and_points_at_its_sources(dist):
     derived_from = set(g.objects(header, PROV.wasDerivedFrom))
     assert DATA["graph/usaspending"] in derived_from
     assert any("industrialontologies.org" in str(origin) for origin in derived_from)
+
+
+def test_synthetic_tables_are_marked_everywhere_a_reader_meets_them(dist):
+    notes = (dist / "RELEASE_NOTES.md").read_text()
+    assert "**Tables marked Synthetic are invented.**" in notes
+    assert notes.count("| **Synthetic** |") == len(DLMS_SYNTH)
+    # The connect examples point at real data, though the biggest tables are synthetic.
+    assert "from sco.dlms_synth__" not in notes and "dlms_synth__receipts.csv" not in notes
+    with duckdb.connect() as con:
+        con.sql(f"attach '{dist / 'catalog.duckdb'}' as sco (read_only)")
+        comments = dict(
+            con.sql(
+                "select view_name, comment from duckdb_views() where database_name = 'sco'"
+            ).fetchall()
+        )
+    for table in DLMS_SYNTH:
+        assert comments[f"dlms_synth__{table}"].startswith("Synthetic: invented")
+    assert not comments["stg_usaspending__awards"].startswith("Synthetic")
 
 
 def test_csv_matches_parquet(dist):

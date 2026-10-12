@@ -1,8 +1,13 @@
 # Data
 
-Real-world instance data for testing the ontology. Today that is one source, **USAspending.gov**: the
-Department of Defense's contract awards for bearings, published as-is (typed and deduplicated, nothing
-inferred). It is versioned, so a CQ result can name the exact data it ran on.
+Instance data for testing the ontology, from two sources:
+
+- **USAspending.gov** (real): the Department of Defense's contract awards for bearings, published as-is (typed
+  and deduplicated, nothing inferred).
+- **`dlms_synth`** (synthetic): invented DoD logistics records, such as shipments, receipts, and requisitions,
+  generated for those awards, because USAspending stops at the contract. Marked synthetic everywhere.
+
+It is versioned, so a CQ result can name the exact data it ran on. The table below describes the real data.
 
 | | |
 |---|---|
@@ -91,8 +96,14 @@ g = Graph().parse(data=data, format="nt")  # about 800,000 triples; takes a few 
 |---|---|---|
 | `stg_usaspending__awards` | Contract award (a contract or order, modifications rolled up) | The data |
 | `entities` | Organization identified by a UEI: an award's recipient or its corporate parent | Lookup for `recipient_uei` and `recipient_parent_uei` |
+| `dlms_synth__*` (nine tables) | **Synthetic.** An invented DoD logistics record: a shipment notice, receipt, acceptance, requisition, issue, and so on | Made-up data shaped like a supply chain. [What is real and what isn't](sources/dlms_synth/README.md) |
 | `meta_source_files` | Raw file the release was built from, with its checksum and the API request | Provenance |
 | `meta_build` | The release itself: tag, git commit, build time | Provenance |
+
+**Nothing in a `dlms_synth__` table happened.** USAspending has no shipments, so these tables invent what would
+follow each real award, in the shape of the DoD's own logistics transactions. They exist to give the ontology
+something supply-chain-shaped to describe. Every row has `synthetic = true`. Don't draw conclusions about real
+suppliers from them.
 
 Names say where data comes from: `stg_<source>__<thing>` is one source's records as published,
 cleaned but not reinterpreted. Tables that combine sources or reshape records into the ontology's
@@ -148,12 +159,7 @@ kinds will get plain names (`suppliers`, `products`) when they exist.
 | Source | Status |
 |---|---|
 | [USAspending.gov](sources/usaspending/README.md): federal contract awards | Published |
-| [`dlms_synth`](sources/dlms_synth/README.md): **synthetic** DoD logistics records (shipments, receipts, requisitions) invented for real awards | Built in the warehouse, not published |
-| [SAM.gov](https://sam.gov/) entity data: registrations, CAGE codes, ownership | Candidate |
-| [USGS Mineral Commodity Summaries](https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries): critical minerals by country | Candidate |
-| [UN Comtrade](https://comtradeplus.un.org/): bilateral trade flows by HS code | Candidate |
-| [BTS Freight Analysis Framework](https://www.bts.gov/faf): US freight flows | Candidate |
-| [IMF PortWatch](https://portwatch.imf.org/): port activity and chokepoint disruptions | Candidate |
+| [`dlms_synth`](sources/dlms_synth/README.md): **synthetic** DoD logistics records (shipments, receipts, requisitions) invented for real awards | Published, marked synthetic |
 
 ---
 
