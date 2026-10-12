@@ -26,6 +26,15 @@ Everything about one source is in its directory:
 
 ## Layer 1: the source in its own terms
 
+| Source | Graph | Schema |
+|---|---|---|
+| [`usaspending/`](usaspending/) | `usaspending.nt.gz`: awards and entities | `usas:` |
+| [`dlms_synth/`](dlms_synth/) | `dlms_synth.nt.gz`: **synthetic** logistics records, one class per kind of DLMS transaction | `dlms_synth:` |
+
+A synthetic source's nodes live under `https://w3id.org/sco/data/synthetic/`, so no invented statement is ever
+about a real node. Its records link out to the real awards they were generated for, which is how the two graphs
+join when loaded together.
+
 Each source has a directory here:
 
 | File | What it is |

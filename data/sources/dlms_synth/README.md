@@ -14,8 +14,8 @@ it from the staged awards, in [`transform/models/dlms_synth/`](../../transform/m
 fetcher and no raw snapshot here. The name says both things: the concepts are DLMS's, and the records are synthetic.
 
 It covers every award that bought something (a positive obligated amount). Its tables are published in each data
-release, marked synthetic in their names, their descriptions, the release notes, and every row. It is not yet lifted
-into a graph.
+release, marked synthetic in their names, their descriptions, the release notes, and every row. Its graph,
+`dlms_synth.nt.gz`, is in each release too.
 
 ## What is real and what is invented
 
@@ -91,8 +91,9 @@ tables.
 
 ## Not done yet
 
-- Mappings in `data/mappings/dlms_synth/` that lift the tables into a source graph and on into IOF Core + SCRO
-  and SCO, as for USAspending.
+- Rules that take the source graph on into IOF Core + SCRO and SCO, as for USAspending. The source graph itself
+  exists: [`data/mappings/dlms_synth/`](../../mappings/dlms_synth/) lifts each table mechanically, one class per
+  kind of record.
 - An items table that both sources refer to. The records name an item by NSN, or by product class when the award
   has no NSN, and nothing yet says those are the same item across tables.
 - Contract line items beyond one per award, and direct delivery to a unit instead of a depot.

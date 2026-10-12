@@ -216,6 +216,9 @@ The same rows as RDF. Each graph is a pair of files:
 {graph_rows}
 
 A source graph says what one source's tables say: one node per row, one property per column. A
+synthetic source's graph is invented, like its tables; its nodes are under
+`https://w3id.org/sco/data/synthetic/` and point into the real graph at the awards they were
+generated for. A
 model graph says the same things in an ontology's terms, about the same nodes, so the two can be
 loaded together. It asserts facts only; run a reasoner to get what follows from them. An
 `experimental` model's mapping is incomplete and will change between releases, so don't cite
@@ -275,9 +278,14 @@ def build(args: argparse.Namespace) -> None:
         tables = dictionary.published_tables(target / "manifest.json")
         stats = export_tables(warehouse, tables, out)
 
-    source_graphs = {source: lift.lift(source, out, out, version=tag) for source in sources}
+    # Every source with mappings, which is more than the fetched ones: some are generated.
+    source_graphs = {s: lift.lift(s, out, out, version=tag) for s in lift.ROW_CLASSES}
     abouts = {
-        path: (f"{source}.schema.ttl", f"Source: `{source}` in its own terms")
+        path: (
+            f"{source}.schema.ttl",
+            ("**Synthetic** source" if dictionary.is_synthetic(f"{source}__") else "Source")
+            + f": `{source}` in its own terms",
+        )
         for source, path in source_graphs.items()
     }
     for model, path in lift.lift_models(source_graphs, out, version=tag).items():

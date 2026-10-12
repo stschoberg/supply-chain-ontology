@@ -73,6 +73,7 @@ schema and all the data, and `<name>.schema.ttl` is the schema alone, for readin
 | Graph | What it is |
 |---|---|
 | [`usaspending.nt.gz`](https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/usaspending.nt.gz) | What the tables say, in USAspending's own terms: an award is a node with one property per column, and its recipient and parent are links to entity nodes. |
+| [`dlms_synth.nt.gz`](https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/dlms_synth.nt.gz) | **Synthetic.** The invented logistics records, in the terms of the DoD transactions they are shaped on. Its nodes are under `…/data/synthetic/` and point at the real awards they were generated for. |
 | [`iof-scro.experimental.nt.gz`](https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/iof-scro.experimental.nt.gz) | The same awards in the terms of the [IOF](https://github.com/iofoundry/ontology) supply chain ontologies, with those ontologies included. **Experimental:** the [mapping](mappings/usaspending/iof-scro/README.md) covers who bought from whom and for how much, but not yet what was bought or whether it was competed, and it will change between releases. |
 
 ```python

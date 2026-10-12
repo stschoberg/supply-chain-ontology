@@ -7,11 +7,13 @@ OBO = Namespace("http://purl.obolibrary.org/obo/")
 # Real-world instances, keyed by their identifiers, and USAspending's own terms (ADR-0005).
 DATA = Namespace("https://w3id.org/sco/data/")
 USAS = Namespace("https://w3id.org/sco/source/usaspending/")
+# The synthetic source's terms. Its instances live under DATA["synthetic/"], apart from real ones.
+DLMS_SYNTH = Namespace("https://w3id.org/sco/source/dlms_synth/")
 # IOF Core and SCRO share one namespace; the pinned release is in research/reference/iof-scro/.
 IOF = Namespace("https://spec.industrialontologies.org/ontology/construct/")
 
 # Prefixes for graphs we write.
-PREFIXES = {"sco": SCO, "obo": OBO, "d": DATA, "usas": USAS, "iof": IOF}
+PREFIXES = {"sco": SCO, "obo": OBO, "d": DATA, "usas": USAS, "dlms_synth": DLMS_SYNTH, "iof": IOF}
 
 
 class BFO:

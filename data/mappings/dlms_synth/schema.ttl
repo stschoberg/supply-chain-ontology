@@ -1,0 +1,289 @@
+@prefix dlms_synth: <https://w3id.org/sco/source/dlms_synth/> .
+@prefix usas: <https://w3id.org/sco/source/usaspending/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# The terms the mappings in this directory use: one class per dlms_synth table and one property per
+# column. Each class is a kind of DLMS transaction record. This is a source's schema, not part of the
+# SCO TBox: it makes no supply chain or BFO claims. Everything it describes is SYNTHETIC. Definitions
+# follow data/DICTIONARY.md.
+
+<https://w3id.org/sco/source/dlms_synth> a owl:Ontology ;
+    rdfs:label "dlms_synth source schema"@en ;
+    dcterms:description "Terms for the synthetic DoD logistics records in the SCO data releases: invented records, shaped on DLMS transactions, generated for real USAspending awards."@en .
+
+# ---------------------------------------------------------------- Classes, one per table
+
+dlms_synth:Activity a owl:Class ;
+    rdfs:label "activity"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. The DoD activities the other `dlms_synth__` tables name, one row per activity. The names are real organizations; the codes are invented."@en .
+
+dlms_synth:DueIn a owl:Class ;
+    rdfs:label "due in"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. What a depot is told to expect from a purchase, one row per real award with a positive obligated amount. Shaped on DLMS 527D, Pre-positioned Materiel Receipt (PMR) and Due-in Actions."@en .
+
+dlms_synth:ShipmentNotice a owl:Class ;
+    rdfs:label "shipment notice"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A supplier's notice that a shipment has left, one row per invented shipment; each purchase ships in one or two. Shaped on DLMS 856P, Procurement Advance Shipment Notice (ASN)."@en .
+
+dlms_synth:AcceptanceReport a owl:Class ;
+    rdfs:label "acceptance report"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. The government's acceptance of a shipment's goods, one row per shipment. Shaped on DLMS 861P, Procurement Acceptance Report."@en .
+
+dlms_synth:Receipt a owl:Class ;
+    rdfs:label "receipt"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A depot's receipt of a shipment into stock, one row per shipment. Shaped on DLMS 527R, Physical Receipt and Materiel Receipt Acknowledgement (MRA)."@en .
+
+dlms_synth:DiscrepancyReport a owl:Class ;
+    rdfs:label "discrepancy report"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A depot's report that a shipment arrived short, one row per short shipment. Shaped on DLMS 842A/W, Standard Supply Discrepancy Report (SDR) Notifications."@en .
+
+dlms_synth:Requisition a owl:Class ;
+    rdfs:label "requisition"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A customer's request for an item from stock, one row per requisition. It names an item, not the purchase that stocked it. Shaped on DLMS 511R, Requisition."@en .
+
+dlms_synth:ReleaseOrder a owl:Class ;
+    rdfs:label "release order"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. The order telling a depot to release stock against a requisition, one row per requisition. Shaped on DLMS 940R, Materiel Release Order (MRO)."@en .
+
+dlms_synth:Issue a owl:Class ;
+    rdfs:label "issue"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A depot's issue of stock against a requisition, one row per requisition. Shaped on DLMS 867I, Issue."@en .
+
+# ---------------------------------------------------------------- Links
+
+dlms_synth:award a owl:ObjectProperty ;
+    rdfs:range usas:Award ;
+    rdfs:label "award"@en ;
+    skos:definition "The real USAspending award the record follows from. The link out of the synthetic graph into the real one."@en .
+
+dlms_synth:storageActivity a owl:ObjectProperty ;
+    rdfs:range dlms_synth:Activity ;
+    rdfs:label "storage activity"@en ;
+    skos:definition "The DoD activity that holds the materiel as stock: a DLA distribution center."@en .
+
+dlms_synth:shipToActivity a owl:ObjectProperty ;
+    rdfs:range dlms_synth:Activity ;
+    rdfs:label "ship to activity"@en ;
+    skos:definition "The DoD activity the materiel is sent to."@en .
+
+dlms_synth:shipment a owl:ObjectProperty ;
+    rdfs:range dlms_synth:ShipmentNotice ;
+    rdfs:label "shipment"@en ;
+    skos:definition "The shipment the record is about, by its transportation control number."@en .
+
+dlms_synth:acceptingActivity a owl:ObjectProperty ;
+    rdfs:domain dlms_synth:AcceptanceReport ;
+    rdfs:range dlms_synth:Activity ;
+    rdfs:label "accepting activity"@en ;
+    skos:definition "The DoD activity that accepted the goods: the Defense Contract Management Agency at origin, or the depot at destination."@en .
+
+dlms_synth:reportingActivity a owl:ObjectProperty ;
+    rdfs:domain dlms_synth:DiscrepancyReport ;
+    rdfs:range dlms_synth:Activity ;
+    rdfs:label "reporting activity"@en ;
+    skos:definition "The DoD activity reporting the discrepancy: the receiving depot."@en .
+
+dlms_synth:requisitioner a owl:ObjectProperty ;
+    rdfs:domain dlms_synth:Requisition ;
+    rdfs:range dlms_synth:Activity ;
+    rdfs:label "requisitioner"@en ;
+    skos:definition "The DoD activity asking for the item: the agency that made the original award."@en .
+
+dlms_synth:requisition a owl:ObjectProperty ;
+    rdfs:range dlms_synth:Requisition ;
+    rdfs:label "requisition"@en ;
+    skos:definition "The requisition the record answers, by its document number."@en .
+
+# ---------------------------------------------------------------- Values
+
+dlms_synth:activityCode a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:Activity ;
+    rdfs:range xsd:string ;
+    rdfs:label "activity code"@en ;
+    skos:definition "Code shaped like a DoD Activity Address Code: six characters. Invented, and starts with `Z` so it can't be taken for a real one."@en .
+
+dlms_synth:name a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:Activity ;
+    rdfs:range xsd:string ;
+    rdfs:label "name"@en ;
+    skos:definition "The activity's real name: a DLA distribution center, an awarding agency, or the Defense Contract Management Agency."@en .
+
+dlms_synth:synthetic a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "synthetic"@en ;
+    skos:definition "Always true. Every value in this table that is not copied from the award is invented."@en .
+
+dlms_synth:piid a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "piid"@en ;
+    skos:definition "The real award's contract or order number."@en .
+
+dlms_synth:clin a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "clin"@en ;
+    skos:definition "Contract line item number. Always `0001`: every award is treated as one line."@en .
+
+dlms_synth:nsn a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "nsn"@en ;
+    skos:definition "The item's National Stock Number, when the real award has one; otherwise null."@en .
+
+dlms_synth:psc a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "psc"@en ;
+    skos:definition "The real award's Product and Service Code, the only item identity most records have."@en .
+
+dlms_synth:unitOfIssue a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "unit of issue"@en ;
+    skos:definition "Unit the quantity is counted in. Always `EA` (each)."@en .
+
+dlms_synth:supplierCage a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "supplier cage"@en ;
+    skos:definition "The real supplier's Commercial and Government Entity code."@en .
+
+dlms_synth:quantityDue a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:DueIn ;
+    rdfs:range xsd:integer ;
+    rdfs:label "quantity due"@en ;
+    skos:definition "Units the purchase is taken to have bought: the real obligated amount divided by an invented unit price."@en .
+
+dlms_synth:estimatedDeliveryDate a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:DueIn ;
+    rdfs:range xsd:date ;
+    rdfs:label "estimated delivery date"@en ;
+    skos:definition "When the materiel is due: the real award's `performance_end_date`."@en .
+
+dlms_synth:tcn a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:ShipmentNotice ;
+    rdfs:range xsd:string ;
+    rdfs:label "tcn"@en ;
+    skos:definition "Transportation control number of the shipment: 17 characters, invented."@en .
+
+dlms_synth:shipmentNumber a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:ShipmentNotice ;
+    rdfs:range xsd:integer ;
+    rdfs:label "shipment number"@en ;
+    skos:definition "1 or 2: which of the purchase's shipments this is."@en .
+
+dlms_synth:shipFromCity a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:ShipmentNotice ;
+    rdfs:range xsd:string ;
+    rdfs:label "ship from city"@en ;
+    skos:definition "City the shipment leaves from: the real award's place of performance, or the supplier's address."@en .
+
+dlms_synth:shipFromCountry a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:ShipmentNotice ;
+    rdfs:range xsd:string ;
+    rdfs:label "ship from country"@en ;
+    skos:definition "Country the shipment leaves from, from the same real fields."@en .
+
+dlms_synth:quantityShipped a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "quantity shipped"@en ;
+    skos:definition "Units in the shipment."@en .
+
+dlms_synth:shipDate a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:ShipmentNotice ;
+    rdfs:range xsd:date ;
+    rdfs:label "ship date"@en ;
+    skos:definition "Day the shipment left: between halfway through the real period of performance and a little after its end."@en .
+
+dlms_synth:acceptancePoint a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:ShipmentNotice ;
+    rdfs:range xsd:string ;
+    rdfs:label "acceptance point"@en ;
+    skos:definition "`ORIGIN` if the government accepts the goods before they ship, `DESTINATION` if at the depot."@en .
+
+dlms_synth:quantityAccepted a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:AcceptanceReport ;
+    rdfs:range xsd:integer ;
+    rdfs:label "quantity accepted"@en ;
+    skos:definition "Units accepted: what was shipped when accepted at origin, what was received when accepted at the depot."@en .
+
+dlms_synth:acceptanceDate a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:AcceptanceReport ;
+    rdfs:range xsd:date ;
+    rdfs:label "acceptance date"@en ;
+    skos:definition "Day of acceptance: the day before shipping at origin, or one to five days after receipt at the depot."@en .
+
+dlms_synth:quantityReceived a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "quantity received"@en ;
+    skos:definition "Units received. Less than `quantity_shipped` for about one shipment in ten."@en .
+
+dlms_synth:receiptDate a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:Receipt ;
+    rdfs:range xsd:date ;
+    rdfs:label "receipt date"@en ;
+    skos:definition "Day the shipment arrived: two to nine days after it left."@en .
+
+dlms_synth:supplyConditionCode a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "supply condition code"@en ;
+    skos:definition "Condition of the materiel. Always `A`: serviceable, issuable without qualification."@en .
+
+dlms_synth:reportDate a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:DiscrepancyReport ;
+    rdfs:range xsd:date ;
+    rdfs:label "report date"@en ;
+    skos:definition "Day of the report: the day after receipt."@en .
+
+dlms_synth:discrepancy a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:DiscrepancyReport ;
+    rdfs:range xsd:string ;
+    rdfs:label "discrepancy"@en ;
+    skos:definition "Kind of discrepancy. Always `SHORTAGE`."@en .
+
+dlms_synth:documentNumber a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:Requisition ;
+    rdfs:range xsd:string ;
+    rdfs:label "document number"@en ;
+    skos:definition "Document number of the requisition: 14 characters (activity code, year digit and day of year, serial), invented."@en .
+
+dlms_synth:quantityRequisitioned a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:Requisition ;
+    rdfs:range xsd:integer ;
+    rdfs:label "quantity requisitioned"@en ;
+    skos:definition "Units asked for: between a fifth and four fifths of what one purchase put in stock."@en .
+
+dlms_synth:requisitionDate a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:Requisition ;
+    rdfs:range xsd:date ;
+    rdfs:label "requisition date"@en ;
+    skos:definition "Day of the request: 10 to 90 days after the stock arrived."@en .
+
+dlms_synth:priority a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:Requisition ;
+    rdfs:range xsd:string ;
+    rdfs:label "priority"@en ;
+    skos:definition "Priority designator, `01` (most urgent) to `15`."@en .
+
+dlms_synth:quantityToRelease a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:ReleaseOrder ;
+    rdfs:range xsd:integer ;
+    rdfs:label "quantity to release"@en ;
+    skos:definition "Units to release: the quantity requisitioned."@en .
+
+dlms_synth:releaseDate a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:ReleaseOrder ;
+    rdfs:range xsd:date ;
+    rdfs:label "release date"@en ;
+    skos:definition "Day of the order: one to four days after the requisition."@en .
+
+dlms_synth:quantityIssued a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:Issue ;
+    rdfs:range xsd:integer ;
+    rdfs:label "quantity issued"@en ;
+    skos:definition "Units issued: the quantity requisitioned."@en .
+
+dlms_synth:issueDate a owl:DatatypeProperty ;
+    rdfs:domain dlms_synth:Issue ;
+    rdfs:range xsd:date ;
+    rdfs:label "issue date"@en ;
+    skos:definition "Day of the issue: up to two days after the release order."@en .

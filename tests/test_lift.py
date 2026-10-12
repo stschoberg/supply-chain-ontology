@@ -11,11 +11,11 @@ from rdflib.namespace import SKOS
 
 from data import lift, release
 from sco import graph
-from sco.namespaces import DATA, IOF, USAS
+from sco.namespaces import DATA, DLMS_SYNTH, IOF, PREFIXES, USAS
 
 FIXTURE_SNAPSHOT = graph.ROOT / "tests" / "fixtures" / "usaspending"
-MAPPINGS = sorted((lift.MAPPINGS_DIR / "usaspending").glob("*.yml"))
-SCHEMA = lift.MAPPINGS_DIR / "usaspending" / "schema.ttl"
+SOURCES = sorted(lift.ROW_CLASSES)
+MAPPINGS = sorted(m for source in SOURCES for m in (lift.MAPPINGS_DIR / source).glob("*.yml"))
 
 
 @pytest.fixture(scope="module")
@@ -104,10 +104,37 @@ def test_committed_model_schemas_are_current():
         lift.model_schema(model)  # exits if stale: run `make lift-schemas`
 
 
+def test_synthetic_source_is_lifted_apart_from_real_data_and_points_into_it(tables, g):
+    synthetic = Graph().parse(
+        data=gzip.decompress((tables / "dlms_synth.nt.gz").read_bytes()), format="nt"
+    )
+    receipts = set(synthetic.subjects(RDF.type, DLMS_SYNTH.Receipt))
+    assert len(receipts) >= 8
+    # Every invented node is under synthetic/, and none of its statements is about a real node.
+    described = {s for s in synthetic.subjects() if str(s).startswith(str(DATA))}
+    assert all(
+        str(s).startswith(str(DATA["synthetic/"])) for s in described - {DATA["graph/dlms_synth"]}
+    )
+    # Its links out land on real awards, and its links within land on rows that exist.
+    assert set(synthetic.objects(predicate=DLMS_SYNTH.award)) <= set(
+        g.subjects(RDF.type, USAS.Award)
+    )
+    shipments = set(synthetic.subjects(RDF.type, DLMS_SYNTH.ShipmentNotice))
+    assert set(synthetic.objects(predicate=DLMS_SYNTH.shipment)) <= shipments
+    activities = set(synthetic.subjects(RDF.type, DLMS_SYNTH.Activity))
+    assert set(synthetic.objects(predicate=DLMS_SYNTH.storageActivity)) <= activities
+    assert all(o.value is True for o in synthetic.objects(predicate=DLMS_SYNTH.synthetic))
+    header = DATA["graph/dlms_synth"]
+    assert "SYNTHETIC" in str(synthetic.value(header, RDFS.label))
+    assert DATA["graph/usaspending"] in set(synthetic.objects(header, lift.PROV.wasDerivedFrom))
+
+
 def test_mapping_uses_the_shared_namespaces(mapping_file):
     prefixes = yaml.safe_load(mapping_file.read_text())["prefixes"]
-    assert prefixes["usas"] == str(USAS)
-    assert prefixes["d"] == str(DATA)
+    assert mapping_file.parent.name in prefixes or "usas" in prefixes
+    for prefix, namespace in prefixes.items():
+        if prefix in PREFIXES:
+            assert namespace == str(PREFIXES[prefix]), prefix
 
 
 def test_mapping_is_one_block_covering_every_column_of_its_table(mapping_file, tables):
@@ -117,20 +144,22 @@ def test_mapping_is_one_block_covering_every_column_of_its_table(mapping_file, t
     assert columns == set(re.findall(r"\$\((\w+)\)", mapping_file.read_text()))
 
 
-def test_schema_defines_exactly_the_mapped_terms():
-    vocabulary = Graph().parse(SCHEMA)
-    mapped = {
-        USAS[term.removeprefix("usas:")]
-        for mapping_file in MAPPINGS
-        for m in yaml.safe_load(mapping_file.read_text())["mappings"].values()
-        for predicate, obj, *_ in m["po"]
-        for term in (obj if predicate == "a" else predicate,)
-    }
+@pytest.mark.parametrize("source", SOURCES)
+def test_schema_defines_exactly_the_mapped_terms(source):
+    vocabulary = Graph().parse(lift.MAPPINGS_DIR / source / "schema.ttl")
+    namespaces = {prefix: str(namespace) for prefix, namespace in PREFIXES.items()}
+    mapped = set()
+    for table in lift.ROW_CLASSES[source]:
+        mapping = yaml.safe_load((lift.MAPPINGS_DIR / source / f"{table}.yml").read_text())
+        for block in mapping["mappings"].values():
+            for predicate, obj, *_ in block["po"]:
+                prefix, _, name = (obj if predicate == "a" else predicate).partition(":")
+                mapped.add(namespaces[prefix] + name)
     defined = {
         s
         for kind in (OWL.Class, OWL.ObjectProperty, OWL.DatatypeProperty)
         for s in vocabulary.subjects(RDF.type, kind)
     }
-    assert mapped == defined
+    assert mapped == {str(term) for term in defined}
     for term in defined:
         assert vocabulary.value(term, RDFS.label) and vocabulary.value(term, SKOS.definition), term

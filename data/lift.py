@@ -43,7 +43,7 @@ from rdflib import OWL, RDF, RDFS, Graph, Literal, Namespace
 from rdflib.compare import to_canonical_graph
 
 from sco import fetching, graph
-from sco.namespaces import DATA, PREFIXES, USAS
+from sco.namespaces import DATA, DLMS_SYNTH, PREFIXES, USAS
 
 MORPH_KGC = "morph-kgc==2.10.0"
 MAPPINGS_DIR = graph.ROOT / "data" / "mappings"
@@ -53,8 +53,26 @@ GRAPH_DIR = graph.ROOT / "data" / "graph"
 PROV = Namespace("http://www.w3.org/ns/prov#")
 # Per source: each mapped table and the class its rows are lifted to. There is one mapping file per
 # table, named after it.
-ROW_CLASSES = {"usaspending": {"stg_usaspending__awards": USAS.Award, "entities": USAS.Entity}}
-SOURCE_LABELS = {"usaspending": "USAspending.gov contract awards, in the source's own terms"}
+ROW_CLASSES = {
+    "usaspending": {"stg_usaspending__awards": USAS.Award, "entities": USAS.Entity},
+    "dlms_synth": {
+        "dlms_synth__activities": DLMS_SYNTH.Activity,
+        "dlms_synth__due_ins": DLMS_SYNTH.DueIn,
+        "dlms_synth__shipment_notices": DLMS_SYNTH.ShipmentNotice,
+        "dlms_synth__acceptance_reports": DLMS_SYNTH.AcceptanceReport,
+        "dlms_synth__receipts": DLMS_SYNTH.Receipt,
+        "dlms_synth__discrepancy_reports": DLMS_SYNTH.DiscrepancyReport,
+        "dlms_synth__requisitions": DLMS_SYNTH.Requisition,
+        "dlms_synth__release_orders": DLMS_SYNTH.ReleaseOrder,
+        "dlms_synth__issues": DLMS_SYNTH.Issue,
+    },
+}
+SOURCE_LABELS = {
+    "usaspending": "USAspending.gov contract awards, in the source's own terms",
+    "dlms_synth": "SYNTHETIC DoD logistics records, invented for the USAspending awards",
+}
+# Sources generated from other sources, whose graphs theirs point into.
+DERIVED_FROM = {"dlms_synth": ["usaspending"]}
 # The models sources are mapped into. `schema` is the model's ontology as one file. An experimental
 # model's rules are incomplete and will change; its graph says so in its file name, so nobody
 # mistakes one in a release for settled data.
@@ -138,7 +156,8 @@ def lift(source: str, tables: Path, out: Path, version: str = "unreleased") -> P
     schema_file = MAPPINGS_DIR / source / "schema.ttl"
     shutil.copy(schema_file, out / f"{source}.schema.ttl")
     schema = Graph().parse(schema_file).serialize(format="nt").splitlines()
-    hydrated = hydrate(source, SOURCE_LABELS[source], version, schema, triples, [])
+    origins = [graph_iri(origin) for origin in DERIVED_FROM.get(source, [])]
+    hydrated = hydrate(source, SOURCE_LABELS[source], version, schema, triples, origins)
     return write_triples(out / f"{source}.nt.gz", hydrated)
 
 
