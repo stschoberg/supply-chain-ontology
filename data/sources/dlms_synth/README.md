@@ -6,14 +6,15 @@ the parts of a supply chain ontology that awards can't reach (shipments, receipt
 something to describe.
 
 ```bash
-make generate-dlms-synth    # example/awards.csv → example/tables/*.csv  (generate.py)
+make transform    # builds the dlms_synth__* tables with everything else, in data/warehouse.duckdb
 ```
 
-It is a source like [USAspending](../usaspending/README.md), except that it is generated, not fetched, and it is
-built from another source's rows. The name says both things: the concepts are DLMS's, and the records are synthetic.
+It is a source like [USAspending](../usaspending/README.md), except that it is generated, not fetched. dbt derives
+it from the staged awards, in [`transform/models/dlms_synth/`](../../transform/models/dlms_synth/), so there is no
+fetcher and no raw snapshot here. The name says both things: the concepts are DLMS's, and the records are synthetic.
 
-It is a draft covering the five awards used as the IOF mapping's example. It is not yet staged in dbt, published in
-a data release, or lifted into a graph.
+It covers every award that bought something (a positive obligated amount). It is not yet published in a data
+release or lifted into a graph.
 
 ## What is real and what is invented
 
@@ -40,15 +41,15 @@ Business Enterprise Architecture (the 2024 federated framework).
 | Table | DLMS transaction | End-to-end process | Step |
 |---|---|---|---|
 | *(the award, real)* | | Procure-to-Pay | Award Procurement Instrument |
-| `due_ins` | 527D, Pre-positioned Materiel Receipt (PMR) and Due-in Actions | Plan-to-Stock | Determine Source |
-| `shipment_notices` | 856P, Procurement Advance Shipment Notice (ASN) | Procure-to-Pay | Perform Receipt, Acceptance, and Return |
-| `acceptance_reports` | 861P, Procurement Acceptance Report | Procure-to-Pay | Perform Receipt, Acceptance, and Return |
-| `receipts` | 527R, Physical Receipt and Materiel Receipt Acknowledgement (MRA) | Plan-to-Stock | Receive, Accept and Warehouse Inventory |
-| `discrepancy_reports` | 842A/W, Standard Supply Discrepancy Report (SDR) Notifications | Procure-to-Pay | Perform Receipt, Acceptance, and Return |
-| `requisitions` | 511R, Requisition | Order-to-Cash | Accept Orders |
-| `release_orders` | 940R, Materiel Release Order (MRO) | Order-to-Cash | Fulfill Orders |
-| `issues` | 867I, Issue | Order-to-Cash | Fulfill Orders |
-| `activities` | *(lookup)* the DoD activities the records name | | |
+| `dlms_synth__due_ins` | 527D, Pre-positioned Materiel Receipt (PMR) and Due-in Actions | Plan-to-Stock | Determine Source |
+| `dlms_synth__shipment_notices` | 856P, Procurement Advance Shipment Notice (ASN) | Procure-to-Pay | Perform Receipt, Acceptance, and Return |
+| `dlms_synth__acceptance_reports` | 861P, Procurement Acceptance Report | Procure-to-Pay | Perform Receipt, Acceptance, and Return |
+| `dlms_synth__receipts` | 527R, Physical Receipt and Materiel Receipt Acknowledgement (MRA) | Plan-to-Stock | Receive, Accept and Warehouse Inventory |
+| `dlms_synth__discrepancy_reports` | 842A/W, Standard Supply Discrepancy Report (SDR) Notifications | Procure-to-Pay | Perform Receipt, Acceptance, and Return |
+| `dlms_synth__requisitions` | 511R, Requisition | Order-to-Cash | Accept Orders |
+| `dlms_synth__release_orders` | 940R, Materiel Release Order (MRO) | Order-to-Cash | Fulfill Orders |
+| `dlms_synth__issues` | 867I, Issue | Order-to-Cash | Fulfill Orders |
+| `dlms_synth__activities` | *(lookup)* the DoD activities the records name | | |
 
 Only each transaction's concept and main data elements are followed. The tables are not the implementation
 conventions segment by segment, and the code values (supply condition `A`, priority, acceptance point) are from
@@ -83,15 +84,17 @@ are invented; the real ones are not used.
 
 ## Reproducible
 
-Nothing is random at run time. Every invented value comes from a hash of the award's key, so the same awards always
-give the same tables, and a test fails if the committed example is stale.
+Nothing is random. Every invented value comes from a hash of the award's key and a label for what the value is
+(`draw` in [`macros/dlms_synth.sql`](../../transform/macros/dlms_synth.sql)), so the same awards always give the same
+tables.
 
 ## Not done yet
 
-- The rest of what a source has: dbt staging models (`stg_dlms_synth__<table>`), a place in data releases, and
-  mappings in `data/mappings/dlms_synth/` that lift the tables into a source graph and on into IOF Core + SCRO
+- Publishing the tables in data releases, with contracts and a place in the data dictionary.
+- Mappings in `data/mappings/dlms_synth/` that lift the tables into a source graph and on into IOF Core + SCRO
   and SCO, as for USAspending.
-- Generating for every award, not five.
+- An items table that both sources refer to. The records name an item by NSN, or by product class when the award
+  has no NSN, and nothing yet says those are the same item across tables.
 - Contract line items beyond one per award, and direct delivery to a unit instead of a depot.
 - Shipment status (856S), release confirmation (945A), and the customer's receipt acknowledgement.
 - Returns, quality deficiency reports (842P), and inventory adjustments.
