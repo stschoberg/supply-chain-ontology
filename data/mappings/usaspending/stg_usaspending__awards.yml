@@ -1,0 +1,46 @@
+# stg_usaspending__awards in the source's own terms (layer 1 of ADR-0005): YARRRML, run by `make lift`.
+#
+# Mechanical: a row is a node, every column is one property of it, and a foreign key is a link to the
+# other table's node. Deciding what is an entity happens upstream, in the dbt models. Nothing is
+# interpreted here: no suppliers, products, or roles. That is layer 2's job.
+#
+# Sources are read from the working directory, which `make lift` sets to the release's tables.
+# Terms are defined in vocabulary.ttl; a test keeps the two in step.
+
+prefixes:
+  usas: https://w3id.org/sco/source/usaspending/
+  d: https://w3id.org/sco/data/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+sources:
+  awards: [stg_usaspending__awards.csv~csv]
+
+mappings:
+  award:
+    sources: awards
+    s: d:award/$(award_key)
+    po:
+      - [a, usas:Award]
+      - [usas:awardKey, $(award_key)]
+      - [usas:piid, $(piid)]
+      - [usas:parentPiid, $(parent_piid)]
+      - [usas:recipient, d:uei/$(recipient_uei)~iri]  # foreign key to entities
+      - [usas:recipientName, $(recipient_name)]
+      - [usas:recipientParent, d:uei/$(recipient_parent_uei)~iri]  # foreign key to entities
+      - [usas:recipientParentName, $(recipient_parent_name)]
+      - [usas:cageCode, $(cage_code)]
+      - [usas:domesticOrForeignEntity, $(domestic_or_foreign_entity)]
+      - [usas:originCountry, $(origin_country)]
+      - [usas:psc, $(psc)]
+      - [usas:itemName, $(item_name)]
+      - [usas:nsn, $(nsn)]
+      - [usas:description, $(description)]
+      - [usas:dlaReferenceNumber, $(dla_reference_number)]
+      - [usas:awardingSubAgency, $(awarding_sub_agency)]
+      - [usas:totalObligatedAmount, $(total_obligated_amount), xsd:decimal]
+      - [usas:baseActionDate, $(base_action_date), xsd:date]
+      - [usas:extentCompeted, $(extent_competed)]
+      - [usas:offersReceived, $(offers_received), xsd:integer]
+      - [usas:otherThanFullAndOpenReason, $(other_than_full_and_open_reason)]
+      - [usas:lastModifiedAt, $(last_modified_at), xsd:dateTime]
+      - [usas:sourceFile, $(source_file)]

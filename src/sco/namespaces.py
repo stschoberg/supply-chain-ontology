@@ -4,6 +4,9 @@ from rdflib import Namespace
 
 SCO = Namespace("https://w3id.org/sco/")
 OBO = Namespace("http://purl.obolibrary.org/obo/")
+# Real-world instances, keyed by their identifiers, and USAspending's own terms (ADR-0005).
+DATA = Namespace("https://w3id.org/sco/data/")
+USAS = Namespace("https://w3id.org/sco/source/usaspending/")
 
 
 class BFO:

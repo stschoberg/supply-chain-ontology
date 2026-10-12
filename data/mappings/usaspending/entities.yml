@@ -1,0 +1,17 @@
+# entities in the source's own terms (layer 1 of ADR-0005). See stg_usaspending__awards.yml.
+
+prefixes:
+  usas: https://w3id.org/sco/source/usaspending/
+  d: https://w3id.org/sco/data/
+
+sources:
+  entities: [entities.csv~csv]
+
+mappings:
+  entity:
+    sources: entities
+    s: d:uei/$(uei)
+    po:
+      - [a, usas:Entity]
+      - [usas:uei, $(uei)]
+      - [usas:name, $(name)]

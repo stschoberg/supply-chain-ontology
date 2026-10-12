@@ -1,18 +1,19 @@
 # Data engineering
 
 How the [data releases](README.md) are built: extract and load real-world sources, transform them with
-dbt in DuckDB, package the published tables, and (later) map them into scenario ABoxes.
+dbt in DuckDB, package the published tables, and lift them into RDF ([mappings](mappings/README.md)).
 
 ```
 sources/<source>/fetch.py ──► sources/<source>/raw/ ──► transform/ (dbt) ──► release.py ──► GitHub release
         extract + load              snapshots             staging, meta        Parquet + catalog
-                                                               └──► mappings/ ──► scenarios/ (RDF)
+                                                               └──► mappings/ ──► graph/ (RDF)
 ```
 
 ```bash
 make fetch-usaspending    # E + L: download a snapshot
 make transform            # T: dbt build (models + data tests) into data/warehouse.duckdb
 make dist                 # package a release in data/dist/
+make lift                 # lift the release's tables into RDF in data/graph/
 make data-docs            # regenerate DICTIONARY.md after editing a published model's YAML
 ```
 
@@ -33,7 +34,9 @@ data/
   release.py                # packages published models as a release (make dist)
   warehouse.duckdb          # dbt output (gitignored)
   dist/                     # release output (gitignored)
-  mappings/                 # published tables → RDF, written to scenarios/<name>/
+  lift.py                   # runs the mappings over a release's tables (make lift)
+  mappings/<source>/        # YARRRML mapping + vocabulary: published tables → RDF (see its README)
+  graph/                    # lift output (gitignored)
 ```
 
 ## The published interface
