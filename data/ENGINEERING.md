@@ -1,7 +1,9 @@
 # Data engineering
 
-How the [data releases](README.md) are built: extract and load real-world sources, transform them with
+How the [data releases](README.md) are built: extract and load the real-world source, transform it with
 dbt in DuckDB, package the published tables, and lift them into RDF ([mappings](mappings/README.md)).
+
+The synthetic source, `dlms_synth`, has no fetcher: dbt derives it from the staged awards.
 
 ```
 sources/<source>/fetch.py ──► sources/<source>/raw/ ──► transform/ (dbt) ──► release.py ──► GitHub release
@@ -87,7 +89,8 @@ It refuses to overwrite an existing tag or to publish a build of uncommitted cod
 1. `sources/<source>/README.md` (copy the USAspending one's metadata table) and `fetch.py`, writing
    immutable snapshots with manifests.
 2. A dbt source, a `stg_<source>__<thing>` model with data tests, and a fixture-based test in `tests/`.
-3. To publish it: tag the model `published`, give it a contract with descriptions, run `make data-docs`,
+3. A generated source is named `<something>_synth`, so its tables are marked synthetic wherever they appear.
+4. To publish it: tag the model `published`, give it a contract with descriptions, run `make data-docs`,
    and add it to `SOURCES` in `release.py` and to the table list in [README.md](README.md).
 
 ## Fetching well

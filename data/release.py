@@ -148,7 +148,11 @@ def archive_raw(source: str, snapshot: Path, out: Path) -> str:
 
 
 def release_notes(tag: str, sha: str, dirty: bool, tables, stats, graphs, raw, sources) -> str:
-    table_rows = "\n".join(f"| `{m}` | {t['rows']:,} | {t['columns']} |" for m, t in stats.items())
+    table_rows = "\n".join(
+        f"| `{m}` | {t['rows']:,} | {t['columns']} | "
+        f"{'**Synthetic**' if dictionary.is_synthetic(m) else ''} |"
+        for m, t in stats.items()
+    )
     graph_rows = "\n".join(
         f"| `{name}` | {triples:,} | `{schema}` | {about} |"
         for name, (triples, schema, about) in graphs.items()
@@ -158,7 +162,8 @@ def release_notes(tag: str, sha: str, dirty: bool, tables, stats, graphs, raw, s
         for (s, snap), name in zip(sources.items(), raw, strict=True)
     )
     # The connect examples use the biggest table, which is the data rather than a lookup.
-    first = max(stats, key=lambda m: stats[m]["rows"], default="awards")
+    real = [m for m in stats if not dictionary.is_synthetic(m)]
+    first = max(real, key=lambda m: stats[m]["rows"], default="awards")
     base_url = release_url(tag)
     built = f"{datetime.now(UTC):%Y-%m-%d %H:%M UTC} from commit `{sha[:12]}`"
     if dirty:
@@ -184,11 +189,17 @@ select * from read_parquet('{base_url}/{first}.parquet');
 
 ## Tables
 
-| Table | Rows | Columns |
-|---|---|---|
+| Table | Rows | Columns | |
+|---|---|---|---|
 {table_rows}
 
-The caveats that matter most for using this data are in the repo's
+**Tables marked Synthetic are invented.** The `dlms_synth__` tables hold made-up DoD logistics
+records (shipments, receipts, requisitions) generated for the real awards, so there is something
+shaped like a supply chain to model. Nothing in them happened, including to the real suppliers they
+name. See the repo's
+[dlms_synth README](https://github.com/{REPO}/blob/{sha}/data/sources/dlms_synth/README.md).
+
+The caveats that matter most for using the real data are in the repo's
 [data README](https://github.com/{REPO}/blob/{sha}/data/README.md#what-it-can-and-cant-tell-you).
 
 ## Graphs

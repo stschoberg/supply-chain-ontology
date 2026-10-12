@@ -25,12 +25,22 @@ DICTIONARY = graph.ROOT / "data" / "DICTIONARY.md"
 Tables = dict[str, dict]
 
 
+def is_synthetic(table: str) -> bool:
+    """Whether a table belongs to a generated source, whose name ends in `_synth`."""
+    return table.partition("__")[0].endswith("_synth")
+
+
+def group(table: str) -> int:
+    """Real data first, then synthetic sources, then the meta_* tables."""
+    return 2 if table.startswith("meta_") else int(is_synthetic(table))
+
+
 def published_tables(manifest: Path) -> Tables:
-    """Published models (tag:published) from a dbt manifest, data before meta_* tables, each in name
-    order, columns in YAML order."""
+    """Published models (tag:published) from a dbt manifest: real data, then synthetic sources, then
+    meta_* tables, each in name order, columns in YAML order."""
     nodes = json.loads(manifest.read_text())["nodes"].values()
     tables, missing = {}, []
-    for node in sorted(nodes, key=lambda n: (n["alias"].startswith("meta_"), n["alias"])):
+    for node in sorted(nodes, key=lambda n: (group(n["alias"]), n["alias"])):
         if node["resource_type"] != "model" or "published" not in node["tags"]:
             continue
         name = node["alias"]

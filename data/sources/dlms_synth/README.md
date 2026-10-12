@@ -13,8 +13,9 @@ It is a source like [USAspending](../usaspending/README.md), except that it is g
 it from the staged awards, in [`transform/models/dlms_synth/`](../../transform/models/dlms_synth/), so there is no
 fetcher and no raw snapshot here. The name says both things: the concepts are DLMS's, and the records are synthetic.
 
-It covers every award that bought something (a positive obligated amount). It is not yet published in a data
-release or lifted into a graph.
+It covers every award that bought something (a positive obligated amount). Its tables are published in each data
+release, marked synthetic in their names, their descriptions, the release notes, and every row. It is not yet lifted
+into a graph.
 
 ## What is real and what is invented
 
@@ -90,7 +91,6 @@ tables.
 
 ## Not done yet
 
-- Publishing the tables in data releases, with contracts and a place in the data dictionary.
 - Mappings in `data/mappings/dlms_synth/` that lift the tables into a source graph and on into IOF Core + SCRO
   and SCO, as for USAspending.
 - An items table that both sources refer to. The records name an item by NSN, or by product class when the award

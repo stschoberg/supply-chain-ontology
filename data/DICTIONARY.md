@@ -58,6 +58,153 @@ USAspending.gov contract award summaries as published, typed and renamed, one ro
 | `last_modified_at` | timestamp | When USAspending last changed the award; the newest version wins when files overlap. |
 | `source_file` | varchar | Raw file the row came from (`<fiscal-year folder>/<csv>`), within the release's raw archive. |
 
+## dlms_synth__acceptance_reports
+
+Synthetic: invented, not a record of anything that happened. The government's acceptance of a shipment's goods, one row per shipment. Shaped on DLMS 861P, Procurement Acceptance Report.
+
+| Column | Type | Description |
+|---|---|---|
+| `tcn` | varchar | Transportation control number of the shipment: 17 characters, invented. |
+| `award_key` | varchar | The real award the record follows from (`stg_usaspending__awards.award_key`). |
+| `piid` | varchar | The real award's contract or order number. |
+| `clin` | varchar | Contract line item number. Always `0001`: every award is treated as one line. |
+| `accepting_activity` | varchar | Code of the DoD activity that accepted the goods: the Defense Contract Management Agency at origin, or the depot at destination (see `dlms_synth__activities`). Invented; not a real DoDAAC. |
+| `quantity_accepted` | integer | Units accepted: what was shipped when accepted at origin, what was received when accepted at the depot. |
+| `acceptance_date` | date | Day of acceptance: the day before shipping at origin, or one to five days after receipt at the depot. |
+| `synthetic` | boolean | Always true. Every value in this table that is not copied from the award is invented. |
+
+## dlms_synth__activities
+
+Synthetic: invented, not a record of anything that happened. The DoD activities the other `dlms_synth__` tables name, one row per activity. The names are real organizations; the codes are invented.
+
+| Column | Type | Description |
+|---|---|---|
+| `activity_code` | varchar | Code shaped like a DoD Activity Address Code: six characters. Invented, and starts with `Z` so it can't be taken for a real one. |
+| `name` | varchar | The activity's real name: a DLA distribution center, an awarding agency, or the Defense Contract Management Agency. |
+| `synthetic` | boolean | Always true. Every value in this table that is not copied from the award is invented. |
+
+## dlms_synth__discrepancy_reports
+
+Synthetic: invented, not a record of anything that happened. A depot's report that a shipment arrived short, one row per short shipment. Shaped on DLMS 842A/W, Standard Supply Discrepancy Report (SDR) Notifications.
+
+| Column | Type | Description |
+|---|---|---|
+| `tcn` | varchar | Transportation control number of the shipment: 17 characters, invented. |
+| `award_key` | varchar | The real award the record follows from (`stg_usaspending__awards.award_key`). |
+| `piid` | varchar | The real award's contract or order number. |
+| `clin` | varchar | Contract line item number. Always `0001`: every award is treated as one line. |
+| `reporting_activity` | varchar | Code of the DoD activity reporting the discrepancy: the receiving depot (see `dlms_synth__activities`). Invented; not a real DoDAAC. |
+| `report_date` | date | Day of the report: the day after receipt. |
+| `discrepancy` | varchar | Kind of discrepancy. Always `SHORTAGE`. |
+| `quantity_shipped` | integer | Units the supplier's notice said were shipped. |
+| `quantity_received` | integer | Units the depot received. |
+| `synthetic` | boolean | Always true. Every value in this table that is not copied from the award is invented. |
+
+## dlms_synth__due_ins
+
+Synthetic: invented, not a record of anything that happened. What a depot is told to expect from a purchase, one row per real award with a positive obligated amount. Shaped on DLMS 527D, Pre-positioned Materiel Receipt (PMR) and Due-in Actions.
+
+| Column | Type | Description |
+|---|---|---|
+| `award_key` | varchar | The real award the record follows from (`stg_usaspending__awards.award_key`). |
+| `piid` | varchar | The real award's contract or order number. |
+| `clin` | varchar | Contract line item number. Always `0001`: every award is treated as one line. |
+| `nsn` | varchar | The item's National Stock Number, when the real award has one; otherwise null. |
+| `psc` | varchar | The real award's Product and Service Code, the only item identity most records have. |
+| `unit_of_issue` | varchar | Unit the quantity is counted in. Always `EA` (each). |
+| `storage_activity` | varchar | Code of the DoD activity expecting the materiel: a DLA distribution center (see `dlms_synth__activities`). Invented; not a real DoDAAC. |
+| `supplier_cage` | varchar | The real supplier's Commercial and Government Entity code. |
+| `quantity_due` | integer | Units the purchase is taken to have bought: the real obligated amount divided by an invented unit price. |
+| `estimated_delivery_date` | date | When the materiel is due: the real award's `performance_end_date`. |
+| `synthetic` | boolean | Always true. Every value in this table that is not copied from the award is invented. |
+
+## dlms_synth__issues
+
+Synthetic: invented, not a record of anything that happened. A depot's issue of stock against a requisition, one row per requisition. Shaped on DLMS 867I, Issue.
+
+| Column | Type | Description |
+|---|---|---|
+| `document_number` | varchar | Document number of the requisition: 14 characters (activity code, year digit and day of year, serial), invented. |
+| `nsn` | varchar | The item's National Stock Number, when the real award has one; otherwise null. |
+| `psc` | varchar | The real award's Product and Service Code, the only item identity most records have. |
+| `unit_of_issue` | varchar | Unit the quantity is counted in. Always `EA` (each). |
+| `storage_activity` | varchar | Code of the DoD activity that issued the stock (see `dlms_synth__activities`). Invented; not a real DoDAAC. |
+| `quantity_issued` | integer | Units issued: the quantity requisitioned. |
+| `issue_date` | date | Day of the issue: up to two days after the release order. |
+| `supply_condition_code` | varchar | Condition of the materiel. Always `A`: serviceable, issuable without qualification. |
+| `synthetic` | boolean | Always true. Every value in this table that is not copied from the award is invented. |
+
+## dlms_synth__receipts
+
+Synthetic: invented, not a record of anything that happened. A depot's receipt of a shipment into stock, one row per shipment. Shaped on DLMS 527R, Physical Receipt and Materiel Receipt Acknowledgement (MRA).
+
+| Column | Type | Description |
+|---|---|---|
+| `tcn` | varchar | Transportation control number of the shipment: 17 characters, invented. |
+| `award_key` | varchar | The real award the record follows from (`stg_usaspending__awards.award_key`). |
+| `piid` | varchar | The real award's contract or order number. |
+| `clin` | varchar | Contract line item number. Always `0001`: every award is treated as one line. |
+| `nsn` | varchar | The item's National Stock Number, when the real award has one; otherwise null. |
+| `psc` | varchar | The real award's Product and Service Code, the only item identity most records have. |
+| `unit_of_issue` | varchar | Unit the quantity is counted in. Always `EA` (each). |
+| `storage_activity` | varchar | Code of the DoD activity that received the shipment (see `dlms_synth__activities`). Invented; not a real DoDAAC. |
+| `quantity_received` | integer | Units received. Less than `quantity_shipped` for about one shipment in ten. |
+| `receipt_date` | date | Day the shipment arrived: two to nine days after it left. |
+| `supply_condition_code` | varchar | Condition of the materiel. Always `A`: serviceable, issuable without qualification. |
+| `synthetic` | boolean | Always true. Every value in this table that is not copied from the award is invented. |
+
+## dlms_synth__release_orders
+
+Synthetic: invented, not a record of anything that happened. The order telling a depot to release stock against a requisition, one row per requisition. Shaped on DLMS 940R, Materiel Release Order (MRO).
+
+| Column | Type | Description |
+|---|---|---|
+| `document_number` | varchar | Document number of the requisition: 14 characters (activity code, year digit and day of year, serial), invented. |
+| `nsn` | varchar | The item's National Stock Number, when the real award has one; otherwise null. |
+| `psc` | varchar | The real award's Product and Service Code, the only item identity most records have. |
+| `unit_of_issue` | varchar | Unit the quantity is counted in. Always `EA` (each). |
+| `storage_activity` | varchar | Code of the DoD activity told to release the stock (see `dlms_synth__activities`). Invented; not a real DoDAAC. |
+| `ship_to_activity` | varchar | Code of the DoD activity the stock is to go to: the requisitioner (see `dlms_synth__activities`). Invented; not a real DoDAAC. |
+| `quantity_to_release` | integer | Units to release: the quantity requisitioned. |
+| `release_date` | date | Day of the order: one to four days after the requisition. |
+| `synthetic` | boolean | Always true. Every value in this table that is not copied from the award is invented. |
+
+## dlms_synth__requisitions
+
+Synthetic: invented, not a record of anything that happened. A customer's request for an item from stock, one row per requisition. It names an item, not the purchase that stocked it. Shaped on DLMS 511R, Requisition.
+
+| Column | Type | Description |
+|---|---|---|
+| `document_number` | varchar | Document number of the requisition: 14 characters (activity code, year digit and day of year, serial), invented. |
+| `nsn` | varchar | The item's National Stock Number, when the real award has one; otherwise null. |
+| `psc` | varchar | The real award's Product and Service Code, the only item identity most records have. |
+| `unit_of_issue` | varchar | Unit the quantity is counted in. Always `EA` (each). |
+| `requisitioner` | varchar | Code of the DoD activity asking for the item: the agency that made the original award (see `dlms_synth__activities`). Invented; not a real DoDAAC. |
+| `quantity_requisitioned` | integer | Units asked for: between a fifth and four fifths of what one purchase put in stock. |
+| `requisition_date` | date | Day of the request: 10 to 90 days after the stock arrived. |
+| `priority` | varchar | Priority designator, `01` (most urgent) to `15`. |
+| `synthetic` | boolean | Always true. Every value in this table that is not copied from the award is invented. |
+
+## dlms_synth__shipment_notices
+
+Synthetic: invented, not a record of anything that happened. A supplier's notice that a shipment has left, one row per invented shipment; each purchase ships in one or two. Shaped on DLMS 856P, Procurement Advance Shipment Notice (ASN).
+
+| Column | Type | Description |
+|---|---|---|
+| `tcn` | varchar | Transportation control number of the shipment: 17 characters, invented. |
+| `award_key` | varchar | The real award the record follows from (`stg_usaspending__awards.award_key`). |
+| `piid` | varchar | The real award's contract or order number. |
+| `clin` | varchar | Contract line item number. Always `0001`: every award is treated as one line. |
+| `shipment_number` | integer | 1 or 2: which of the purchase's shipments this is. |
+| `supplier_cage` | varchar | The real supplier's Commercial and Government Entity code. |
+| `ship_from_city` | varchar | City the shipment leaves from: the real award's place of performance, or the supplier's address. |
+| `ship_from_country` | varchar | Country the shipment leaves from, from the same real fields. |
+| `ship_to_activity` | varchar | Code of the DoD activity the shipment is sent to: a DLA distribution center (see `dlms_synth__activities`). Invented; not a real DoDAAC. |
+| `quantity_shipped` | integer | Units in the shipment. |
+| `ship_date` | date | Day the shipment left: between halfway through the real period of performance and a little after its end. |
+| `acceptance_point` | varchar | `ORIGIN` if the government accepts the goods before they ship, `DESTINATION` if at the depot. |
+| `synthetic` | boolean | Always true. Every value in this table that is not copied from the award is invented. |
+
 ## meta_build
 
 One row describing the build that produced this release.
