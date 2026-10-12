@@ -1,18 +1,19 @@
-"""The trial mapping of sample awards into IOF Core + SCRO terms (research/iof-lift/)."""
+"""The layer 2 mapping of USAspending awards into IOF Core + SCRO terms, checked on its example."""
 
 import pytest
 from rdflib import RDF, Graph
 from rdflib.compare import to_isomorphic
 
+from data import lift
 from sco import graph, iof_stack
 from sco.namespaces import DATA, IOF
 
-LIFT_DIR = graph.ROOT / "research" / "iof-lift"
+TARGET = lift.MAPPINGS_DIR / "usaspending" / "iof-scro"
 
 
 @pytest.fixture(scope="module")
 def lifted():
-    return Graph().parse(LIFT_DIR / "build" / "sample.ttl")
+    return Graph().parse(TARGET / "example" / "lifted.ttl")
 
 
 @pytest.fixture(scope="module")
@@ -25,10 +26,9 @@ def reasoned(lifted, stack):
     return graph.reason(stack + lifted)
 
 
-def test_build_is_up_to_date_with_the_rules_and_sample(lifted):
-    source = Graph().parse(LIFT_DIR / "sample" / "usaspending.nt")
-    rebuilt = graph.construct(source, LIFT_DIR / "rules")
-    assert to_isomorphic(rebuilt) == to_isomorphic(lifted), "run `make research-lift` and commit"
+def test_example_is_up_to_date_with_the_rules(lifted):
+    rebuilt = graph.construct(Graph().parse(TARGET / "example" / "source.nt"), TARGET)
+    assert to_isomorphic(rebuilt) == to_isomorphic(lifted), "run `make lift-examples` and commit"
 
 
 def test_rules_use_only_terms_the_pinned_iof_release_declares(lifted, stack):

@@ -3,13 +3,9 @@
 from __future__ import annotations
 
 import argparse
-import gzip
 import sys
-from pathlib import Path
 
-from rdflib import Graph
-
-from sco import graph, namespaces
+from sco import graph
 
 
 def cmd_query(args: argparse.Namespace) -> int:
@@ -30,20 +26,6 @@ def cmd_validate(args: argparse.Namespace) -> int:
     return rc
 
 
-def cmd_construct(args: argparse.Namespace) -> int:
-    g = Graph()
-    for path in args.inputs:
-        data = gzip.decompress(path.read_bytes()) if path.suffix == ".gz" else path.read_bytes()
-        g.parse(data=data, format="nt")
-    out = graph.construct(g, args.rules)
-    for prefix, namespace in namespaces.PREFIXES.items():
-        out.bind(prefix, namespace)
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    out.serialize(args.output, format="turtle")
-    print(f"{len(g):,} triples in, {len(out):,} out: {args.output}")
-    return 0
-
-
 def cmd_list(_: argparse.Namespace) -> int:
     print("Competency questions:", ", ".join(graph.cq_ids()))
     print("Scenarios:", ", ".join(graph.scenario_names()))
@@ -62,12 +44,6 @@ def main() -> None:
     p = sub.add_parser("validate", help="SHACL-validate scenarios")
     p.add_argument("scenarios", nargs="*")
     p.set_defaults(func=cmd_validate)
-
-    p = sub.add_parser("construct", help="map a graph into other terms with SPARQL CONSTRUCT rules")
-    p.add_argument("inputs", nargs="+", type=Path, help="N-Triples files (.nt or .nt.gz)")
-    p.add_argument("--rules", required=True, type=Path, help="directory of *.rq rules")
-    p.add_argument("--output", "-o", required=True, type=Path, help="Turtle file to write")
-    p.set_defaults(func=cmd_construct)
 
     p = sub.add_parser("list", help="list CQs and scenarios")
     p.set_defaults(func=cmd_list)

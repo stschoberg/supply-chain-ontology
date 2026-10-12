@@ -11,7 +11,7 @@ from rdflib.namespace import SKOS
 
 from data import lift, release
 from sco import graph
-from sco.namespaces import DATA, USAS
+from sco.namespaces import DATA, IOF, USAS
 
 FIXTURE_SNAPSHOT = graph.ROOT / "tests" / "fixtures" / "usaspending"
 MAPPINGS = sorted((lift.MAPPINGS_DIR / "usaspending").glob("*.yml"))
@@ -84,6 +84,14 @@ def test_values_are_typed(g):
 
 def test_lifting_is_deterministic(tables, lifted, tmp_path):
     assert lift.lift("usaspending", tables, tmp_path).read_bytes() == lifted.read_bytes()
+
+
+def test_each_target_model_gets_its_own_graph(lifted, tmp_path):
+    (path,) = lift.lift_targets("usaspending", lifted, tmp_path)
+    assert path.name == "usaspending.iof-scro.nt.gz"
+    iof = Graph().parse(data=gzip.decompress(path.read_bytes()), format="nt")
+    assert len(set(iof.subjects(RDF.type, IOF.PurchaseOrder))) == 8
+    assert lift.lift_targets("usaspending", lifted, tmp_path)[0].read_bytes() == path.read_bytes()
 
 
 def test_mapping_uses_the_shared_namespaces(mapping_file):
