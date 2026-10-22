@@ -16,12 +16,16 @@ Why:
 
 - Traceability tests BFO where it commits most: goods vs. their movement, relations over time, and wholes whose
   parts change.
-- Ameri et al. (JCISE 2022) built a traceability ontology (SCT) on BFO and SCRO for bulk grain, covering transfer
-  and transport events. Their 2023 follow-up (IDETC-CIE 2023, grain elevator to processor) adds transform,
-  sampling, observation, custody change, and ownership change events, so custody and ownership change are not an
-  open gap. What's left for us: those events in DoD records (discrete, serialized or NSN-managed items, requisitions
-  against one's own supply system, government accountability), and whether SCRO itself, not SCT, can express them.
-  Read the 2023 paper before settling this.
+- Ameri et al. built a traceability ontology (SCT) on BFO, IOF Core, and SCRO for bulk grain: transfer and
+  transport events in 2022 ([[ameriEnablingTraceabilityAgriFood2022]]), then custody change, ownership change,
+  sampling, observation, and transformation in 2023 ([[ameriAgriFoodSupplyChain2023]]). But the 2023 classes are
+  primitive: saying the custodian before differs from the one after needs interval relations BFO's OWL release
+  lacks, and re-identification is deferred because change of identity isn't formalized. What's left for us:
+  - **Accountability** as a third relation besides custody and ownership: in DoD records the government keeps
+    ownership while custody and accountability move between activities.
+  - **Re-identification**: document numbers, transportation control numbers, NSN substitutions.
+  - **Discrete, serialized items** rather than bulk grain.
+  - **Whether SCRO and IOF Core alone can express this**, since SCT isn't published.
 - The `dlms_synth` mapping already shows where SCRO runs out for DoD records: no requisition, due-in, acceptance, or
   discrepancy class, and no identity for stock issued from a shelf. See
   [its README](../data/mappings/dlms_synth/iof-scro/README.md#not-mapped-yet).
