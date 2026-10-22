@@ -5,7 +5,7 @@ commitments buy, or cost, relative to non-BFO approaches?
 
 **Read the analysis:** the notebook is published at <https://stschoberg.github.io/supply-chain-ontology/>.
 
-This folder holds the method (this file), the findings it produces (`findings/`), the notebooks that back them
+This folder holds the method (this file), where we're headed next ([PLAN.md](PLAN.md)), the findings it produces (`findings/`), the notebooks that back them
 (`notebooks/`), and the external ontologies we study (`reference/`). Modeling decisions for our own ontology
 still go in [docs/adr/](../docs/adr/); background reading goes in [docs/literature/](../docs/literature/).
 
