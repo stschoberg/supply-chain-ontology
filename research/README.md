@@ -5,9 +5,8 @@ commitments buy, or cost, relative to non-BFO approaches?
 
 **Read the analysis:** the notebook is published at <https://stschoberg.github.io/supply-chain-ontology/>.
 
-This folder holds the method (this file), where we're headed next ([PLAN.md](PLAN.md)), the findings it produces (`findings/`), the notebooks that back them
-(`notebooks/`), and the external ontologies we study (`reference/`). Modeling decisions for our own ontology
-still go in [docs/adr/](../docs/adr/); background reading goes in [docs/literature/](../docs/literature/).
+This folder holds the method (this file), the plan ([PLAN.md](PLAN.md)), findings (`findings/`), the notebooks
+that back them (`notebooks/`), and the pinned external ontologies (`reference/`).
 
 ## The argument
 
@@ -121,15 +120,8 @@ Nothing here is custom ontology code. A build step derives tables from the pinne
 small module loads them, and the notebooks query them. Anything that could change a finding stays visible in a
 notebook, not in the module.
 
-| Tool | What it does here |
-|------|-------------------|
-| [ROBOT](https://robot.obolibrary.org) | The OWL command-line tool the ontology workflow already uses. Every build output comes from one of its commands (below). |
-| HermiT | The reasoner ROBOT runs. It works out what follows from the axioms, e.g. that a shipment is a traceable resource unit. |
-| Docker | Runs ROBOT when there's no local Java. Only needed to rebuild. |
-| [marimo](https://marimo.io) | The notebooks: plain Python files, re-run reactively. |
-| `sco.iof_stack` | Our only code here: loads the build outputs into DataFrames (`iof_stack.load()`). It shapes tables; it does no reasoning and answers no question. |
-| pandas, SPARQL (rdflib) | How the notebooks query those tables. |
-| [Protégé](https://protege.stanford.edu) | Optional. Browse the stack and click "?" on any inferred fact to see why it holds. |
+[ROBOT](https://robot.obolibrary.org) (with HermiT) builds the tables, `sco.iof_stack` loads them into DataFrames
+without reasoning, and [marimo](https://marimo.io) notebooks query them with pandas and SPARQL.
 
 ```
 reference/iof-scro/*.rdf   the pinned release

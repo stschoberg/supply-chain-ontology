@@ -93,12 +93,8 @@ It refuses to overwrite an existing tag or to publish a build of uncommitted cod
 4. To publish it: tag the model `published`, give it a contract with descriptions, run `make data-docs`,
    and add it to `SOURCES` in `release.py` and to the table list in [README.md](README.md).
 
-## Fetching well
+## Fetching
 
-- **Prefer bulk downloads over search APIs.** Search APIs return fewer fields and paginate. Fetch whole
-  records and narrow them during staging.
 - **Raw files are immutable snapshots.** A refetch goes in a new snapshot directory, never over an old one.
-- **Verify what came back:** that the server applied our filters, that row counts match, and that the
-  columns we depend on exist. Fail loudly otherwise.
-- **Keep API keys in environment variables** (or a gitignored `.env`), never in the repo.
-- **Shared plumbing** (retries, User-Agent, OS certificate store, manifests) lives in `src/sco/fetching.py`.
+- **Verify what came back:** that the server applied our filters, row counts, and the columns we depend on.
+- **Shared plumbing** (retries, User-Agent, certificates, manifests) lives in `src/sco/fetching.py`.

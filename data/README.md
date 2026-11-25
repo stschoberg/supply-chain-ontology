@@ -85,11 +85,9 @@ data = gzip.decompress(urllib.request.urlopen(f"{url}/usaspending.nt.gz").read()
 g = Graph().parse(data=data, format="nt")  # about 800,000 triples; takes a few seconds
 ```
 
-- **The graphs describe the same nodes.** An award has the same identifier in both, so loading both
-  gives each award its USAspending properties and its IOF ones.
-- **The IOF graph states facts only.** It says a recipient has a supplier role; that it is therefore
-  a *supplier* is for a reasoner to infer.
-- **Neither is mapped into the Supply Chain Ontology yet.**
+The graphs share node identifiers, so they can be loaded together. The IOF graph holds asserted facts only:
+that a recipient with a supplier role is a *supplier* is for a reasoner to infer. Nothing is mapped into the
+Supply Chain Ontology yet.
 
 ## Tables
 
@@ -101,14 +99,7 @@ g = Graph().parse(data=data, format="nt")  # about 800,000 triples; takes a few 
 | `meta_source_files` | Raw file the release was built from, with its checksum and the API request | Provenance |
 | `meta_build` | The release itself: tag, git commit, build time | Provenance |
 
-**Nothing in a `dlms_synth__` table happened.** USAspending has no shipments, so these tables invent what would
-follow each real award, in the shape of the DoD's own logistics transactions. They exist to give the ontology
-something supply-chain-shaped to describe. Every row has `synthetic = true`. Don't draw conclusions about real
-suppliers from them.
-
-Names say where data comes from: `stg_<source>__<thing>` is one source's records as published,
-cleaned but not reinterpreted. Tables that combine sources or reshape records into the ontology's
-kinds will get plain names (`suppliers`, `products`) when they exist.
+**Nothing in a `dlms_synth__` table happened.** Don't draw conclusions about real suppliers from them.
 
 ## What it can and can't tell you
 
@@ -154,13 +145,6 @@ kinds will get plain names (`suppliers`, `products`) when they exist.
 - Each release's notes list its row counts, data dictionary, source snapshots, and git commit, and it
   includes the raw source files for exact reproduction.
 - Removing or retyping a column is announced in the release notes.
-
-## Sources
-
-| Source | Status |
-|---|---|
-| [USAspending.gov](sources/usaspending/README.md): federal contract awards | Published |
-| [`dlms_synth`](sources/dlms_synth/README.md): **synthetic** DoD logistics records (shipments, receipts, requisitions) invented for real awards | Published, marked synthetic |
 
 ---
 
