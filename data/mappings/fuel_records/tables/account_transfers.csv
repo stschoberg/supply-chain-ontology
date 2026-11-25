@@ -1,0 +1,4 @@
+transfer,form,dfsp,transfer_date,outgoing,incoming,tank,grade,net_gallons,follows,synthetic
+AT-001,DD Form 2920,ZA0001,2026-03-15,P-001,P-002,T1,JP8,79603,DoDM 4140.25 Vol. 9 §3.2.e; §3.5,true
+AT-001,DD Form 2920,ZA0001,2026-03-15,P-001,P-002,T2,JP8,300000,DoDM 4140.25 Vol. 9 §3.2.e; §3.5,true
+AT-001,DD Form 2920,ZA0001,2026-03-15,P-001,P-002,T4,JP8,120000,DoDM 4140.25 Vol. 9 §3.2.e; §3.5,true

@@ -22,7 +22,8 @@ A release build (`data.release`) does all of this on its own tables and ships th
 
 `--tables` is any directory holding a release's files: data/dist/ after `make dist`, or a downloaded
 release. `--examples` instead rebuilds each mapping's committed `example/lifted.ttl` from its
-`example/source.nt`. `--schemas` rebuilds data/schemas/, after a model's ontology changes.
+`example/source.nt`, and each study source's `source.nt` and readings (ADR-0006). `--schemas`
+rebuilds data/schemas/, after a model's ontology changes.
 
 Morph-KGC runs as a pinned tool in its own environment (`uv run --no-project`), as ROBOT does:
 its dependency pins conflict with this project's.
@@ -43,7 +44,7 @@ from rdflib import OWL, RDF, RDFS, Graph, Literal, Namespace
 from rdflib.compare import to_canonical_graph
 
 from sco import fetching, graph
-from sco.namespaces import DATA, DLMS_SYNTH, PREFIXES, USAS
+from sco.namespaces import DATA, DLMS_SYNTH, FUEL_RECORDS, PREFIXES, USAS
 
 MORPH_KGC = "morph-kgc==2.10.0"
 MAPPINGS_DIR = graph.ROOT / "data" / "mappings"
@@ -73,6 +74,25 @@ SOURCE_LABELS = {
 }
 # Sources generated from other sources, whose graphs theirs point into.
 DERIVED_FROM = {"dlms_synth": ["usaspending"]}
+# Study sources: hand-written tables in data/mappings/<source>/tables/, never released (ADR-0006).
+STUDY_ROW_CLASSES = {
+    "fuel_records": {
+        "activities": FUEL_RECORDS.Activity,
+        "tanks": FUEL_RECORDS.Tank,
+        "appointments": FUEL_RECORDS.Appointment,
+        "account_transfers": FUEL_RECORDS.AccountTransferEntry,
+        "certificates": FUEL_RECORDS.Certificate,
+        "certificate_sources": FUEL_RECORDS.CertificateSource,
+        "shipments": FUEL_RECORDS.Shipment,
+        "receipts": FUEL_RECORDS.Receipt,
+        "ledger_transactions": FUEL_RECORDS.LedgerEntry,
+        "additive_injections": FUEL_RECORDS.AdditiveInjection,
+        "grade_changes": FUEL_RECORDS.GradeChange,
+        "samples": FUEL_RECORDS.Sample,
+        "test_results": FUEL_RECORDS.TestResult,
+        "sales": FUEL_RECORDS.Sale,
+    },
+}
 # The models sources are mapped into. `schema` is the model's ontology as one file. An experimental
 # model's rules are incomplete and will change; its graph says so in its file name, so nobody
 # mistakes one in a release for settled data.
@@ -224,18 +244,43 @@ def lift_models(source_graphs: dict[str, Path], out: Path, version: str = "unrel
     return paths
 
 
+def lift_study(source: str) -> list[str]:
+    """Layer 1 for a study source: its hand-written tables in its own terms, as sorted N-Triples."""
+    tables = MAPPINGS_DIR / source / "tables"
+    row_classes = STUDY_ROW_CLASSES[source]
+    triples = run_mappings([MAPPINGS_DIR / source / f"{t}.yml" for t in row_classes], tables)
+    for table, row_class in row_classes.items():
+        check_rows(table, row_class, triples, tables)
+    return triples
+
+
+def readings(source: str) -> list[Path]:
+    """A study source's readings: each directory of SPARQL rules beside its tables (ADR-0006)."""
+    return sorted({rule.parent for rule in (MAPPINGS_DIR / source).glob("*/*.rq")})
+
+
+def write_turtle(g: Graph, path: Path) -> None:
+    for prefix, namespace in PREFIXES.items():
+        g.bind(prefix, namespace)
+    g.serialize(path, format="turtle")
+    print(f"  {path.relative_to(graph.ROOT)}: {len(g):,} triples")
+
+
 def build_examples() -> None:
-    """Rewrite each mapping's example/lifted.ttl from its example/source.nt."""
+    """Rewrite each study source's source.nt and readings, and each mapping's example/lifted.ttl."""
+    for source in sorted(STUDY_ROW_CLASSES):
+        path = MAPPINGS_DIR / source / "source.nt"
+        path.write_text("\n".join(lift_study(source)) + "\n")
+        print(f"  {path.relative_to(graph.ROOT)}: {path.read_text().count(chr(10)):,} triples")
+        for reading in readings(source):
+            write_turtle(graph.construct(Graph().parse(path), reading), reading / "lifted.ttl")
     for source in sorted(ROW_CLASSES):
         for model in MODELS:
             example = rules(source, model) / "example"
             if not example.exists():
                 continue
             lifted = graph.construct(Graph().parse(example / "source.nt"), rules(source, model))
-            for prefix, namespace in PREFIXES.items():
-                lifted.bind(prefix, namespace)
-            lifted.serialize(example / "lifted.ttl", format="turtle")
-            print(f"  {(example / 'lifted.ttl').relative_to(graph.ROOT)}: {len(lifted):,} triples")
+            write_turtle(lifted, example / "lifted.ttl")
 
 
 def main(argv: list[str] | None = None) -> None:

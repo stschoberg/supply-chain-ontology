@@ -1,0 +1,16 @@
+# CQ-005: Which portion does sample S-2026-0041 represent, and how much?
+#
+# What the sample was part of. How much it represents has no term in IOF or SCRO, so the query has
+# no column for it.
+
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?portion
+WHERE {
+  ?number iof:hasTextValue "S-2026-0041" ; iof:designates ?sample .
+  ?sample obo:BFO_0000176 ?whole .
+  ?whole rdfs:label ?portion .
+}

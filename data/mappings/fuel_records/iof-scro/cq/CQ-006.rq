@@ -1,0 +1,40 @@
+# CQ-006: On 2026-03-10 and on 2026-03-20, who owned, who had custody of, and who was accountable
+# for T1's contents?
+#
+# Owner: owned by, which has no time. Custody: the agent of the storage process T1's fuel takes part
+# in, which has no time either. Accountable: SCRO has no such relation. The nearest is an officer
+# acting on behalf of the DFSP that stores the fuel, whose role was gained on or before the day and
+# not lost by then: the dates are on the gain and loss processes, and the comparison is SPARQL's.
+
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?day ?relation ?agent
+WHERE {
+  VALUES ?day { "2026-03-10"^^xsd:date "2026-03-20"^^xsd:date }
+  BIND (<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> AS ?fuel)
+  {
+    ?fuel iof:ownedBy ?who .
+    BIND ("owner" AS ?relation)
+  } UNION {
+    ?storage a iof:StorageProcess ; obo:BFO_0000057 ?fuel .
+    ?who iof:agentIn ?storage .
+    BIND ("custody" AS ?relation)
+  } UNION {
+    ?storage a iof:StorageProcess ; obo:BFO_0000057 ?fuel .
+    ?dfsp iof:agentIn ?storage .
+    ?who iof:actsOnBehalfOfAtSomeTime ?dfsp ; iof:hasRole/a iof:AgentRole .
+    ?gain a iof:GainOfRole ; obo:BFO_0000057 ?who ;
+          iof:occursOn/iof:hasValueExpressionAtAllTimes/iof:hasDateTimeInstantValue ?from .
+    OPTIONAL {
+      ?loss a iof:LossOfRole ; obo:BFO_0000057 ?who ;
+            iof:occursOn/iof:hasValueExpressionAtAllTimes/iof:hasDateTimeInstantValue ?until .
+    }
+    BIND ("officer acting for the DFSP" AS ?relation)
+  }
+  ?who rdfs:label ?agent .
+  BIND (xsd:dateTime(CONCAT(STR(?day), "T00:00:00")) AS ?moment)
+  FILTER (!BOUND(?from) || (?from <= ?moment && (!BOUND(?until) || ?until > ?moment)))
+}

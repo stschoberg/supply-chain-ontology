@@ -1,0 +1,4 @@
+receipt,shipment,dfsp,tank,determination_method,opening_net_gallons,closing_net_gallons,temperature_f,api_gravity,gross_gallons,net_gallons,variance_pct,receipt_date,follows,synthetic
+R-001,ZE0600-26-F-0101-01,ZA0001,T1,receipt tank gauge,0,199640,71,42.0,200840,199640,-0.18,2026-02-04,DoDM 4140.25 Vol. 12 §5.3.k(6); Appendix 5A,true
+R-002,ZE0600-26-F-0102-01,ZA0001,T1,receipt tank gauge,199640,479220,69,42.2,280840,279580,-0.15,2026-02-06,DoDM 4140.25 Vol. 12 §5.3.k(5)(a); Appendix 5A,true
+R-003,ZA00016046J801,ZB0002,T3,calibrated receipt meter,0,398900,66,42.1,399820,398900,-0.275,2026-02-17,DoDM 4140.25 Vol. 12 §5.3.c; Appendix 5A,true

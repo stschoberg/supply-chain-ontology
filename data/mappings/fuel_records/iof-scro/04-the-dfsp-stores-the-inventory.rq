@@ -1,0 +1,21 @@
+# The DFSP is the agent of a storage process (SCRO) in which the tank's fuel participates.
+#
+# Ours: this stands in for custody, which SCRO has no term for. Like the fuel node, the storage
+# process is not dated.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?storage a iof:StorageProcess ;
+           obo:BFO_0000057 ?fuel .               # has participant at some time
+  ?dfsp iof:agentIn ?storage .
+}
+WHERE {
+  ?tank a fuel_records:Tank ; fuel_records:dfsp ?dfsp .
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?fuel)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel/storage")) AS ?storage)
+}

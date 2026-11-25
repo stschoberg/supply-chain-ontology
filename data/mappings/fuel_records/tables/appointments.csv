@@ -1,0 +1,5 @@
+person,name,role,dfsp,start_date,end_date,follows,synthetic
+P-001,Responsible Officer 1,responsible officer,ZA0001,2025-09-01,2026-03-15,DoDM 4140.25 Vol. 9 §3.1-3.2,true
+P-002,Responsible Officer 2,responsible officer,ZA0001,2026-03-15,,DoDM 4140.25 Vol. 9 §3.1-3.2,true
+P-003,Terminal Manager 1,terminal manager,ZB0002,2025-06-01,,DoDM 4140.25 Vol. 9 §3.1; §3.3,true
+P-004,Property Administrator 1,property administrator,ZB0002,2025-06-01,,DoDM 4140.25 Vol. 9 §3.1; §3.7,true

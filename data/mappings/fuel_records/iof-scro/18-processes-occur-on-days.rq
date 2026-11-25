@@ -1,0 +1,48 @@
+# A process occurs on a temporal region (BFO) whose value is a value expression (Core), as for the
+# DLMS receipts. The records date days, so the first moment of the day stands for it. Only the
+# processes are dated: nothing about the fuel itself is.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?process iof:occursOn ?day .
+  ?day a obo:BFO_0000008 ;                       # temporal region
+       iof:hasValueExpressionAtAllTimes ?expression .
+  ?expression a iof:TemporalInstantValueExpression ;
+              iof:hasDateTimeInstantValue ?instant .
+}
+WHERE {
+  {
+    ?record a fuel_records:Receipt ; fuel_records:receiptDate ?date .
+    BIND (IRI(CONCAT(STR(?record), "/receiving")) AS ?process)
+  } UNION {
+    ?record a fuel_records:GradeChange ; fuel_records:changeDate ?date .
+    BIND (IRI(CONCAT(STR(?record), "/change")) AS ?process)
+  } UNION {
+    ?record a fuel_records:AdditiveInjection ; fuel_records:injectionDate ?date .
+    BIND (IRI(CONCAT(STR(?record), "/injecting")) AS ?process)
+  } UNION {
+    ?record a fuel_records:Sale ; fuel_records:saleDate ?date .
+    BIND (IRI(CONCAT(STR(?record), "/selling")) AS ?process)
+  } UNION {
+    ?record a fuel_records:AccountTransferEntry ; fuel_records:transfer ?id ; fuel_records:transferDate ?date .
+    BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/fuel/account-transfer/", ENCODE_FOR_URI(?id))) AS ?process)
+  } UNION {
+    ?record a fuel_records:Certificate ; fuel_records:issueDate ?date ; fuel_records:batchNumber ?batch .
+    FILTER EXISTS { ?row a fuel_records:CertificateSource ; fuel_records:certificate ?record }
+    BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/fuel/lot/", ENCODE_FOR_URI(?batch), "/rebatching")) AS ?process)
+  } UNION {
+    ?record a fuel_records:Appointment ; fuel_records:startDate ?date .
+    BIND (IRI(CONCAT(STR(?record), "/appointment/gain")) AS ?process)
+  } UNION {
+    ?record a fuel_records:Appointment ; fuel_records:endDate ?date .
+    BIND (IRI(CONCAT(STR(?record), "/appointment/loss")) AS ?process)
+  }
+  BIND (IRI(CONCAT(STR(?process), "/day")) AS ?day)
+  BIND (IRI(CONCAT(STR(?process), "/day/value")) AS ?expression)
+  BIND (xsd:dateTime(CONCAT(STR(?date), "T00:00:00")) AS ?instant)
+}

@@ -1,0 +1,32 @@
+# fuel_records grade_changes in the source's own terms (layer 1 of ADR-0005): YARRRML, run by
+# `make lift-examples`.
+#
+# SYNTHETIC: every node this makes is invented, and lives under d:synthetic/fuel/. Mechanical, like every
+# layer 1 mapping: a row is a node, every column is one property, a foreign key is a link.
+
+prefixes:
+  fuel_records: https://w3id.org/sco/source/fuel_records/
+  d: https://w3id.org/sco/data/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+sources:
+  rows: [grade_changes.csv~csv]
+
+mappings:
+  grade_changes:
+    sources: rows
+    s: d:synthetic/fuel/grade-change/$(change)
+    po:
+      - [a, fuel_records:GradeChange]
+      - [fuel_records:change, $(change)]
+      - [fuel_records:dfsp, d:synthetic/fuel/activity/$(dfsp)~iri]
+      - [fuel_records:tank, d:synthetic/fuel/tank/$(dfsp)/$(tank)~iri]
+      - [fuel_records:gradeFrom, $(grade_from)]
+      - [fuel_records:gradeTo, $(grade_to)]
+      - [fuel_records:kind, $(kind)]
+      - [fuel_records:reason, $(reason)]
+      - [fuel_records:sample, d:synthetic/fuel/sample/$(sample)~iri]
+      - [fuel_records:approvedBy, d:synthetic/fuel/activity/$(approved_by)~iri]
+      - [fuel_records:changeDate, $(change_date), xsd:date]
+      - [fuel_records:follows, $(follows)]
+      - [fuel_records:synthetic, $(synthetic), xsd:boolean]

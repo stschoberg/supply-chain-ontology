@@ -1,0 +1,30 @@
+# A DD Form 2920 transfer is an inventory management process (SCRO) in which each tank's fuel
+# participates, with both officers as agents. Each row of the form describes it.
+#
+# SCRO has no accountability, and agent in does not say who hands over and who takes over.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?row a iof:DescriptiveInformationContentEntity ;
+       iof:describes ?handover .
+  ?handover a iof:InventoryManagementProcess ;
+            rdfs:label ?label ;
+            obo:BFO_0000057 ?tankFuel .          # has participant at some time
+  ?outgoing iof:agentIn ?handover .
+  ?incoming iof:agentIn ?handover .
+}
+WHERE {
+  ?row a fuel_records:AccountTransferEntry ;
+       fuel_records:transfer ?id ;
+       fuel_records:tank ?tank ;
+       fuel_records:outgoing ?outgoing ;
+       fuel_records:incoming ?incoming .
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/fuel/account-transfer/", ENCODE_FOR_URI(?id))) AS ?handover)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?tankFuel)
+  BIND (CONCAT("account transfer ", ?id) AS ?label)
+}

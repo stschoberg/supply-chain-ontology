@@ -1,0 +1,18 @@
+# CQ-003: Which refinery batches contributed to the fuel now in T3?
+#
+# Lots that are part of T3's fuel, and the lots they were made from, through any chain of processes.
+# The only route is the re-batching process rule 10 reads off the certificate of analysis: T3's fuel
+# and the refinery lots share no material part this reading can follow.
+
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?batch
+WHERE {
+  ?lot obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel> ;
+       iof:hasRole/a iof:LotRole ;
+       (^iof:hasOutput/iof:hasInput)+ ?source .
+  ?number iof:designates ?source ; iof:hasTextValue ?batch .
+}

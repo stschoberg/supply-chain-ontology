@@ -1,0 +1,487 @@
+@prefix fuel_records: <https://w3id.org/sco/source/fuel_records/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# The terms the mappings in this directory use: one class per fuel_records table and one property per
+# column. This is a source's schema, not part of the SCO TBox: it makes no supply chain or BFO claims, and
+# says nothing about portions of fuel, which no record names. Everything it describes is SYNTHETIC.
+
+<https://w3id.org/sco/source/fuel_records> a owl:Ontology ;
+    rdfs:label "fuel_records source schema"@en ;
+    dcterms:description "Terms for invented bulk fuel records, shaped on DoD Manual 4140.25 and MIL-STD-3004D, written by hand for the research and never released."@en .
+
+# ---------------------------------------------------------------- Classes, one per table
+
+fuel_records:Activity a owl:Class ;
+    rdfs:label "activity"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A party the other fuel records name: a defense fuel support point (DFSP), a refinery, a laboratory, DLA Energy, or a customer unit. The codes are invented; so are the names, except DLA Energy's."@en .
+
+fuel_records:Tank a owl:Class ;
+    rdfs:label "tank"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A storage tank at a DFSP, as its certified strapping chart identifies it."@en .
+
+fuel_records:Appointment a owl:Class ;
+    rdfs:label "appointment"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A person appointed to a DFSP as its responsible officer, terminal manager, or property administrator, for a period (DoDM 4140.25 Vol. 9 §3)."@en .
+
+fuel_records:AccountTransferEntry a owl:Class ;
+    rdfs:label "account transfer entry"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. One tank's line on a DD Form 2920, DFSP Transfer of Account Document: the net inventory the outgoing and incoming officer jointly verified when the account changed hands (DoDM 4140.25 Vol. 9 §3.5)."@en .
+
+fuel_records:Certificate a owl:Class ;
+    rdfs:label "certificate"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A quality certificate for a batch of fuel: a refinery certificate of quality, or a certificate of analysis issued downstream, where batches may be commingled and re-batched (MIL-STD-3004D §3.1.20, §3.1.94)."@en .
+
+fuel_records:CertificateSource a owl:Class ;
+    rdfs:label "certificate source"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. One batch a certificate of analysis re-batched fuel from, one row per batch (MIL-STD-3004D §3.1.20)."@en .
+
+fuel_records:Shipment a owl:Class ;
+    rdfs:label "shipment"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A shipment document for bulk fuel: a DD Form 250 or 250-1 for a delivery from a contract source, or a DD Form 1348-7 for a shipment between DFSPs (DoDM 4140.25 Vol. 12 §6.3)."@en .
+
+fuel_records:Receipt a owl:Class ;
+    rdfs:label "receipt"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A DFSP's receipt of a shipment into a tank, with the opening and closing measurements and the in-transit variance (DoDM 4140.25 Vol. 12 §5.3, Appendix 5A)."@en .
+
+fuel_records:LedgerEntry a owl:Class ;
+    rdfs:label "ledger entry"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. An inventory transaction in a DFSP's ledger for one product grade: any event that changes the account ledger (DoDM 4140.25 Vol. 9 G.2). The ledger is kept per grade, not per tank."@en .
+
+fuel_records:AdditiveInjection a owl:Class ;
+    rdfs:label "additive injection"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. The injection of a fuel additive into a tank (DoDM 4140.25 Vol. 12 §5.4; MIL-STD-3004D §5.8)."@en .
+
+fuel_records:GradeChange a owl:Class ;
+    rdfs:label "grade change"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. An approved change in the grade a tank's product is accounted as: additization, regrade, or downgrade (DoDM 4140.25 Vol. 9 §6.1; MIL-STD-3004D §4.4, §5.13)."@en .
+
+fuel_records:Sample a owl:Class ;
+    rdfs:label "sample"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A sample of fuel as the sample log records it, including how much product it represents (MIL-STD-3004D §4.2.1.5.2)."@en .
+
+fuel_records:TestResult a owl:Class ;
+    rdfs:label "test result"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. One property's result in a sample's laboratory test, against the specification limit and the intra-governmental receipt limit (MIL-STD-3004D §3.1.121, §4.2.2, Table I)."@en .
+
+fuel_records:Sale a owl:Class ;
+    rdfs:label "sale"@en ;
+    skos:definition "Synthetic: invented, not a record of anything that happened. A sale of fuel from a DFSP to a customer: the point of sale, where capitalized fuel stops belonging to the DWCF (DoDM 4140.25 Vol. 1 G.2)."@en .
+
+# ---------------------------------------------------------------- Properties, one per column
+
+fuel_records:additive a owl:DatatypeProperty ;
+    rdfs:label "additive"@en ;
+    skos:definition "The additive injected."@en .
+
+fuel_records:additiveGallons a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "additive gallons"@en ;
+    skos:definition "How much additive was injected, in U.S. gallons."@en .
+
+fuel_records:apiGravity a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "API gravity"@en ;
+    skos:definition "The product's observed API gravity."@en .
+
+fuel_records:approvedBy a owl:ObjectProperty ;
+    rdfs:range fuel_records:Activity ;
+    rdfs:label "approved by"@en ;
+    skos:definition "Who approved the change."@en .
+
+fuel_records:batchNumber a owl:DatatypeProperty ;
+    rdfs:label "batch number"@en ;
+    skos:definition "The batch the certificate is for. A batch number is not a record of its own anywhere in these tables; it appears only on certificates and shipments."@en .
+
+fuel_records:batchOrCargo a owl:DatatypeProperty ;
+    rdfs:label "batch or cargo number"@en ;
+    skos:definition "The pipeline batch or tender number, or the tanker or barge cargo number (DoDM 4140.25 Vol. 12 §6.3.a(5))."@en .
+
+fuel_records:capacityGallons a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "capacity in gallons"@en ;
+    skos:definition "The tank's capacity, in U.S. gallons."@en .
+
+fuel_records:capitalized a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "capitalized"@en ;
+    skos:definition "For a DFSP, whether the fuel it stores is capitalized: owned by the Defense Working Capital Fund until the point of sale (DoDM 4140.25 Vol. 1 G.2)."@en .
+
+fuel_records:certificate a owl:ObjectProperty ;
+    rdfs:range fuel_records:Certificate ;
+    rdfs:label "certificate"@en ;
+    skos:definition "The certificate the record is about."@en .
+
+fuel_records:certificateNumber a owl:DatatypeProperty ;
+    rdfs:label "certificate number"@en ;
+    skos:definition "The certificate's number."@en .
+
+fuel_records:change a owl:DatatypeProperty ;
+    rdfs:label "change number"@en ;
+    skos:definition "The grade change's number."@en .
+
+fuel_records:changeDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "change date"@en ;
+    skos:definition "The day the change took effect."@en .
+
+fuel_records:closingNetGallons a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "closing net gallons"@en ;
+    skos:definition "The receipt tank's net quantity after the receipt."@en .
+
+fuel_records:code a owl:DatatypeProperty ;
+    rdfs:label "code"@en ;
+    skos:definition "The party's code, shaped like a DoD Activity Address Code: six characters, starting with Z so it can't be taken for a real one."@en .
+
+fuel_records:customer a owl:ObjectProperty ;
+    rdfs:range fuel_records:Activity ;
+    rdfs:label "customer"@en ;
+    skos:definition "Who bought the fuel."@en .
+
+fuel_records:determinationMethod a owl:DatatypeProperty ;
+    rdfs:label "determination method"@en ;
+    skos:definition "How the quantity was measured: by meter, tank gauge, or scale (DoDM 4140.25 Vol. 12 §5.2)."@en .
+
+fuel_records:dfsp a owl:ObjectProperty ;
+    rdfs:range fuel_records:Activity ;
+    rdfs:label "DFSP"@en ;
+    skos:definition "The DFSP the record belongs to."@en .
+
+fuel_records:document a owl:DatatypeProperty ;
+    rdfs:label "document"@en ;
+    skos:definition "The document the transaction posts: a shipment document number, a grade change, or a sale."@en .
+
+fuel_records:documentNumber a owl:DatatypeProperty ;
+    rdfs:label "document number"@en ;
+    skos:definition "The shipment document number. Between DFSPs it is the shipper's DoDAAC, the Julian date, a two-character product code, and a sequence number (Vol. 12 §6.3.a(2)); from a contract source, the order number and a sequence."@en .
+
+fuel_records:endDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "end date"@en ;
+    skos:definition "The day the appointment ends, if it has."@en .
+
+fuel_records:entry a owl:DatatypeProperty ;
+    rdfs:label "entry number"@en ;
+    skos:definition "The ledger entry's number."@en .
+
+fuel_records:follows a owl:DatatypeProperty ;
+    rdfs:label "follows"@en ;
+    skos:definition "The manual section the record is modelled on."@en .
+
+fuel_records:form a owl:DatatypeProperty ;
+    rdfs:label "form"@en ;
+    skos:definition "The form or document type the record is made on."@en .
+
+fuel_records:fuelNetGallons a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "fuel net gallons"@en ;
+    skos:definition "The net quantity of fuel the additive was injected into."@en .
+
+fuel_records:gallons a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "gallons"@en ;
+    skos:definition "Quantity in U.S. gallons corrected to 60°F."@en .
+
+fuel_records:gallonsRepresented a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "gallons represented"@en ;
+    skos:definition "The amount of product the sample represents, in net gallons."@en .
+
+fuel_records:grade a owl:DatatypeProperty ;
+    rdfs:label "grade"@en ;
+    skos:definition "The product grade the record is about: JAA (Jet A), JP5, or JP8."@en .
+
+fuel_records:gradeAtStart a owl:DatatypeProperty ;
+    rdfs:label "grade at start"@en ;
+    skos:definition "The product grade the tank held when the story begins: JAA (Jet A), JP5, or JP8."@en .
+
+fuel_records:gradeFrom a owl:DatatypeProperty ;
+    rdfs:label "grade from"@en ;
+    skos:definition "The grade before the change."@en .
+
+fuel_records:gradeTo a owl:DatatypeProperty ;
+    rdfs:label "grade to"@en ;
+    skos:definition "The grade after the change."@en .
+
+fuel_records:grossGallons a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "gross gallons"@en ;
+    skos:definition "Quantity in U.S. gallons at the observed temperature, not corrected to 60°F."@en .
+
+fuel_records:incoming a owl:ObjectProperty ;
+    rdfs:range fuel_records:Appointment ;
+    rdfs:label "incoming officer"@en ;
+    skos:definition "The officer taking the account over."@en .
+
+fuel_records:injection a owl:DatatypeProperty ;
+    rdfs:label "injection number"@en ;
+    skos:definition "The injection's number."@en .
+
+fuel_records:injectionDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "injection date"@en ;
+    skos:definition "The day of the injection."@en .
+
+fuel_records:issueDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "issue date"@en ;
+    skos:definition "The day the certificate was issued."@en .
+
+fuel_records:issuer a owl:ObjectProperty ;
+    rdfs:range fuel_records:Activity ;
+    rdfs:label "issuer"@en ;
+    skos:definition "Who issued the certificate."@en .
+
+fuel_records:kind a owl:DatatypeProperty ;
+    rdfs:label "kind"@en ;
+    skos:definition "What sort of thing the record is: for an activity, a DFSP, refinery, laboratory, inventory manager, or customer; for a certificate, a refinery certificate of quality or a certificate of analysis; for a grade change, additization, regrade (the product meets its specification), or downgrade (it does not)."@en .
+
+fuel_records:labReport a owl:DatatypeProperty ;
+    rdfs:label "laboratory report number"@en ;
+    skos:definition "The laboratory report's number."@en .
+
+fuel_records:laboratory a owl:ObjectProperty ;
+    rdfs:range fuel_records:Activity ;
+    rdfs:label "laboratory"@en ;
+    skos:definition "The laboratory that tested the sample."@en .
+
+fuel_records:location a owl:ObjectProperty ;
+    rdfs:range fuel_records:Tank ;
+    rdfs:label "location"@en ;
+    skos:definition "Where the sample was taken: here, always a tank."@en .
+
+fuel_records:meetsReceiptLimit a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "meets receipt limit"@en ;
+    skos:definition "Whether the value is within the intra-governmental receipt limits."@en .
+
+fuel_records:meetsSpec a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "meets specification"@en ;
+    skos:definition "Whether the value is within the specification limits."@en .
+
+fuel_records:mode a owl:DatatypeProperty ;
+    rdfs:label "mode"@en ;
+    skos:definition "How the shipment travelled: barge, commercial pipeline, and so on."@en .
+
+fuel_records:name a owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    skos:definition "The party's name."@en .
+
+fuel_records:netGallons a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "net gallons"@en ;
+    skos:definition "Quantity in U.S. gallons corrected to 60°F."@en .
+
+fuel_records:openingNetGallons a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "opening net gallons"@en ;
+    skos:definition "The receipt tank's net quantity before the receipt."@en .
+
+fuel_records:operation a owl:DatatypeProperty ;
+    rdfs:label "operation"@en ;
+    skos:definition "For a DFSP, who owns and who operates it: government-owned government-operated, or government-owned contractor-operated (DoDM 4140.25 Vol. 9 Table 1)."@en .
+
+fuel_records:orderNumber a owl:DatatypeProperty ;
+    rdfs:label "order number"@en ;
+    skos:definition "The delivery order the shipment fills, for a contract source."@en .
+
+fuel_records:outgoing a owl:ObjectProperty ;
+    rdfs:range fuel_records:Appointment ;
+    rdfs:label "outgoing officer"@en ;
+    skos:definition "The officer handing the account over."@en .
+
+fuel_records:person a owl:DatatypeProperty ;
+    rdfs:label "person code"@en ;
+    skos:definition "The appointed person's code."@en .
+
+fuel_records:property a owl:DatatypeProperty ;
+    rdfs:label "property"@en ;
+    skos:definition "The property tested."@en .
+
+fuel_records:reason a owl:DatatypeProperty ;
+    rdfs:label "reason"@en ;
+    skos:definition "Why it was done."@en .
+
+fuel_records:receipt a owl:DatatypeProperty ;
+    rdfs:label "receipt number"@en ;
+    skos:definition "The receipt's number."@en .
+
+fuel_records:receiptDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "receipt date"@en ;
+    skos:definition "The day the receipt was completed."@en .
+
+fuel_records:receiptMax a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "receipt limit maximum"@en ;
+    skos:definition "The intra-governmental receipt limit's upper bound, if it has one."@en .
+
+fuel_records:receiptMin a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "receipt limit minimum"@en ;
+    skos:definition "The intra-governmental receipt limit's lower bound, if it has one."@en .
+
+fuel_records:reverses a owl:ObjectProperty ;
+    rdfs:range fuel_records:LedgerEntry ;
+    rdfs:label "reverses"@en ;
+    skos:definition "The earlier entry this one cancels (DoDM 4140.25 Vol. 9 §7.4)."@en .
+
+fuel_records:role a owl:DatatypeProperty ;
+    rdfs:label "appointed role"@en ;
+    skos:definition "What the person is appointed as: responsible officer, terminal manager, or property administrator."@en .
+
+fuel_records:sale a owl:DatatypeProperty ;
+    rdfs:label "sale number"@en ;
+    skos:definition "The sale's number."@en .
+
+fuel_records:saleDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "sale date"@en ;
+    skos:definition "The day of the sale."@en .
+
+fuel_records:sample a owl:ObjectProperty ;
+    rdfs:range fuel_records:Sample ;
+    rdfs:label "sample"@en ;
+    skos:definition "The sample the record rests on."@en .
+
+fuel_records:sampleDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "sample date"@en ;
+    skos:definition "The day the sample was taken."@en .
+
+fuel_records:sampleNumber a owl:DatatypeProperty ;
+    rdfs:label "sample number"@en ;
+    skos:definition "The sample's serial number, unique and naming the calendar year (MIL-STD-3004D §4.2.1.8.2)."@en .
+
+fuel_records:sampleType a owl:DatatypeProperty ;
+    rdfs:label "sample type"@en ;
+    skos:definition "The type of sample, such as a single tank composite (MIL-STD-3004D §4.2.1.4)."@en .
+
+fuel_records:seals a owl:DatatypeProperty ;
+    rdfs:label "seal numbers"@en ;
+    skos:definition "The numbers of the seals on the conveyance, where it is sealed."@en .
+
+fuel_records:shipDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "ship date"@en ;
+    skos:definition "The day the shipment left."@en .
+
+fuel_records:shipFrom a owl:ObjectProperty ;
+    rdfs:range fuel_records:Activity ;
+    rdfs:label "ship from"@en ;
+    skos:definition "Where the shipment left from."@en .
+
+fuel_records:shipFromTank a owl:ObjectProperty ;
+    rdfs:range fuel_records:Tank ;
+    rdfs:label "ship from tank"@en ;
+    skos:definition "The tank the shipment was drawn from, for a shipment between DFSPs."@en .
+
+fuel_records:shipTo a owl:ObjectProperty ;
+    rdfs:range fuel_records:Activity ;
+    rdfs:label "ship to"@en ;
+    skos:definition "Where the shipment was sent."@en .
+
+fuel_records:shipment a owl:ObjectProperty ;
+    rdfs:range fuel_records:Shipment ;
+    rdfs:label "shipment"@en ;
+    skos:definition "The shipment received."@en .
+
+fuel_records:sourceBatch a owl:DatatypeProperty ;
+    rdfs:label "source batch number"@en ;
+    skos:definition "The number of a batch the certified batch was made from."@en .
+
+fuel_records:specMax a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "specification maximum"@en ;
+    skos:definition "The specification's upper limit, if it has one."@en .
+
+fuel_records:specMin a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "specification minimum"@en ;
+    skos:definition "The specification's lower limit, if it has one."@en .
+
+fuel_records:specification a owl:DatatypeProperty ;
+    rdfs:label "specification"@en ;
+    skos:definition "The specification the product is tested against."@en .
+
+fuel_records:startDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "start date"@en ;
+    skos:definition "The day the appointment begins."@en .
+
+fuel_records:status a owl:DatatypeProperty ;
+    rdfs:label "status"@en ;
+    skos:definition "The laboratory's result: on-specification, or off-specification for a named test."@en .
+
+fuel_records:stoNumber a owl:DatatypeProperty ;
+    rdfs:label "stock transport order number"@en ;
+    skos:definition "The stock transport order the shipment fills, for a shipment between DFSPs."@en .
+
+fuel_records:synthetic a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "synthetic"@en ;
+    skos:definition "Always true: every record in this source is invented."@en .
+
+fuel_records:takenBy a owl:ObjectProperty ;
+    rdfs:range fuel_records:Appointment ;
+    rdfs:label "taken by"@en ;
+    skos:definition "Who took the sample."@en .
+
+fuel_records:tank a owl:ObjectProperty ;
+    rdfs:range fuel_records:Tank ;
+    rdfs:label "tank"@en ;
+    skos:definition "The tank the record is about."@en .
+
+fuel_records:tankNumber a owl:DatatypeProperty ;
+    rdfs:label "tank number"@en ;
+    skos:definition "The tank's number at its DFSP."@en .
+
+fuel_records:targetVolPct a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "target concentration (vol %)"@en ;
+    skos:definition "The concentration of additive aimed for, as a percentage by volume."@en .
+
+fuel_records:temperatureF a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "temperature (°F)"@en ;
+    skos:definition "The product's observed temperature, in degrees Fahrenheit."@en .
+
+fuel_records:testType a owl:DatatypeProperty ;
+    rdfs:label "test type"@en ;
+    skos:definition "The type of test: A, B-1, B-2, B-3, or C (MIL-STD-3004D §3.1.121)."@en .
+
+fuel_records:transactionDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "transaction date"@en ;
+    skos:definition "The day the transaction is posted."@en .
+
+fuel_records:transfer a owl:DatatypeProperty ;
+    rdfs:label "transfer number"@en ;
+    skos:definition "The DD Form 2920 the line is on."@en .
+
+fuel_records:transferDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:label "transfer date"@en ;
+    skos:definition "The day the account changed hands."@en .
+
+fuel_records:type a owl:DatatypeProperty ;
+    rdfs:label "transaction type"@en ;
+    skos:definition "What the transaction is: receipt, shipment, sale, regrade in, regrade out, or reversal."@en .
+
+fuel_records:unit a owl:DatatypeProperty ;
+    rdfs:label "unit"@en ;
+    skos:definition "The unit of the value."@en .
+
+fuel_records:value a owl:DatatypeProperty ;
+    rdfs:label "value"@en ;
+    skos:definition "The result, as reported."@en .
+
+fuel_records:variancePct a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "variance (%)"@en ;
+    skos:definition "The net quantity received less the net quantity shipped, as a percentage of the quantity shipped."@en .

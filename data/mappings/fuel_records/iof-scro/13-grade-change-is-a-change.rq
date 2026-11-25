@@ -1,0 +1,30 @@
+# A grade change record describes a change (Core) in which the tank's fuel participates, with the
+# approving organization as agent.
+#
+# Additization, regrade, and downgrade map alike: the record's kind and reason are not mapped,
+# because nothing in IOF or SCRO distinguishes them. What tells a regrade from a downgrade is the
+# sample's test results (rule 15).
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?record a iof:DescriptiveInformationContentEntity ;
+          iof:describes ?change .
+  ?change a iof:Change ;
+          rdfs:label ?label ;
+          obo:BFO_0000057 ?fuel .                # has participant at some time
+  ?approver iof:agentIn ?change .
+}
+WHERE {
+  ?record a fuel_records:GradeChange ;
+          fuel_records:change ?id ;
+          fuel_records:tank ?tank ;
+          fuel_records:approvedBy ?approver .
+  BIND (IRI(CONCAT(STR(?record), "/change")) AS ?change)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?fuel)
+  BIND (CONCAT("grade change ", ?id) AS ?label)
+}

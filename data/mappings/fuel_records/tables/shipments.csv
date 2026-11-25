@@ -1,0 +1,4 @@
+document_number,form,order_number,sto_number,grade,gross_gallons,net_gallons,temperature_f,api_gravity,determination_method,ship_from,ship_from_tank,ship_to,mode,batch_or_cargo,certificate,seals,ship_date,follows,synthetic
+ZE0600-26-F-0101-01,DD Form 250-1,ZE0600-26-F-0101,,JAA,201410,200000,74,42.0,shore tank gauge,ZR0001,,ZA0001,barge,CG-2601,RCQ-RB-101,,2026-02-02,DoDM 4140.25 Vol. 12 §6.3.g; MIL-STD-3004D §5.1.1.2,true
+ZE0600-26-F-0102-01,DD Form 250,ZE0600-26-F-0102,,JAA,281120,280000,70,42.2,temperature compensating meter,ZR0001,,ZA0001,commercial pipeline,PB-7781,RCQ-RB-102,,2026-02-05,DoDM 4140.25 Vol. 12 §5.3.k(5); §6.3.a(5)(c),true
+ZA00016046J801,DD Form 1348-7,,ZSTO-0004500123,JP8,401600,400000,68,42.1,temperature compensating meter,ZA0001,T1,ZB0002,commercial pipeline,PB-7790,,,2026-02-15,DoDM 4140.25 Vol. 12 §6.3.a(1)-(5); §6.3.f,true

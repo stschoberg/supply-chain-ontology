@@ -1,0 +1,5 @@
+sample_number,dfsp,location,sample_type,sample_date,taken_by,reason,grade,specification,gallons_represented,laboratory,lab_report,status,follows,synthetic
+S-2026-0030,ZA0001,T2,single tank composite,2026-01-20,P-001,storage surveillance,JP5,MIL-DTL-5624,300000,ZL0001,LR-26-0118,on-specification,MIL-STD-3004D §4.2.1.4.10; §4.2.1.5.2; §5.9,true
+S-2026-0041,ZA0001,T1,single tank composite,2026-02-10,P-001,after receipt and additive injection,JP8,MIL-DTL-83133,479603,ZL0001,LR-26-0164,on-specification,MIL-STD-3004D §4.2.1.4.10; §4.2.1.5.2; §5.8.3,true
+S-2026-0057,ZB0002,T3,single tank composite,2026-02-18,P-003,after receipt,JP8,MIL-DTL-83133,398900,ZL0001,LR-26-0190,on-specification,MIL-STD-3004D §4.2.1.4.10; §4.2.1.5.2; §5.2.2.3,true
+S-2026-0062,ZA0001,T4,single tank composite,2026-03-05,P-001,long-term storage surveillance,JP5,MIL-DTL-5624,120000,ZL0001,LR-26-0207,off-specification for flash point,MIL-STD-3004D §4.2.1.4.10; §4.2.1.5.2; §5.9.1,true

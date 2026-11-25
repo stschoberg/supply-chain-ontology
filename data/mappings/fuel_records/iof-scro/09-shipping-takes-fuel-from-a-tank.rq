@@ -1,0 +1,21 @@
+# Fuel shipped from a tank was part of that tank's fuel.
+#
+# Ours. Part of at some time, with no time: the 400,000 gal of PB-7790 and the 79,603 gal left in
+# T1 are both parts of the one node for T1's fuel.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?fuel obo:BFO_0000176 ?tankFuel .              # continuant part of at some time
+}
+WHERE {
+  ?shipment a fuel_records:Shipment ;
+            fuel_records:batchOrCargo ?any ;
+            fuel_records:shipFromTank ?tank .
+  BIND (IRI(CONCAT(STR(?shipment), "/fuel")) AS ?fuel)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?tankFuel)
+}

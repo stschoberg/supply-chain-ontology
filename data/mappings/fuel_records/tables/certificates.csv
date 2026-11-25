@@ -1,0 +1,4 @@
+certificate,kind,batch_number,issuer,issue_date,sample,follows,synthetic
+RCQ-RB-101,refinery certificate of quality,RB-101,ZR0001,2026-02-01,,MIL-STD-3004D §3.1.9-10; §3.1.94,true
+RCQ-RB-102,refinery certificate of quality,RB-102,ZR0001,2026-02-03,,MIL-STD-3004D §3.1.9-10; §3.1.94,true
+COA-CA-55,certificate of analysis,CA-55,ZL0001,2026-02-19,S-2026-0057,MIL-STD-3004D §3.1.20,true

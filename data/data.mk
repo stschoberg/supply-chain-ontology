@@ -23,7 +23,7 @@ dist: ## Build a data release in data/dist/: Parquet tables, RDF graph, DuckDB c
 lift: ## Lift the tables in data/dist/ into RDF graphs in data/graph/: one per source, one per model
 	uv run python -m data.lift
 
-lift-examples: ## Regenerate each mapping target's example/lifted.ttl after editing its rules
+lift-examples: ## Regenerate each mapping target's example/lifted.ttl, and each study source's source.nt and readings
 	uv run python -m data.lift --examples
 
 lift-schemas: ## Regenerate data/schemas/ after a model's ontology changes (takes about a minute)

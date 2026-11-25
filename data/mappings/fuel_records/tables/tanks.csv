@@ -1,0 +1,5 @@
+tank,dfsp,capacity_gallons,grade_at_start,follows,synthetic
+T1,ZA0001,1000000,JAA,DoDM 4140.25 Vol. 12 §5.2.b(4),true
+T2,ZA0001,500000,JP5,DoDM 4140.25 Vol. 12 §5.2.b(4),true
+T4,ZA0001,250000,JP5,DoDM 4140.25 Vol. 12 §5.2.b(4),true
+T3,ZB0002,750000,JP8,DoDM 4140.25 Vol. 12 §5.2.b(4),true

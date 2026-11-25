@@ -1,0 +1,21 @@
+# Fuel shipped under a refinery certificate is part of the lot the certificate names: continuant
+# part of at some time (BFO), which includes all of it.
+#
+# Ours. Nothing in SCRO relates a shipment to a lot.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?fuel obo:BFO_0000176 ?lot .                   # continuant part of at some time
+}
+WHERE {
+  ?shipment a fuel_records:Shipment ;
+            fuel_records:batchOrCargo ?any ;
+            fuel_records:certificate/fuel_records:batchNumber ?batch .
+  BIND (IRI(CONCAT(STR(?shipment), "/fuel")) AS ?fuel)
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/fuel/lot/", ENCODE_FOR_URI(?batch))) AS ?lot)
+}

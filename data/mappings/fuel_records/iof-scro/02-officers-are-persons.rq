@@ -1,0 +1,16 @@
+# An appointed officer is a person (Core). The appointment itself, a role held for a period, has no
+# SCRO class; see rule 17.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?person a iof:Person ;
+          rdfs:label ?name .
+}
+WHERE {
+  ?person a fuel_records:Appointment ; fuel_records:name ?name .
+}

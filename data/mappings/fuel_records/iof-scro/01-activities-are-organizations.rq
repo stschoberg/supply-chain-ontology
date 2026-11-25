@@ -1,0 +1,15 @@
+# A DFSP, the refinery, the laboratory, DLA Energy, and the customer unit are organizations (Core).
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?activity a iof:Organization ;
+            rdfs:label ?name .
+}
+WHERE {
+  ?activity a fuel_records:Activity ; fuel_records:name ?name .
+}

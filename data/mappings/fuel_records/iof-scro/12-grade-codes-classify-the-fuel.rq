@@ -1,0 +1,34 @@
+# A grade code (JAA, JP5, JP8) is an information content entity that classifies (Core) the fuel it
+# is recorded for: a tank's fuel, by its starting grade and by every grade change; shipped fuel; and
+# sold fuel. Classifies is not indexed by time, so a tank's fuel that was regraded is classified by
+# both grades.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?grade a iof:InformationContentEntity ;
+         rdfs:label ?code ;
+         iof:hasTextValue ?code ;
+         iof:classifies ?fuel .
+}
+WHERE {
+  {
+    ?tank a fuel_records:Tank ; fuel_records:gradeAtStart ?code .
+    BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?fuel)
+  } UNION {
+    ?change a fuel_records:GradeChange ; fuel_records:tank ?tank .
+    { ?change fuel_records:gradeFrom ?code } UNION { ?change fuel_records:gradeTo ?code }
+    BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?fuel)
+  } UNION {
+    ?shipment a fuel_records:Shipment ; fuel_records:grade ?code ; fuel_records:batchOrCargo ?any .
+    BIND (IRI(CONCAT(STR(?shipment), "/fuel")) AS ?fuel)
+  } UNION {
+    ?sale a fuel_records:Sale ; fuel_records:grade ?code .
+    BIND (IRI(CONCAT(STR(?sale), "/fuel")) AS ?fuel)
+  }
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/fuel/grade/", ENCODE_FOR_URI(?code))) AS ?grade)
+}

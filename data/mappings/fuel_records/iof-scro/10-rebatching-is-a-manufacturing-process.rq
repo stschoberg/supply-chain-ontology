@@ -1,0 +1,33 @@
+# A certificate of analysis that re-batches fuel from earlier batches is read as a manufacturing
+# process (SCRO) with the earlier lots as input and the new lot as output (Core). The new lot is in
+# the tank its certificate's sample was drawn from.
+#
+# Ours, pushed by SCRO: a lot role must be held by something that took part in a manufacturing
+# process, and SCRO has no blending, commingling, or re-batching process. Nothing happened to the
+# fuel on 19 February; the certificate was issued.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?rebatching a iof:ManufacturingProcess ;
+              rdfs:label ?label ;
+              iof:hasInput ?source ;
+              iof:hasOutput ?lot .
+  ?lot obo:BFO_0000176 ?tankFuel .               # continuant part of at some time
+}
+WHERE {
+  ?row a fuel_records:CertificateSource ;
+       fuel_records:certificate ?certificate ;
+       fuel_records:sourceBatch ?from .
+  ?certificate fuel_records:batchNumber ?batch ;
+               fuel_records:sample/fuel_records:location ?tank .
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/fuel/lot/", ENCODE_FOR_URI(?batch))) AS ?lot)
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/fuel/lot/", ENCODE_FOR_URI(?from))) AS ?source)
+  BIND (IRI(CONCAT(STR(?lot), "/rebatching")) AS ?rebatching)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?tankFuel)
+  BIND (CONCAT("re-batching into ", ?batch) AS ?label)
+}

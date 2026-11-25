@@ -1,0 +1,36 @@
+# A sale describes a selling business process (SCRO) with the DFSP and the customer as agents. The
+# fuel sold is part of the tank's fuel, and is owned by the customer (SCRO).
+#
+# Owned by is not indexed by time, and its range is a business organization or a person, so an
+# OWL DL reasoner would conclude the customer unit is one of the two (OWL 2 RL draws nothing from a
+# union). No record names an owner before the sale (the DWCF, by rule), so none is asserted.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?sale a iof:DescriptiveInformationContentEntity ;
+        iof:describes ?selling .
+  ?selling a iof:SellingBusinessProcess ;
+           obo:BFO_0000057 ?fuel .               # has participant at some time
+  ?dfsp iof:agentIn ?selling .
+  ?customer iof:agentIn ?selling .
+  ?fuel a obo:BFO_0000040 ;                      # material entity
+        rdfs:label ?label ;
+        obo:BFO_0000176 ?tankFuel ;              # continuant part of at some time
+        iof:ownedBy ?customer .
+}
+WHERE {
+  ?sale a fuel_records:Sale ;
+        fuel_records:sale ?id ;
+        fuel_records:dfsp ?dfsp ;
+        fuel_records:customer ?customer ;
+        fuel_records:tank ?tank .
+  BIND (IRI(CONCAT(STR(?sale), "/selling")) AS ?selling)
+  BIND (IRI(CONCAT(STR(?sale), "/fuel")) AS ?fuel)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?tankFuel)
+  BIND (CONCAT("fuel sold on ", ?id) AS ?label)
+}

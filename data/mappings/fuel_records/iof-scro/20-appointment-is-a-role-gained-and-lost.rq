@@ -1,0 +1,36 @@
+# An appointed officer has an agent role (Core), acting on behalf of the DFSP. The appointment is a
+# gain of role (Core) and its end a loss of role, each a process the officer takes part in, dated by
+# rule 18.
+#
+# The role is generic: Core and SCRO have no responsible officer, terminal manager, or property
+# administrator, and nothing relates the officer to the fuel, only to the DFSP.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?person iof:hasRole ?role ;
+          iof:actsOnBehalfOfAtSomeTime ?dfsp .
+  ?role a iof:AgentRole ;
+        rdfs:label ?label .
+  ?gain a iof:GainOfRole ;
+        obo:BFO_0000057 ?person .                # has participant at some time
+  ?loss a iof:LossOfRole ;
+        obo:BFO_0000057 ?person .
+}
+WHERE {
+  ?person a fuel_records:Appointment ;
+          fuel_records:role ?title ;
+          fuel_records:dfsp ?dfsp .
+  ?dfsp fuel_records:code ?code .
+  OPTIONAL {
+    ?person fuel_records:endDate ?end .
+    BIND (IRI(CONCAT(STR(?person), "/appointment/loss")) AS ?loss)
+  }
+  BIND (IRI(CONCAT(STR(?person), "/appointment")) AS ?role)
+  BIND (IRI(CONCAT(STR(?person), "/appointment/gain")) AS ?gain)
+  BIND (CONCAT(?title, " at ", ?code) AS ?label)
+}

@@ -1,0 +1,4 @@
+change,dfsp,tank,grade_from,grade_to,kind,reason,sample,approved_by,change_date,follows,synthetic
+GC-001,ZA0001,T1,JAA,JP8,additization,FSII injected to meet the JP-8 specification,,ZE0001,2026-02-09,MIL-STD-3004D §4.4; §5.13.7.3,true
+GC-002,ZA0001,T2,JP5,JP8,regrade,supply-driven: JP-8 requirement; product on specification,S-2026-0030,ZE0001,2026-03-02,DoDM 4140.25 Vol. 9 §6.1.b(2); G.2,true
+GC-003,ZA0001,T4,JP5,JP8,downgrade,off-specification for flash point as JP-5; meets JP-8,S-2026-0062,ZE0001,2026-03-12,MIL-STD-3004D §3.1.38; §4.4; §5.13.7.1,true
