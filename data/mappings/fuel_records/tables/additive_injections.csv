@@ -1,0 +1,2 @@
+injection,dfsp,tank,additive,additive_gallons,target_vol_pct,fuel_net_gallons,injection_date,follows,synthetic
+AI-001,ZA0001,T1,FSII (DiEGME),383,0.08,479220,2026-02-09,DoDM 4140.25 Vol. 12 §5.4.b; MIL-STD-3004D §5.8.2-5.8.4,true

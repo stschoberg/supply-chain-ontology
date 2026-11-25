@@ -1,0 +1,664 @@
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/AccountTransferEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §3.2.e; §3.5" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/form> "DD Form 2920" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/incoming> <https://w3id.org/sco/data/synthetic/fuel/person/P-002> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/netGallons> "79603"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/outgoing> <https://w3id.org/sco/data/synthetic/fuel/person/P-001> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/transfer> "AT-001" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> <https://w3id.org/sco/source/fuel_records/transferDate> "2026-03-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/AccountTransferEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §3.2.e; §3.5" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/form> "DD Form 2920" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/incoming> <https://w3id.org/sco/data/synthetic/fuel/person/P-002> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/netGallons> "300000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/outgoing> <https://w3id.org/sco/data/synthetic/fuel/person/P-001> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/transfer> "AT-001" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> <https://w3id.org/sco/source/fuel_records/transferDate> "2026-03-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/AccountTransferEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §3.2.e; §3.5" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/form> "DD Form 2920" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/incoming> <https://w3id.org/sco/data/synthetic/fuel/person/P-002> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/netGallons> "120000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/outgoing> <https://w3id.org/sco/data/synthetic/fuel/person/P-001> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/transfer> "AT-001" .
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> <https://w3id.org/sco/source/fuel_records/transferDate> "2026-03-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Activity> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> <https://w3id.org/sco/source/fuel_records/capitalized> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> <https://w3id.org/sco/source/fuel_records/code> "ZA0001" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 Table 1; Vol. 1 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> <https://w3id.org/sco/source/fuel_records/kind> "dfsp" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> <https://w3id.org/sco/source/fuel_records/name> "Fuel Support Point Alpha" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> <https://w3id.org/sco/source/fuel_records/operation> "government-owned government-operated" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Activity> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> <https://w3id.org/sco/source/fuel_records/capitalized> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> <https://w3id.org/sco/source/fuel_records/code> "ZB0002" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 Table 1; Vol. 1 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> <https://w3id.org/sco/source/fuel_records/kind> "dfsp" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> <https://w3id.org/sco/source/fuel_records/name> "Fuel Support Point Bravo" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> <https://w3id.org/sco/source/fuel_records/operation> "government-owned contractor-operated" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Activity> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> <https://w3id.org/sco/source/fuel_records/code> "ZE0001" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 1 §3.2; MIL-STD-3004D §4.4" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> <https://w3id.org/sco/source/fuel_records/kind> "inventory manager" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> <https://w3id.org/sco/source/fuel_records/name> "DLA Energy" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Activity> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> <https://w3id.org/sco/source/fuel_records/code> "ZL0001" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §4.2.2.6" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> <https://w3id.org/sco/source/fuel_records/kind> "laboratory" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> <https://w3id.org/sco/source/fuel_records/name> "Petroleum Laboratory L1" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Activity> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> <https://w3id.org/sco/source/fuel_records/code> "ZR0001" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §3.1.94" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> <https://w3id.org/sco/source/fuel_records/kind> "refinery" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> <https://w3id.org/sco/source/fuel_records/name> "Refinery R1" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZU0101> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Activity> .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZU0101> <https://w3id.org/sco/source/fuel_records/code> "ZU0101" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZU0101> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 1 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZU0101> <https://w3id.org/sco/source/fuel_records/kind> "customer" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZU0101> <https://w3id.org/sco/source/fuel_records/name> "Unit U1" .
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZU0101> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/AdditiveInjection> .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/additive> "FSII (DiEGME)" .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/additiveGallons> "383"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.4.b; MIL-STD-3004D §5.8.2-5.8.4" .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/fuelNetGallons> "479220"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/injection> "AI-001" .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/injectionDate> "2026-02-09"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> .
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> <https://w3id.org/sco/source/fuel_records/targetVolPct> "0.08"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-101> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/CertificateSource> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-101> <https://w3id.org/sco/source/fuel_records/certificate> <https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-101> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §3.1.20" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-101> <https://w3id.org/sco/source/fuel_records/sourceBatch> "RB-101" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-101> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-102> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/CertificateSource> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-102> <https://w3id.org/sco/source/fuel_records/certificate> <https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-102> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §3.1.20" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-102> <https://w3id.org/sco/source/fuel_records/sourceBatch> "RB-102" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55/source/RB-102> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Certificate> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> <https://w3id.org/sco/source/fuel_records/batchNumber> "CA-55" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> <https://w3id.org/sco/source/fuel_records/certificateNumber> "COA-CA-55" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §3.1.20" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> <https://w3id.org/sco/source/fuel_records/issueDate> "2026-02-19"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> <https://w3id.org/sco/source/fuel_records/issuer> <https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> <https://w3id.org/sco/source/fuel_records/kind> "certificate of analysis" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Certificate> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> <https://w3id.org/sco/source/fuel_records/batchNumber> "RB-101" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> <https://w3id.org/sco/source/fuel_records/certificateNumber> "RCQ-RB-101" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §3.1.9-10; §3.1.94" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> <https://w3id.org/sco/source/fuel_records/issueDate> "2026-02-01"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> <https://w3id.org/sco/source/fuel_records/issuer> <https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> <https://w3id.org/sco/source/fuel_records/kind> "refinery certificate of quality" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Certificate> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> <https://w3id.org/sco/source/fuel_records/batchNumber> "RB-102" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> <https://w3id.org/sco/source/fuel_records/certificateNumber> "RCQ-RB-102" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §3.1.9-10; §3.1.94" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> <https://w3id.org/sco/source/fuel_records/issueDate> "2026-02-03"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> <https://w3id.org/sco/source/fuel_records/issuer> <https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> <https://w3id.org/sco/source/fuel_records/kind> "refinery certificate of quality" .
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/GradeChange> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/approvedBy> <https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/change> "GC-001" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/changeDate> "2026-02-09"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §4.4; §5.13.7.3" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/gradeFrom> "JAA" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/gradeTo> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/kind> "additization" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/reason> "FSII injected to meet the JP-8 specification" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/GradeChange> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/approvedBy> <https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/change> "GC-002" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/changeDate> "2026-03-02"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §6.1.b(2); G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/gradeFrom> "JP5" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/gradeTo> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/kind> "regrade" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/reason> "supply-driven: JP-8 requirement; product on specification" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/GradeChange> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/approvedBy> <https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/change> "GC-003" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/changeDate> "2026-03-12"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §3.1.38; §4.4; §5.13.7.1" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/gradeFrom> "JP5" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/gradeTo> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/kind> "downgrade" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/reason> "off-specification for flash point as JP-5; meets JP-8" .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <https://w3id.org/sco/source/fuel_records/document> "ZE0600-26-F-0101-01" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <https://w3id.org/sco/source/fuel_records/entry> "L-001" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §4.1; G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <https://w3id.org/sco/source/fuel_records/gallons> "199640"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <https://w3id.org/sco/source/fuel_records/grade> "JAA" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-02-04"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-001> <https://w3id.org/sco/source/fuel_records/type> "receipt" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <https://w3id.org/sco/source/fuel_records/document> "ZE0600-26-F-0102-01" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <https://w3id.org/sco/source/fuel_records/entry> "L-002" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §4.1; G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <https://w3id.org/sco/source/fuel_records/gallons> "279580"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <https://w3id.org/sco/source/fuel_records/grade> "JAA" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-02-06"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-002> <https://w3id.org/sco/source/fuel_records/type> "receipt" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <https://w3id.org/sco/source/fuel_records/document> "GC-001" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <https://w3id.org/sco/source/fuel_records/entry> "L-003" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <https://w3id.org/sco/source/fuel_records/gallons> "479220"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <https://w3id.org/sco/source/fuel_records/grade> "JAA" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-02-09"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-003> <https://w3id.org/sco/source/fuel_records/type> "regrade out" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <https://w3id.org/sco/source/fuel_records/document> "GC-001" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <https://w3id.org/sco/source/fuel_records/entry> "L-004" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <https://w3id.org/sco/source/fuel_records/gallons> "479603"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-02-09"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-004> <https://w3id.org/sco/source/fuel_records/type> "regrade in" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <https://w3id.org/sco/source/fuel_records/document> "ZA00016046J801" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <https://w3id.org/sco/source/fuel_records/entry> "L-005" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §6.3.a" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <https://w3id.org/sco/source/fuel_records/gallons> "40000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-02-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> <https://w3id.org/sco/source/fuel_records/type> "shipment" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/document> "ZA00016046J801" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/entry> "L-006" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §7.4; Vol. 12 §6.3.b" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/gallons> "40000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/reverses> <https://w3id.org/sco/data/synthetic/fuel/ledger/L-005> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-02-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-006> <https://w3id.org/sco/source/fuel_records/type> "reversal" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <https://w3id.org/sco/source/fuel_records/document> "ZA00016046J801" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <https://w3id.org/sco/source/fuel_records/entry> "L-007" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §6.3.a" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <https://w3id.org/sco/source/fuel_records/gallons> "400000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-02-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-007> <https://w3id.org/sco/source/fuel_records/type> "shipment" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <https://w3id.org/sco/source/fuel_records/document> "GC-002" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <https://w3id.org/sco/source/fuel_records/entry> "L-008" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <https://w3id.org/sco/source/fuel_records/gallons> "300000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <https://w3id.org/sco/source/fuel_records/grade> "JP5" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-03-02"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-008> <https://w3id.org/sco/source/fuel_records/type> "regrade out" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <https://w3id.org/sco/source/fuel_records/document> "GC-002" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <https://w3id.org/sco/source/fuel_records/entry> "L-009" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <https://w3id.org/sco/source/fuel_records/gallons> "300000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-03-02"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-009> <https://w3id.org/sco/source/fuel_records/type> "regrade in" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <https://w3id.org/sco/source/fuel_records/document> "GC-003" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <https://w3id.org/sco/source/fuel_records/entry> "L-010" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <https://w3id.org/sco/source/fuel_records/gallons> "120000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <https://w3id.org/sco/source/fuel_records/grade> "JP5" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-03-12"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-010> <https://w3id.org/sco/source/fuel_records/type> "regrade out" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <https://w3id.org/sco/source/fuel_records/document> "GC-003" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <https://w3id.org/sco/source/fuel_records/entry> "L-011" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <https://w3id.org/sco/source/fuel_records/gallons> "120000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-03-12"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-011> <https://w3id.org/sco/source/fuel_records/type> "regrade in" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <https://w3id.org/sco/source/fuel_records/document> "ZA00016046J801" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <https://w3id.org/sco/source/fuel_records/entry> "L-012" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.3.c" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <https://w3id.org/sco/source/fuel_records/gallons> "398900"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-02-17"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-012> <https://w3id.org/sco/source/fuel_records/type> "receipt" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/LedgerEntry> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <https://w3id.org/sco/source/fuel_records/document> "SA-001" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <https://w3id.org/sco/source/fuel_records/entry> "L-013" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <https://w3id.org/sco/source/fuel_records/gallons> "20000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <https://w3id.org/sco/source/fuel_records/transactionDate> "2026-03-20"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/ledger/L-013> <https://w3id.org/sco/source/fuel_records/type> "sale" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Appointment> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> <https://w3id.org/sco/source/fuel_records/endDate> "2026-03-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §3.1-3.2" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> <https://w3id.org/sco/source/fuel_records/name> "Responsible Officer 1" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> <https://w3id.org/sco/source/fuel_records/person> "P-001" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> <https://w3id.org/sco/source/fuel_records/role> "responsible officer" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> <https://w3id.org/sco/source/fuel_records/startDate> "2025-09-01"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Appointment> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §3.1-3.2" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002> <https://w3id.org/sco/source/fuel_records/name> "Responsible Officer 2" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002> <https://w3id.org/sco/source/fuel_records/person> "P-002" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002> <https://w3id.org/sco/source/fuel_records/role> "responsible officer" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002> <https://w3id.org/sco/source/fuel_records/startDate> "2026-03-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Appointment> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §3.1; §3.3" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003> <https://w3id.org/sco/source/fuel_records/name> "Terminal Manager 1" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003> <https://w3id.org/sco/source/fuel_records/person> "P-003" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003> <https://w3id.org/sco/source/fuel_records/role> "terminal manager" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003> <https://w3id.org/sco/source/fuel_records/startDate> "2025-06-01"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Appointment> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 9 §3.1; §3.7" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004> <https://w3id.org/sco/source/fuel_records/name> "Property Administrator 1" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004> <https://w3id.org/sco/source/fuel_records/person> "P-004" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004> <https://w3id.org/sco/source/fuel_records/role> "property administrator" .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004> <https://w3id.org/sco/source/fuel_records/startDate> "2025-06-01"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Receipt> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/apiGravity> "42.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/closingNetGallons> "199640"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/determinationMethod> "receipt tank gauge" .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.3.k(6); Appendix 5A" .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/grossGallons> "200840"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/netGallons> "199640"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/openingNetGallons> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/receipt> "R-001" .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/receiptDate> "2026-02-04"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/shipment> <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/temperatureF> "71"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> <https://w3id.org/sco/source/fuel_records/variancePct> "-0.18"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Receipt> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/apiGravity> "42.2"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/closingNetGallons> "479220"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/determinationMethod> "receipt tank gauge" .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.3.k(5)(a); Appendix 5A" .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/grossGallons> "280840"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/netGallons> "279580"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/openingNetGallons> "199640"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/receipt> "R-002" .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/receiptDate> "2026-02-06"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/shipment> <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/temperatureF> "69"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> <https://w3id.org/sco/source/fuel_records/variancePct> "-0.15"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Receipt> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/apiGravity> "42.1"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/closingNetGallons> "398900"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/determinationMethod> "calibrated receipt meter" .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.3.c; Appendix 5A" .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/grossGallons> "399820"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/netGallons> "398900"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/openingNetGallons> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/receipt> "R-003" .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/receiptDate> "2026-02-17"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/shipment> <https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/temperatureF> "66"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> <https://w3id.org/sco/source/fuel_records/variancePct> "-0.275"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Sale> .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <https://w3id.org/sco/source/fuel_records/customer> <https://w3id.org/sco/data/synthetic/fuel/activity/ZU0101> .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 1 G.2; Vol. 9 G.2" .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <https://w3id.org/sco/source/fuel_records/netGallons> "20000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <https://w3id.org/sco/source/fuel_records/sale> "SA-001" .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <https://w3id.org/sco/source/fuel_records/saleDate> "2026-03-20"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> <https://w3id.org/sco/source/fuel_records/tank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Sample> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §4.2.1.4.10; §4.2.1.5.2; §5.9" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/gallonsRepresented> "300000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/grade> "JP5" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/labReport> "LR-26-0118" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/laboratory> <https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/location> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/reason> "storage surveillance" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/sampleDate> "2026-01-20"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/sampleNumber> "S-2026-0030" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/sampleType> "single tank composite" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/specification> "MIL-DTL-5624" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/status> "on-specification" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> <https://w3id.org/sco/source/fuel_records/takenBy> <https://w3id.org/sco/data/synthetic/fuel/person/P-001> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Sample> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §4.2.1.4.10; §4.2.1.5.2; §5.8.3" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/gallonsRepresented> "479603"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/labReport> "LR-26-0164" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/laboratory> <https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/location> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/reason> "after receipt and additive injection" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/sampleDate> "2026-02-10"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/sampleNumber> "S-2026-0041" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/sampleType> "single tank composite" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/specification> "MIL-DTL-83133" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/status> "on-specification" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> <https://w3id.org/sco/source/fuel_records/takenBy> <https://w3id.org/sco/data/synthetic/fuel/person/P-001> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Sample> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §4.2.1.4.10; §4.2.1.5.2; §5.2.2.3" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/gallonsRepresented> "398900"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/labReport> "LR-26-0190" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/laboratory> <https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/location> <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/reason> "after receipt" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/sampleDate> "2026-02-18"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/sampleNumber> "S-2026-0057" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/sampleType> "single tank composite" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/specification> "MIL-DTL-83133" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/status> "on-specification" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> <https://w3id.org/sco/source/fuel_records/takenBy> <https://w3id.org/sco/data/synthetic/fuel/person/P-003> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Sample> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D §4.2.1.4.10; §4.2.1.5.2; §5.9.1" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/gallonsRepresented> "120000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/grade> "JP5" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/labReport> "LR-26-0207" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/laboratory> <https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/location> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/reason> "long-term storage surveillance" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/sampleDate> "2026-03-05"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/sampleNumber> "S-2026-0062" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/sampleType> "single tank composite" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/specification> "MIL-DTL-5624" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/status> "off-specification for flash point" .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> <https://w3id.org/sco/source/fuel_records/takenBy> <https://w3id.org/sco/data/synthetic/fuel/person/P-001> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Shipment> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/apiGravity> "42.1"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/batchOrCargo> "PB-7790" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/determinationMethod> "temperature compensating meter" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/documentNumber> "ZA00016046J801" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §6.3.a(1)-(5); §6.3.f" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/form> "DD Form 1348-7" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/grade> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/grossGallons> "401600"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/mode> "commercial pipeline" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/netGallons> "400000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/shipDate> "2026-02-15"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/shipFrom> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/shipFromTank> <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/shipTo> <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/stoNumber> "ZSTO-0004500123" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> <https://w3id.org/sco/source/fuel_records/temperatureF> "68"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Shipment> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/apiGravity> "42.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/batchOrCargo> "CG-2601" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/certificate> <https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/determinationMethod> "shore tank gauge" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/documentNumber> "ZE0600-26-F-0101-01" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §6.3.g; MIL-STD-3004D §5.1.1.2" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/form> "DD Form 250-1" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/grade> "JAA" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/grossGallons> "201410"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/mode> "barge" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/netGallons> "200000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/orderNumber> "ZE0600-26-F-0101" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/shipDate> "2026-02-02"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/shipFrom> <https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/shipTo> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> <https://w3id.org/sco/source/fuel_records/temperatureF> "74"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Shipment> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/apiGravity> "42.2"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/batchOrCargo> "PB-7781" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/certificate> <https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/determinationMethod> "temperature compensating meter" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/documentNumber> "ZE0600-26-F-0102-01" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.3.k(5); §6.3.a(5)(c)" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/form> "DD Form 250" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/grade> "JAA" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/grossGallons> "281120"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/mode> "commercial pipeline" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/netGallons> "280000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/orderNumber> "ZE0600-26-F-0102" .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/shipDate> "2026-02-05"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/shipFrom> <https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/shipTo> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> <https://w3id.org/sco/source/fuel_records/temperatureF> "70"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Tank> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> <https://w3id.org/sco/source/fuel_records/capacityGallons> "1000000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.2.b(4)" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> <https://w3id.org/sco/source/fuel_records/gradeAtStart> "JAA" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> <https://w3id.org/sco/source/fuel_records/tankNumber> "T1" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Tank> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> <https://w3id.org/sco/source/fuel_records/capacityGallons> "500000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.2.b(4)" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> <https://w3id.org/sco/source/fuel_records/gradeAtStart> "JP5" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> <https://w3id.org/sco/source/fuel_records/tankNumber> "T2" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Tank> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> <https://w3id.org/sco/source/fuel_records/capacityGallons> "250000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.2.b(4)" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> <https://w3id.org/sco/source/fuel_records/gradeAtStart> "JP5" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> <https://w3id.org/sco/source/fuel_records/tankNumber> "T4" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/Tank> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> <https://w3id.org/sco/source/fuel_records/capacityGallons> "750000"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> <https://w3id.org/sco/source/fuel_records/dfsp> <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> <https://w3id.org/sco/source/fuel_records/follows> "DoDM 4140.25 Vol. 12 §5.2.b(4)" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> <https://w3id.org/sco/source/fuel_records/gradeAtStart> "JP8" .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> <https://w3id.org/sco/source/fuel_records/tankNumber> "T3" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> <https://w3id.org/sco/source/fuel_records/property> "appearance" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> <https://w3id.org/sco/source/fuel_records/testType> "B-2" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> <https://w3id.org/sco/source/fuel_records/value> "clear and bright" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/property> "flash point" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/receiptMin> "60"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/specMin> "60"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/testType> "B-2" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/unit> "°C" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> <https://w3id.org/sco/source/fuel_records/value> "62" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/property> "FSII" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/receiptMax> "0.15"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/receiptMin> "0.06"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/specMax> "0.10"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/specMin> "0.07"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/testType> "B-1" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/unit> "vol %" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> <https://w3id.org/sco/source/fuel_records/value> "0.08" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> <https://w3id.org/sco/source/fuel_records/property> "appearance" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> <https://w3id.org/sco/source/fuel_records/testType> "B-1" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> <https://w3id.org/sco/source/fuel_records/value> "clear and bright" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/property> "flash point" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/receiptMin> "38"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/specMin> "38"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/testType> "B-1" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/unit> "°C" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> <https://w3id.org/sco/source/fuel_records/value> "46" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/property> "particulate matter" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/receiptMax> "2.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/specMax> "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/testType> "B-1" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/unit> "mg/L" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> <https://w3id.org/sco/source/fuel_records/value> "0.4" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/property> "FSII" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/receiptMax> "0.15"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/receiptMin> "0.06"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/specMax> "0.10"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/specMin> "0.07"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/testType> "B-1" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/unit> "vol %" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> <https://w3id.org/sco/source/fuel_records/value> "0.08" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> <https://w3id.org/sco/source/fuel_records/property> "appearance" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> <https://w3id.org/sco/source/fuel_records/testType> "B-1" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> <https://w3id.org/sco/source/fuel_records/value> "clear and bright" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/property> "flash point" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/receiptMin> "38"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/specMin> "38"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/testType> "B-1" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/unit> "°C" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> <https://w3id.org/sco/source/fuel_records/value> "46" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/property> "particulate matter" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/receiptMax> "2.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/specMax> "1.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/testType> "B-1" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/unit> "mg/L" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> <https://w3id.org/sco/source/fuel_records/value> "0.6" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> <https://w3id.org/sco/source/fuel_records/meetsSpec> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> <https://w3id.org/sco/source/fuel_records/property> "appearance" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> <https://w3id.org/sco/source/fuel_records/testType> "B-2" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> <https://w3id.org/sco/source/fuel_records/value> "clear and bright" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://w3id.org/sco/source/fuel_records/TestResult> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/follows> "MIL-STD-3004D Table I" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/meetsReceiptLimit> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/meetsSpec> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/property> "flash point" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/receiptMin> "60"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/sample> <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/specMin> "60"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/synthetic> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/testType> "B-2" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/unit> "°C" .
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> <https://w3id.org/sco/source/fuel_records/value> "58" .

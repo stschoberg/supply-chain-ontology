@@ -1,0 +1,32 @@
+# A sample is a material entity (BFO), designated by its sample number (Core), that was part of the
+# fuel in the tank it was drawn from. The sample log entry describes it.
+#
+# SCRO has no sample, and no relation for what a sample represents; the gallons it represents are
+# not mapped.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?record a iof:DescriptiveInformationContentEntity ;
+          iof:describes ?sample .
+  ?sample a obo:BFO_0000040 ;                    # material entity
+          rdfs:label ?label ;
+          obo:BFO_0000176 ?tankFuel .            # continuant part of at some time
+  ?number a iof:Identifier ;
+          iof:designates ?sample ;
+          iof:hasTextValue ?sampleNumber .
+}
+WHERE {
+  ?record a fuel_records:Sample ;
+          fuel_records:sampleNumber ?sampleNumber ;
+          fuel_records:location ?tank .
+  ?tank a fuel_records:Tank .
+  BIND (IRI(CONCAT(STR(?record), "/material")) AS ?sample)
+  BIND (IRI(CONCAT(STR(?record), "/number")) AS ?number)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?tankFuel)
+  BIND (CONCAT("sample ", ?sampleNumber) AS ?label)
+}

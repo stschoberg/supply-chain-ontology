@@ -1,0 +1,23 @@
+# Injecting an additive is a manufacturing process (SCRO): input material "transformed or modified".
+# The tank's fuel is both its input and its output (Core), so it is the same fuel before and after.
+#
+# Ours. The 383 gal of FSII is not recorded as a portion of its own, so it is not one here.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?injecting a iof:ManufacturingProcess ;
+             iof:hasInput ?tankFuel ;
+             iof:hasOutput ?tankFuel .
+  ?injection a iof:DescriptiveInformationContentEntity ;
+             iof:describes ?injecting .
+}
+WHERE {
+  ?injection a fuel_records:AdditiveInjection ; fuel_records:tank ?tank .
+  BIND (IRI(CONCAT(STR(?injection), "/injecting")) AS ?injecting)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?tankFuel)
+}

@@ -1,0 +1,27 @@
+# A fuel specification (MIL-DTL-5624 for JP-5, MIL-DTL-83133 for JP-8) is a requirement
+# specification (Core). A sample the laboratory found on specification satisfies it.
+#
+# An off-specification sample gets nothing: OWL cannot say that something fails a requirement, only
+# leave it unsaid. Satisfies is not indexed by time, and links the sample, not the tank's fuel or the
+# grade change the result was the reason for.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?specification a iof:RequirementSpecification ;
+                 rdfs:label ?code .
+  ?sample iof:satisfiesRequirement ?specification .
+}
+WHERE {
+  ?record a fuel_records:Sample ;
+          fuel_records:specification ?code ;
+          fuel_records:status "on-specification" ;
+          fuel_records:location ?tank .
+  ?tank a fuel_records:Tank .
+  BIND (IRI(CONCAT(STR(?record), "/material")) AS ?sample)
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/fuel/specification/", ENCODE_FOR_URI(?code))) AS ?specification)
+}

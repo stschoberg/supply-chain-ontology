@@ -1,0 +1,7 @@
+code,name,kind,operation,capitalized,follows,synthetic
+ZA0001,Fuel Support Point Alpha,dfsp,government-owned government-operated,true,DoDM 4140.25 Vol. 9 Table 1; Vol. 1 G.2,true
+ZB0002,Fuel Support Point Bravo,dfsp,government-owned contractor-operated,true,DoDM 4140.25 Vol. 9 Table 1; Vol. 1 G.2,true
+ZR0001,Refinery R1,refinery,,,MIL-STD-3004D §3.1.94,true
+ZL0001,Petroleum Laboratory L1,laboratory,,,MIL-STD-3004D §4.2.2.6,true
+ZE0001,DLA Energy,inventory manager,,,DoDM 4140.25 Vol. 1 §3.2; MIL-STD-3004D §4.4,true
+ZU0101,Unit U1,customer,,,DoDM 4140.25 Vol. 1 G.2,true

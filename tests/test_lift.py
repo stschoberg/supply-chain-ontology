@@ -14,7 +14,8 @@ from sco import graph
 from sco.namespaces import DATA, DLMS_SYNTH, IOF, PREFIXES, USAS
 
 FIXTURE_SNAPSHOT = graph.ROOT / "tests" / "fixtures" / "usaspending"
-SOURCES = sorted(lift.ROW_CLASSES)
+ROW_CLASSES = {**lift.ROW_CLASSES, **lift.STUDY_ROW_CLASSES}
+SOURCES = sorted(ROW_CLASSES)
 MAPPINGS = sorted(m for source in SOURCES for m in (lift.MAPPINGS_DIR / source).glob("*.yml"))
 
 
@@ -140,6 +141,8 @@ def test_mapping_uses_the_shared_namespaces(mapping_file):
 
 
 def test_mapping_is_one_block_covering_every_column_of_its_table(mapping_file, tables):
+    if mapping_file.parent.name in lift.STUDY_ROW_CLASSES:
+        tables = mapping_file.parent / "tables"
     with (tables / f"{mapping_file.stem}.csv").open(newline="") as fh:
         columns = set(next(csv.reader(fh)))
     assert len(yaml.safe_load(mapping_file.read_text())["mappings"]) == 1
@@ -151,7 +154,7 @@ def test_schema_defines_exactly_the_mapped_terms(source):
     vocabulary = Graph().parse(lift.MAPPINGS_DIR / source / "schema.ttl")
     namespaces = {prefix: str(namespace) for prefix, namespace in PREFIXES.items()}
     mapped = set()
-    for table in lift.ROW_CLASSES[source]:
+    for table in ROW_CLASSES[source]:
         mapping = yaml.safe_load((lift.MAPPINGS_DIR / source / f"{table}.yml").read_text())
         for block in mapping["mappings"].values():
             for predicate, obj, *_ in block["po"]:

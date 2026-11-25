@@ -1,0 +1,17 @@
+# CQ-004: Is T2's fuel after the regrade the same portion as before? And T4's after the downgrade?
+#
+# For each grade change: the material entities taking part in it, and the grades that classify them.
+# One participant means the reading has the same portion before and after, by construction.
+
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?change ?fuel ?grade
+WHERE {
+  ?record iof:describes ?process .
+  ?process a iof:Change ; rdfs:label ?change ; obo:BFO_0000057 ?participant .
+  ?participant rdfs:label ?fuel .
+  ?code iof:classifies ?participant ; iof:hasTextValue ?grade .
+}

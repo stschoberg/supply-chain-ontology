@@ -1,0 +1,600 @@
+@prefix iof: <https://spec.industrialontologies.org/ontology/construct/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T1> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001> .
+
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T2> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001> .
+
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/T4> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001> .
+
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZE0001> a iof:Organization ;
+    rdfs:label "DLA Energy" ;
+    iof:agentIn <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001/change>,
+        <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002/change>,
+        <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003/change> .
+
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZL0001> a iof:Organization ;
+    rdfs:label "Petroleum Laboratory L1" .
+
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZR0001> a iof:Organization ;
+    rdfs:label "Refinery R1" .
+
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001/injecting> .
+
+<https://w3id.org/sco/data/synthetic/fuel/certificate/COA-CA-55> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/lot/CA-55> .
+
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-101> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/lot/RB-101> .
+
+<https://w3id.org/sco/data/synthetic/fuel/certificate/RCQ-RB-102> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/lot/RB-102> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001/change> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002/change> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003/change> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade/JAA> a iof:InformationContentEntity ;
+    rdfs:label "JAA" ;
+    iof:classifies <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> ;
+    iof:hasTextValue "JAA" .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade/JP5> a iof:InformationContentEntity ;
+    rdfs:label "JP5" ;
+    iof:classifies <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel> ;
+    iof:hasTextValue "JP5" .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade/JP8> a iof:InformationContentEntity ;
+    rdfs:label "JP8" ;
+    iof:classifies <https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel> ;
+    iof:hasTextValue "JP8" .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/CA-55/number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/lot/CA-55> ;
+    iof:hasTextValue "CA-55" .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/CA-55/rebatching> a iof:ManufacturingProcess ;
+    rdfs:label "re-batching into CA-55" ;
+    iof:hasInput <https://w3id.org/sco/data/synthetic/fuel/lot/RB-101>,
+        <https://w3id.org/sco/data/synthetic/fuel/lot/RB-102> ;
+    iof:hasOutput <https://w3id.org/sco/data/synthetic/fuel/lot/CA-55> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/lot/CA-55/rebatching/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/RB-101/number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/lot/RB-101> ;
+    iof:hasTextValue "RB-101" .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/RB-102/number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/lot/RB-102> ;
+    iof:hasTextValue "RB-102" .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/gain> a iof:GainOfRole ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/person/P-001> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/gain/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/loss> a iof:LossOfRole ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/person/P-001> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/loss/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002/appointment/gain> a iof:GainOfRole ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/person/P-002> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/person/P-002/appointment/gain/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003/appointment/gain> a iof:GainOfRole ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/person/P-003> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/person/P-003/appointment/gain/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004/appointment/gain> a iof:GainOfRole ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/person/P-004> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/person/P-004/appointment/gain/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/receipt/R-001/receiving> .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/receipt/R-002/receiving> .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/receipt/R-003/receiving> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/selling> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030/material> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030/number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030/material> ;
+    iof:hasTextValue "S-2026-0030" .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> ;
+    iof:hasTextValue "S-2026-0041" .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> ;
+    iof:hasTextValue "S-2026-0057" .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062/material> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062/number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062/material> ;
+    iof:hasTextValue "S-2026-0062" .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801> a iof:DescriptiveInformationContentEntity ;
+    iof:isAbout <https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/batch-or-cargo> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/fuel> ;
+    iof:hasTextValue "PB-7790" .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/document-number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/fuel> ;
+    iof:hasTextValue "ZA00016046J801" .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01> a iof:DescriptiveInformationContentEntity ;
+    iof:isAbout <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/batch-or-cargo> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/fuel> ;
+    iof:hasTextValue "CG-2601" .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/document-number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/fuel> ;
+    iof:hasTextValue "ZE0600-26-F-0101-01" .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01> a iof:DescriptiveInformationContentEntity ;
+    iof:isAbout <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/batch-or-cargo> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/fuel> ;
+    iof:hasTextValue "PB-7781" .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/document-number> a iof:Identifier ;
+    iof:designates <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/fuel> ;
+    iof:hasTextValue "ZE0600-26-F-0102-01" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point/measuring> a iof:MeasurementProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062/material> ;
+    iof:hasSpecifiedOutput <https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> .
+
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-03-15T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZU0101> a iof:Organization ;
+    rdfs:label "Unit U1" ;
+    iof:agentIn <https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/selling> .
+
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001/injecting> a iof:ManufacturingProcess ;
+    iof:hasInput <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> ;
+    iof:hasOutput <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001/injecting/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001/injecting/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001/injecting/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/additive-injection/AI-001/injecting/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-02-09T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001/change/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001/change/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001/change/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-02-09T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002/change/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002/change/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002/change/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-03-02T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003/change/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003/change/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003/change/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-03-12T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/CA-55/lot-role> a iof:LotRole .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/CA-55/rebatching/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/lot/CA-55/rebatching/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/CA-55/rebatching/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-02-19T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/RB-101/lot-role> a iof:LotRole .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/RB-102/lot-role> a iof:LotRole .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment> a iof:AgentRole ;
+    rdfs:label "responsible officer at ZA0001" .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/gain/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/gain/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/gain/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2025-09-01T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/loss/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/loss/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment/loss/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-03-15T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002> a iof:Person ;
+    rdfs:label "Responsible Officer 2" ;
+    iof:actsOnBehalfOfAtSomeTime <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> ;
+    iof:agentIn <https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/person/P-002/appointment> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002/appointment> a iof:AgentRole ;
+    rdfs:label "responsible officer at ZA0001" .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002/appointment/gain/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/person/P-002/appointment/gain/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-002/appointment/gain/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-03-15T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003> a iof:Person ;
+    rdfs:label "Terminal Manager 1" ;
+    iof:actsOnBehalfOfAtSomeTime <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/person/P-003/appointment> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003/appointment> a iof:AgentRole ;
+    rdfs:label "terminal manager at ZB0002" .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003/appointment/gain/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/person/P-003/appointment/gain/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-003/appointment/gain/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2025-06-01T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004> a iof:Person ;
+    rdfs:label "Property Administrator 1" ;
+    iof:actsOnBehalfOfAtSomeTime <https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/person/P-004/appointment> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004/appointment> a iof:AgentRole ;
+    rdfs:label "property administrator at ZB0002" .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004/appointment/gain/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/person/P-004/appointment/gain/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-004/appointment/gain/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2025-06-01T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001/receiving/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/receipt/R-001/receiving/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001/receiving/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-02-04T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002/receiving/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/receipt/R-002/receiving/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002/receiving/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-02-06T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003/receiving/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/receipt/R-003/receiving/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003/receiving/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-02-17T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/selling/day> a obo:BFO_0000008 ;
+    iof:hasValueExpressionAtAllTimes <https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/selling/day/value> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/selling/day/value> a iof:TemporalInstantValueExpression ;
+    iof:hasDateTimeInstantValue "2026-03-20T00:00:00"^^xsd:dateTime .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/fuel/shipment-role> a iof:ShipmentRole ;
+    obo:BFO_0000054 <https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/transport> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/transport> a iof:TransportProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/fuel/shipment-role> a iof:ShipmentRole ;
+    obo:BFO_0000054 <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/transport> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/transport> a iof:TransportProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/fuel/shipment-role> a iof:ShipmentRole ;
+    obo:BFO_0000054 <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/transport> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/transport> a iof:TransportProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/specification/MIL-DTL-5624> a iof:RequirementSpecification ;
+    rdfs:label "MIL-DTL-5624" .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> a obo:BFO_0000030 ;
+    rdfs:label "tank T1 at ZA0001" .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel/inventory-role> a iof:IndustrialInventoryRole .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel/storage> a iof:StorageProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> a obo:BFO_0000030 ;
+    rdfs:label "tank T2 at ZA0001" .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel/inventory-role> a iof:IndustrialInventoryRole .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel/storage> a iof:StorageProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> a obo:BFO_0000030 ;
+    rdfs:label "tank T4 at ZA0001" .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel/inventory-role> a iof:IndustrialInventoryRole .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel/storage> a iof:StorageProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> a obo:BFO_0000030 ;
+    rdfs:label "tank T3 at ZB0002" .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel/inventory-role> a iof:IndustrialInventoryRole .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel/storage> a iof:StorageProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/appearance> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030/material> ;
+    iof:hasTextValue "appearance: clear and bright" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0030/flash%20point> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030/material> ;
+    iof:hasTextValue "flash point: 62 °C" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/FSII> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> ;
+    iof:hasTextValue "FSII: 0.08 vol %" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/appearance> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> ;
+    iof:hasTextValue "appearance: clear and bright" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/flash%20point> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> ;
+    iof:hasTextValue "flash point: 46 °C" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0041/particulate%20matter> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> ;
+    iof:hasTextValue "particulate matter: 0.4 mg/L" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/FSII> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> ;
+    iof:hasTextValue "FSII: 0.08 vol %" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/appearance> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> ;
+    iof:hasTextValue "appearance: clear and bright" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/flash%20point> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> ;
+    iof:hasTextValue "flash point: 46 °C" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0057/particulate%20matter> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> ;
+    iof:hasTextValue "particulate matter: 0.6 mg/L" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/appearance> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062/material> ;
+    iof:hasTextValue "appearance: clear and bright" .
+
+<https://w3id.org/sco/data/synthetic/fuel/test-result/S-2026-0062/flash%20point> a iof:DescriptiveInformationContentEntity ;
+    iof:describes <https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062/material> ;
+    iof:hasTextValue "flash point: 58 °C" .
+
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> a iof:Organization ;
+    rdfs:label "Fuel Support Point Alpha" ;
+    iof:agentIn <https://w3id.org/sco/data/synthetic/fuel/receipt/R-001/receiving>,
+        <https://w3id.org/sco/data/synthetic/fuel/receipt/R-002/receiving>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel/storage>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel/storage>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel/storage> .
+
+<https://w3id.org/sco/data/synthetic/fuel/activity/ZB0002> a iof:Organization ;
+    rdfs:label "Fuel Support Point Bravo" ;
+    iof:agentIn <https://w3id.org/sco/data/synthetic/fuel/receipt/R-003/receiving>,
+        <https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/selling>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel/storage> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001/change> a iof:Change ;
+    rdfs:label "grade change GC-001" ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-001/change/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002/change> a iof:Change ;
+    rdfs:label "grade change GC-002" ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-002/change/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003/change> a iof:Change ;
+    rdfs:label "grade change GC-003" ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/grade-change/GC-003/change/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/person/P-001> a iof:Person ;
+    rdfs:label "Responsible Officer 1" ;
+    iof:actsOnBehalfOfAtSomeTime <https://w3id.org/sco/data/synthetic/fuel/activity/ZA0001> ;
+    iof:agentIn <https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/person/P-001/appointment> .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-001/receiving> a iof:ReceivingProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/fuel> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/receipt/R-001/receiving/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-002/receiving> a iof:ReceivingProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/fuel> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/receipt/R-002/receiving/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/receipt/R-003/receiving> a iof:ReceivingProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/fuel> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/receipt/R-003/receiving/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/fuel> a obo:BFO_0000040 ;
+    rdfs:label "fuel sold on SA-001" ;
+    obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel> ;
+    iof:ownedBy <https://w3id.org/sco/data/synthetic/fuel/activity/ZU0101> .
+
+<https://w3id.org/sco/data/synthetic/fuel/specification/MIL-DTL-83133> a iof:RequirementSpecification ;
+    rdfs:label "MIL-DTL-83133" .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/CA-55> a obo:BFO_0000040 ;
+    rdfs:label "lot CA-55" ;
+    obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/lot/CA-55/lot-role> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/selling> a iof:SellingBusinessProcess ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/fuel> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/sale/SA-001/selling/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/RB-101> a obo:BFO_0000040 ;
+    rdfs:label "lot RB-101" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/lot/RB-101/lot-role> .
+
+<https://w3id.org/sco/data/synthetic/fuel/lot/RB-102> a obo:BFO_0000040 ;
+    rdfs:label "lot RB-102" ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/lot/RB-102/lot-role> .
+
+<https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001> a iof:InventoryManagementProcess ;
+    rdfs:label "account transfer AT-001" ;
+    obo:BFO_0000057 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel> ;
+    iof:occursOn <https://w3id.org/sco/data/synthetic/fuel/account-transfer/AT-001/day> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0030/material> a obo:BFO_0000040 ;
+    rdfs:label "sample S-2026-0030" ;
+    obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel> ;
+    iof:satisfiesRequirement <https://w3id.org/sco/data/synthetic/fuel/specification/MIL-DTL-5624> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0062/material> a obo:BFO_0000040 ;
+    rdfs:label "sample S-2026-0062" ;
+    obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/fuel> a obo:BFO_0000040 ;
+    rdfs:label "fuel shipped on ZA00016046J801" ;
+    obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/shipment/ZA00016046J801/fuel/shipment-role> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/fuel> a obo:BFO_0000040 ;
+    rdfs:label "fuel shipped on ZE0600-26-F-0101-01" ;
+    obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/lot/RB-101>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0101-01/fuel/shipment-role> .
+
+<https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/fuel> a obo:BFO_0000040 ;
+    rdfs:label "fuel shipped on ZE0600-26-F-0102-01" ;
+    obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/lot/RB-102>,
+        <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/shipment/ZE0600-26-F-0102-01/fuel/shipment-role> .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel> a obo:BFO_0000040 ;
+    rdfs:label "fuel in tank T2 at ZA0001" ;
+    obo:BFO_0000171 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T2/fuel/inventory-role> .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel> a obo:BFO_0000040 ;
+    rdfs:label "fuel in tank T4 at ZA0001" ;
+    obo:BFO_0000171 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T4/fuel/inventory-role> .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel> a obo:BFO_0000040 ;
+    rdfs:label "fuel in tank T3 at ZB0002" ;
+    obo:BFO_0000171 <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel/inventory-role> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0041/material> a obo:BFO_0000040 ;
+    rdfs:label "sample S-2026-0041" ;
+    obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> ;
+    iof:satisfiesRequirement <https://w3id.org/sco/data/synthetic/fuel/specification/MIL-DTL-83133> .
+
+<https://w3id.org/sco/data/synthetic/fuel/sample/S-2026-0057/material> a obo:BFO_0000040 ;
+    rdfs:label "sample S-2026-0057" ;
+    obo:BFO_0000176 <https://w3id.org/sco/data/synthetic/fuel/tank/ZB0002/T3/fuel> ;
+    iof:satisfiesRequirement <https://w3id.org/sco/data/synthetic/fuel/specification/MIL-DTL-83133> .
+
+<https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel> a obo:BFO_0000040 ;
+    rdfs:label "fuel in tank T1 at ZA0001" ;
+    obo:BFO_0000171 <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1> ;
+    iof:hasRole <https://w3id.org/sco/data/synthetic/fuel/tank/ZA0001/T1/fuel/inventory-role> .
+

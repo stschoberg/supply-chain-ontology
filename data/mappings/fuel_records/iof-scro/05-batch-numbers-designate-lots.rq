@@ -1,0 +1,31 @@
+# A batch number on a certificate is an identifier (Core) that designates a material entity (BFO)
+# with a lot role (SCRO); SCRO gives batch role as a synonym. The certificate describes the lot.
+#
+# The lot is not asserted to be a lot, nor the number a lot identifier: SCRO defines both, so the
+# reasoner decides. Refinery batches and the re-batch on a certificate of analysis are treated
+# alike, because the records treat them alike.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?lot a obo:BFO_0000040 ;                       # material entity
+       rdfs:label ?label ;
+       iof:hasRole ?role .
+  ?role a iof:LotRole .
+  ?number a iof:Identifier ;
+          iof:designates ?lot ;
+          iof:hasTextValue ?batch .
+  ?certificate a iof:DescriptiveInformationContentEntity ;
+               iof:describes ?lot .
+}
+WHERE {
+  ?certificate a fuel_records:Certificate ; fuel_records:batchNumber ?batch .
+  BIND (IRI(CONCAT("https://w3id.org/sco/data/synthetic/fuel/lot/", ENCODE_FOR_URI(?batch))) AS ?lot)
+  BIND (IRI(CONCAT(STR(?lot), "/lot-role")) AS ?role)
+  BIND (IRI(CONCAT(STR(?lot), "/number")) AS ?number)
+  BIND (CONCAT("lot ", ?batch) AS ?label)
+}

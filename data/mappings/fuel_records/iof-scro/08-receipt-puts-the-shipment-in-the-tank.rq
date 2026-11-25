@@ -1,0 +1,29 @@
+# A receipt describes a receiving process (SCRO) with the shipped fuel as participant and the DFSP
+# as agent. Afterwards the shipped fuel is part of the receiving tank's fuel.
+#
+# Ours: the fuel received is the fuel shipped, though the receipt measures 0.15 to 0.275% less.
+# BFO allows a material entity to lose parts and stay the same; SCRO does not say when that stops.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?receipt a iof:DescriptiveInformationContentEntity ;
+           iof:describes ?receiving .
+  ?receiving a iof:ReceivingProcess ;
+             obo:BFO_0000057 ?fuel .             # has participant at some time
+  ?dfsp iof:agentIn ?receiving .
+  ?fuel obo:BFO_0000176 ?tankFuel .              # continuant part of at some time
+}
+WHERE {
+  ?receipt a fuel_records:Receipt ;
+           fuel_records:shipment ?shipment ;
+           fuel_records:dfsp ?dfsp ;
+           fuel_records:tank ?tank .
+  BIND (IRI(CONCAT(STR(?receipt), "/receiving")) AS ?receiving)
+  BIND (IRI(CONCAT(STR(?shipment), "/fuel")) AS ?fuel)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?tankFuel)
+}

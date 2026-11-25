@@ -1,0 +1,36 @@
+# What a shipment document is about is a material entity (BFO) with a shipment role (SCRO),
+# designated by the document number and by the cargo, tender, or pipeline batch number (Core). The
+# role is realized in a transport process (SCRO), which SCRO says is the only way it can be.
+#
+# As for the DLMS records: one row, two entities, the record and the fuel it is about.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?shipment a iof:DescriptiveInformationContentEntity ;
+            iof:isAbout ?fuel .
+  ?fuel a obo:BFO_0000040 ;                      # material entity
+        rdfs:label ?label ;
+        iof:hasRole ?role .
+  ?role a iof:ShipmentRole ;
+        obo:BFO_0000054 ?transport .             # has realization
+  ?transport a iof:TransportProcess ;
+             obo:BFO_0000057 ?fuel .             # has participant at some time
+  ?document a iof:Identifier ; iof:designates ?fuel ; iof:hasTextValue ?documentNumber .
+  ?movement a iof:Identifier ; iof:designates ?fuel ; iof:hasTextValue ?batchOrCargo .
+}
+WHERE {
+  ?shipment a fuel_records:Shipment ;
+            fuel_records:documentNumber ?documentNumber ;
+            fuel_records:batchOrCargo ?batchOrCargo .
+  BIND (IRI(CONCAT(STR(?shipment), "/fuel")) AS ?fuel)
+  BIND (IRI(CONCAT(STR(?shipment), "/fuel/shipment-role")) AS ?role)
+  BIND (IRI(CONCAT(STR(?shipment), "/transport")) AS ?transport)
+  BIND (IRI(CONCAT(STR(?shipment), "/document-number")) AS ?document)
+  BIND (IRI(CONCAT(STR(?shipment), "/batch-or-cargo")) AS ?movement)
+  BIND (CONCAT("fuel shipped on ", ?documentNumber) AS ?label)
+}

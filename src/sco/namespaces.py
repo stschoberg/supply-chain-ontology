@@ -9,11 +9,16 @@ DATA = Namespace("https://w3id.org/sco/data/")
 USAS = Namespace("https://w3id.org/sco/source/usaspending/")
 # The synthetic source's terms. Its instances live under DATA["synthetic/"], apart from real ones.
 DLMS_SYNTH = Namespace("https://w3id.org/sco/source/dlms_synth/")
+# The hand-written fuel records (ADR-0006). Instances live under DATA["synthetic/fuel/"].
+FUEL_RECORDS = Namespace("https://w3id.org/sco/source/fuel_records/")
 # IOF Core and SCRO share one namespace; the pinned release is in research/reference/iof-scro/.
 IOF = Namespace("https://spec.industrialontologies.org/ontology/construct/")
 
 # Prefixes for graphs we write.
-PREFIXES = {"sco": SCO, "obo": OBO, "d": DATA, "usas": USAS, "dlms_synth": DLMS_SYNTH, "iof": IOF}
+PREFIXES = {
+    "sco": SCO, "obo": OBO, "d": DATA, "usas": USAS, "dlms_synth": DLMS_SYNTH,
+    "fuel_records": FUEL_RECORDS, "iof": IOF,
+}  # fmt: skip
 
 
 class BFO:

@@ -1,0 +1,32 @@
+# A tank is an object (BFO). The fuel in it is a material entity (BFO), located in the tank, with an
+# industrial inventory role (SCRO): stored by an organization, to be supplied to a customer.
+#
+# Ours: one fuel node per tank, for all time. SCRO has no way to say that what is in a tank on
+# 4 February (199,640 gal of Jet A) and on 20 March (79,603 gal of JP-8) are different amounts, or
+# the same one changed, so this reading does not try. No record names the fuel either; the node is
+# named after its tank.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?tank a obo:BFO_0000030 ;                      # object
+        rdfs:label ?tankLabel .
+  ?fuel a obo:BFO_0000040 ;                      # material entity
+        rdfs:label ?fuelLabel ;
+        obo:BFO_0000171 ?tank ;                  # located in at some time
+        iof:hasRole ?role .
+  ?role a iof:IndustrialInventoryRole .
+}
+WHERE {
+  ?tank a fuel_records:Tank ;
+        fuel_records:tankNumber ?number ;
+        fuel_records:dfsp/fuel_records:code ?dfsp .
+  BIND (IRI(CONCAT(STR(?tank), "/fuel")) AS ?fuel)
+  BIND (IRI(CONCAT(STR(?tank), "/fuel/inventory-role")) AS ?role)
+  BIND (CONCAT("tank ", ?number, " at ", ?dfsp) AS ?tankLabel)
+  BIND (CONCAT("fuel in tank ", ?number, " at ", ?dfsp) AS ?fuelLabel)
+}

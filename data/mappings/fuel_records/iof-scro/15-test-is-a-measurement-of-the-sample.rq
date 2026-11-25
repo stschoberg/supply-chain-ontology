@@ -1,0 +1,30 @@
+# Each test result is the output of a measurement process (Core) in which the sample participates,
+# and describes the sample. Its value is kept as text.
+#
+# Whether the value meets the specification is not mapped: Core has no relation from a measured
+# value to a specification limit.
+
+PREFIX fuel_records: <https://w3id.org/sco/source/fuel_records/>
+PREFIX iof:  <https://spec.industrialontologies.org/ontology/construct/>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?measuring a iof:MeasurementProcess ;
+             obo:BFO_0000057 ?sample ;           # has participant at some time
+             iof:hasSpecifiedOutput ?result .
+  ?result a iof:DescriptiveInformationContentEntity ;
+          iof:describes ?sample ;
+          iof:hasTextValue ?text .
+}
+WHERE {
+  ?result a fuel_records:TestResult ;
+          fuel_records:sample ?record ;
+          fuel_records:property ?property ;
+          fuel_records:value ?value .
+  OPTIONAL { ?result fuel_records:unit ?unit }
+  BIND (IRI(CONCAT(STR(?record), "/material")) AS ?sample)
+  BIND (IRI(CONCAT(STR(?result), "/measuring")) AS ?measuring)
+  BIND (CONCAT(?property, ": ", STR(?value), IF(BOUND(?unit), CONCAT(" ", ?unit), "")) AS ?text)
+}

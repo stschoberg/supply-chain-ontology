@@ -1,0 +1,13 @@
+sample_number,test_type,property,value,unit,spec_min,spec_max,receipt_min,receipt_max,meets_spec,meets_receipt_limit,follows,synthetic
+S-2026-0030,B-2,flash point,62,°C,60,,60,,true,true,MIL-STD-3004D Table I,true
+S-2026-0030,B-2,appearance,clear and bright,,,,,,true,true,MIL-STD-3004D Table I,true
+S-2026-0041,B-1,flash point,46,°C,38,,38,,true,true,MIL-STD-3004D Table I,true
+S-2026-0041,B-1,FSII,0.08,vol %,0.07,0.10,0.06,0.15,true,true,MIL-STD-3004D Table I,true
+S-2026-0041,B-1,particulate matter,0.4,mg/L,,1.0,,2.0,true,true,MIL-STD-3004D Table I,true
+S-2026-0041,B-1,appearance,clear and bright,,,,,,true,true,MIL-STD-3004D Table I,true
+S-2026-0057,B-1,flash point,46,°C,38,,38,,true,true,MIL-STD-3004D Table I,true
+S-2026-0057,B-1,FSII,0.08,vol %,0.07,0.10,0.06,0.15,true,true,MIL-STD-3004D Table I,true
+S-2026-0057,B-1,particulate matter,0.6,mg/L,,1.0,,2.0,true,true,MIL-STD-3004D Table I,true
+S-2026-0057,B-1,appearance,clear and bright,,,,,,true,true,MIL-STD-3004D Table I,true
+S-2026-0062,B-2,flash point,58,°C,60,,60,,false,false,MIL-STD-3004D Table I,true
+S-2026-0062,B-2,appearance,clear and bright,,,,,,true,true,MIL-STD-3004D Table I,true
