@@ -9,13 +9,9 @@ something to describe.
 make transform    # builds the dlms_synth__* tables with everything else, in data/warehouse.duckdb
 ```
 
-It is a source like [USAspending](../usaspending/README.md), except that it is generated, not fetched. dbt derives
-it from the staged awards, in [`transform/models/dlms_synth/`](../../transform/models/dlms_synth/), so there is no
-fetcher and no raw snapshot here. The name says both things: the concepts are DLMS's, and the records are synthetic.
-
-It covers every award that bought something (a positive obligated amount). Its tables are published in each data
-release, marked synthetic in their names, their descriptions, the release notes, and every row. Its graph,
-`dlms_synth.nt.gz`, is in each release too.
+dbt derives it from the staged awards, in [`transform/models/dlms_synth/`](../../transform/models/dlms_synth/),
+for every award with a positive obligated amount. Its tables and graph are published in each release, marked
+synthetic.
 
 ## What is real and what is invented
 
@@ -28,8 +24,7 @@ release, marked synthetic in their names, their descriptions, the release notes,
 | The product class, and the NSN when the award has one | Unit price, and so every quantity |
 | The names of DoD activities | Their activity codes, document numbers, and transportation control numbers |
 
-The suppliers keep their real names. An invented late or short shipment says nothing about the real company. Every
-row has `synthetic = true`, and the tables stay out of the real ones.
+The suppliers keep their real names. An invented late or short shipment says nothing about the real company.
 
 ## The concepts are the DoD's
 

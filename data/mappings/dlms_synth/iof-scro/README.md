@@ -62,8 +62,6 @@ And every record splits in two: the record, and what it is a record of.
 
 ## Limits
 
-- **Synthetic.** These rules show whether SCRO can describe records shaped like the DoD's. They say nothing about
-  whether real DoD records would fit.
 - **Reasoning is OWL 2 RL**, on the example only, as for the USAspending rules.
 - **Our choices, not IOF's.** A receipt as a descriptive information content entity, a depot as three things, and
   the purchase order as what prescribes a receiving process are judgments.

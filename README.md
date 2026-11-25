@@ -20,38 +20,11 @@ ontology must be able to answer, and test it against two kinds of instance data:
 Where real data maps cleanly, the ontology earns its keep. Where it doesn't, that's a finding about what
 BFO's commitments cost or buy.
 
-```
-  real-world sources ──► data product ──► mappings ──► scenario ABox (RDF) ──┐
-                         (versioned tables)                                  ├─► reason, validate, query ──► CQ answers
-  competency questions ──► ontology (TBox, BFO-aligned) ─────────────────────┘
-```
-
-Two workflows meet at the scenarios: the **data workflow** supplies instances, and the **ontology
-workflow** supplies the model and the questions.
-
 ## Data workflow
 
-### Using the data
-
-The data is published as a **data product**: a few documented, versioned tables. Ingesting and cleaning
-stay hidden behind it. Today it holds DoD contract awards for bearings from USAspending.gov (FY2023–25), and
-synthetic logistics records generated for them (`dlms_synth`).
-
-- **No install:** [open the example notebook in Colab](https://colab.research.google.com/github/stschoberg/supply-chain-ontology/blob/main/data/examples/explore.ipynb).
-- **DuckDB:**
-
-  ```sql
-  attach 'https://github.com/stschoberg/supply-chain-ontology/releases/download/data-latest/catalog.duckdb' as sco;
-  select * from sco.stg_usaspending__awards limit 10;
-  ```
-
-- **What's in it, what it can't tell you, other tools, and how to cite a version:** [data/README.md](data/README.md).
-  Every column: [data/DICTIONARY.md](data/DICTIONARY.md).
-
-### Building the data
-
-A fetcher saves immutable raw snapshots of USAspending. dbt transforms them in DuckDB and derives the synthetic
-source from the result, and a GitHub Actions workflow publishes it all as a dated release (`data-YYYY-MM-DD`).
+The data is published as dated releases of a few documented tables: DoD contract awards for bearings from
+USAspending.gov (FY2023–25), and synthetic logistics records generated for them (`dlms_synth`). How to use it,
+and what it can't tell you: [data/README.md](data/README.md).
 
 ```bash
 make fetch-usaspending           # download a raw snapshot
@@ -60,8 +33,7 @@ make dist                        # package a release locally in data/dist/, tabl
 ```
 
 Publishing, adding a source, and the published-table contract: [data/ENGINEERING.md](data/ENGINEERING.md).
-Each release also carries its tables as RDF in each source's own terms, the first of two mapping layers
-([data/mappings/](data/mappings/README.md)). The second, into the ontology's terms, is not started.
+Lifting the tables into RDF: [data/mappings/](data/mappings/README.md).
 
 ## Ontology workflow
 
@@ -117,12 +89,6 @@ Tests use OWL 2 RL (pure Python, fast). `make reason` runs full OWL 2 DL with He
 - Classes are UpperCamelCase, properties lowerCamelCase, and labels are lowercase English.
 - Definitions use the genus–differentia form: "A *[parent]* that *[distinguishing features]*."
 
-### Literature
-
-We keep a shared [Zotero group library](https://www.zotero.org/groups/6681419/phi-598-supply-chain-ontology) that
-auto-exports to `docs/literature/library.bib`, with one note per paper in `docs/literature/notes/`. Setup and
-conventions: [docs/literature/README.md](docs/literature/README.md).
-
 ## Research workflow
 
 The research workflow uses the other two to answer the project question. It traces BFO's influence down
@@ -130,14 +96,9 @@ through a published BFO-based supply chain stack (IOF Core and its Supply Chain 
 own ontology, to instance data. Each result is recorded as a finding that says which layer caused it: BFO, IOF, or
 us.
 
-- **Read the analysis:** [How BFO shapes IOF Core and SCRO](https://stschoberg.github.io/supply-chain-ontology/), the
-  research notebook published as a web page. It is rebuilt from `research/notebooks/stack-structure.py` on every
-  push to `main`.
-- **Method:** [research/README.md](research/README.md): the argument, how findings are attributed, metrics, and the
-  principles in scope.
-- **Findings:** `research/findings/F-NNN.md`, one per result, copied from `research/findings/_template.md`.
-- **Reference ontologies:** a pinned IOF release in `research/reference/iof-scro/`. `make research-build` derives the
-  tables the notebooks read from it, with ROBOT.
+- **Read the analysis:** [How BFO shapes IOF Core and SCRO](https://stschoberg.github.io/supply-chain-ontology/),
+  rebuilt from `research/notebooks/` on every push to `main`.
+- **Method, findings, and plan:** [research/README.md](research/README.md).
 
 ## Layout
 

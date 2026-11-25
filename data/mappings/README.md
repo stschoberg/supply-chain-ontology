@@ -13,7 +13,8 @@ make lift             # lift data/dist/'s tables into data/graph/: layer 1, then
 make lift-examples    # regenerate each layer 2 target's example/lifted.ttl after editing its rules
 ```
 
-Everything about one source is in its directory:
+Everything about one source is in its directory. Mappings are [YARRRML](https://rml.io/yarrrml/), run by
+[Morph-KGC](https://morph-kgc.readthedocs.io/):
 
 ```
 <source>/
@@ -31,16 +32,12 @@ Everything about one source is in its directory:
 | [`usaspending/`](usaspending/) | `usaspending.nt.gz`: awards and entities | `usas:` |
 | [`dlms_synth/`](dlms_synth/) | `dlms_synth.nt.gz`: **synthetic** logistics records, one class per kind of DLMS transaction | `dlms_synth:` |
 
+[`fuel_records/`](fuel_records/README.md) is a study source: hand-written tables, never released
+([ADR-0006](../../docs/adr/0006-readings-of-the-study-records.md)).
+
 A synthetic source's nodes live under `https://w3id.org/sco/data/synthetic/`, so no invented statement is ever
 about a real node. Its records link out to the real awards they were generated for, which is how the two graphs
 join when loaded together.
-
-Each source has a directory here:
-
-| File | What it is |
-|---|---|
-| `<source>/<table>.yml` | A [YARRRML](https://rml.io/yarrrml/) mapping from one published table's CSV to RDF, run by [Morph-KGC](https://morph-kgc.readthedocs.io/). |
-| `<source>/schema.ttl` | The classes and properties the mappings use, each with a label and definition. |
 
 The rules:
 
@@ -89,25 +86,16 @@ The rules:
 
 ### One graph per model
 
-A model graph is not a version of one source. It holds every source that has rules for that model, in one file,
-because the model is where sources meet. It uses the same node identifiers as the source graphs, so it is a second
-set of statements about the same awards and entities, and the two kinds of graph can be loaded together. It
-contains only the model's terms, and only asserted facts: a reasoner adds what follows. When one of its sources is
-synthetic the graph is part synthetic; the invented statements are the ones about nodes under `…/data/synthetic/`.
+A model graph holds every source that has rules for that model, with the same node identifiers as the source
+graphs, and asserted facts only ([ADR-0005](../../docs/adr/0005-two-layer-lifting.md)).
 
 Models are listed in `MODELS` in [`lift.py`](../lift.py), each with its ontology file. An experimental model's
 graph is written as `<model>.experimental.nt.gz`, and the release notes say its mapping is incomplete and will
 change. Clear the flag once its rules are settled enough to cite.
 
-## Schema and graph
+## Stable schemas
 
-Every graph, source or model, is written as two files:
-
-| File | Contents |
-|---|---|
-| `<name>.schema.ttl` | Classes and properties only. A source's is its `schema.ttl` here; a model's is its ontology. |
-| `<name>.nt.gz` | The schema plus all instance data, under a header that names the graph and the release and points to what it was derived from. The one file to load. |
-
+Every graph is published as `<name>.schema.ttl` and `<name>.nt.gz` ([release assets](../ENGINEERING.md#data-releases)).
 A model's ontology has unnamed nodes, which get random names each time a file is read. So that a graph is the same
 bytes on every build, `data/schemas/<model>.nt` holds each ontology with stable names. It is committed, and
 `make lift-schemas` rebuilds it (about a minute) when the ontology changes; a test fails if it is out of date.
